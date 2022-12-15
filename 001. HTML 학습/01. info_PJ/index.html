@@ -10,19 +10,124 @@
     <meta charset="utf-8" />
     <!-- title: 탭에 표시 타이틀 -->
     <title>네이버 요약 뉴스</title>
+    <!-- 인터널 스타일시트 요소 -->
+    <style>
+        /* 
+            [ 스타일 시트 문법 영역
+            기본 문법 ]
+
+            선택자{
+                속성:값;
+            }
+
+            [ css 박스 모델 ]
+            -> 모든 요소는 박스 형태로 그 디자인을 설정한다.
+            -> 5가지 속성을 셋팅한다.
+                1. width: 가로
+                2. height: 세로
+                3. padding: 안쪽 여백
+                4. border: 경계선
+                5. margin: 바깥 여백
+
+                -> 박스 모델의 적용은 블록 요소를 기본으로 한다.
+                
+                [ css 선택자(selector) ]
+
+                1. 타입 선택자: 요소명으로 선택
+                ex. h1{}, div{}, a{}
+
+                2. 아이디 선택자: #
+                ex. #my{}
+
+                3. 클래스 선택자: .
+                ex. .my{}
+
+                4. 종속 선택자: 요소명#아이디명 / 요소명.클래스명 /         요소명#아이디명.클래스명
+                ex. div#my{} -> div 요소인데 아이디가 my이다.
+                    a.my{} -> a 요소인데 클래스가 my이다.
+                -> 기본적으로 종속 선택자는 요소 분석기에서 사용됨
+                -> 특정 요소에 특정 이름을 밝혀야 할 경우
+                -> 클래스 적용 시 같은 이름으로 다른 디자인을 줄 때
+
+                ex. div.on{} header.on{}
+                -> 같은 클래스인데 다른 디자인 적용 가능
+
+                5. 그룹 선택자: ,(콤마)
+                ex. h1,div,a{}
+            
+                    
+        */
+
+        /* 기본 마진 패딩 없애기 */
+        html,body{
+            margin: 0;
+            padding: 0;
+            /* 실제는 body에만 마진 8px이 있지만 사용자가 별도로 적용한 마진 등 초기화할 때 한 번에 최상위 요소인 html,body를 마진, 패딩 초기화값 0으로 셋팅한다. */
+        }
+
+        /* 박스 공통 클래스 */
+        .bx{
+            /* 가로 크기 w
+            아무 값도 안 쓰면? auto인데 */
+            width: 750px;
+
+            /* 세로 크기 h */
+            /* height: 150px; */
+
+            /* 경계선(보더) bd
+                border: 두께 종류 색상
+                - border-width: 두께
+                - bordㄷr-style: 종류
+                - border-color: 색상
+                참고)
+                https://www.w3schools.com/css/css_border.asp
+                */
+            border: 5px dashed #0fcf49;
+
+            /* 둥근 모서리 보더: brad
+                border-radius: 값
+                값을 50% 주면 원이 생김
+                */
+                border-radius: 10px;
+                /* border-radius: 50%; */
+
+
+            /* 안쪽 여백(패딩) p
+                padding: 1개 (4방향)
+                padding: 1개 2개 (위아래 양쪽)
+                padding: 1개 2개 3개 (위 양쪽 아래)
+                padding: 1개 2개 3개 4개 (각 방향 / 순서대로 시계방향 - 위 오른 아래 왼) 
+                
+                -> 마진도 동일함
+                */
+                /* padding: 20px 50px 80px 5px; */
+            padding: 20px 50px 80px;
+            
+            /* 바깥 여백(마진) m */
+            /* margine: 30px; */
+            margin: 0 auto;
+            /* 마진탑 덮어쓰기 mt */
+            margin-top: 30px;
+            /* 
+            마영오 씨가 누구지?
+            - 일반적인 블록 요소가 가로 */
+
+        }
+
+    </style>
   </head>
   <body>
     <!-- 1. 상단영역 -->
-    <header>
+    <header class>="top bx"
       <!-- 1-1. 제목 -->
       <h1>네이버 요약 뉴스</h1>
-      <!-- 1-2. GNB 메뉴 -->
+      <!-- 1-2. GNB 메뉴
       -> 의미를 가지는 div 형제들이 등장
-      <!-- GNB(global navigation bar -->
+       GNB(global navigation bar -->
 
       <nav id="gnb">
         <a href="#">
-          <img src="images/naverLogo.png" alt="네이버로고" style="width: 0px" />
+          <img src="images/naverLogo.png" alt="네이버로고" style="width: 20px" />
         </a>
         <a href="">경제</a>| <a href="">정치</a>| <a href="">사회</a>|
         <a href="">IT/과학</a>|
@@ -30,16 +135,16 @@
       </nav>
     </header>
     <!-- 2. 메인영역 -->
-    <main>
+    <main class="cont bx">
       <img src="./images/mainImage.webp" alt="뉴스메인이미지" />
     </main>
     <!-- 3. 하단영역 -->
-    <footer>
+    <footer class="info bx">
       <!-- 주소 블록 요소 -->
       <address>
         서울시 강남구 역삼동 119 대호B 8F <br>
         대표: Dami So <br>
-        전화: 010-2222-3333
+        전화: 010-1234-5678
       </address>
     </footer>
 
