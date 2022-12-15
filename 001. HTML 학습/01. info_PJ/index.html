@@ -54,6 +54,9 @@
 
                 5. 그룹 선택자: ,(콤마)
                 ex. h1,div,a{}
+
+                6. 자손 선택자: 띄어쓰기
+                ex. div a{} - div 하위의 모든 a 요소들
             
                     
         */
@@ -114,6 +117,12 @@
 
         }
 
+        /* 메인 영역 이미지 */
+        .cont img{
+            width: 100%;
+            /* 한 쪽만 크기를 주면 이미지는 자동으로 비율 유지하면서 변경된다. 100는 부모 박스를 채움 */
+        }
+
     </style>
   </head>
   <body>
@@ -136,7 +145,7 @@
     </header>
     <!-- 2. 메인영역 -->
     <main class="cont bx">
-      <img src="./images/mainImage.webp" alt="뉴스메인이미지" />
+      <img src ="./images/mainImage.webp" alt="뉴스메인이미지" />
     </main>
     <!-- 3. 하단영역 -->
     <footer class="info bx">
