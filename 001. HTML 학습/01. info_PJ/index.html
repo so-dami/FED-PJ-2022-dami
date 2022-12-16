@@ -11,6 +11,7 @@
         <title>네이버 요약 뉴스</title>
         <!-- 인터널 스타일시트 요소 -->
         <style>
+          @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Do+Hyeon&family=Indie+Flower&family=Noto+Sans+KR:wght@100;400&family=Roboto+Condensed:wght@300&family=Source+Serif+Pro:wght@200&display=swap');
             /* 
                 [스타일 시트 문법 영역!
                 기본문법]
@@ -188,7 +189,7 @@
             font-family: 'Do Hyeon', sans-serif;
             /* a요소는 기본적으로 미툴과 글자색이 셋팅되어 있다. 반드시 a에서 변경해야만 적용된다. (부모에서는 안됨) */
             /* 글자색 */
-            color: darkolivegreen
+            color: darkolivegreen;
             /* 밑줄 없애기 tdn :
             text-decoration: none; */
             text-decoration: none;
@@ -214,6 +215,21 @@
                 /* 글자중앙정렬 */
                 text-align: center;
             }
+
+            /* 하단 주소 */
+            .info address{
+              /* 글자체 */
+              font-family: 'Source Serif Pro', serif;
+              /* adress는 기본 이탤릭이므로 해제하기 */
+              font-style: normal;
+              /* 글자색 */
+              color: rgb(56, 56, 56);
+              /* 글자크기 */
+              font-size: 15px;
+
+              
+            }
+
 
         </style>
     </head>
