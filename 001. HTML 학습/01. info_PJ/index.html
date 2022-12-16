@@ -67,6 +67,11 @@
                 7. 직계자식 선택자 : > (왼쪽 꺾쇠)
                 예) header>a{} -> header 바로 아래 a요소
 
+                8. 형제 선택자 : +
+                예) div+div{} -> 앞에 형제 div가 있는 div 선택
+                예) a+a{} -> 앞에 a가 있는 a 선택
+                  -> 첫 번째를 제외한 나머지 형제 요소들을 선택 할 때 많이 씀
+
             */
 
             /* 기본마진 패딩 없애기 */
@@ -171,7 +176,7 @@
               (글이 여러 줄일 때 사이 간격용
               or 글자 박스에서 세로 중앙 정렬 시)
               - 단위 없으면 배수 */
-              line-height: 1.5;
+              /* line-height: 1.7; */
 
               /* 5. 글씨체 ff :
               font-family
@@ -186,18 +191,31 @@
             /* GNB 메뉴 a */
           #gnb a{
             /* 글자체 */
-            font-family: 'Do Hyeon', sans-serif;
-            /* a요소는 기본적으로 미툴과 글자색이 셋팅되어 있다. 반드시 a에서 변경해야만 적용된다. (부모에서는 안됨) */
+            font-family: 'Noto Sans KR', sans-serif;
+            /* a요소는 기본적으로 밑줄과 글자색이 셋팅되어 있다. 반드시 a에서 변경해야만 적용된다. (부모에서는 안됨) */
             /* 글자색 */
             color: darkolivegreen;
             /* 밑줄 없애기 tdn :
             text-decoration: none; */
-            text-decoration: none;
-
-
-            
-        
-
+            text-decoration: none;      
+          }
+          /* a요소 오버시 */
+          /* :hover 가상클래스
+          - 마우스 오버된 상태에 대한 디자인 셋팅 */
+          /* a+a:hover 앞에 a 형제가 있는 a에 오버시 */
+          #gnb a+a:hover{
+            /* 글자색 */
+            color: #ff27a5;
+            /* 글자 데코레이션 : text-decoration
+            underline(밑줄), overline(윗줄), line-through(중간줄), none(없음) */
+            text-decoration: underline;
+          }
+          /* 로고 이미지 */
+          #gnb img{
+            /* 인라인 요소 간 세로 정렬(진행방향) va :
+            vertical-align
+            - 값 : top, bottom, middle, 수치 */
+            vertical-align: -3.95px;
           }
 
             /* 2.메인영역 */
@@ -219,7 +237,7 @@
             /* 하단 주소 */
             .info address{
               /* 글자체 */
-              font-family: 'Source Serif Pro', serif;
+              font-family: 'Noto Sans KR', sans-serif;
               /* adress는 기본 이탤릭이므로 해제하기 */
               font-style: normal;
               /* 글자색 */
@@ -242,15 +260,17 @@
             <!-- GNB(Global Navigation Bar) -->
 
             <nav id="gnb">
-                <a href="#">
+                <a href="index.html">
                     <img
                         src="images/naverLogo.png"
                         alt="네이버로고"
                         style="width: 20px" />
                 </a>
-                <a href="">정치</a> | <a href="">경제</a> |
-                <a href="">사회</a> | <a href="">IT/과학</a> |
-                <a href="">TV/연예</a>
+                <a href="sub1.html">정치</a> |
+                <a href="sub2.html">경제</a> |
+                <a href="sub3.html">사회</a> |
+                <a href="sub4.html">IT/과학</a> |
+                <a href="sub5.html">TV/연예</a> |
             </nav>
         </header>
         <!-- 2.메인영역 -->
