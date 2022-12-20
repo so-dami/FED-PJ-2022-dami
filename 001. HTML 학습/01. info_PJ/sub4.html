@@ -196,8 +196,148 @@
         > 닫는 꺽쇠 &gt; (gt는 greater than)
        -->
 
+       <!-- 
+        [ 순서 없는 리스트 : ul ] 
+        unordered list
+
+        [ 순서 있는 리스트 : ol]
+        ordered list.
+
+        - 하위 필수요소: li (개별리스트)
+        - 주의: 하위에 li 이외의 블록요소나 그 어떤 요소도 쓸 수 없음
+      -->
+
+      <!-- 주요 뉴스 : ul -->
+      <article class="cnews">
+        <h3>주요뉴스</h3>
+        <ul>
+          <li><a href="https://www.newsis.com/view/?id=NISX20221214_0002123168" target="_blank">손흥민 아버지 "왼발 잘 쓰려고 오른쪽에 압정 꽂아"</a></li>
+          <li><a href="https://www.newsis.com/view/?id=NISX20221213_0002121312" target="_blank">안정환 아들, 중학생 맞아?…"아빠 느낌 나오네"</a></li>
+          <li><a href="https://www.newsis.com/view/?id=NISX20221213_0002121413" target="_blank">'골프여제' 박인비, 결혼 8년만에 임신
+          </a></li>
+        </ul>
+      </article>
+
+      <!-- 랭킹 뉴스 : ol -->
+      <article class="rank">
+        <h3>랭킹뉴스</h3>
+        <ol>
+          <li><a href="https://n.news.naver.com/mnews/ranking/article/003/0011599659?ntype=RANKING" target="_balnk">월드컵 결승전 메시 연장전 골 무효?…득점 취소 어려워</a></li>
+          <li><a href="https://n.news.naver.com/mnews/ranking/article/003/0011600371?ntype=RANKING" target="_balnk">내일 새벽 중부내륙 중심 눈폭탄…대중교통 이용 당부</a></li>
+          <li><a href="https://n.news.naver.com/mnews/ranking/article/003/0011600407?ntype=RANKING" target="_balnk">코로나19 재유행 시작되나…신규 확진 8만 7559명 3개월 만에 '최다' [뉴시스Pic]</a></li>
+        </ol>
+      </article>
+
+      <!-- 
+        [ 용어 정의 리스트 : dl ]
+        dl > dt + dd
+        _________________________________
+        
+        dl: 용어 리스트
+        (defines the descrption list)
+        dt : 용어 정의
+        (defines the term)
+        dd : 용어 설명
+        (discrption each term)
+        ___________________________________
+
+        주의: dl은 반드시 자식 요소로 dt와 dd를 한 번 이상 사용해야 한다
+        또 주의: dt와 dd는 형제다. dt>dd 아니다.
+       -->
+
+      <!-- 분야별뉴스 -->
+      <article class="secnest">
+        <h3>분야별뉴스</h3>
+        <dl>
+          <dt>경제</dt>
+          <dd>
+            <a href="https://n.news.naver.com/mnews/article/016/0002080699?sid=101" target="_blank">‘코레일-SR 통합’ 안한다…정부, 철도 경쟁체제 유지키로</a>
+          </dd>
+          <dd>
+            <a href="https://n.news.naver.com/mnews/article/003/0011600478?sid=101" target="_blank">"SK하이닉스, 서버용 D램 성장으로 내년 하반기 반등"</a>
+          </dd>
+
+          <dt>사회</dt>
+          <dd>
+            <a href="https://n.news.naver.com/mnews/article/079/0003719131?sid=102" target="_blank">'필로폰 투약·매수 혐의' 돈스파이크에 징역 5년 구형</a>
+          </dd>
+          <dd>
+            <a href="https://n.news.naver.com/mnews/article/421/0006529602?sid=102" target="_blank">검찰, '김웅 불기소' 보고서 조작 의혹…공수처 수사 착수</a>
+          </dd>
+
+          <dt>연예</dt>
+          <dd>
+            <a href="https://entertain.naver.com/read?oid=117&aid=0003679590" target="_blank">이루 "음주운전 변명 여지 없어, 드라마에 누 끼쳐 죄송" [전문]
+            </a>
+          </dd>
+          <dd>
+            <a href="https://entertain.naver.com/ranking/read?oid=076&aid=0003951815" target="_blank">조세호, SNS에 올린 글에…'동료 연예인' 댓글 "글은 안내리지?"</a>
+          </dd>
+        </dl>
+      </article>
+
+      <!-- dl 에밋코딩 참고
+      dl>(dt+dd*2>a[target=_blank])*3 -->
+
+      <!-- 
+        [ 테이블 요소 : table ]
+        table > tr > td
+        ________________________________
+        
+        table : 테이블 박스 (부모 요소)
+        tr : 테이블 행 요소 (table row)
+        td : 테이블 데이터 (table data)
+       -->
+
+    <!-- 사진 뉴스 : table -->
+    <article class="pnews">
+      <h3>사진뉴스</h3>
+      <table border="1">
+        <tr>
+          <td>1</td>
+          <td>
+            <a href="https://n.news.naver.com/mnews/article/003/0011600319" target="_blank">
+              與, 노조회계 투명성 위한 법률 개정…"
+              <br>깜깜한 어둠 속에서 나와야"
+            </a>
+          </td>
+          <td>
+            <a href="https://n.news.naver.com/mnews/article/003/0011600319" target="_blank">
+              <img src="./images/pnews1.jpg" alt="사진뉴스1이미지">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>
+            <a href="https://n.news.naver.com/mnews/article/003/0011600269" target="_blank">중·장년층 소득 115만원 '찔끔' 늘 때
+              <br>대출 604만원 불었다</a>
+            </td>
+            <td>
+            <a href="https://n.news.naver.com/mnews/article/003/0011600269" target="_blank">
+              <img src="./images/pnews2.jpg" alt="사진뉴스2이미지">
+            </a>
+          </tr>
+          </td>
+        <tr>
+          <td>3</td>
+          <td>
+            <a href="https://n.news.naver.com/mnews/article/003/0011600202" target="_blank">北, ICBM 정상각도 발사 위협 "쏴 보면 알것"
+            <br>軍 "종합 분석"</a>
+          </td>
+          <td>
+            <a href="https://n.news.naver.com/mnews/article/003/0011600202" target="_blank">
+              <img src="./images/pnews3.jpg" alt="사진뉴스3이미지">
+            </a>
+          </td>
+        </tr>
+      </table>
+    </article>
+
+
 
     </main>
+
     <!-- 3.하단영역 -->
     <footer class="info bx">
       <!-- 주소블록요소 -->
