@@ -4,25 +4,63 @@
     <meta charset="UTF-8">
     <title>Archive page</title>
     <style>
-        h1{text-align:center;}
-        h2{text-align:center;}
+        html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body{
+            /* 배경 이미지 넣기 bgi : background-image */
+            background-image: url(./imgs/worksbg.jpg);
+            /* 배경 반복 여부 bgr : 반복 안함(none-repeat) */
+            background-repeat: no-repeat;
+            /* 배경 크기 bgz : 채우기(cover) */
+            background-size: cover;
+            /* 패딩탑 pt */
+            padding-top: 50px;
+        }
+
+        /* 전체 박스 */
+        .mybox{
+            width: 1200px;
+            height: 800px;
+            background-color: rgb(255, 255, 255, 0.525);
+            /* 둥근모서리 brad */
+            border-radius: 20px;
+            /* 가로 중앙 */
+            /* 마영오! 씨를 무대 중앙으로 모시겠습니다. */
+            margin: 0 auto;
+            /* 양쪽 마진이 auto면 양쪽을 등분해서 가로 중앙이 된다. */
+            /* 위쪽 마진 */
+        }
+
+        /* h1 요소 */
+        .tit{
+            /* 기본 마진 없애기 */
+            margin: 0;
+            /* 패딩 */
+            padding: 20px;
+            /* 글자 정렬: 중앙 */
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>Dami's Archive page</h1>
-    <h2>
-        <ul>
-            <ul style="list-style-type:none">
-            <li>
-                <a href="001. HTML 학습/01. info_PJ/index.html" target="_blank">1. Info PJ</a>
-            </li>
-            <li>
-                <a href="001. HTML 학습/01. info_PJ/sub4.html" target="_blank">2. IT/과학</a>
-            </li>
-            <li>
-                <a href="./006. 와이어프레이밍/도깨비PJ와이어프레임.pdf" target="_blank">3. 도깨비 PJ 와이어프레임</a>
-            </li>
-        </ul>
-    </h2>
+    <div class="mybox">
+        <h1 class="tit">Dami's Archive page</h1>
+        <h2>
+            <ul>
+                <li>
+                    <a href="001. HTML 학습/01. info_PJ/index.html" target="_blank">1. Info PJ</a>
+                </li>
+                <li>
+                    <a href="001. HTML 학습/01. info_PJ/sub4.html" target="_blank">2. IT/과학</a>
+                </li>
+                <li>
+                    <a href="./006. 와이어프레이밍/도깨비PJ와이어프레임.pdf" target="_blank">3. 도깨비 PJ 와이어프레임</a>
+                </li>
+            </ul>
+        </h2>
+    </div>
 </body>
 </html>
