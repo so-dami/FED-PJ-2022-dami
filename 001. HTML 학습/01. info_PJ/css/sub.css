@@ -358,7 +358,7 @@ font-style: normal;
     요소 : last-child -> 마지막 째 자식 요소
     */
 
-/* 첫 번Wo li */
+/* 첫 번째 li */
 .cont article ul li:first-child a{
     color: red;
 }
@@ -383,3 +383,56 @@ font-style: normal;
     -> 더 쎈 선택자여도 부모 요소를 업고 있는 것이 더 쎄다.
     예) #my < .cont .my
 */
+
+/* 분야별 뉴스 */
+/* 각 분야명 dt 공통 디자인 */
+.secnest dt{
+    /* 글자체 : 웹폰트 */
+    font-family: 'Do Hyeon', sans-serif;
+    /* 글자 크기만큼 디자인 적용을 위해 dib */
+    display: inline-block;
+    /* 보더 bd */
+    border: 3px dashed darkcyan;
+    /* 패딩 p */
+    padding: 5px;
+    /* 둥근 모서리 : 원 50% */
+    border-radius: 50%;
+    /* 글자크기 fz */
+    font-size: 20px;
+    /* 왼쪽 마진으로 이동하기 */
+    margin-left: 20px;
+    /* 박스 그림자 bsh
+    (inset) x y blur spread 색 */
+    box-shadow: 0px 0px 5px 5px rgba(197, 96, 255, 0.45);
+}
+
+
+/* 앞에 dd가 있는 dt만 마진탑 밀기 */
+.secnest dd+dt{
+    /* 마진탑 밀기 */
+    margin-top: 20px;
+}
+
+/* [ 여러 종류가 섞여 있을 경우 형제 선택하기 ]
+    요소 : first-of-type -> 같은 요소 중 첫 번째
+    요소 : nth-of-type(n) -> 같은 요소 중 몇 번째
+    요소 : last-of-type -> 같은 요소 중 마지막 째
+*/
+
+/* dt별 글자색 바꾸기 */
+/* dt는 형제 중 dd가 섞여 있으므로 -of-type 사용 */
+.secnest dt:first-of-type {
+    color: darksalmon;
+}
+.secnest dt:nth-of-type(2) {
+    color: darkslategray;
+}
+.secnest dt:last-of-type {
+    color: darkslateblue;
+}
+
+/* dd 공통 */
+.secnest dd{
+    /* 왼쪽 마진 ml */
+    margin-left: 100px;
+}
