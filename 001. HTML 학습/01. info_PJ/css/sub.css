@@ -536,3 +536,17 @@ td : 테이블 데이터 (table data) */
     /* 보더탑 bdt */
     border-top: 2px solid rgb(206, 119, 119);
 }
+
+/* 말줄임 표시 셋팅하기 */
+ul a, ol a, dl a{
+    /* 1. 디자인 적용 위해 block */
+    display: block;
+    /* 2. 가로 크기에 한계 주기 */
+    width: 315px;
+    /* 3. 줄바꿈 방지(한 줄 짜리) */
+   white-space : nowrap;
+    /* 4. 넘치는 자식 숨기기 */
+    overflow: hidden;
+    /* 5. 넘치는 텍스트 말줄임표 설정 */
+    text-overflow: ellipsis;
+}
