@@ -436,3 +436,74 @@ font-style: normal;
     /* 왼쪽 마진 ml */
     margin-left: 100px;
 }
+
+/* [ 테이블 요소 : table ]
+table > tr > td
+
+-> tbody는 안 써도 브라우저가 그려준다.
+-> 직계 자식으로 선택할 경우 table > tr 로 선택하면 적용되지 않는 이유가 바로 이것임 (주의할 것)
+________________________________
+
+table : 테이블 박스 (부모 요소)
+tr : 테이블 행 요소 (table row)
+td : 테이블 데이터 (table data) */
+
+/* 사진뉴스 테이블 박스 */
+.pnews table{
+    /* 가로중앙이동 : 마영오씨
+    -> 블록요소 또는 table에 적용된다. */
+    margin: 0 auto;
+    /* 외곽선 */
+    border: 1px solid #000;
+
+    /* 테이블 기본 사이 간격 없애기 */
+    border-collapse: collapse;
+    /* seperate(기본 값) */
+}
+
+/* 
+    tr 이나 td 에 child 선택자 사용 가능
+    왜? 같은 종류의 요소만 올 수 있으므로
+*/
+
+/* 첫 번째 td - 숫자 부분 */
+.pnews td:first-child{
+    /* 가로 크기 w */
+    width: 50px;
+
+    /* 세로 크기 h */
+    height: 70px;
+
+    /* 인라인 가로중앙 alc */
+    text-align: center;
+
+    /* 배경색 */
+    background-color: rgb(206, 119, 119);
+}
+
+/* 두 번째 td - 숫자 부분 */
+.pnews td:nth-child(2){
+    /* 배경색 */
+    background-color: rgb(235, 132, 132);
+
+    /* 양쪽 패딩 : 위아래 양쪽 */
+    padding: 0 20px;
+    ;
+}
+
+/* 세 번째 td */
+.pnews td:last-child{
+    /* 배경색 */
+    background-color: rgb(255, 143, 143);
+    padding-right: 7px;
+}
+
+/* 사진뉴스 이미지 */
+.pnews img{
+    /* 이미지는 한 쪽만 크기주면 나머지는 자동으로 비율 유지함 */
+    height: 70px;
+
+    /* 세로정렬
+    -> td에서만 세로정렬이 적용되고 일반적으로 vertical-align 은 인라인 요소 간 세로방향 정렬이다.  */
+    vertical-align: middle;
+}
