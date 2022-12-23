@@ -122,18 +122,18 @@
         /* dd전체와 
         dd.story>h3에 가상요소 before적용하기 */
         dd::before, dd.story::before{
-            content: '😀';
+            content: '🎅';
             margin-right: 10px;
         }
         
         /* 출연배우의 dd부터 아이콘변경 */
         dt:nth-of-type(2)~dd::before{
-            content: '😑';
+            content: '☃';
         }
         
         /* 아티스트의 dd부터 아이콘변경 */
         dt:nth-of-type(3)~dd::before{
-            content: '😎';
+            content: '🎁';
         }
         
         /* 스토리의 dd는 가상요소 없애기 */
@@ -172,10 +172,16 @@
 
         /* 기타 가상요소 ::selection */
         /* 드래그 선택시 글자색 배경색 설정변경! */
-        
+        p::selection,
+        b::selection,
+        span::selection{
+            color: lightgoldenrodyellow;
+            background-color: blueviolet;
+        }
         /* ::selection만쓰면 전체가 다 적용됨! 
         특정선택자::selection 으로 쓰면 자식태그로
         싸지 않은 글자만 적용됨!*/
+
     </style>
 </head>
 
