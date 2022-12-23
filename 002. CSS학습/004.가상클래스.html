@@ -71,6 +71,59 @@
 
     */
 
+    /* 타이틀 중앙정렬 : 그룹선택자 (,) */
+    h1,h2{
+        text-align: center;
+    }
+
+    /* [ a 요소 가상클래스 추가 ] */
+    /* :link 링크 최초 상태 */
+    h2 a:link{
+        /* 글자색 c */
+        color: red;
+        /* 밑줄 없애기 tdn */
+        text-decoration: none;
+    }
+
+    /* :hover 마우스 오버시 */
+    h2 a:hover{
+        /* 글자색 */
+        color: darkgreen;
+        /* 윗 밑줄 tdo */
+        text-decoration: overline;
+        /* 글자 데코 스타일(선 스타일) */
+        text-decoration-style: wavy;
+    }
+
+    /* :visited 클릭 후(방문 후) 상태 */
+    /* h2 a:visited{
+        글자색
+        color: lime;
+    } */
+
+    /* :active 클릭 왼쪽 버튼을 누른 상태 */
+    /* h2 a:active{
+        글자색
+        color: pink;
+        글자 그림자 ts
+        text-shadow: 2px 2px 2px #000;
+    } */
+
+    /* 요즘은 a 요소에 바로 셋팅하고
+    :hover 정도만 변경해 준다. */
+    h2 a{
+        /* 글자색 */
+        color: darkorange;
+    }
+
+    /* :focus 요소를 클릭, 탭하여 초점이 올 때 */
+    h2 a:focus{
+        /* 외곽선 ol (outline)
+        값: 두께 종류 색상 (border와 유사함)
+        -> 보더와 차이점: 주변에 영향을 미치지 않으며, 박스 기본 구성 속성이 아님
+        -> 주로 입력창 포커스 갈 때 아웃라인 표시 등에 사용됨*/
+        outline: 10px dotted orangered;
+    }
 
 
         /* 
