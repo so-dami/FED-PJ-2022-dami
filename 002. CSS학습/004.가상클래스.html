@@ -134,7 +134,9 @@
         /* 내부 인라인요소 오른쪽 정렬 */
         text-align: right;
 
-        outline: 1px solid red;
+        /* outline: 1px solid red; */
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     /* 
@@ -236,11 +238,11 @@
         }
 
         /* 오버시 한글 보이기 */
-        .part1 li:nth-child(4):hover{
+        .part1 li:nth-child(4):hover b{
             /* 원래 display로 돌아감
             b요소는 원래 inline */
             display: inline; /* di */
-        }'
+        }
         
         /* 오버시 한자(span태그) 숨기기 */
         .part1 li:nth-child(4):hover span{
@@ -326,7 +328,7 @@
         
         -> 주의사항: 인라인보다 더 강하므로 JS코딩시
         이런 셋팅이 있으면 JS가 적용되지 않는 경우가
-        발생한다! 따라서 사용을 최대한 신중하게 해야함
+        발생한다! 따라서 사용을 최대한 신중하게 해야 함
       */
     </style>
 </head>
