@@ -67,13 +67,28 @@
             -> top, bottom, middle, 숫자px 등 */
             vertical-align: middle;
         }
-
-        h2::after{
-            content: url(./imgs/bg_logo_a_01.png);
-        }
-        
-
+       
         /* 맨뒤 추가요소 ::after */
+        h2::after{
+            content: '';
+            /* content의 빈 값은 마치 <span></span> 이라고 쓴 것과 비슷하다. 인라인 요소임 */
+            display: inline-block;
+            /* display 속성을 block 이라고 주는 순간 <div></div> 처럼 블록요소가 되고 inline-block 을 주면 한 줄에 오면서 디자인 적용이 가능해진다. */
+
+            width: 40px;
+            height: 60px;
+            border: 2px solid gray;
+            border-radius: 5px;
+
+            /* 배경이미지 넣기
+            bg: 색이반고윙/크 */
+            background: url(./imgs/bg_logo_a_01.png) no-repeat center/80%;
+
+            /* 박스 그림자 bsh
+            그림자는 콤마로 더 넣을 수 있다. */
+            box-shadow: 0 0 10px purple,
+            10px 10px 5px 2px rgba(34, 34, 34, 0.334);
+        }
         
 
 
