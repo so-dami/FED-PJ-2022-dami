@@ -125,6 +125,103 @@
         outline: 10px dotted orangered;
     }
 
+    /* 시인 이름 */
+    h3{
+        /* 가로 크기 */
+        width: 800px;
+        /* 부모 박스보다 작은 크기를 가지는 블록요소에 적용됨 -> 마.영.오 */
+        margin: 0 auto;
+        /* 내부 인라인요소 오른쪽 정렬 */
+        text-align: right;
+
+        outline: 1px solid red;
+    }
+
+    /* 
+        요소명.클래스명 / 요소명#아이디명
+        [ 종속 선택자를 쓰는 경우 ]
+        1. 개발자가 요소를 밝히고 싶을 때
+        2. 같은 클래스를 다르게 셋팅할 때
+
+    */
+
+    /* ul / ol 요소 기본 초기화 */
+    ul,ol{
+        /* 3가지 없애기! 3無 */
+        margin: 0; /* m0 */
+        padding: 0; /* p0 */
+        list-style: none; /* lin */
+    }
+
+    /* ul 기본 리셋하기 */
+    ul.part1{
+        width: 800px;
+        margin: 0 auto; /* 위에 margin 값을 덮어쓰기 함 (밑에 있는 애가) */
+        padding: 20px 20px;
+        border: 2px solid #ccc;
+        /* 둥근 모서리 */
+        border-radius: 20px;
+        /* border와 padding 설정 크기 내부로 포함시키는 속성은?
+        box-sizing:border-box (bxb) */
+        box-sizing: border-box;
+        /* 글자 중앙 tac */
+        text-align: center;
+    }
+
+    /* 
+        [ font 한 번에 셋팅하기 ]
+        font: 스타일 두께 크기/줄간격 글자체
+        font: 스두크/줄체
+    */
+
+    /* 모든 li에 오버시 손가락 모양 */
+    .part1 li{
+        /* pointer 손가락 모양 */
+        cursor: pointer;
+    }
+
+    /* 1번째 li */
+    .part1 li:first-child{
+        /* 글자크기 40px 글자체 "궁서" 글자색 red */
+        font: 40px "궁서";
+        color: red;
+    }
+
+    /* 오버시 글자크기 50px 글자색 blueviolet */
+    .part1 li:first-child:hover{
+        /* 글자크기 50px 글자체 "궁서" 글자색 red */
+        font-size: 50px;
+        color: blueviolet;
+    }
+
+    /* 2번째 li
+    font - bold 30px 굴림
+    글자색 - lightcoral */
+    .part1 li:nth-child(2){
+        font: bold 30px "굴림";
+        color: lightcoral;
+    }
+    
+    /* 오버시
+    글자색 - skyblue */
+    .part1 li:nth-child(2):hover{
+        color: skyblue;
+    }
+    
+    /* 3번째 li
+    font - italic bold 24px 돋움
+    글자색 - brown */
+    .part1 li:nth-child(3){
+        font: italic bold 24px "돋움";
+        color: brown;
+    }
+    
+    /* 오버시
+    글자 스타일 - normal */
+    .part1 li:nth-child(3):hover{
+        font-style: normal;
+    }
+    
 
         /* 
         [ CSS 선택자 우선순위 ]
