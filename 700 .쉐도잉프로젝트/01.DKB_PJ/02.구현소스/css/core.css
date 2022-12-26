@@ -21,6 +21,7 @@ body{
 
 /* 중앙 속박스 클래스 */
 .ibx{
-    width: 1200px;
+    max-width: 1200px;
+    /* 1200px을 유지하다가 이것보다 작아지면 가로크기가 auto로 전환되어 가로스크롤이 안 생김 */
     margin: 0 auto;
 }
