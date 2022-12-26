@@ -7,6 +7,9 @@
 1) 텍스트 데이터
 - 각 분야별로 카피하여 텍스트파일로 분류하여 보관함
 
+* 참고: JS 때문에 글자 드래그가 안 되는 경우?
+-> F12 - 톱니바퀴(설정) - Settings - Preferences - Debugger - Disable JavaScript 체크
+
 2) 이미지 데이터
 - 이미지별 수집하기(하나씩저장)
 - 더미 저장(브라우저 확장프로그램 사용! Image Downloader)
