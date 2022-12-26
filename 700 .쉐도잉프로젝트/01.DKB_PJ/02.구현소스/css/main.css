@@ -28,7 +28,8 @@ body{
 /************************* 메인영역 *************************/
 /* 메인영역 속박스 */
 .cont{
-
+    /* 자식요소 위아래 마진 포함 */
+    overflow: hidden;
 }
 
 /* 전체 캐릭터 박스 */
@@ -37,18 +38,59 @@ body{
     width: 90%;
     /* 마영오 */
     margin: 0 auto;
+    /* 상단 마진 -> 부모박스에 oh! 설정 */
+    margin-top: 470px;
+}
 
+/* 자식요소의 float 해제 clear 설정 가상요소로 하기 */
+.cbx::afte{
+    content: '';
+    display: block;
+    clear: both;
 }
 
 /* 캐릭터 각 박스 공통 */
 .cat{
-    /* 4등할 가로크기 -> 20% */
-    width: 20%;
+    float: left;
+    /* 4등할 가로크기 -> 25% */
+    width: 25%;
 }
 
-/* 캐릭터 이미지 */
-.cat img{
+/* 캐릭터 이미지 (.ci직계 img만 적용) */
+.ci > img{
     /* 이미지 가로크기 박스 채움 */
-    /* 이미지 높이값은 자동(비율 유지) */
     width: 100%;
+    /* 이미지 높이값은 자동(비율 유지) */
+}
+
+/* 캐릭터 이름 이미지 박스 */
+.ci figcaption{
+    /* 포지션 셋팅 없이 박스를 일반적으로 이동하는 방법
+    -> 마진을 이용한 이동 (margin-top, margin-left)
+    %단위일 경우 margin-top은 height값, margin-left는 width값 기준으로 상대적인 단위를 잡는다. */
+    margin-top: -21%;
+    /* 글자중앙정렬(인라인요소 모두 적용) */
+    text-align: center;
+}
+
+/* 캐릭터 이름 이미지 */
+.ci figcaption img{
+    width: 40%;
+    /* 단위가 %이면 질문을 하라!
+    무엇을 기준한 %인가?
+    -> 싸고 있는 부모박스 죽, figcaption 요소 박스의 가로크기가 기준 */
+}
+
+/* 캐릭터 이름 이미지 중 첫 번째 이미지 처음에 숨기기 */
+.ci figcaption img:first-child{
+    display: none;
+}
+/* .cat 박스에 마우스 오버시 진한 이미지 보이기 */
+.cat:hover .ci figcaption img:first-child{
+    display: inline;
+}
+
+/* .cat 박스에 마우스 오버시 흐린 이미지 숨기기 */
+.cat:hover .ci figcaption img:last-child{
+    display: none;
 }
