@@ -10,32 +10,35 @@
             border: 2px solid blue;
             text-align: center;
             font-size: 24px;
-            font-weight: bold; /* fwb */
+            font-weight: bold;/* fwb */
             /* 글자세로중앙 */
             line-height: 100px;
         }
 
-        /* 첫 번째 앱솔루트 */
+        /* 첫번째 앱솔루트!!! */
         #a1{
             position: absolute;
+
+            /******************************************* 
+                [ 3. absolute 포지션 ]
+
+
+            *******************************************/
+
             background: url(./images/ab1.jpg) no-repeat center/cover;
 
-            /**********************************************************
-                [ 3. absolute 포지션 ] 
-                
-             **********************************************************/
         }
 
-        /* 첫 번째 박스 포지션  */
+        /* 첫번째 박스에 포지션 체크 */
         #r1{
             position: relative;
             background: url(./images/ab5.jpg) no-repeat center/cover;
         }
 
-        /* 또 하나의 relative */
+        /* 또하나의 relative */
         #r2{
+            position: relative;/* por */
             background: url(./images/ab5.jpg) no-repeat center/cover;
-            position: relative; /* por */
         }
 
         #s1{
@@ -44,6 +47,7 @@
         #s2{
             background-color: lightblue;
         }
+
     </style>
 </head>
 <body>
@@ -53,5 +57,8 @@
     <div class="bx" id="r2">r2</div>
     <div class="bx" id="s2">s2</div>
     <div class="bx" id="a2">a2</div>
+
+
+    
 </body>
 </html>
