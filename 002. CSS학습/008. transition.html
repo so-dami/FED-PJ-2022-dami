@@ -143,7 +143,7 @@
         /* 오버시 트랜지션 별도 설정하기! */
         #tr3:hover span{
             /* 위치 이동 */
-            top: -200px;
+            top: -200px; /* -> %는 안 먹힘 px은 먹힘 */
             left: 70%;
             /* 크기 변경 */
             width: 400px;
@@ -165,10 +165,33 @@
             속시이지 순으로 셋팅하고 콤마로 구분한다!
         */
         #tr4 span{
-            
+            /* 위치 이동 */
+            left: 10%;
+            /* 크기 변경 */
+            width: 10px;
+            height: 10px;
+            /* 배경색 변경 */
+            background-color: royalblue;
+            /* 트랜지션 원본(양방향/돌아올 때) */
+            transition:
+            left 5s ease-in-out .5s,
+            /* -> left는 4초 후 처음과 끝에 천천히 0.5초 기다림 */
+            width 3s ease-out 1s,
+            /* -> width는 3초간 끝에 천천히 1초 기다림 */
+            height 1s ease-in 2s,
+            /* -> height는 1초간 처음에 천천히 2초 기다림 */
+            background-color 3s linear 3s;
+            /* -> bgc는 3초간 등속도로 3초 기다림 */
         }
-        
-        
+        #tr4:hover span{
+            /* 위치 이동 */
+            left: 90%;
+            /* 크기 변경 */
+            width: 500px;
+            height: 3000px;
+            /* 배경색 변경 */
+            background-color: olivedrab;
+        }
     </style>
 </head>
 
