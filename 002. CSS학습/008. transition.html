@@ -214,9 +214,27 @@
     </div>
 
     <h2>4.원본에 트랜지션을 각 속성별로 다르게 준다</h2>
-    <div id="tr4">        
+    <div id="tr4">
+        <label for="chkbk">체크하면 작동</label>
+        <input type="checkbox" name="chkbk" id="chkbk">
         <span></span>
     </div>
+
+    <!-- 
+        
+        [ 체크박스를 응용한 클릭이벤트 작동 css로 구현 ]
+
+        label 요소: input 입력 요소의 name tag이며 서로 for로 속성으로 연결됨. for의 값은 input 요소의 id값
+
+        input 요소: 여러 종류의 입력 양식이 있음. 그 중 checkbox 체크박스형식
+        text 글자입력형식
+        password 비밀번호입력형식
+        radio 라디오 버튼
+        -> name 속성은 무엇? 백엔드에서 값을 읽어갈 때 기본적으로 name 속성의 값으로 읽어감. 필수 셋팅!
+        -> id 속성은 label의 for와 연결함. 필수 셋팅!
+
+     -->
+
 </body>
 
 </html>
