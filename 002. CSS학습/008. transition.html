@@ -183,12 +183,14 @@
             background-color 3s linear 3s;
             /* -> bgc는 3초간 등속도로 3초 기다림 */
         }
-        #tr4:hover span{
+
+        /* 체크박스가 체크되면 그 다음 형제요소를 변경하여 클릭 시 변경되는 것처럼 작동시킨다. */
+        #chkbk:checked + span{
             /* 위치 이동 */
-            left: 90%;
+            left: 70%;
             /* 크기 변경 */
             width: 500px;
-            height: 3000px;
+            height: 300px;
             /* 배경색 변경 */
             background-color: olivedrab;
         }
@@ -196,6 +198,7 @@
 </head>
 
 <body>
+    <!-- <label for="chkbk">체크하면 작동</label> -->
     <h1>트랜지션</h1>
 
     <h2>1.원본에 트랜지션 주고 양방향이 동일함</h2>
@@ -218,21 +221,31 @@
         <label for="chkbk">체크하면 작동</label>
         <input type="checkbox" name="chkbk" id="chkbk">
         <span></span>
+        <!-- 체크박스 다음에 변경할 요소가 와야 형제 선택자로 변경할 수 있음! -->
+        
     </div>
 
     <!-- 
-        
+
         [ 체크박스를 응용한 클릭이벤트 작동 css로 구현 ]
 
-        label 요소: input 입력 요소의 name tag이며 서로 for로 속성으로 연결됨. for의 값은 input 요소의 id값
+            label 요소: input 입력 요소의 name tag이며 서로 for로 속성으로 연결됨. for의 값은 input 요소의 id값
 
-        input 요소: 여러 종류의 입력 양식이 있음. 그 중 checkbox 체크박스형식
-        text 글자입력형식
-        password 비밀번호입력형식
-        radio 라디오 버튼
-        -> name 속성은 무엇? 백엔드에서 값을 읽어갈 때 기본적으로 name 속성의 값으로 읽어감. 필수 셋팅!
-        -> id 속성은 label의 for와 연결함. 필수 셋팅!
+            input 요소: 여러 종류의 입력 양식이 있음. 그 중 checkbox 체크박스형식
+            text 글자입력형식
+            password 비밀번호입력형식
+            radio 라디오 버튼
+            -> name 속성은 무엇? 백엔드에서 값을 읽어갈 때 기본적으로 name 속성의 값으로 읽어감. 필수 셋팅!
+            -> id 속성은 label의 for와 연결함. 필수 셋팅!
 
+        [ 클릭 이벤트처럼 효과내기 ]
+
+            checked 라는 가상클래스 + 형제 요소 선택자 사용
+            -> 체크박스: checked + 변경할 요소 {변경내용}
+            -> 변경할 요소는 무조건 체크박스 다음에 적용
+            -> 라벨은 서로 붙여서 코딩하지 않아도 되므로 다른 곳에 원하는 디자인 요소를 구현 후 이것을 클릭하면 체크박스가 체크되므로 기능이 작동함
+            -> 체크박스는 display: none; 으로 처리하여 숨겨 놓아도 무방함 (동일하게 작동)
+        
      -->
 
 </body>
