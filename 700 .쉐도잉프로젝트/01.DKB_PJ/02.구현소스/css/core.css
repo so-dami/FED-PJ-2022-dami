@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* 웹폰트, 공통클래스 셋팅 css - core.css */
+/* 웹폰트, 공통클래스 셋팅 CSS - core.css */
 
 /* 웹폰트 CDN */
 @import url('https://fonts.googleapis.com/css2?family=Gugi&family=Nanum+Gothic&family=Single+Day&family=ZCOOL+KuaiLe&display=swap');
@@ -22,6 +22,27 @@ body{
 /* 중앙 속박스 클래스 */
 .ibx{
     max-width: 1200px;
-    /* 1200px을 유지하다가 이것보다 작아지면 가로크기가 auto로 전환되어 가로스크롤이 안 생김 */
+    /* 1200px을 유지하다가 이것 보다 작아지면
+    auto로 가로크기가 전환되어 가로스크롤이
+    안생기게 됨! */
     margin: 0 auto;
+}
+
+/* 스크롤바 디자인 클래스 */
+/* -webkit- 밴더사명(크롬,사파리) 접두어 */
+/* (참고: -ms-(ie), -o- (오페라), -moz-(파이어폭스) */
+/* 클래스명 scbar */
+.scbar::-webkit-scrollbar{
+    /* 전체 스크롤바 크기변경 */
+    width: 7px;
+}
+.scbar::-webkit-scrollbar-thumb{
+    /* 스크롤바 */
+    background-color: #555;
+    border-radius: 5px;
+}
+.scbar::-webkit-scrollbar-track{
+    /* 스크롤바 트랙 */
+    background-color: #ddd;
+    border-radius: 5px;
 }
