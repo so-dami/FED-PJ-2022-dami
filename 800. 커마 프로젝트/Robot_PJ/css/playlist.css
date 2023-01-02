@@ -1,12 +1,11 @@
 @charset "utf-8";
-/* 어벤저스 CSS - avengers.css */
+/* playlist CSS - playlist.css */
 
 /* 웹폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap');
 
 /* 
-    font-family: 'Monoton', cursive;
-    font-family: 'Single Day', cursive;
+    font-family: 'Bodoni Moda', serif;
 */
 
 html{
@@ -26,7 +25,7 @@ a{
 }
 body{
     /* 배경이미지 채우기 */
-    background: url(../ab_img/space.jpg) no-repeat fixed center/cover;
+    background-color: #ededda;
     /* 전체 body 스크롤바 숨기기 */
     /* overflow: hidden; */
 }
@@ -55,11 +54,11 @@ html,body{
     width: 100%;
     z-index: 9999;/* 가장위 */
 
-    font-family: 'Monoton', cursive;
-    color: #fff;
-    font-size: 70px;
+    font-family: 'Bodoni Moda', serif;
+    color: #252527;
+    font-size: 50px;
     /* 글자두께 보통 */
-    font-weight: normal;
+    font-weight: bold;
     text-align: center;
     /* 위아래 패딩 */
     padding: 50px 0;
@@ -77,10 +76,10 @@ html,body{
     position: relative;
     /* 부모자격 - .cbx의 부모 */
     top: 210px;
-    width: 300px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
     /* 배경이미지 */
-    background: url(../ab_img/ab0.jpg) no-repeat center/cover;
+    background: url(../playlist_img/profile2.jpg) no-repeat center/cover;
     /* 둥근모서리 -> 원형 50% */
     border-radius: 50%;
     /* 마영오! */
@@ -88,9 +87,9 @@ html,body{
     /* 글러우 효과 : 박스그림자 응용 
     box-shadow: x y blur spread 색
     inset은 내부그림자 */
-    box-shadow: 
-    0 0 50px 10px cyan,
-    inset 0 0 30px lightgreen;
+    /* box-shadow: 
+    0 0 50px 10px cyan, */
+    /* inset 0 0 30px lightgreen; */
 }
 
 /* 캐릭터박스 */
@@ -131,7 +130,7 @@ html,body{
 /* 캐릭터 이미지 */
 .cbx img{
     /* 크기를 박스에 맞춤!
-    -> 이미지가 왜곡된다! 어떻하지?
+    -> 이미지가 왜곡된다! 어떡하지?
     -> object-fit:cover 를 쓴다! */
     width: 100%;
     height: 100%;
@@ -152,7 +151,7 @@ html,body{
     border-radius: 50%;
 
     /* 글로우효과 */
-    box-shadow: 0 0 30px 10px lightgreen;
+    box-shadow: 0 0 3px 1px #252527;
 }
 
 /* body에 오버시 전체 opacity 보이게하기 */
@@ -160,27 +159,27 @@ body:hover .cbx{
     opacity: 1;
 }
 
-/* 2-1. 아이언맨 */
+/* 2-1. artist */
 body:hover .cbx:nth-child(1){
     top: -9%;
     left: -81%;
 }
-/* 2-2.타노스 */
+/* 2-2. jazz */
 body:hover .cbx:nth-child(2){
     top: -9%;
     left: 121%;
 }
-/* 2-3.토르 */
+/* 2-3. city */
 body:hover .cbx:nth-child(3){
     top: 82%;
     left: -81%;
 }
-/* 2-4.닥스 */
+/* 2-4. daily */
 body:hover .cbx:nth-child(4){
     top: 82%;
     left: 121%;
 }
-/* 2-5.스타로드 */
+/* 2-5. Collaboration */
 body:hover .cbx:nth-child(5){
     top: 130%;
     /* left는 중앙위치이므로
@@ -208,8 +207,8 @@ body:hover .cbx:nth-child(5){
 
     /* 글자셋팅 */
     font-family: 'Single Day', cursive;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000;
+    color: #252527;
+    /* text-shadow: 1px 1px 1px #000; */
 
     /* 처음에 투명하게 */
     opacity: 0;
