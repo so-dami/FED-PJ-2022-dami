@@ -181,10 +181,13 @@ body:hover .cbx:nth-child(5){
 
     /* 박스셋팅 */
     width: 300px;
-    border: 2px solid #fff;
-    padding: 15px;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.4);
+
+    /* 처음에 height값 0로 박스 숨기기
+    -> 이유: 투명상태로 오버되는 경우를 없애기위해 */
+    height: 0;
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+    
 
     /* 글자셋팅 */
     font-family: 'Single Day', cursive;
@@ -199,10 +202,28 @@ body:hover .cbx:nth-child(5){
 
 }
 
+/* .cd 직계 하위 div로 디자인 이전하기
+-> 만든이유: height값을 0으로 숨기려는데
+padding과 border 때문에 숨겨지지 않음!
+따라서 이것을 직계하위 div로 이전함! */
+.cd > div {
+    border: 2px solid #fff;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
 /* .cbx에 오버시 글자박스 보이기 */
 .cbx:hover .cd{
     top: 0;
     opacity: 1;
+    height: auto;
+    /* 전체적으로 트랜지션 설정되어 있으나
+    height값이 특정값(px,%)으로 설정되지 않고
+    auto일 경우 애니메이션 되지 않는다!
+    애니메이션 되지 않게 하려는데 잘됐다!^^
+    만약 적용되는 것을 안되게 하려면 transition에서
+    개별셋팅해야한다! */
 }
 
 
