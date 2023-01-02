@@ -2,10 +2,11 @@
 /* 어벤저스 CSS - avengers.css */
 
 /* 웹폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Single+Day&display=swap');
+
 /* 
-    font-family: 'Nanum Pen Script', cursive;
-    font-family: 'Yeon Sung', cursive;
+    font-family: 'Monoton', cursive;
+    font-family: 'Single Day', cursive;
 */
 
 html{
@@ -54,18 +55,14 @@ html,body{
     width: 100%;
     z-index: 9999;/* 가장위 */
 
-    font-family: 'Yeon Sung', cursive;
+    font-family: 'Monoton', cursive;
     color: #fff;
-    font-size: 80px;
+    font-size: 70px;
     /* 글자두께 보통 */
     font-weight: normal;
     text-align: center;
-    text-shadow: 0 0 5px #000;
-
     /* 위아래 패딩 */
     padding: 50px 0;
-
-
 }
 
 /* 1. 페이지박스 공통 */
@@ -80,8 +77,8 @@ html,body{
     position: relative;
     /* 부모자격 - .cbx의 부모 */
     top: 210px;
-    width: 400px;
-    height: 600px;
+    width: 300px;
+    height: 400px;
     /* 배경이미지 */
     background: url(../ab_img/ab0.jpg) no-repeat center/cover;
     /* 둥근모서리 -> 원형 50% */
@@ -92,8 +89,8 @@ html,body{
     box-shadow: x y blur spread 색
     inset은 내부그림자 */
     box-shadow: 
-    0 0 50px 10px darkblue,
-    inset 0 0 30px darkviolet;
+    0 0 50px 10px cyan,
+    inset 0 0 30px lightgreen;
 }
 
 /* 캐릭터박스 */
@@ -103,8 +100,8 @@ html,body{
     모두겹칩,싸고있는 박스에 그대로 있고(젠틀),
     크기는 내용만큼 자동, 나중것이 기본위*/
     position: absolute;
-    top: calc(50% - 100px);
-    left: calc(50% - 100px);
+    top: calc(50% - 75px);
+    left: calc(50% - 75px);
     /* 부모는? .abx */
 
     /* 
@@ -119,8 +116,8 @@ html,body{
     */
 
     /* 박스크기 설정 */
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     
     /* 박스테두리 */
     /* outline: 3px dotted yellow; */
@@ -155,7 +152,7 @@ html,body{
     border-radius: 50%;
 
     /* 글로우효과 */
-    box-shadow: 0 0 30px 10px darkred;
+    box-shadow: 0 0 30px 10px lightgreen;
 }
 
 /* body에 오버시 전체 opacity 보이게하기 */
@@ -165,22 +162,22 @@ body:hover .cbx{
 
 /* 2-1. 아이언맨 */
 body:hover .cbx:nth-child(1){
-    top: -5%;
+    top: -9%;
     left: -81%;
 }
 /* 2-2.타노스 */
 body:hover .cbx:nth-child(2){
-    top: -5%;
+    top: -9%;
     left: 121%;
 }
 /* 2-3.토르 */
 body:hover .cbx:nth-child(3){
-    top: 62%;
+    top: 82%;
     left: -81%;
 }
 /* 2-4.닥스 */
 body:hover .cbx:nth-child(4){
-    top: 62%;
+    top: 82%;
     left: 121%;
 }
 /* 2-5.스타로드 */
@@ -210,8 +207,7 @@ body:hover .cbx:nth-child(5){
     
 
     /* 글자셋팅 */
-    font-family: 'Nanum Pen Script', cursive;
-    font-size: 25px;
+    font-family: 'Single Day', cursive;
     color: #fff;
     text-shadow: 1px 1px 1px #000;
 
@@ -223,20 +219,15 @@ body:hover .cbx:nth-child(5){
 
 }
 
-.cd h2{
-    font-size: 40px;
-    text-align: center;
-}
-
 /* .cd 직계 하위 div로 디자인 이전하기
 -> 만든이유: height값을 0으로 숨기려는데
 padding과 border 때문에 숨겨지지 않음!
 따라서 이것을 직계하위 div로 이전함! */
 .cd > div {
-    border: 2px solid limegreen;
+    border: 2px solid #fff;
     padding: 15px;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* .cbx에 오버시 글자박스 보이기 */
@@ -255,11 +246,15 @@ padding과 border 때문에 숨겨지지 않음!
 
 /* 왼쪽 진영 글자박스 클래스 */
 .ltxt {
-    left: -160%;
+    left: -230%;
+}
+/* 왼쪽 진영 제목 오른쪽정렬 */
+.ltxt h2{
+    text-align: right;
 }
 /* 오른쪽 진영 글자박스 클래스 */
 .rtxt {
-    right: -160%;
+    right: -230%;
 }
 
 
@@ -272,7 +267,6 @@ padding과 border 때문에 숨겨지지 않음!
     padding: 50px 0;
     text-align: center;
     color: #fff;
-    text-shadow: 0 0 5px #000;
 }
 
 /* 동영상박스 */
@@ -303,7 +297,6 @@ padding과 border 때문에 숨겨지지 않음!
     right: 3%;
     /* 부모는? .page */
     font-size: 30px;
-    text-shadow: 0 0 5px #000;
     z-index: 99999;/* 제일위! */
 }
 /* 가상클래스로 화살표모양 넣기 */
@@ -324,5 +317,5 @@ padding과 border 때문에 숨겨지지 않음!
 .gobtn:hover{
     color: hotpink;
     text-decoration: overline;
-    text-decoration-style: double;
+    text-decoration-style: wavy;
 }
