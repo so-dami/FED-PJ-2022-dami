@@ -2,10 +2,11 @@
 /* playlist CSS - playlist.css */
 
 /* 웹폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Gothic+A1:wght@100;200&display=swap');
 
 /* 
-    font-family: 'Bodoni Moda', serif;
+  font-family: 'Bodoni Moda', serif;
+  font-family: 'Gothic A1', sans-serif;
 */
 
 html{
@@ -146,7 +147,6 @@ html,body{
             유사한 효과를 준다! 
     */
 
-
     /* 이미지 둥글게 */
     border-radius: 50%;
 
@@ -206,7 +206,7 @@ body:hover .cbx:nth-child(5){
     
 
     /* 글자셋팅 */
-    font-family: 'Single Day', cursive;
+    font-family: 'Bodoni Moda', serif;
     color: #252527;
     /* text-shadow: 1px 1px 1px #000; */
 
@@ -223,10 +223,10 @@ body:hover .cbx:nth-child(5){
 padding과 border 때문에 숨겨지지 않음!
 따라서 이것을 직계하위 div로 이전함! */
 .cd > div {
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
     padding: 15px;
     border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.4);
+    /* background-color: rgba(255, 255, 255, 0.4); */
 }
 
 /* .cbx에 오버시 글자박스 보이기 */
@@ -245,15 +245,21 @@ padding과 border 때문에 숨겨지지 않음!
 
 /* 왼쪽 진영 글자박스 클래스 */
 .ltxt {
-    left: -230%;
+    left: -200%;
 }
 /* 왼쪽 진영 제목 오른쪽정렬 */
 .ltxt h2{
     text-align: right;
 }
+.ltxt p{
+    text-align: right;
+}
 /* 오른쪽 진영 글자박스 클래스 */
 .rtxt {
-    right: -230%;
+    right: -200%;
+}
+.mtxt {
+    margin-top: 100%;
 }
 
 
@@ -265,7 +271,9 @@ padding과 border 때문에 숨겨지지 않음!
     top: 100px;
     padding: 50px 0;
     text-align: center;
-    color: #fff;
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: light;
+    color: #252527;
 }
 
 /* 동영상박스 */
@@ -298,23 +306,19 @@ padding과 border 때문에 숨겨지지 않음!
     font-size: 30px;
     z-index: 99999;/* 제일위! */
 }
-/* 가상클래스로 화살표모양 넣기 */
+
+/* 가상클래스로 화살표모양 넣기
 #pg1 .gobtn::after{
     content: '👇';
-}
-#pg2 .gobtn::after{
-    content: '👆';
-}
+} */
+
 /* 개별위치 */
 #pg1 .gobtn{
     bottom: 2%;
 }
-#pg2 .gobtn{
-    top: 2%;
-}
 /* 오버시 a변경 */
 .gobtn:hover{
-    color: hotpink;
-    text-decoration: overline;
-    text-decoration-style: wavy;
+    color: red;
+    /* text-decoration: overline;
+    text-decoration-style: wavy; */
 }
