@@ -160,29 +160,29 @@ body:hover .cbx{
     opacity: 1;
 }
 
-/* 2-1. artist */
+/* 2-1. citypop */
 body:hover .cbx:nth-child(1){
     top: -9%;
-    left: -81%;
+    left: -97%;
 }
-/* 2-2. jazz */
+/* 2-2. carol */
 body:hover .cbx:nth-child(2){
     top: -9%;
     left: 121%;
 }
-/* 2-3. city */
+/* 2-3. indie */
 body:hover .cbx:nth-child(3){
     top: 82%;
-    left: -81%;
+    left: -97%;
 }
-/* 2-4. daily */
+/* 2-4. trendyhiphop */
 body:hover .cbx:nth-child(4){
     top: 82%;
     left: 121%;
 }
-/* 2-5. Collaboration */
+/* 2-5. indiepop */
 body:hover .cbx:nth-child(5){
-    top: 130%;
+    top: 120%;
     /* left는 중앙위치이므로
     셋팅하지 않음! */
 }
@@ -190,9 +190,10 @@ body:hover .cbx:nth-child(5){
 /* 캐릭터 설명박스 공통 */
 .cd{
     position: absolute;
-    top: 50%;
+    top: 130%;
     /* 처음에 내려가 있고 
     오버시 0으로 top값 올라옴! */
+
 
     /* 부모는? .cbx */
 
@@ -302,13 +303,19 @@ padding과 border 때문에 숨겨지지 않음!
 .page{
     position: relative;
     /* 부모자격 - .gobtn의 부모 */
+
+    margin-top: 400px;
+}
+
+.page:nth-of-type(1){
+    margin-top: 0;
 }
 
 /* 이동버튼 디자인 */
 .gobtn{
     position: absolute;
     right: 3%;
-    margin-top: 15px;
+    margin-top: 25px;
     left: 89%;
     /* 부모는? .page */
     font-size: 15px;
@@ -316,6 +323,7 @@ padding과 border 때문에 숨겨지지 않음!
     color: #252527;
     font-weight: bold;
     z-index: 99999;/* 제일위! */
+    text-align: center;
 }
 
 .gobtn img{
