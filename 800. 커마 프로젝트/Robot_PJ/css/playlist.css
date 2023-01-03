@@ -203,19 +203,25 @@ body:hover .cbx:nth-child(5){
     height: 0;
     /* 넘치는 자식요소 숨기기 */
     overflow: hidden;
-    
-
-    /* 글자셋팅 */
-    font-family: 'Bodoni Moda', serif;
-    color: #252527;
-    /* text-shadow: 1px 1px 1px #000; */
 
     /* 처음에 투명하게 */
     opacity: 0;
 
     /* 트랜지션: 속시이지 */
     transition: .4s ease-out;
+}
 
+.cd h2{
+    /* 글자셋팅 */
+    font-family: 'Bodoni Moda', serif;
+    color: #252527;
+    /* text-shadow: 1px 1px 1px #000; */
+}
+
+.cd p{
+    font-family: 'Gothic A1', sans-serif;
+    font-weight: nomal;
+    color: #252527; 
 }
 
 /* .cd 직계 하위 div로 디자인 이전하기
@@ -259,7 +265,7 @@ padding과 border 때문에 숨겨지지 않음!
     right: -200%;
 }
 .mtxt {
-    margin-top: 100%;
+    margin-top: 93%;
 }
 
 
