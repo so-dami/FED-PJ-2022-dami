@@ -302,9 +302,19 @@ padding과 border 때문에 숨겨지지 않음!
 .gobtn{
     position: absolute;
     right: 3%;
+    margin-top: 15px;
+    left: 89%;
     /* 부모는? .page */
-    font-size: 30px;
+    font-size: 15px;
+    font-family: 'Bodoni Moda', serif;
+    color: #252527;
+    font-weight: bold;
     z-index: 99999;/* 제일위! */
+}
+
+.gobtn img{
+    border-radius: 50%;
+    width: 40px;
 }
 
 /* 가상클래스로 화살표모양 넣기
@@ -317,8 +327,15 @@ padding과 border 때문에 숨겨지지 않음!
     bottom: 2%;
 }
 /* 오버시 a변경 */
-.gobtn:hover{
-    color: red;
+.gobtn b{
+    display: none;
+}
+.gobtn:hover span{
+    display: none;
+    /* color: red; */
     /* text-decoration: overline;
     text-decoration-style: wavy; */
+}
+.gobtn:hover b{
+    display: inline;
 }
