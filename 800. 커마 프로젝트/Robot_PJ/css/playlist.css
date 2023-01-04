@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* playlist CSS - playlist.css */
+/* playlist CSS - style.css */
 
 /* 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Gothic+A1:wght@100;200&display=swap');
@@ -160,29 +160,29 @@ body:hover .cbx{
     opacity: 1;
 }
 
-/* 2-1. citypop */
+/* 2-1. artist */
 body:hover .cbx:nth-child(1){
     top: -9%;
     left: -97%;
 }
-/* 2-2. carol */
+/* 2-2. jazz */
 body:hover .cbx:nth-child(2){
     top: -9%;
     left: 121%;
 }
-/* 2-3. indie */
+/* 2-3. city */
 body:hover .cbx:nth-child(3){
     top: 82%;
     left: -97%;
 }
-/* 2-4. trendyhiphop */
+/* 2-4. daily */
 body:hover .cbx:nth-child(4){
     top: 82%;
     left: 121%;
 }
-/* 2-5. indiepop */
+/* 2-5. Collaboration */
 body:hover .cbx:nth-child(5){
-    top: 120%;
+    top: 130%;
     /* left는 중앙위치이므로
     셋팅하지 않음! */
 }
@@ -190,10 +190,9 @@ body:hover .cbx:nth-child(5){
 /* 캐릭터 설명박스 공통 */
 .cd{
     position: absolute;
-    top: 130%;
+    top: 50%;
     /* 처음에 내려가 있고 
     오버시 0으로 top값 올라옴! */
-
 
     /* 부모는? .cbx */
 
@@ -211,6 +210,12 @@ body:hover .cbx:nth-child(5){
 
     /* 트랜지션: 속시이지 */
     transition: .4s ease-out;
+}
+
+.cbx a {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .cd h2{
@@ -239,7 +244,8 @@ padding과 border 때문에 숨겨지지 않음!
 
 /* .cbx에 오버시 글자박스 보이기 */
 .cbx:hover .cd{
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     opacity: 1;
     height: auto;
     /* 전체적으로 트랜지션 설정되어 있으나
@@ -303,19 +309,18 @@ padding과 border 때문에 숨겨지지 않음!
 .page{
     position: relative;
     /* 부모자격 - .gobtn의 부모 */
-
     margin-top: 400px;
 }
 
-.page:nth-of-type(1){
-    margin-top: 0;
+.page:nth-of-type(1) {
+    margin-top:0;
 }
 
 /* 이동버튼 디자인 */
 .gobtn{
     position: absolute;
     right: 3%;
-    margin-top: 25px;
+    margin-top: 15px;
     left: 89%;
     /* 부모는? .page */
     font-size: 15px;
@@ -323,7 +328,6 @@ padding과 border 때문에 숨겨지지 않음!
     color: #252527;
     font-weight: bold;
     z-index: 99999;/* 제일위! */
-    text-align: center;
 }
 
 .gobtn img{
