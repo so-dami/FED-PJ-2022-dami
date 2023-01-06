@@ -70,7 +70,15 @@ html,body,h1,h2,p,ol,ul{
     background: url(../images/hair.png) no-repeat 0/100% 100%;
     /* 맨 위 */
     z-index: 1;
-    
+}
+
+/* 머리박스에 오버시 가상요소 가발 변경하기 */
+.head:hover::before{
+    top: -183px;left: -137px;
+    width: 548px;
+    height: 386px;
+    background: url(../images/hair.png) no-repeat 0/100% 100%;
+    z-index: 0;
 }
 
 /* 눈공통 */
@@ -123,6 +131,30 @@ html,body,h1,h2,p,ol,ul{
     height: 38px;
     background: url(../images/mouth.png) no-repeat 0/100% 100%;
 }
+
+/* 입 옆에 별모양점 가상요소로 만들기 */
+.mouth::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    /* 부모는? .mouth */
+    width: 20px;
+    height: 20px;
+    background: #f00;
+}
+
+/* 삼각형 클리핑 속성으로 만들기 */
+clip-path: polygon(0 100%, 50% 0, 100% 100%);
+
+/****************************************************** 
+    [ css 클리핑 속성 ]
+    - clip-path : polygon(x1 y1, x2 y2, ...)
+    -> 각 좌표쌍은 띄어쓰기로, 각 점은 콤마로 구분
+    -> 각 점을 연결하여 도형 모양만 출력함
+    -> px는 각 도형 크기 내부의 수치로 쓰고 %는 도형을 기준한 위치를 %로 나타낸다.
+*****************************************************/
 
 /* 귀공통 */
 .ear{
