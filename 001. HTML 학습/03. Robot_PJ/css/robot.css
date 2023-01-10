@@ -37,7 +37,7 @@ body * {
 /* 2-1.로봇박스 */
 .robx{
     /* 패딩 위,아래 */
-    padding: 200px 0 400px;
+    padding: 200px 0 600px;
 }
 
 /* 로봇머리 */
@@ -275,7 +275,8 @@ body * {
     transform-origin: center 15%;
 }
 /* 팔공통 가상요소로 연결부분 만들기 */
-.arm::before{
+.arm::before,
+.arm::after {
     content: '';
     display: block;
     position: absolute;
@@ -285,8 +286,19 @@ body * {
     width: 70px;
     height: 70px;
     border-radius: 50%;
+    border: 4px solid #333;
     background-color: #ccc;
+
+    /* 보더,패딩포함 크기유지 */
+    box-sizing: border-box;
 }
+/* 팔연결부분 내부박스 */
+.arm::after{
+    transform: scale(.8);
+    /* 선형 그라데이션 */
+    background-image: linear-gradient(-45deg,#222 10%,#ccc 60%,#eee);
+}
+
 /* 팔하단 */
 .arm span{
     position: absolute;
@@ -299,6 +311,26 @@ body * {
     border-radius: 25px;
     /* 회전축변경 : 세로방향 top */
     transform-origin: top;
+}
+/* 팔하단 가상요소로 손박스 만들기 */
+.arm span::after{
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -135px;
+    width: 90px;
+    height: 135px;
+    outline: 2px dashed lime;
+}
+/* 왼쪽손 배경이미지 */
+.a1 span::after{
+    left: -8px;
+    background: url(../images/hand_left.png) no-repeat bottom/100%;
+}
+/* 오른쪽손 배경이미지 */
+.a2 span::after{
+    right: -8px;
+    background: url(../images/hand_right.png) no-repeat bottom/100%;
 }
 /* 왼팔 */
 .a1{
@@ -318,8 +350,60 @@ body * {
 .a2 span{
     transform: rotate(-20deg);
 }
+
+/* 다리공통 */
+.leg{
+    top: 90%;
+    /* 부모박스 높이만큼 아래로 밀어냄 */
+    width: 85px;
+    height: 300px;
+    z-index: -1;
+    border-radius: 30px;
+}
+/* 다리공통 가상요소로 연결부분 만들기 */
+.leg::before,
+.leg::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -40px;
+    z-index: 1;
+    width: 85px;
+    height: 85px;
+    background-color: #ccc;
+    border-radius: 20px;
+    border: 4px solid #333;
+    /* 트랜스폼 : 먼저x축 축소하고 회전
+    -> 무엇을 먼저했느냐에 따라 결과 달라짐! */
+    transform: scaleX(.8) rotate(45deg);
+}
+
+/* 다리연결부분 내부박스 */
+.leg::after{
+    transform: scale(.65,.8) rotate(45deg);
+    /* 선형 그라데이션 */
+    background-image: linear-gradient(-45deg,#222 10%,#ccc 60%,#eee);
+}
+
+/* 다리하단 공통 */
+.leg span{    
+    position: absolute;
+    top: 100%;
+    left: 8px;
+    /* 부모는? .arm */
+    display: block;
+    width: 70px;
+    height: 250px;
+    border-radius: 25px;
+}
 /* 왼다리 */
+.l1{
+    left: -15px;
+}
 /* 오른다리 */
+.l2{
+    right: -15px;
+}
 
 /* 어깨공통 */
 .shd{
