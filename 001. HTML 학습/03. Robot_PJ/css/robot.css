@@ -320,35 +320,40 @@ body * {
     bottom: -135px;
     width: 90px;
     height: 135px;
+    /* 회전축변경 : 세로방향 top */
+    transform-origin: top;
+
     outline: 2px dashed lime;
 }
 /* 왼쪽손 배경이미지 */
 .a1 span::after{
     left: -8px;
+    transform: rotate(10deg);
     background: url(../images/hand_left.png) no-repeat bottom/100%;
 }
 /* 오른쪽손 배경이미지 */
 .a2 span::after{
     right: -8px;
+    transform: rotate(-10deg);
     background: url(../images/hand_right.png) no-repeat bottom/100%;
 }
 /* 왼팔 */
 .a1{
     left: -100px;
-    transform: rotate(30deg);
+    transform: rotate(10deg);
 }
 /* 왼팔하단 */
 .a1 span{
-    transform: rotate(20deg);
+    transform: rotate(-10deg);
 }
 /* 오른팔 */
 .a2{
     right: -100px;
-    transform: rotate(-30deg);
+    transform: rotate(-10deg);
 }
 /* 오른팔하단 */
 .a2 span{
-    transform: rotate(-20deg);
+    transform: rotate(10deg);
 }
 
 /* 다리공통 */
@@ -426,7 +431,7 @@ body * {
     border-top: 20px solid #222;
 
     /* 선형 그라데이션 */
-    background-image: linear-gradient(-45deg,#222 10%,#ccc 60%,#eee);
+    background-image: linear-gradient(-90deg,#222 10%,#ccc 60%,#eee);
 
 }
 /* 왼다리 */
@@ -457,6 +462,38 @@ body * {
     transform: rotate(8.4deg);
 }
 /* TV */
+.tv{
+    top: 50px;
+    left: 10px;
+    width: 180px;
+    height: 138px;
+    border-radius: 5px;
+    background: url(../images/tv.jpg) no-repeat center/cover;
+}
+/* 스크린 */
+.screen{
+    position: absolute;
+    top: 14px;
+    left: 9px;
+    width: 129px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: #000;
+
+    /* 자식요소 아이프레임 
+    넘치는 부분 숨기기 */
+    overflow: hidden;
+}
+/* 동영상 iframe */
+.screen iframe{
+    position: absolute;
+    top: 0px;
+    left: -19px;
+    width: 174px;
+    height: 100px;
+    /* 아이프레임 기본보더없앰 */
+    border: none;
+}
 
 
 /***************** 3. 하단영역 *****************/
