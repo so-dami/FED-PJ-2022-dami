@@ -32,7 +32,7 @@ body{
     text-align: center;
 
     /* 글로우 효과 */
-    text-shadow: 0 0 4px aquamarine;
+    text-shadow: 0 0 4px goldenrod;
     /* 애니메이션: 이시이지반방마 */
     animation: titAni .5s ease-in infinite alternate;
 }
@@ -40,7 +40,7 @@ body{
 /* 타이틀 글로우 효과 애니메이션 키프레임 */
 @keyframes titAni {
     to{
-        text-shadow: 0 0 12px aquamarine;
+        text-shadow: 0 0 10px goldenrod;
     }
 } /* 키프레임 */
 
