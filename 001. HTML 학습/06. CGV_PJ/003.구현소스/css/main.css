@@ -40,7 +40,7 @@ body{
 /* 타이틀 글로우 효과 애니메이션 키프레임 */
 @keyframes titAni {
     to{
-        text-shadow: 0 0 10px goldenrod;
+        text-shadow: 0 0 15px goldenrod;
     }
 } /* 키프레임 */
 
