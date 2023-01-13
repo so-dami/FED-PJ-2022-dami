@@ -62,7 +62,7 @@ body{
     left: 257px;
     width: 701px;
     height: 397px;
-    background-color: #f00;
+    background-color: #000;
 }
 
 /* 유튜브 iframe */
@@ -71,6 +71,68 @@ body{
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* 2-2. 예고편 선택 메뉴 */
+.mlist{
+    position: absolute;
+    bottom: 61px;
+    left: 50%;
+    width: 701px;
+    transform: translateX(-49%);
+    
+    /* 앱솔루트 부모자격이 있는 요소의 overflow가 적용됨 */
+    overflow: hidden;
+}
+
+/* 선택 메뉴 ul */
+.mlist ul{
+    /* 플렉스박스 */
+    display: flex;
+    /* 진행방향 정렬 양쪽 끝 맞춘 후 사이 간격 일정하게 */
+    justify-content: space-between;
+}
+
+/* 선택 메뉴  상위 */
+.mlist ul>li{
+}
+
+/* 포스터 이미지 */
+.mlist img{
+    width: 99px;
+    height: 140px;
+}
+
+/* 영화 정보 박스 */
+.movtxt{
+    /* 플렉스박스 */
+    display: flex;
+    /* 플렉스 진행방향 */
+    flex-direction: column;
+    /* 플렉스 진행방향 정렬 jcc: 중앙 */
+    justify-content: center;
+
+    /* 앱솔루트 포지션 */
+    position: absolute;
+    top: 100%;
+    width: 99px;
+    height: 140px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    /* 글자 셋팅 */
+    font-family: 'Cute Font', cursive;
+    font-size: 14px;
+    line-height: 2;
+
+    /* 트랜지션 trs: 속시이지*/
+    transition:
+    top .5s cubic-bezier(0.72, 0.1, 0.28, 0.86);
+}
+
+/* 상위 li에 마우스 오버 시 영화정보 올라오기 */
+.mlist ul>li:hover .movtxt{
+    top: 0;
 }
 
 /*********************** 3. 하단 영역 ***********************/

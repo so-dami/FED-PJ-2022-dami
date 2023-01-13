@@ -8,6 +8,7 @@
     <!-- 메인페이지 외부 css -->
     <link rel="stylesheet" href="./css/main.css">
 </head>
+
 <body>
     <!-- 1. 상단 영역 -->
     <div id="top">
@@ -17,15 +18,22 @@
             CGV 예고편 상영관
         </h1>
     </div>
+    
     <!-- 2. 메인 영역 -->
     <div id="cont">
         <main class="cont ibx">
             <!-- 2-1. 스크린 -->
             <div class="screen">
                 <!-- CGV intro 유튜브 iframe -->
-                <iframe src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1&mute=1&loop=1&playlist=vteD1f-SV5I" allow="autoplay"></iframe>
+                <iframe id="ifr" src="https://www.youtube.com/embed/vteD1f-SV5I?autoplay=1&mute=1&loop=1&playlist=vteD1f-SV5I" allow="autoplay"></iframe>
                 <!-- allow="autoplay"는 유튜브
-                    동영상 요청시 자동재생의 필수다! -->
+                    동영상 요청시 자동재생의 필수다!
+                    
+                    [ youtube 동영상 고유 아이디는?]
+                    url 주소의 embed/ 뒤의 코드값
+
+                    일반 웹 주소일 때: /watch?v= 뒤의 값
+                -->
 
                 <!-- 
                     [iframe 요소 : inline frame]
@@ -56,6 +64,78 @@
                     -> 반복설정시 반복재생리스트도 같이씀!
                  -->
             </div>
+
+            <!-- 2-2. 예고편 선택 메뉴 -->
+            <nav class="mlist">
+                <ul>
+                    <li>
+                        <a href="#" onclick="document.getElementById('ifr').src='https://www.youtube.com/embed/mI9oyFMUlfg?autoplay=1'">
+                            <img src="./images/m1.jpg" alt="닥터스트레인지2">
+                            <!-- 영화 정보 -->
+                            <ol class="movtxt">
+                                <li>닥터스트레인지2</li>
+                                <li>베네딕트 컴버배치</li>
+                                <li>액션, 판타지, 모험</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./images/m2.jpg" alt="쥬라기공원:도미니언">
+                            <!-- 영화 정보 -->
+                            <ol class="movtxt">
+                                <li>쥬라기월드:도미니언</li>
+                                <li>크리스 프랫</li>
+                                <li>액션, 모험</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./images/m3.jpg" alt="브로커">
+                            <!-- 영화 정보 -->
+                            <ol class="movtxt">
+                                <li>브로커</li>
+                                <li>송강호, 강동원</li>
+                                <li>드라마</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./images/m4.jpg" alt="범죄도시2">
+                            <!-- 영화 정보 -->
+                            <ol class="movtxt">
+                                <li>범죄도시2</li>
+                                <li>마동석, 손석구</li>
+                                <li>범죄, 액션</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./images/m5.jpg" alt="몬스터상어">
+                            <!-- 영화 정보 -->
+                            <ol class="movtxt">
+                                <li>몬스터싱어</li>
+                                <li>바네사 파라디</li>
+                                <li>애니메이션</li>
+                            </ol>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="./images/m6.jpg" alt="스파이더맨:노웨이홈">
+                            <!-- 영화 정보 -->
+                            <ol class="movtxt">
+                                <li>스파이더맨:노웨이홈</li>
+                                <li>톰 홀랜드</li>
+                                <li>액션,모험</li>
+                            </ol>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </main>
     </div>
     <!-- 3.하단영역 -->
