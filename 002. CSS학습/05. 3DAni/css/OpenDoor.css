@@ -18,31 +18,32 @@ body{
 }
 
 /* 배경색 키프레임 */
-@keyframes bgAni{
+@keyframes bgAni {
     0%{
         background-color: #9c0;
     }
     20%{
-        background-color: rgba(23,96,254,0664);
+        background-color: rgba(23, 96, 254, 0.664);
     }
     40%{
-        background-color: rgb(253,152,36);
+        background-color: rgb(234, 135, 22);
     }
     60%{
-        background-color: rgb(212,19,190);
+        background-color: rgb(212, 19, 190);
     }
     80%{
-        background-color: rgb(12,227,177);
+        background-color: rgb(12, 227, 177);
     }
     100%{
         background-color: #9c0;
     }
-} /* bgAni 키프레임 */
+}
 
 /* 전체 타이틀 */
 .tit{
     /* height: 50px;
-    => auto로 유동적인 글자크기만큼만 사이즈 주지 말자 */
+    -> auto로 유동적인 글자크기만큼만
+    사이즈 주지 말자! */
     font-family: 'Comfortaa', cursive;
     /* 최대글자크기 지정 */
     font-size: min(5vw,42px);
@@ -57,19 +58,19 @@ body{
     display: block;
     transform: translateY(100%);
     /* 애니메이션: 이시이지반방마 */
-    animation: upAni .3s ease-out 1.5s forwards;
+    animation: upAni .5s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1.5s forwards;
 }
-/* 글자등장 키프레임 */
+/* 등장 키프레임 */
 @keyframes upAni {
     to{
         transform: translateY(0);
     }
 } /* upAni 키프레임 */
 
-/* 전체 랩핑박스 */
+/* 전체랩핑박스 */
 .wrap{
     overflow: hidden;
-    /* 3D 문이 열렸을 때 잘려보이지 않게 위아래 패딩을 줌 */
+    /* 3D문이 잘려보이지 않게 위아래 패딩줌! */
     padding: 50px 0;
 }
 
@@ -79,10 +80,11 @@ body{
     height: 300px;
     margin: 0 auto;
     background-color: #900;
-    /* 트랜스폼 y축 이동: 패딩을 고려하여 내 크기보다 좀 더 많이 아래쪽으로 이동함 */
+    /* 트랜스폼 y축이동 : 패딩을 고려하여
+    내크기보다 좀더 많이 아랫쪽으로 이동함! */
     transform: translateY(120%);
     /* 애니메이션: 이시이지반방마 */
-    animation: upAni .6s ease-out 1s forwards;
+    animation: upAni .6s cubic-bezier(0.18, 0.89, 0.32, 1.28) 1s forwards;
 }
 /* 문프레임 */
 .frame{
