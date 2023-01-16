@@ -1,8 +1,8 @@
 @charset "utf-8";
-/* Open Door css - OpenDoor.css */
+/* Open Door CSS - opendoor.css */
 
 /* 웹폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap");
 /* font-family: 'Comfortaa', cursive; */
 
 /* 초기화 */
@@ -13,28 +13,78 @@ html,body,h1{
 
 body{
     background-color: #9c0;
+    /* 배경색 애니메이션: 이시이지반방마 */
+    animation: bgAni 10s linear infinite;
 }
+
+/* 배경색 키프레임 */
+@keyframes bgAni{
+    0%{
+        background-color: #9c0;
+    }
+    20%{
+        background-color: rgba(23,96,254,0664);
+    }
+    40%{
+        background-color: rgb(253,152,36);
+    }
+    60%{
+        background-color: rgb(212,19,190);
+    }
+    80%{
+        background-color: rgb(12,227,177);
+    }
+    100%{
+        background-color: #9c0;
+    }
+} /* bgAni 키프레임 */
 
 /* 전체 타이틀 */
 .tit{
+    /* height: 50px;
+    => auto로 유동적인 글자크기만큼만 사이즈 주지 말자 */
     font-family: 'Comfortaa', cursive;
     /* 최대글자크기 지정 */
     font-size: min(5vw,42px);
-    padding: 5vh 0;
+    margin: 5vh 0;
     text-align: center;
     color: #fff;
     text-shadow: 2px 2px 2px #222;
+    overflow: hidden;
+}
+/* 글자만 싸고 있는span */
+.tit span{
+    display: block;
+    transform: translateY(100%);
+    /* 애니메이션: 이시이지반방마 */
+    animation: upAni .3s ease-out 1.5s forwards;
+}
+/* 글자등장 키프레임 */
+@keyframes upAni {
+    to{
+        transform: translateY(0);
+    }
+} /* upAni 키프레임 */
+
+/* 전체 랩핑박스 */
+.wrap{
+    overflow: hidden;
+    /* 3D 문이 열렸을 때 잘려보이지 않게 위아래 패딩을 줌 */
+    padding: 50px 0;
 }
 
-/* 전체 문 부모 */
+/* 전체문부모 */
 .cont{
     width: 200px;
     height: 300px;
     margin: 0 auto;
     background-color: #900;
+    /* 트랜스폼 y축 이동: 패딩을 고려하여 내 크기보다 좀 더 많이 아래쪽으로 이동함 */
+    transform: translateY(120%);
+    /* 애니메이션: 이시이지반방마 */
+    animation: upAni .6s ease-out 1s forwards;
 }
-
-/* 문 프레임 */
+/* 문프레임 */
 .frame{
     position: relative;
     top: 20px;
@@ -43,15 +93,17 @@ body{
     margin: 0 auto;
     background: url(../images/seashore.jpg) no-repeat center/auto 100%;
 
-    /************************************************ 
-        [ 3D 원근 설정 ]
-        1. 셋팅 위치: 3D 원근 설정을 할 대상의 부모 요소
-        2. 설정 방법
-        -> perspective: 수치;
-        -> 수치는 px 단위로 숫자가 클 수록 소실점이 먼 것이므로 각도가 작아짐
-        (이 거리는 기준점에서 소실점까지의 거리임)
-    ************************************************/
-
+    /******************************* 
+        [ 3D 원근설정 ]
+        1. 셋팅위치 : 3D원근 설정을 할
+        대상의 부모요소
+        2. 설정방법 : 
+        perspective: 수치;
+        -> 수치는 px단위로 숫자가 클수록
+        소실점이 먼것이므로 각도가 작아짐
+        (이 거리는 기준점에서 소실점까지의
+        거리임)
+    *******************************/
     perspective: 480px;
 
      /*********************************************** 
@@ -59,19 +111,33 @@ body{
         perpective-origin : 가로 세로;
         - 가로축: left, center, right, px, % 등 단위
         - 세로축: top, center, bottom, px, % 등 단위
-        -> 두 값 중에 하나만 쓸 수 있고 복합일 경우 2가지를 같이 셋팅함!
-    ************************************************/
+        -> 두 값 중에 하나만 쓸 수 있고 복합일 경우
+        2가지를 같이 셋팅함!
+    ***********************************************/
     /* perspective-origin: bottom; */
+
+    /* 파도치는 애니메이션 : 이시이지반방마 */
+    animation: waveAni 3s ease-in-out infinite alternate;
 }
+
+/* 배경이미지 크기변경으로 파도치는 키프레임 */
+@keyframes waveAni {
+    to{
+        background-size: auto 120%;
+    }
+} /* waveAni 키프레임 */
+
 
 /* 문짝 */
 .door{
     position: relative;
     /* 부모자격 : .handle */
+    z-index: 1;
+    /* 엘사보다 위! */
     width: 150px;
     height: 280px;
     background-color: #c90;
-    
+
     /* 문짝회전 */
     transform: rotateY(0deg);
     /* 축변경 */
@@ -84,27 +150,26 @@ body{
     */
 
     /* 애니메이션: 이시이지반방마 */
-    animation:
-    /* 처음에 1초 간 열리 후 끝상태 유지 */
+    animation: 
+    /* 처음에 1초간 열린후 끝상태유지 */
     openFirst 1s ease-in-out forwards,
-    /* 1초 후 작동: 계속 여닫기 애니 */
+    /* 계속여닫기 애니 1초후 작동! */
     openDoor 2s ease-in-out 1s infinite alternate;
-
-    /* 애니메이션 상태 관리 */
+    /* 애니메이션 상태관리 - 처음에 멈춤 */
     animation-play-state: paused;
     /* 
-        animation-play-state 상태 속성
-        1. running: 작동
-        2. paused: 멈춤
-     */
+        animation-play-state 상태속성
+        1. running : 작동
+        2. paused : 멈춤
+    */
 }
 
-/* 문짝 부모에 오버시 문짝 애니 작동 */
+/* 문짝부모에 오버시 문짝애니작동! */
 .cont:hover .door{
     animation-play-state: running;
 }
 
-/* 문짝 처음 열기 키프레임 */
+/* 문짝 처음열기 키프레임 */
 @keyframes openFirst {
     to{
         transform: rotateY(60deg);
@@ -120,7 +185,7 @@ body{
         transform: rotateY(-60deg);
     }
 } /* openDoor 키프레임 */
- 
+
 /* 손잡이 */
 .handle{
     position: absolute;
@@ -131,3 +196,33 @@ body{
     border-radius: 50%;
     background-color: blue;
 }
+
+/* 엘사박스 */
+#elsa{
+    position: absolute;
+    top: 0;
+    
+    width: 150px;
+    height: 280px;
+    /* 엘사이미지 숨기기 */
+    overflow: hidden;
+}
+/* 엘사이미지 */
+#elsa img{
+    margin-left: 133px;
+    transform-origin: bottom;
+    /* 애니메이션 : 이시이지반방마 */
+    animation: elsaAni 1s ease-in-out infinite alternate;
+    /* 처음에 멈춰있기 */
+    animation-play-state: paused;
+}
+/* 마우스 오버시 엘사애니 작동 */
+.cont:hover #elsa img{
+    animation-play-state: running;
+}
+/* 엘사 애니 키프레임 */
+@keyframes elsaAni {
+    to{
+        transform: rotate(-10deg);
+    }
+} /* elsaAni 키프레임 */
