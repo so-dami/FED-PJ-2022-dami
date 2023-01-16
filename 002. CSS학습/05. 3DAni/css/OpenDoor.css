@@ -18,8 +18,8 @@ body{
 /* 전체 타이틀 */
 .tit{
     font-family: 'Comfortaa', cursive;
-    /* 최대 글자 크기 지정 */
-    font-size: min(5vw, 42px);
+    /* 최대글자크기 지정 */
+    font-size: min(5vw,42px);
     padding: 5vh 0;
     text-align: center;
     color: #fff;
@@ -59,8 +59,7 @@ body{
         perpective-origin : 가로 세로;
         - 가로축: left, center, right, px, % 등 단위
         - 세로축: top, center, bottom, px, % 등 단위
-        -> 두 값 중에 하나만 쓸 수 있고 복합일 경우
-        2가지를 같이 셋팅함!
+        -> 두 값 중에 하나만 쓸 수 있고 복합일 경우 2가지를 같이 셋팅함!
     ************************************************/
     /* perspective-origin: bottom; */
 }
@@ -68,17 +67,22 @@ body{
 /* 문짝 */
 .door{
     position: relative;
-    /* 부모자격: .handle */
-
-    /* 문짝 회전 */
-    transform: rotateY(30deg);
-    /* 축 변경 */
-    transform-origin: left;
-
+    /* 부모자격 : .handle */
     width: 150px;
     height: 280px;
     background-color: #c90;
     
+    /* 문짝회전 */
+    transform: rotateY(0deg);
+    /* 축변경 */
+    transform-origin: left;
+    /* 
+        [트랜스폼 회전축 변경속성]
+        transform-origin: 가로축 세로축
+        - 가로축: left, center, right, px, % 등 단위
+        - 세로축: top, center, bottom, px, % 등 단위
+    */
+
     /* 애니메이션: 이시이지반방마 */
     animation:
     /* 처음에 1초 간 열리 후 끝상태 유지 */
@@ -98,7 +102,6 @@ body{
 /* 문짝 부모에 오버시 문짝 애니 작동 */
 .cont:hover .door{
     animation-play-state: running;
-}
 }
 
 /* 문짝 처음 열기 키프레임 */
