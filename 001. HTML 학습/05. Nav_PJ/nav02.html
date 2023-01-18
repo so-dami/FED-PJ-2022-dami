@@ -1,79 +1,93 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2. 가로네비 서브별 드롭다운 가로형</title>
     <style>
+        /* 초기화 */
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
         h1{
             text-align: center;
         }
-        .gnb{
-            border-top: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-        }
-        ul{
+        ul{            
             /* 3無 */
             margin: 0;
             padding: 0;
             list-style: none;
         }
-        .gnb>ul{
-            /* 플렉스 박스로 가로 정렬 변경 */
-            display: flex;
 
-            /* 진행방향정렬: 중앙 jcc */
-            justify-content: center;
+        /* GNB메뉴 */
+        .gnb{
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
         }
-        .gnb>ul>li{
-            /* 투명 하단 보더 */
+        .gnb>ul{
+            /* 플렉스박스 */
+            display: flex;
+            /* 진행방향정렬 : 중앙 */
+            justify-content: center;
+
+        }
+
+        /* 상위메뉴 하단보더 셋팅 */
+        .gnb>ul>li>a{
+            /* 투명하단보더 */
             border-bottom: 3px solid transparent;
         }
-        /* 상위 lidp 서브 메뉴 배경 만들기 */
+        /* li오버시 */
+        .gnb>ul>li:hover>a{
+            /* 하단보더색넣기 */
+            border-bottom-color: darkblue;
+        }
+
+        /* 상위li에 서브메뉴 배경넣기 */
         .gnb>ul>li::after{
             content: '';
             display: block;
             position: absolute;
-            /* 부모는? 보이는 화면 */
+            /* 부모는? 보이는 화면*/
             left: 0;
             width: 100%;
-            /* top값은 안 줘서 젠틀함 */
+            /* top값은 안줘서 젠틀함! */
             height: 80px;
-            /* 앱솔루트 Y축 위치 미세 조정 */
-            margin-top: 4px;
+            /* 앱솔루트 Y축 위치미세조정 */
+            margin-top: 1px;
             background-color: #ececec;
+            border-bottom: 5px solid darkblue;
             
-            /* 처음에 숨기기 */
+            /* 처음에 안보임 */
             display: none;
+
         }
-        /* 상위 li 오버 시 서브 배경 보이기 */
+        /* 상위li오버시 서브배경보이기 */
         .gnb>ul>li:hover::after{
             display: block;
         }
-        /* 두번 째 li부터  */
+
+        /* 두번째 li부터 사이간격 : 패딩으로! */
         .gnb>ul>li+li{
-            margin-left: 10px;
+            padding-left: 10px;
         }
-        /* li 오버시 */
-        .gnb>ul>li:hover{
-            /* 하단 보더 색상 */
-            border-bottom-color: navy;
-        }
-        /* li 오버시 a */
+        /* li오버시 a */
         .gnb>ul>li:hover>a{
             /* 글자색 */
-            color: navy;
+            color: darkblue;
         }
         .gnb>ul>li>a{
-            /* a확장 */
+            /* a확장! */
             display: block;
-            /* a요소 - 글자색 변경, 밑줄 없애기 */
+            /* a요소에서 글자색,밑줄없앰 */
             color: #444;
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
             line-height: 56px;
             padding: 0 25px;
+            /* outline: 1px dashed red; */
         }
 
         /* 서브메뉴 */
@@ -82,15 +96,16 @@
             z-index: 1;
             padding: 25px 20px;
             /* outline: 1px dashed gray; */
-            /* 처음에 안 보임 */
+            /* 처음에 안보임! */
             display: none;
         }
-        /* 상위 li 오버 시 서브메뉴 보이기 */
+        /* 상위li오버시 서브메뉴 보이기 */
         .gnb>ul>li:hover .smenu{
             display: block;
         }
         .smenu ul{
             display: flex;
+
         }
         .smenu li+li{
             margin-left: 20px;
@@ -100,16 +115,18 @@
             color: #555;
             font-size: 14px;
             text-decoration: none;
-            padding: 6px 10px;
+            padding: 6px 8px;
 
             /* background-color: lightgreen; */
         }
+        /* 서브메뉴 a오버시 */
         .smenu a:hover{
             background-color: darkblue;
             color: #eee;
             font-weight: bold;
         }
-        /* 서브메뉴 위치 이동 6, 7, 8 */
+
+        /* 서브메뉴 위치이동 6,7,8 */
         .gnb>ul>li:nth-child(6) .smenu{
             margin-left: -215px;
         }
@@ -119,6 +136,8 @@
         .gnb>ul>li:nth-child(8) .smenu{
             margin-left: -275px;
         }
+
+
     </style>
 </head>
 <body>
@@ -236,8 +255,8 @@
             </li>
             <li>
                 <a href="#">포트폴리오</a>
-                 <!-- 서브메뉴 -->
-                 <div class="smenu">
+                <!-- 서브메뉴 -->
+                <div class="smenu">
                     <ul>
                         <li>
                             <a href="#">홈페이지</a>
@@ -261,7 +280,7 @@
                             <a href="#">영상</a>
                         </li>
                     </ul>
-                 </div>
+                </div>
             </li>
             <li>
                 <a href="#">회사소개</a>
@@ -303,7 +322,7 @@
                 <!-- 서브메뉴 -->
                 <div class="smenu">
                     <ul>
-                        <li>
+                        <li>    
                             <a href="#">자주묻는질문</a>
                         </li>
                         <li>
@@ -312,13 +331,11 @@
                         <li>
                             <a href="#">원격지원상담</a>
                         </li>
-                        <li>
-                            <a href="#">견적문의</a>
-                        </li>
                     </ul>
                 </div>
             </li>
         </ul>
     </div>
+    
 </body>
 </html>
