@@ -133,16 +133,22 @@
                 /* 1. 메인영역 */
                 .cont > .pbx {
                     width: 50%;
-                }
-                .cont > .cont4 {
-                    width: 100%;
-                    height: 600px;
+                    height: 300px;
                 }
             }
             /* 800px 이하 */
 
             /**************** 500px 이하 ****************/
+            @media screen and (max-width: 500px) {
+                /* 파티션박스 전체 적용 */
+                /* 더 작은 사이즈가 없이 최종 적용이므로 !important를 사용하여 강제 적용한다. */
+                .pbx{
+                    width: 100% !important;
+                    height: 400px !important;
+                }
+            }
             /* 500px 이하 */
+            
         </style>
     </head>
 
