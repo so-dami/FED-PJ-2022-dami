@@ -38,7 +38,6 @@ html,body{
     transform: translate(-50%, -50%);
 
     /* outline: 4px dotted lime; */
-    /* perspective: 400px; */
 }
 /* Click Here 글자박스 */
 #enter span{
@@ -58,17 +57,17 @@ html,body{
 /* 엔터박스 로고 이미지 */
 #enter img{
     /* 트랜지션: 속시이지 */
-    transition: 
-    all .3s ease-out .2s;
+    /* transition: 
+    all .3s ease-out .2s; */
 }
 /* 엔터박스 오버시 로고이미지변경 */
 #enter:hover img{
     /* 애니메이션: 이시이지반방마 */
-    animation:
-    /* 먼저 커지고 왼쪽 회전 */
-    logoAni1 .6s linear forwards,
-    /* 왼쪽, 오른쪽 회전 반복 */
-    logoAni2 .4s linear .6s infinite alternate;
+    animation: 
+    /* 먼저커지고 왼쪽회전 */
+    logoAni1 .4s linear forwards,
+    /* 왼쪽,오른쪽 회전반복 */
+    logoAni2 .4s linear .4s infinite alternate;
 
     /* transform: 
     rotate(-15deg) scale(1.5); */
@@ -76,23 +75,22 @@ html,body{
 /* 로고 애니 키프레임 */
 @keyframes logoAni1 {
     50%{
-        transform:
+        transform: 
         rotate(0deg) scale(1.5);
     }
     100%{
-        transform:
+        transform: 
         rotate(-15deg) scale(1.5);
     }
 }
-
 /* 로고 애니 키프레임 */
 @keyframes logoAni2 {
     0%{
-        transform:
+        transform: 
         rotate(-15deg) scale(1.5);
     }
     100%{
-        transform:
+        transform: 
         rotate(15deg) scale(1.5);
     }
 }
