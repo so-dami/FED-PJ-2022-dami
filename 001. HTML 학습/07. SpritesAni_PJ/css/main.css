@@ -254,6 +254,21 @@ body {
 }
 
 /* 확대애니메이션 class */
+.big{
+    transition: .8s;
+}
+
+.big:hover{
+    /* 마우스 오버 시 확대, 멈춤, 정렬 맨 앞으로 */
+    transform: scale(3);
+    animation-play-state: paused;
+    z-index: 1;
+}
+
+/* 웃는 여자용 */
+.big2:hover{
+    transform: scale(.7);
+}
 
 /* 
     [ z-index 사용의 일반용법 ]
@@ -267,6 +282,54 @@ body {
 */
 
 /* 3-4. 흐르는 자막 */
+.fcap{
+    position: absolute;
+    /* 가로크기는 스크린만큼 */
+    width: 100%;
+    /* 넘치는 자식요소 숨기기 */
+    overflow: hidden;
+}
+
+/* 이동 애니메이션은 ol */
+.fcap ol{
+    position: relative;
+    left: 0;
+    
+    /* 플렉스박스 */
+    display: flex;
+
+    /* 크기: 2배 */
+    width: 200%;
+    
+    /* 줄바꿈 방지 */
+    white-space: nowrap;
+    
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    /* outline: 4px dashed lightcoral; */
+
+    /* 애니메이션: 이시이지빈빙미 */
+    animation: fcap 5s linear infinite;
+}
+
+.fcap li{
+    /* 플렉스 자식요소 등분할 */
+    flex: 1;
+
+    text-align: center;
+    font: bold 14px/20px Verdana;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+
+    /* outline: 2px dotted lime; */
+}
 
 /* 흐르는 글자 키프레임 */
+@keyframes fcap{
+    to{
+        left: -100%;
+    }
+}
 /* 키프레임 */
