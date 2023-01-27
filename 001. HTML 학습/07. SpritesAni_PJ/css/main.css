@@ -63,7 +63,7 @@ body {
 }
 
 .gnb a:hover{
-    color: #f00;
+    color: orange;
     text-decoration: line-through;
 }
 
@@ -73,10 +73,10 @@ body {
     /* 부모자격 - .screen */
     width: 1280px;
     height: 720px;
-    /* 배경위치조정 */
-    background-position: -36px 0;
     /* 배경사진 */
     background: url(../images/tvset.png) no-repeat;
+    /* 배경위치조정 */
+    background-position: -36px 0;
     /* 배경사진 중앙정렬: 마영오 */
     margin: 0 auto;
 }
@@ -84,23 +84,50 @@ body {
 /* 스크린 */
 .screen{
     position: absolute;
-    top: 213px;
-    left: 450px;
+    top: 212px;
+    left: 414px;
     width: 453px;
-    height: 227px;
+    height: 228px;
     
     /* 배경 넣기 */
     background: url(../images/street.jpg) repeat-x;
     background-size: auto 100%;
+
+    /* 애니메이션 호출: 이시이지반방마 */
+    animation: street 6s linear infinite;
 }
 
 /* 스크린배경이동 키프레임 */
+@keyframes street{
+    to{
+        background-position: -390px 0;
+    }
+}
 
-/* 키프레임 */
+/* 3-1.걷는 존 */
+.spani1{
+    position: relative;
+    width: 100px;
+    height: 176px;
+    margin: 0 auto;
+    margin-top: 25px;
 
-/* 3-1.걷는존 */
+    background: url(../imagesspAni3.png) no-repeat;
+    background-size: auto 100%;
 
-/* 걷는존 키프레임 */
+    /* 애니메이션 호출: 이시이지반방마 */
+    animation: spani1 7s steps(8) infinite;
+
+    outline: 3px solid red;
+}
+
+/* 걷는 존 키프레임 */
+@keyframes spani1{
+    to{
+        background-position: -797px 0;
+    }
+    /* 배경이미지가 x축 이동일 경우 줄였을 때 이미지의 전체 가로크기를 마이너스 값으로 써주면 된다. */
+}
 
 /* 키프레임 */
 
@@ -116,6 +143,8 @@ body {
             가로 : 세로 = 1472px : 325px = x : 176px
             x = 1472*176/325 = 797.14
             전체가 8장면 이므로 한 장면당 100px(99.625px)로 정해짐
+
+            -> 더 편한 방법은 그림판에서 축소/확대(가로세로비율 유지)를 사용하여 길이를 알아내면 된다.
         
         2. 코딩법:
 
