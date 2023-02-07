@@ -1,229 +1,548 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <title>for문 확장 - for of문</title>
-        <script>
-            // 배열 만들기
-            // 배열구성 [제목,주연,내용]
-            const mv1 = ["조제", "한지민(조제), 남주혁(영석)", "자신을 ‘조제’로 불러달라는 그녀처음 만난 그날부터 ‘조제’는 ‘영석’에게 잊을 수 없는 이름으로 남는다.할머니와 단둘이 사는 집, 그곳에서 책을 읽고 상상하며자신만의 세계를 살고 있는 ‘조제’.우연히 만난 그녀에게 특별한 감정을 느끼기 시작한 ‘영석’은천천히, 그리고 솔직하게 다가가기 시작한다.하지만 처음 경험해보는 사랑이 설레는 한편 가슴 아픈 ‘조제’는자신에게 찾아온 낯선 감정을 밀어내는데... 기억할 거야, 너와 함께한 모든 순간을..."];
-            const mv2 = ["원더 우먼 1984", "갤 가돗(다이애나/원더우먼), 크리스 파인(스티브 트레버)", "1984년 모든 것이 활기찬 시대, 다이애나 프린스는 고고학자로서 인간들 사이에서 조용히 살고 있다. 단지 원더 우먼으로서 위기에 처한 사람을 구할 때만 빼고는. 그런 다이애나 앞에 거짓말처럼 죽었던 스티브 트레버가 나타나고, 거부할 수 없는 적마저 함께 찾아오는데…"];
-            const mv3 = ["도굴", "이제훈(동구), 조우진(존스박사)", "흙 맛만 봐도 보물을 찾아내는 타고난 천재 도굴꾼 강동구(이제훈).자칭 한국의 '인디아나 존스'로 불리는 고분벽화 도굴 전문가 존스 박사(조우진), 전설의 삽질 달인 삽다리(임원희)를 만나 환상(?)의 팀플레이를 자랑하며 위험천만하고도 짜릿한 도굴의 판을 키운다."];
-            const mv4 = ["공조2: 인터내셔날", "현빈(림철령), 유해진(강진태)", "남한으로 숨어든 글로벌 범죄 조직을 잡기 위해 새로운 공조 수사에 투입된 북한 형사 ‘림철령’(현빈). 수사 중의 실수로 사이버수사대로 전출됐던 남한 형사 ‘강진태’(유해진)는 광수대 복귀를 위해 모두가 기피하는 ‘철령’의 파트너를 자청한다.  이렇게 다시 공조하게 된 ‘철령’과 ‘진태’! ‘철령’과 재회한 ‘민영’(임윤아)의 마음도 불타오르는 가운데, ‘철령’과 ‘진태’는 여전히 서로의 속내를 의심하면서도 나름 그럴싸한 공조 사를 펼친다. 드디어 범죄 조직 리더인 ‘장명준’(진선규)의 은신처를 찾아내려는 찰나, 미국에서 날아온 FBI 소속 ‘잭’(다니엘 헤니)이 그들 앞에 나타나는데…!  아직도 짠내 나는 남한 형사, 여전한 엘리트 북한 형사, 그리고 FBI 소속 해외파 형사까지! 각자의 목적으로 뭉친 그들의 짜릿한 공조 수사가 시작된다!"];
-            const mv5 = ["육사오(6/45)", "고경표(박천우), 이이경(리용호)", "우연히 1등 당첨 로또를 주운 말년 병장 ‘천우’. 심장이 터질듯한 설렘도 잠시, 순간의 실수로 바람을 타고 군사분계선을 넘어간 로또. 바사삭 부서진 멘탈을 부여잡고…기필코 다시 찾아야 한다!  우연히 남쪽에서 넘어온 1등 당첨 로또를 주운 북한 병사 ‘용호’. 이거이 남조선 인민의 고혈을 쥐어 짜내는 육사오라는 종이쪼가리란 말인가? 근데 무려 당첨금이 57억이라고?!  당첨금을 눈앞에서 놓칠 위기에 처한 ‘천우’와 북에선 한낱 종이쪼가리일 뿐일 로또를 당첨금으로 바꿔야 하는 ‘용호’. 여기에 예상치 못한 멤버들(?)까지 합류하고 57억을 사수하기 위한 3:3팀이 성되는데…"];
-            const mv6 = ["암살", "전지현(안옥윤), 하정우(하와이 피 스톨)", "1933년 조국이 사라진 시대 대한민국 임시정부는 일본 측에 노출되지 않은 세 명을 암살작전에 지목한다. 한국 독립군 저격수 안옥윤, 신흥무관학교 출신 속사포, 폭탄 전문가 황덕삼! 김구의 두터운 신임을 받는 임시정부 경무국 대장 염석진은 이들을 찾아 나서기 시작한다. 암살단의 타깃은 조선주둔군 사령관 카와구치 마모루와 친일파 강인국. 한편, 누군가에게 거액의 의뢰를 받은 청부살인업자 하와이 피스톨이 암살단의 뒤를 쫓는데... 친일파 암살작전을 둘러싼 이들의 예측할 수 없는 운명이 펼쳐진다!"];
-            const mv7 = ["괴물", "송강호(강두), 배두나(남주)", "햇살 가득한 평화로운 한강 둔치 아버지(변희봉)가 운영하는 한강 매점, 늘어지게 낮잠 자던 강두(송강호)는 잠결에 들리는 ‘아빠’라는 소리에 벌떡 일어난다. 올해 중학생이 된 딸 현서(고아성)가 잔뜩 화가 나있다. 꺼내놓기도 창피한 오래된 핸드폰과, 학부모 참관 수업에 술 냄새 풍기며 온 삼촌(박해일)때문이다. 강두는 고민 끝에 비밀리에 모아 온 동전이 가득 담긴 컵라면 그릇을 꺼내 보인다. 그러나 현서는 시큰둥할 뿐, 막 시작된 고모(배두나)의 전국체전 양궁경기에 몰두해 버린다. 그곳에서 괴물이 나타났다. 한강 둔치로 오징어 배달을 나간 강두, 우연히 웅성웅성 모여있는 사람들 속에서 특이한 광경을 목격하게 된다. 생전 보도 못한 무언가가 한강다리에 매달려 움직이는 것이다. 사람들은 마냥 신기해하며 핸드폰, 디카로 정신 없이 찍어댄다. 그러나 그것도 잠시… 정체를 알 수 없는 괴물은 둔치 위로 올라와 사람들을 거침없이 깔아뭉개고, 무차별로 물어뜯기 시작한다. 순식간에 아수라장으로 돌변하는 한강변. 강두도 뒤늦게 딸 현서를 데리고 정신 없이 도망가지만, 비명을 지르며 흩어지는 사람들 속에서, 꼭 잡았던 현서의 손을 놓치고 만다. 그 순간 괴물은 기다렸다는 듯이 현서를 낚아채 유유히 한강으로 사라진다. 어딘가에 있을 현서를 반드시 찾아야 한다. 갑작스런 괴물의 출현으로 한강은 모두 폐쇄되고, 도시 전체는 마비된다. 하루아침에 집과 생계, 그리고 가장 소중한 현서까지 모든 것을 잃게 된 강두 가족… 돈도 없고 빽도 없는 그들은 아무도 도와주지 않지만, 위험구역으로 선포된 한강 어딘가에 있을 현서를 찾아 나선다."];
 
-            /////////// 로드구역 /////////////////////////////////////
-            // DOMContentLoaded -> html태그를 모두 그리면 발생이벤트
-            window.addEventListener("DOMContentLoaded", () => {
-                ///////////////////////////////
-                // querySelector 함수 만들기 ///
-                ///////////////////////////////
-                // const qs = (x)=>{return document.querySelector(x)};
-                const qs = (x) => document.querySelector(x);
-                const qsa = (x) => document.querySelectorAll(x);
-                // 길게 써야하는 부분을 함수로 만들고
-                // 이것을 호출하여 리턴받는 함수기능을 활용한다!
-                // 위의 함수는 선택자객체를 컬렉션으로 만드는 코드를
-                // 리턴하여 실제로 사용할때 함수명을 아주 짧게 줄이게해준다!
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid1 - Gallery</title>
+    <style>
+        /**************************************************** 
+                    [ 그리드 디스플레이 ]
 
-                // 1. 로딩구역 확인
-                console.log("로딩완료!");
+        - 가로,세로 양방향 레이아웃을 위한 디스플레이 속성
+        - 주요 속성:
+        1. grid-template-colums
+            - 가로방향 width폭을 지정하는 속성
+            - 값은 순서대로 값을씀 (개수만큼 한줄 컬럼결정)
+            - 반복을 사용할 수 있다
+                -> repeat(개수,설정값)
+            - 설정값: px,%,vw,rem 등 구체적인값
+                또는 비율값 -> 숫자fr (가로크기 전체의 비율)
+                fr은 fraction에서 나온말
+                예) 1fr 2fr -> 1:2비율 
+        2. grid-template-rows
+            - 세로방향의 height값을 지정하는 속성
+            - 값은 순서대로 값을씀
+            - 나머지는 1번과 동일
+            - 만약 이 값을 설정하지 않으면 모든 박스에 대한
+            기본비를 유지함!(내가 원하는 비는 별도로 설정함)
+            -> 기본비에 대한 기준은 내부컨텐츠임
+            (이미지라면 이미지 기본비를 기준함)
+            
+        3. grid-column-gap
+            - 가로방향 사이간격
+        
+        4. grid-row-gap
+            - 세로방향 사이간격
+        ________________________________
+        
+        5.  가로정렬, 세로정렬은 flex와 개념상 동일하다! 
+        - 한줄일때 (진행방에 여러개있을 경우)
+        justify-content -> 가로진행방향 정렬
+        align-content -> 세로진행방향 정렬
+        - 여러줄일때
+        justify-items -> 가로방향 다중 정렬 (flex에 없음!)
+        align-items -> 세로방향 다중 정렬
 
-                // 2. 대상선정
-                // 2-1. 이벤트 대상 : .btngo
-                const btngo = qsa(".btngo");
-                console.log(btngo);
+        ___________________________________
 
-                // 2-2. 출력대상 : .minfo
-                const minfo = qsa(".minfo");
-                console.log(minfo);
+        그리드 사용 예시 사이트: 매치 리스트
+        https://www.matchroomboxing.com/
 
-                // 3. 버튼에 클릭이벤트 설정하기
-                // for(시;한;증){코드} -> 일반for문설정
-                // 시작값은 0부터, 한계값은 개수보다 작게, 증감은 ++
-                //-> 항상 셋팅이 너무 뻔하다~~~~~!
-                // ES6에서 이것을 자동화하는 for문이 등장함!
-                // 바로 for of문!!!
+    ****************************************************/
+        /* 타이틀 */
+        .tit {
+            text-align: center;
+            /* 글자 최소크기 지정 */
+            font-size: max(3vw,25px);
+        }
 
-                // x변수는 of뒤의 배열/컬렉션을
-                // 하나씩 담고 for문 안으로 들어간다!
-                // let변수이므로 for문 중괄호 안의 지역변수가 된다!
-                for (let x of btngo) {
-                    // console.log("x는?",x);
+        /* 그리드 박스 */
+        .grid{
+            /* 그리드 박스 */
+            display: grid;
 
-                    // 클릭이벤트 설정하기
-                    // x변수에 각각의 버튼요소가 들어옴!
-                    x.onclick = () => {
-                        // 1. 버튼 텍스트 읽어오기
-                        let btxt = x.innerText;
-                        // for문의 x가 let이기 때문에
-                        // 이벤트함수에 하나씩 개별전달이 된다!
-                        console.log(btxt);
+            /* 1200px최대크기, 마영오! */
+            max-width: 1200px;
+            margin: 0 auto;
 
-                        // 2. 버튼별 배열할당하기 : switch 사용
-                        // 버튼에 따른 배열변수 할당할 변수
-                        let data;
+            /********************** 
+            [ 가로 그리드 템플릿 ] 
+            grid-template-columns           
+            **********************/
+            /* 1. 가로 사이즈를 구체적인 단위를 사용하여 설정하기(설정한 수치의 개수만큼 컬럼생성) */
+            /* grid-template-columns: 100px 200px 300px 400px; */
 
-                        // 버튼별 분기하기
-                        switch (btxt) {
-                            case "공조2: 인터내셔날":
-                                data = mv4;
-                                break;
-                            case "육사오(6/45)":
-                                data = mv5;
-                                break;
-                            case "조제":
-                                data = mv1;
-                                break;
-                            case "원더 우먼 1984":
-                                data = mv2;
-                                break;
-                            case "도굴":
-                                data = mv3;
-                                break;
-                            case "암살":
-                                data = mv6;
-                                break;
-                            case "괴물":
-                                data = mv7;
-                                break;
-                        } /////// switch case문 /////////
+            /* 2. fr단위로 가로전체에 대한 비율을 설정
+            -> 사용한 개수만큼 가로 컬럼이 생성됨!
+            fraction(부분) */
+            /* grid-template-columns: 1fr 3fr 5fr 2fr; */
 
-                        // 매칭 데이터 찍어보기
-                        console.log(data);
+            /* 3. repeat(수치의 반복수, 반복수치) */
+            grid-template-columns: repeat(5,1fr);
 
-                        // 3. 출력요소에 배열데이터 찍기
-                        // 배열도 for of문 사용
-                        // 변수 y는 data에 담긴 배열의 각각의 값
+            /* 3번 repeat() 에 대한 다양한 실험! 
+                비율이 여러가지일 경우 띄어쓰기로
+                크기 수치를 표현함
+                -> 비의 반복수*반복수치의 개수
+                -> 아래의 예는 2*3 = 6 개의 컬럼생성됨!
+            */
+            /* grid-template-columns: repeat(2,300px 1fr 3fr); */
 
-                        // for of문은 배열/컬렉션의 순번을 return하지 않는다.
-                        // 따라서 변수를 하나 사용하여 순번을 증가하게끔 사용한다.
+            /************************ 
+                [ 세로 그리드 템블릿 ]
+                grid-template-rows
+            ************************/
+            /* 1. 구체적인 수치 높이값을 쓴만큼 셋팅
+            -> 나머지는 자동셋팅 */
+            /* grid-template-rows: 100px 200px 300px; */
 
-                        // 컬렉션 순번변수
-                        let seq = 0;
-                        for(let y of data){
-                            // console.log(y);
-                            // 출력대상인 .minfo -> minfo 변수
-                            minfo[seq].innerText = y;
+            /* 2. 높이값 전체에서의 비를 쓴만큼 셋팅 */
+            /* grid-template-rows: 1fr 3fr 5fr 2fr; */
 
-                            // 순번 seq 1씩 증가
-                            seq++;
-                        }; ///////// for of문 ///////////
+            /* 3. repeat(수치의 반복수, 반복수치) */
+            /* grid-template-rows: repeat(4,300px); */
 
-                        // 배열/컬렉션 순번까지 모두 리턴하여 쓸 수 있는 메서드가 있음
-                        // forEach() 메서드를 할 예정
+            /* 4. 모든높이값 동일하게 셋팅하기
+                grid-auto-rows: 수치값; -> 기본값 auto
+            */
+            /* grid-auto-rows: 400px; */
 
-                    }; //////// click 이벤트 함수 ///////
-                } ////////// for of문 //////////////
+            /*********************** 
+                [ 수평방향 간격 ]
+                grid-column-gap
+            ***********************/
+            grid-column-gap: min(1vw,10px);
 
-                /******************************************* 
-                [ for of 문 ]
-                ___________________________
-
-                - 일반for문에 비해 간단한 형식의 for문
-                ((형식))
-                for(변수 of 배열/컬렉션){실행문}
-
-                ((특징))
-                -> 시;한;증 이 필요없다!
-                -> 배열/컬렉션 개수만큼 알아서 돌아줌!
-                -> ES6에서 새롭게 등장함!
-
-                -> 부가기능: 
-                문자데이터를 넣으면 한글자씩 돌아줌! 
-                for(변수 of 문자데이터변수) {실행문}
-                -> 한글자씩 태그로 싸줄때 편리함!
+            /*********************** 
+                [ 수직방향 간격 ]
+                grid-row-gap
+            ***********************/
+            grid-row-gap: min(1.5vw,15px);
 
 
-            *******************************************/
-            }); //////////////// 로드구역 /////////////////////////////
-            //////////////////////////////////////////////////////////
-        </script>
-        <style>
-            .btns {
-                text-align: center;
-                padding: 20px;
-            }
+        }
 
-            .btns > button {
-                font-size: 30px;
-                font-weight: bold;
-            }
+        /* 갤러리 박스 */
+        .grid>div{
+            position: relative;
+            /* 부모자격 */
 
-            .btngo{
-                margin-top: 5px;
-            }
+            /* 비율박스 셋팅 : 
+            이미지 가로/세로 크기비율임! */
+            aspect-ratio: 280 / 400;
+        }
 
-            .wrap {
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 10px;
-                border: 4px double #555;
-                border-radius: 10px;
-                font-size: 24px;
-                line-height: 2;
-            }
+        /* 그리드 갤러리 이미지 */
+        .grid img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
 
-            .wrap > div {
-                color: #444;
-            }
+        /* 1100px이하 미디어쿼리 시작 */
+        @media screen and (max-width:1100px) {
+            
+        }
 
-            h1,
-            h2,
-            h3 {
-                text-align: center;
-                border-top: 2px dashed #ccc;
-                border-bottom: 2px dashed #ccc;
-                font-size: 35px;
-            }
+        /* 1100px이하 미디어쿼리 끝 */
 
-            h1 + div {
-                /* +형제선택자 h1+div 앞에 형제로 h1 다음에 오는 div */
-                font-size: 33px;
-                font-weight: bold;
-                text-align: center;
-            }
+        /* 1000px이하 미디어쿼리 시작 */
+        @media screen and (max-width:1000px) {
+            
+        }
 
-            h2 + div {
-                /* +형제선택자 h2+div 앞에 형제로 h2 다음에 오는 div */
-                font-size: 28px;
-                font-weight: bold;
-                text-align: center;
-            }
+        /* 1000px이하 미디어쿼리 끝 */
 
-            /* 정보출력박스 */
-            .minfo {
-                background-color: #d0ffd3;
-            }
-        </style>
-    </head>
+        /* 800px이하 미디어쿼리 시작 */
+        @media screen and (max-width:800px) {
+            
+        }
 
-    <body>
-        <!-- 버튼그룹 -->
-        <div class="btns">
-            <button class="btngo">공조2: 인터내셔날</button>
-            <button class="btngo">육사오(6/45)</button>
-            <button class="btngo">원더 우먼 1984</button> <br>
-            <button class="btngo">조제</button>
-            <button class="btngo">도굴</button>
-            <button class="btngo">암살</button>
-            <button class="btngo">괴물</button>
+        /* 800px이하 미디어쿼리 끝 */
+
+        /* 600px이하 미디어쿼리 시작 */
+        @media screen and (max-width:600px) {
+            
+        }
+
+        /* 600px이하 미디어쿼리 끝 */
+    </style>
+</head>
+
+<body>
+    <!-- 타이틀 -->
+    <h1 class="tit">그리드1 - 이미지 갤러리</h1>
+    <!-- 그리드 레이아웃 박스 -->
+    <div class="grid">
+        <div>
+            <img src="img_gallery/1.jpg" alt="dress">
+            <aside>
+                <h2>상품명1</h2>
+                <h3>상품가격1</h3>
+            </aside>
         </div>
-        <!-- 내용박스 -->
-        <div class="wrap">
-            <!--1.영화제목-->
-            <h1>영화제목</h1>
-            <div class="minfo"></div>
-
-            <!--2.주연배우-->
-            <h2>주연배우</h2>
-            <div class="minfo"></div>
-
-            <!--3.영화스토리-->
-            <h3>영화스토리</h3>
-            <div class="minfo"></div>
+        <div>
+            <img src="img_gallery/2.jpg" alt="dress">
+            <aside>
+                <h2>상품명2</h2>
+                <h3>상품가격2</h3>
+            </aside>
         </div>
-    </body>
+        <div>
+            <img src="img_gallery/3.jpg" alt="dress">
+            <aside>
+                <h2>상품명3</h2>
+                <h3>상품가격3</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/4.jpg" alt="dress">
+            <aside>
+                <h2>상품명4</h2>
+                <h3>상품가격4</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/5.jpg" alt="dress">
+            <aside>
+                <h2>상품명5</h2>
+                <h3>상품가격5</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/6.jpg" alt="dress">
+            <aside>
+                <h2>상품명6</h2>
+                <h3>상품가격6</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/7.jpg" alt="dress">
+            <aside>
+                <h2>상품명7</h2>
+                <h3>상품가격7</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/8.jpg" alt="dress">
+            <aside>
+                <h2>상품명8</h2>
+                <h3>상품가격8</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/9.jpg" alt="dress">
+            <aside>
+                <h2>상품명9</h2>
+                <h3>상품가격9</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/10.jpg" alt="dress">
+            <aside>
+                <h2>상품명10</h2>
+                <h3>상품가격10</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/11.jpg" alt="dress">
+            <aside>
+                <h2>상품명11</h2>
+                <h3>상품가격11</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/12.jpg" alt="dress">
+            <aside>
+                <h2>상품명12</h2>
+                <h3>상품가격12</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/13.jpg" alt="dress">
+            <aside>
+                <h2>상품명13</h2>
+                <h3>상품가격13</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/14.jpg" alt="dress">
+            <aside>
+                <h2>상품명14</h2>
+                <h3>상품가격14</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/15.jpg" alt="dress">
+            <aside>
+                <h2>상품명15</h2>
+                <h3>상품가격15</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/16.jpg" alt="dress">
+            <aside>
+                <h2>상품명16</h2>
+                <h3>상품가격16</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/17.jpg" alt="dress">
+            <aside>
+                <h2>상품명17</h2>
+                <h3>상품가격17</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/18.jpg" alt="dress">
+            <aside>
+                <h2>상품명18</h2>
+                <h3>상품가격18</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/19.jpg" alt="dress">
+            <aside>
+                <h2>상품명19</h2>
+                <h3>상품가격19</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/20.jpg" alt="dress">
+            <aside>
+                <h2>상품명20</h2>
+                <h3>상품가격20</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/21.jpg" alt="dress">
+            <aside>
+                <h2>상품명21</h2>
+                <h3>상품가격21</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/22.jpg" alt="dress">
+            <aside>
+                <h2>상품명22</h2>
+                <h3>상품가격22</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/23.jpg" alt="dress">
+            <aside>
+                <h2>상품명23</h2>
+                <h3>상품가격23</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/24.jpg" alt="dress">
+            <aside>
+                <h2>상품명24</h2>
+                <h3>상품가격24</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/25.jpg" alt="dress">
+            <aside>
+                <h2>상품명25</h2>
+                <h3>상품가격25</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/26.jpg" alt="dress">
+            <aside>
+                <h2>상품명26</h2>
+                <h3>상품가격26</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/27.jpg" alt="dress">
+            <aside>
+                <h2>상품명27</h2>
+                <h3>상품가격27</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/28.jpg" alt="dress">
+            <aside>
+                <h2>상품명28</h2>
+                <h3>상품가격28</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/29.jpg" alt="dress">
+            <aside>
+                <h2>상품명29</h2>
+                <h3>상품가격29</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/30.jpg" alt="dress">
+            <aside>
+                <h2>상품명30</h2>
+                <h3>상품가격30</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/31.jpg" alt="dress">
+            <aside>
+                <h2>상품명31</h2>
+                <h3>상품가격31</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/32.jpg" alt="dress">
+            <aside>
+                <h2>상품명32</h2>
+                <h3>상품가격32</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/33.jpg" alt="dress">
+            <aside>
+                <h2>상품명33</h2>
+                <h3>상품가격33</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/34.jpg" alt="dress">
+            <aside>
+                <h2>상품명34</h2>
+                <h3>상품가격34</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/35.jpg" alt="dress">
+            <aside>
+                <h2>상품명35</h2>
+                <h3>상품가격35</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/36.jpg" alt="dress">
+            <aside>
+                <h2>상품명36</h2>
+                <h3>상품가격36</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/37.jpg" alt="dress">
+            <aside>
+                <h2>상품명37</h2>
+                <h3>상품가격37</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/38.jpg" alt="dress">
+            <aside>
+                <h2>상품명38</h2>
+                <h3>상품가격38</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/39.jpg" alt="dress">
+            <aside>
+                <h2>상품명39</h2>
+                <h3>상품가격39</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/40.jpg" alt="dress">
+            <aside>
+                <h2>상품명40</h2>
+                <h3>상품가격40</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/41.jpg" alt="dress">
+            <aside>
+                <h2>상품명41</h2>
+                <h3>상품가격41</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/42.jpg" alt="dress">
+            <aside>
+                <h2>상품명42</h2>
+                <h3>상품가격42</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/43.jpg" alt="dress">
+            <aside>
+                <h2>상품명43</h2>
+                <h3>상품가격43</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/44.jpg" alt="dress">
+            <aside>
+                <h2>상품명44</h2>
+                <h3>상품가격44</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/45.jpg" alt="dress">
+            <aside>
+                <h2>상품명45</h2>
+                <h3>상품가격45</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/46.jpg" alt="dress">
+            <aside>
+                <h2>상품명46</h2>
+                <h3>상품가격46</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/47.jpg" alt="dress">
+            <aside>
+                <h2>상품명47</h2>
+                <h3>상품가격47</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/48.jpg" alt="dress">
+            <aside>
+                <h2>상품명48</h2>
+                <h3>상품가격48</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/49.jpg" alt="dress">
+            <aside>
+                <h2>상품명49</h2>
+                <h3>상품가격49</h3>
+            </aside>
+        </div>
+        <div>
+            <img src="img_gallery/50.jpg" alt="dress">
+            <aside>
+                <h2>상품명50</h2>
+                <h3>상품가격50</h3>
+            </aside>
+        </div>
+    </div>
+
+
+    <!-- 
+        .grid>div*50>img[src=img_gallery/$.jpg alt=dress]+(aside>h2{상품명$}+h3{상품가격$})
+    
+        젠코딩(에밋코딩) 약어소개
+        _____________________
+        
+        * 여러개
+        > 자식
+        + 형제
+        [] 속성
+        {} 데이터 -> 태그내부값
+        $ 연속번호자리
+    -->
+</body>
+
 </html>
