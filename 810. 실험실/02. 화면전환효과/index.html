@@ -68,9 +68,14 @@
 
             // 2단계: .go 넣기
             setTimeout(() => {
+
+                // 자체 글자 변경
+                document.querySelector(".pg h1").innerText = "Hello :)"
+
+                // body에 .go 넣기
                 tg.classList.add("go");
             }, 1000); // 1000 = 1초
-            
+
         }, 2000); //// setTimeout ////
     </script>
 </head>

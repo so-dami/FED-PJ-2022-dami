@@ -16,6 +16,7 @@
 .cont{
     /* 최소높이 수정 */
     min-height: 600px;
+    padding: 0 5px 30px;
 }
 
 /* 2-1.타이틀 */
@@ -25,6 +26,7 @@
     text-align: center;
     padding: 40px 0 20px;
 }
+
 /* 2-2.컨텐츠박스 */
 .scont{
     max-width: 700px;
@@ -34,7 +36,115 @@
     background-color: #fff;
     border-radius: 10px;
     border: 2px  solid #777;
-    padding: 60px 15px;
-    /* 박스크기유지 : 보더,패딩포함 */
+    padding: 30px 50px;
+    /* 박스크기유지 : 보더, 패딩포함 */
     box-sizing: border-box;
+}
+
+/* 리스트 ul */
+.scont ul{
+    font-size: 2rem;
+    /* html 10px*2=20px */
+    font-weight: bold;
+    color: #333;
+}
+
+/* 리스트 li */
+.scont li{
+    position: relative;
+    /* 부모자격 - .msg */
+    height: 50px;
+    line-height: 50px;
+    /* outline: 2px dotted lime; */
+}
+
+/* 메시지 박스 */
+.msg{
+    position: absolute;
+    /* 부모는? .scont li */
+    top: 35px;
+    left: 0;
+    height: 15px;
+    line-height: 15px;
+
+    /* 폰트 */
+    font-size: 10px;
+    color: lightcoral;
+    white-space: nowrap;
+}
+
+/* 메시지 글자색 변경 class */
+.msg.on{
+    color: lightseagreen;
+}
+
+/* 라벨 공통 타이틀: .itit */
+.itit{
+    display: inline-block;
+    width: 200px;
+}
+
+/* 입력박스 공통 */
+.scont input[type=text],
+.scont input[type=password]{
+    width: 300px;
+    height: 25px;
+    font-size: 1.5rem;
+    border: 1px solid #777;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+/* radio 버튼*/
+.scont input[type=radio]{
+    height: 20px;
+    width: 20px;
+    /* 인라인 요소 간 세로 정렬 */
+    vertical-align: -4px;
+}
+
+/* 이메일 앞 주소 */
+#email1{
+    width: 160px;
+}
+
+/* 이메일 도메인 드롭다운박스(=콤보박스 */
+#seleml{
+    width: 146px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+/* 이메일 도메인 라벨 숨기기 */
+.ee{
+    display: none;
+}
+
+#email2{
+    width: 146px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 44px;
+    /* display: none; */
+    /* 처음에 숨기기 -> 직접입력 상태일때만 보임 */
+}
+
+/* 가입하기 버튼 */
+#btnj{
+    position: absolute;
+    top: 5px;
+    right: 44px;
+    width: 113px;
+    height: 40px;
+
+    border: 1px solid #777;
+    border-radius: 5px;
+    background-image: linear-gradient(to bottom, #ddd, #555);
+
+    color: #fff;
+    text-shadow: 1px 1px 1px #555;
+
+    /* 손가락 모양 */
+    cursor: pointer;
 }
