@@ -132,8 +132,59 @@
                 // for in문 사용: for(변수 in 객체){코드}
                 // -> 변수는 속성명
                 for(let z in data){
-                    // z는?
-                    console.log(z);
+                    // z는? 속성명
+                    // 속성값은 어떻게 가져오는 거지? 객체명[z]
+                    // console.log(z,data[z]);
+
+                    // 각 속성명에 해당하는 데이터 셋팅하기
+                    // switch case문으로 분기
+                    switch(z){
+                        // 1. 포스터 넣기 -> .photo
+                        case "포스터":
+                            qs(".photo").innerHTML=`<img src="${data[z]}" alt="${btxt}의 포스터">`; break;
+                        // 2. 제목 넣기 -> .tit
+                        case "제목":
+                            qs(".tit").innerHTML="🎬 영화명: "+data[z]; break;
+                        // 3. 장르 넣기 -> .sum
+                        case "개요":
+                            qs(".sum").innerHTML="🔎 장르: "+data[z]; break;
+                        // 4. 감독 넣기 -> .dir
+                        case "감독":
+                            qs(".dir").innerHTML="👨🏻 감독: "+data[z]; break;
+                        // 5. 배우 넣기 -> .act
+                        case "출연":
+                            qs(".act").innerHTML="💃🏻 배우: "+data[z]; break;
+
+                    } //// switch case ////////
+
+                    // 영화 한 마디 넣기
+                    // -> for of문으로 문자데이터 잘라넣기
+                    // -> 한 글자씩 span 태그로 싸서 해당 요소에 넣음
+                    if(z==="문구"){
+                        // 1. 데이터 담기
+                        let txt = data[z];
+                        console.log("문구데이터:",txt);
+                        // 태그로 싼 새로운 데이터 넣을 변수
+                        let newtxt = "";
+                        // 문구데이터를 for of문으로 하나씩 넣기
+                        for(let m of txt){ // m은 한 글자씩
+                            console.log("한 글자씩:",m);
+                            // 스페이스 문자(빈칸, 띄어쓰기)의 경우 띄어쓰기 기호로 나오게
+                            if(m === " "){
+                                newtxt += "&nbsp;&nbsp;&nbsp;";
+                            } //// if ////////
+                            else{
+                                newtxt += `<span>${m}</span>`;
+                            } //// esle //////
+                        } ////// for of문 ///////
+
+                        // 문구데이터를 대상에 출력
+                        // 대상: .show
+                        qs(".show").innerHTML = newtxt;
+                        // 영화 한 마디 박스 보이게 하기
+                        // .showtit
+                        qs(".showtit").style.display = "block";
+                    } //////// if문 ///////////
                 } ///// for in문 //////////////
 
                 }; ////// click이벤트 함수 /////
@@ -187,7 +238,7 @@
     </div>
 
     <!-- 영화 한마디 -->
-    <h2 class="showtit">♥ 영화한마디!</h2>
+    <h2 class="showtit">"영화 한 마디"</h2>
     <!-- 6. 문구 -->
     <div class="show"></div>
 
