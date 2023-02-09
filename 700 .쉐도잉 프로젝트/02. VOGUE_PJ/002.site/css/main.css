@@ -5,3 +5,63 @@
 @import url(./core.css);
 @import url(./reset.css);
 @import url(./common.css);
+
+/* 개별 배경이미지 */
+/* 1번 - 1개 */
+.bgi1{
+    background-image: url(../images/cont1a.jpg);
+}
+
+/* 2번 - 3개 */
+.bgi2{
+    background-image: url(../images/cont2-1.jpg);
+}
+.bgi3{
+    background-image: url(../images/cont2-2.jpeg);
+}
+.bgi4{
+    background-image: url(../images/cont2-3.jpg);
+}
+
+/* 3번 - 1개 */
+.bgi5{
+    background-image: url(../images/cont3a.jpg);
+}
+
+/* 4번 - 3개 */
+.bgi6{
+    background-image: url(../images/cont4-1.jpg);
+}
+.bgi7{
+    background-image: url(../images/cont4-2.jpg);
+}
+.bgi8{
+    background-image: url(../images/cont4-3.jpg);
+}
+
+/* 5번 - 1개 */
+.bgi9{
+    background-image: url(../images/cont5a.jpg);
+}
+
+/* 6번 - 3개 */
+.bgi10{
+    background-image: url(../images/cont6-1.png);
+}
+.bgi11{
+    background-image: url(../images/cont6-2.jpg);
+}
+.bgi12{
+    background-image: url(../images/cont6-3.png);
+}
+
+/* 7번 - 3개 */
+.bgi13{
+    background-image: url(../images/cont7-1.jpg);
+}
+.bgi14{
+    background-image: url(../images/cont7-2.jpg);
+}
+.bgi15{
+    background-image: url(../images/cont7-3.jpg);
+}
