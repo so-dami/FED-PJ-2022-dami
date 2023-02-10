@@ -21,6 +21,21 @@ body {
     --csz: 300px;
 }
 
+/* 작동버튼 */
+.btngo{
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btngo:hover{
+    background-color: lightpink;
+}
+
 /* 큐브 */
 .cube {
     position: absolute;
@@ -126,7 +141,14 @@ body {
 /* 큐브회전 클래스 */
 .cube-ani{
     /* 애니메이션: 이시이지반방마 */
-    animation: cubeAni 10s linear infinite;
+    animation: cubeAni 4s linear infinite;
+    /* 애니메이션 처음에 멈춰있기 */
+    animation-play-state: paused;
+}
+/* 큐브회전 작동 클래스 + .on */
+.cube-ani.on{
+    /* 애니메이션 작동하기 */
+    animation-play-state: running;
 }
 
 /* 큐브 회전 키프레임 */
