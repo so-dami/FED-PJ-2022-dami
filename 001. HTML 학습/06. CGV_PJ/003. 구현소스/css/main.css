@@ -146,25 +146,26 @@ body{
     color: red;
 }
 /* 오버시 가상요소로 이모티콘 */
+/* 영화 */
 .smenu a:hover::after{
-    content: '🎃';
+    content: '🎬';
     /* 오른쪽 끝으로 보내기 */
     float: right;
 }
 /* 예매 */
 .gnb ul>li:nth-child(2) 
 .smenu a:hover::after{
-    content: '🎪';
+    content: '🎫';
 }
 /* 극장 */
 .gnb ul>li:nth-child(3) 
 .smenu a:hover::after{
-    content: '👓';
+    content: '🏫';
 }
 /* 이벤트&컬처 */
 .gnb ul>li:nth-child(4) 
 .smenu a:hover::after{
-    content: '😻';
+    content: '💜';
 }
 
 /* 서브메뉴 li보더 상단 구분선 클래스 */
