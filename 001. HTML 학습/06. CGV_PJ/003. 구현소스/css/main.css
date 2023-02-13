@@ -147,24 +147,24 @@ body{
 }
 /* 오버시 가상요소로 이모티콘 */
 .smenu a:hover::after{
-    content: '🎬';
+    content: '🎃';
     /* 오른쪽 끝으로 보내기 */
     float: right;
 }
 /* 예매 */
 .gnb ul>li:nth-child(2) 
 .smenu a:hover::after{
-    content: '💰';
+    content: '🎪';
 }
 /* 극장 */
 .gnb ul>li:nth-child(3) 
 .smenu a:hover::after{
-    content: '🏰';
+    content: '👓';
 }
 /* 이벤트&컬처 */
 .gnb ul>li:nth-child(4) 
 .smenu a:hover::after{
-    content: '👻';
+    content: '😻';
 }
 
 /* 서브메뉴 li보더 상단 구분선 클래스 */
@@ -172,40 +172,37 @@ body{
     border-top: 1px solid #ccc;
 }
 
-/* 영사기 박스 */
+/* 영사기박스 */
 #cam{
     position: absolute;
-    z-index: -1;
     bottom: -10px;
-    right: -65px;
+    right: -60px;
+    z-index: -1;
+    /* 메뉴보다 아래! */
 }
-
 /* 영사기 이미지 */
 #cam img{
     position: relative;
     z-index: 1;
-    /* 영사기가 빔보다 위에 위치하게ㄹ */
+    /* 영사기가 위! */
     width: 50px;
     transform: rotate(25deg);
-
-    /* 트랜지션: 속시이지
-    - 돌아올 때 0.3s 빔시간 기다리기 */
+    /* 트랜지션: 속시이지 
+    - 돌아올때 0.3초 빔시간 기다림*/
     transition: .5s ease-out .3s;
 }
-
-/* .gnb에 오버시 영사기 회전 */
+/* .gnb에 오버시 영사기회전 */
 .gnb:hover #cam img{
-    transform: rotate(0);
-    /* 오버 시 기다림 없음 */
+    transform: rotate(0deg);
+    /* 오버시 기다림 없음 */
     transition-delay: 0s;
 }
-
 /* 빔박스 */
 .beam{
     position: absolute;
     top: -16px;
     right: 13px;
-    width: 0; /* 200px; */
+    width: 0;/* 200px; */
     height: 70px;
     background: url(../images/bim.png) no-repeat;
     background-position: right center;
@@ -215,22 +212,21 @@ body{
     /* 트랜지션: 속시이지 */
     transition: .3s ease-out;
 }
-
-/* .gnb에 오버시 빔 쏘기 */
+/* .gnb에 오버시 빔쏘기 */
 .gnb:hover #cam .beam{
     width: 200px;
-    /* 카메라 도는 시간 0.5s 기다리기 */
+    /* 카메라 도는 0.5초 기다림 */
     transition-delay: .5s;
     /* 애니메이션: 이시이지반방마 */
-    animation: beamAni .05s linear infinite alternate;
+    animation: beamAni .01s linear infinite alternate;
 }
-
-/* 빔 빛 흔들리기 애니 키프레임 */
-@keyframes beamAni{
+/* 빔 빛흔들리기 애니 키프레임 */
+@keyframes beamAni {
     to{
-        opacity: .2;
-    } /* 키프레임 끝 */
-}
+        opacity: 0.5;
+    }
+}/* 키프레임 */
+
 
 /**************** 2.메인영역 ****************/
 /* 속박스 */
@@ -391,15 +387,15 @@ body{
 
 /* 페북 */
 .sns a[class$=book]:hover{
-    color: #39559f;
+    color: lightskyblue;
 }
 /* 트위터 */
 .sns a[class^='fa-brands fa-square-tw']:hover{
-    color: #1c96e9;
+    color: lightcoral;
 }
 /* 인스타 */
 .sns a[class*=ins]:hover{
-    color: #f72c73;
+    color: lightgreen;
 }
 
 /***************************************** 
