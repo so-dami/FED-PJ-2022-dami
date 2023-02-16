@@ -10,7 +10,6 @@
 font-family: 'Roboto', sans-serif;
 font-family: 'Roboto Condensed', sans-serif;
 */
-
 /* 나눔바른고딕 */
 @font-face {
     font-family: nbg;
@@ -25,10 +24,10 @@ font-family: 'Roboto Condensed', sans-serif;
 
 /* 
   [ 공통 클래스 이름정의 ]
-    1. ibx - inside box 속박스
-    2. pt1, pt2 - part1, part2 각 부분박스에 비율 적용
-    3. cbx - content box 내용박스
-    4. bgi - background image 관련 속성
+  1. ibx - inside box 속박스
+  2. pt1, pt2 - part1, part2 각 부분박스(비율적용)
+  3. cbx - content box 내용박스
+  4. bgi - background image 관련 속성
 */
 
 /* 공사중 표시 */
@@ -36,57 +35,90 @@ body * {
     outline: 1px dashed gray;
 }
 
-
 /************* 2. 공통 class *************/
 
 /* 2-1. 중앙 속박스 */
-    .ibx {
-        max-width: 1300px;
-        margin: 0 auto;
-    }
+.ibx {
+    max-width: 1300px;
+    margin: 0 auto;
+}
 
 /* 2-2. 컨텐츠 박스 유형별 클래스 */
-    /* 유형1 - 1개 박스: .pt1 */
-    .pt1{
-        /* 비율 적용 시 height값은 주지 않음 */
-        /* height: 724px; */
-        
-        /* 비율 1300 : 724 */
-        aspect-ratio: 1300 / 724;
-    }
+/* 유형1 - 1개박스구성 : .pt1 */
+.pt1{
+    /* 비율 적용시 height값은 주지않는다! */
+    /* height: 724px; */
 
-    /* 유형1 - 컨텐츠 박스 */
-    .pt1 .cbx{
-        /* 부모박스 높이값에 맞춤 */
-        height: 100%;
-    }
+    /* 1300 : 724 비율 */
+    aspect-ratio: 1300 / 724;
+}
+/* 유형1 컨텐츠박스 */
+.pt1 .cbx{
+    /* 부모박스 높이값에 맞춤! */
+    height: 100%;
+}
 
-    /* 유형2 - 3개 박스: .pt2 */
-    .pt2{
-        /* 플렉스 박스 */
-        display: flex;
+/* 유형2 - 3개박스구성 : .pt2 */
+.pt2{
+    /* 플렉스박스 */
+    display: flex;
+    
+    /* 비율 적용시 height값은 주지않는다! */
+    /* height: 650px; */
 
-        /* 비율 적용 시 height값은 주지 않음 */
-        /* height: 650px; */
-        
-        /* 비율 1300 : 724 */
-        aspect-ratio: 1300 / 650;
-    }
+    /* 1300 : 650 비율 */
+    aspect-ratio: 1300 / 650;
+}
+/* 유형2 컨텐츠박스 : 등분할 가로정렬박스 */
+.pt2 .cbx{
+    /* 플렉스 자식요소 동일분할 설정!
+    -> 높이값 100% 설정불필요! 자동맞춤된다! */
+    flex: 1;
+}
 
-    /* 유형2 - 컨텐츠 박스: 등분할 가로정렬 */
-    .pt2 .cbx{
-        /* 플렉스 자식요소 동일분할 설정 */
-        flex: 1;
-        /* -> 높이값을 따로 지정하지 않아도 자동으로 부모 높이값에 맞춤(높이값 100% 설정 불필요) */
-    }
+/* 2-3. 배경이미지 공통셋팅 클래스 */
+.bgi{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-/* 2-3. 배경이미지 공통 셋팅 */
-    .bgi{
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+/* 컨텐츠박스 */
+.cbx{
+    position: relative;
+    /* 부모자격 */
+}
+/* 가상요소로 컨텐츠 박스 배경 그라데이션 넣기 */
+.cbx::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background-image: 
+    linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+}
 
-/* 글자 숨김 클래스(IR 배경이미지 설명 등  숨기기) */
+/* 3. 컨텐츠 타이틀 박스(h2) */
+.cbx h2{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: min(50px,3.4vw);
+    box-sizing: border-box;
+
+    /* 글자설정 - 영문체, 한글체 */
+    font-family: pist, nbg;
+    font-size: min(33px,3vw);
+    font-weight: normal;
+    text-align: center;
+    color: #fff;
+}
+
+
+
+
+
+/* 글자 숨김 클래스(IR배경이미지 설명 등  숨기기) */
 .ir {
     display: block;
     width: 0;
@@ -94,20 +126,3 @@ body * {
     overflow: hidden;
 }
 
-/* 
-    [ 레이아웃 일반 구성 순서 ]
-
-    1. 대분류 구분 박스를 구성한다.
-        -> 본질적인 레이아웃
-
-    2. 겉박스, 속박스 구조를 구성한다.
-        -> 겉박스는 div
-        -> 속박스는 시멘틱 태그 사용
-        (header, footer, section 등)
-        -> 이름은 속박스에 class로 주고 겉박스는 속박스와 같은 이름의 id로 준다.
-        -> 가로 크기는 기본 auto
-        -> 속박스에 max-width, m0a(마영오) 지정
-        -> 높이값은 속박스에 지정함
-    
-    3. 파티션 박스는 필요에 따라 속박스 내부에 잡아준다. (굳이 안 줘도 됨)
-*/
