@@ -2,6 +2,9 @@
 
 /* 태양계 3D 애니 - solar3d.css */
 
+/* 웹폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@900&display=swap');
+
 /************************************************* 
     [ CSS에서 변수사용하기 ]
 
@@ -63,12 +66,49 @@ body{
     outline: 1px dashed lightblue;
 } */
 
-/* 
-    [ 태양계 박스 - 전체 부모 ]
-    태양계의 전체 박스를 3D 변형으로 기울임
-*/
+/* 타이틀 */
+.tit {
+    position: relative;
+    z-index: 1;
+    /* 행성들보다 위 */
 
-/* 태양계 박스 */
+    margin: 0;
+    padding: 0;
+    /* h1의 기본마진,패딩 없앰 */
+    font-family: 'Big Shoulders Stencil Text', cursive;
+    color: #fff;
+    font-size: 80px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* 축소확대 버튼 */
+.tit2 {
+    font-size: 20px;
+}
+
+.tit2 a {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 20px;
+}
+
+/* 마우스 오버시 또는 class="on"인 경우 */
+.tit2 a:hover,
+.tit2 a.on {
+    color: aqua;
+}
+
+/* 태양계박스 축소확대용 부모박스 */
+.scbx{
+    position: relative;
+    top: 34%;
+    /* 트랜지션: 속시이지 */
+    transition: transform 2s ease-in-out;
+}
+
+/* [ 태양계 박스 - 전체 부모 ]
+    태양계의 전체 박스를 3D 변형으로 기울임 */
 #solar{
     position: absolute;
 
@@ -77,7 +117,13 @@ body{
     bottom: 0;
     right: 0;
 
+    /* 3D 변형을 위한 셋팅은 부모 박스에서 설정함 */
+    /* 기본값은 flat(2D, 평면) */
+    transform-style: preserve-3d;
 
+    /* x축 기준으로 기울임 - 전체 화면 뒤쪽으로 기울어짐
+        -> x축 중앙선 기준으로 상단은 화면 뒤, 하단은 화면 앞으로 나옴*/
+    transform: rotateX(65deg);
 }
 
 /* 태양박스 */
@@ -86,8 +132,11 @@ body{
 
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    /* 박스 정중앙이동 */
+    transform: translate(-50%, -50%) rotateX(-65deg);
+    /* 박스 정중앙이동 - translate */
+    /* 태양이 태양계 박스(#solar)와 함께 65deg 누워있으므로
+    x축으로 반대 65deg로 세워져야 태양이 똑바로 보임
+    -> 트랜스폼은 한 군데에 모두 셋팅함 - rotateX */
 
     width: var(--sunsz);
     height: var(--sunsz);
@@ -117,104 +166,159 @@ body{
     }
 } /* 키프레임 */
 
-/* 지구 */
-#earth{
+/********************* 행성 공통 글래스 *********************/
+/* 궤도 클래스 - .orbit */
+.orbit{
+    /* 부모는 #solar */
     position: absolute;
-    /* calc() 계산으로 정중앙이동 */
+
+    /* 박스 정중앙 이동 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* 원형 궤도 보더 주기 */
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+/* 행성 클래스 - .planet */
+.planet{
+    /* 부모는 .pos */
+    position: absolute;
+    
+    top: 0;
+    left: 0;
+
+    /* 행성 크기에 맞춤 */
+    width: 100%;
+    height: 100%;
+
+    /* 원 */
+    border-radius: 50%;
+
+    /* 배경 공통 */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    /* 행성의 부모(#solar)가 기울었으므로 반대로 세워줌
+        -> 이미 행성이 회전하고 있는데 두 가지(#solar, #sun) 회전으로 축반전(x, y축이 뒤바뀐 효과)이 생겼기 때문에 x축이 아니라 y축을 세워야 함 */
+    transform: rotateY(-65deg) scale(2);
+    /* -> scale 키우기 (행성 크기 조절) */
+}
+
+/* id - #id명 / class - .class명 */
+/**************** 지구 셋팅 ****************/
+#earth.orbit{
+    width: 600px;
+    height: 600px;
+}
+
+/* 지구 포지션 - 중앙 중심 회전 */
+#earth .pos{
+    position: absolute;
+
+    /* calc() 계산으로 정중앙 이동 */
     top: calc(50% - var(--esz)/2);
     left: calc(50% - var(--esz)/2);
     width: var(--esz);
     height: var(--esz);
-    background: url(../images/earth.png) no-repeat 0/100% 100%;
 
     /* 애니메이션 : 이시이지반방마 */
     animation: earth 20s linear infinite;
 }
 
-/* 지구회전 키프레임 */
+/* 지구 회전 키프레임 */
 @keyframes earth {
     from{
-        transform: rotate(0deg) translateX(-250px) rotate(0deg);
-        /* 
-            [주변회전만들기]
-            1.첫번째 rotate : 0deg->360deg
-                -> 중앙회전
-            2.위치이동 translateX 
-                -> 주변을 도는 효과생김
-            3. 두번째 rotate : 0deg->-360deg
-                -> 반대회전은 옆으로 이동한
-                박스에 적용되어 세워져서
-                주변을 도는 효과가 생김!
-        */
+        transform: rotate(0deg) translateX(-300px) rotate(0deg);
     }
+
     to{
-        transform: rotate(360deg) translateX(-250px) rotate(-360deg);
+        transform: rotate(360deg) translateX(-300px) rotate(-360deg);
     }
-} /* 지구회전 키프레임 */
+} /* 지구 회전 키프레임 */
 
-/* 달 */
-#moon{
-    position: absolute;
-    /* calc() 계산으로 정중앙이동 */
-    top: calc(50% - var(--msz)/2);
-    left: calc(50% - var(--msz)/2);
-    width: var(--msz);
-    height: var(--msz);
-    background: url(../images/moon.png) no-repeat 0/100% 100%;
+/* 지구 셋팅 */
+#earth .planet{
+    background-image: url(../images/earth.png);
 
-    /* 애니메이션 : 이시이지반방마 */
-    animation: moon 6s linear infinite;
+    /* 그림자 애니메이션: 이시이지반방마 */
+    animation: shadowAni 20s linear infinite;
 }
 
-/* 달회전 키프레임 */
-@keyframes moon {
-    from{
-        transform: rotate(0deg) translateX(80px) rotate(0deg);
-    }
-    to{
-        transform: rotate(360deg) translateX(80px) rotate(-360deg);
-    }
-} /* 달회전 키프레임 */
+/**************** 목성 셋팅 ****************/
+#jupiter.orbit{
+    width: 1000px;
+    height: 1000px;
+}
 
-/* 목성 */
-#jupiter{
+/* 목성 포지션 - 중앙 중심 회전 */
+#jupiter .pos{
     position: absolute;
-    /* calc() 계산으로 정중앙이동 */
+
+    /* calc() 계산으로 정중앙 이동 */
     top: calc(50% - var(--jsz)/2);
     left: calc(50% - var(--jsz)/2);
     width: var(--jsz);
     height: var(--jsz);
-    background: url(../images/jupiter.png) no-repeat 0/100% 100%;
 
     /* 애니메이션 : 이시이지반방마 */
-    animation: jupiter 35s linear infinite;
+    animation: jupiter 30s linear infinite;
 }
 
-/* 목성회전 키프레임 */
+/* 목성 회전 키프레임 */
 @keyframes jupiter {
     from{
-        transform: rotate(0deg) translateX(400px) rotate(0deg);
+        transform: rotate(0deg) translateY(-500px) rotate(0deg);
     }
-    to{
-        transform: rotate(360deg) translateX(400px) rotate(-360deg);
-    }
-} /* 목성회전 키프레임 */
 
-/* 토성 */
-#saturn{
+    to{
+        transform: rotate(360deg) translateY(-500px) rotate(-360deg);
+    }
+} /* 목성 회전 키프레임 */
+
+/* 목성 셋팅 */
+#jupiter .planet{
+    background-image: url(../images/jupiter.png);
+
+    /* 그림자 애니메이션: 이시이지반방마 */
+    animation: shadowAni 30s linear infinite;
+}
+
+/**************** 토성 셋팅 ****************/
+#saturn.orbit{
+    width: 1400px;
+    height: 1400px;
+}
+
+/* 토성 포지션 - 중앙 중심 회전 */
+#saturn .pos{
     position: absolute;
-    /* calc() 계산으로 정중앙이동 */
+
+    /* calc() 계산으로 정중앙 이동 */
     top: calc(50% - var(--ssz)/2);
     left: calc(50% - var(--ssz)/2);
     width: var(--ssz);
     height: var(--ssz);
-    
+
     /* 애니메이션 : 이시이지반방마 */
-    animation: saturn 45s linear infinite;
+    animation: saturn 40s linear infinite;
 }
 
-/* 가상 요소로 토성 이미지 배경으로 넣기 */
-#saturn::before{
+/* 토성 회전 키프레임 */
+@keyframes saturn {
+    from{
+        transform: rotate(0deg) translateX(-700px) rotate(0deg);
+    }
+
+    to{
+        transform: rotate(360deg) translateX(-700px) rotate(-360deg);
+    }
+} /* 토성 회전 키프레임 */
+
+/* 토성 셋팅 */
+#saturn .planet::before{
     content: '';
     position: absolute;
     top: 0;
@@ -224,36 +328,76 @@ body{
     background: url(../images/saturn.png) no-repeat 0/100% 100%;
 }
 
-/* 토성회전 키프레임 */
-@keyframes saturn {
-    from{
-        transform: rotate(0deg) translateY(-460px) rotate(0deg);
-    }
-    to{
-        transform: rotate(360deg) translateY(-460px) rotate(-360deg);
-    }
-} /* 토성회전 키프레임 */
-
-/* 명왕성 */
-#pluto{
+/* 토성 그림자 애니 */
+#saturn .planet::after{
+    content: '';
     position: absolute;
-    /* calc() 계산으로 정중앙이동 */
+    top: 0;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    transform: scale(.685);
+
+    /* 그림자 애니메이션: 이시이지반방마 */
+    animation: shadowAni 40s linear infinite;
+}
+
+/*************** 명왕성 셋팅 ***************/
+#pluto.orbit{
+    width: 1600px;
+    height: 1600px;
+}
+
+/* 명왕성 포지션 - 중앙 중심 회전 */
+#pluto .pos{
+    position: absolute;
+
+    /* calc() 계산으로 정중앙 이동 */
     top: calc(50% - var(--psz)/2);
     left: calc(50% - var(--psz)/2);
     width: var(--psz);
     height: var(--psz);
-    background: url(../images/pluto.png) no-repeat 0/100% 100%;
 
     /* 애니메이션 : 이시이지반방마 */
-    animation: pluto 40s linear infinite;
+    animation: pluto 50s linear infinite;
 }
 
-/* 명왕성회전 키프레임 */
+/* 명왕성 회전 키프레임 */
 @keyframes pluto {
     from{
-        transform: rotate(0deg) translateY(650px) rotate(0deg);
+        transform: rotate(0deg) translateY(800px) rotate(0deg);
     }
+
     to{
-        transform: rotate(360deg) translateY(650px) rotate(-360deg);
+        transform: rotate(360deg) translateY(800px) rotate(-360deg);
     }
-} /* 명왕성회전 키프레임 */
+} /* 명왕성 회전 키프레임 */
+
+/* 명왕성 셋팅 */
+#pluto .planet{
+    background-image: url(../images/pluto.png);
+
+    /* 그림자 애니메이션: 이시이지반방마 */
+    animation: shadowAni 50s linear infinite;
+}
+
+/* 그림자 애니 키프레임 */
+@keyframes shadowAni {
+    0%{
+        box-shadow: inset 18px 2px 5px rgba(0, 0, 0, 0.7 );
+    }
+    25%{
+        box-shadow: inset 3px 19px 5px rgba(0, 0, 0, 0.7 );
+    }
+    50%{
+        box-shadow: inset -20px 4px 5px rgba(0, 0, 0, 0.7 );
+    }
+    75%{
+        box-shadow: inset -7px -58px 10px rgba(0, 0, 0, 0.7 );
+    }
+    100%{
+        box-shadow: inset 18px 2px 5px rgba(0, 0, 0, 0.7 );
+    }
+} /* 키프레임 */
