@@ -592,7 +592,7 @@ body{
 }
 /* 트위터 */
 .sns a[class^='fa-brands fa-square-tw']:hover{
-    color: lightgreen;
+    color: aqua;
 }
 /* 인스타 */
 .sns a[class*=ins]:hover{

@@ -21,9 +21,15 @@ function loadFn(){
     // -> timeupdate -> 동영상 재생 시간이 계속 업데이트 시 발생함
     myvid.addEventListener("timeupdate",chkVid);
     function chkVid(){
-        console.log("재생중?",myvid.paused);
+        console.log("동영상 멈춤?",myvid.paused);
         // 비디오가 멈추면 재생이 끝이므로 비디오의 멈춤 상태를 체크함
         // paused 속성은 멈추면 true 아니면 false 리턴 
+        // 비디오에 loop 가 설정되어 있으면 안됨
+
+        // 멈춤 상태가 true면 메인페이지로 이동하기
+        if(myvid.paused){
+            location.href = "main.html";
+        } // if문 //
     }; // chkVid 함수 //
 
 }; // loadFn 함수 //
