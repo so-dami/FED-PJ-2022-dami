@@ -249,32 +249,90 @@
 
                 // 1. 대상 선정: #div02 ul li
                 const deltg = document.querySelectorAll("#div02 ul li");
-                console.log(deltg);
+                // console.log(deltg);
 
                 // 2. 이벤트 설정: click
+                for(let x of deltg){
+                    // 2-1. 대상 내부의 이미지 요소
+                    let ximg = x.querySelector("img");
 
-                ///// 맨앞요소를 맨뒤로 이동하기 ////////////////////
+                    // 2-2. 내부 이미지에 title 속성 변경하기
+                    ximg.title = `${ximg.alt+(ximg.alt==="아이언맨"?"을":"를")} 클릭하시면 삭제됩니다.`;
+                    // -> ximg.alt가 "아이언맨" = 조사가 "을", 나머지는 "를"
+
+                    // 2-3. 기존 li 클릭 시 지우기 설정하기
+                    x.style.cursor = "pointer";
+                    x.onclick = () => x.remove();
+                } // for of문 //
+
+                // 맨 앞 요소를 맨 뒤로 이동하기 ////////////////
                 // 이벤트 종류: click
                 // 이벤트 대상: .mvl
                 // 변경 대상1: #div02 ul li
                 //          (매번 새로 갱신해야 함-리스트가 바뀌니까!)
                 // 변경 대상2: #div02 ul -> ctg 변수에 할당!
                 //          (부모ul에서 자식추가해야함!)
-                // 변경 내용: 첫번째 li를 선택하여 맨뒤로 추가함
+                // 변경 내용: 첫번째 li를 선택하여 맨 뒤로 추가함
                 // 사용 메서드: appendChild(요소)
-                // -> 기존요소를 선택하면 이동이 됨!
-                /////////////////////////////////////////////////
+                // -> 기존 요소를 선택하면 이동이 됨!
+                ////////////////////////////////////////////////
+                
+                // 1. 대상 선정: .mvl
+                const mvl = document.querySelector(".mvl");
+                // console.log(mvl);
 
-                /// 맨뒤요소 맨앞으로 이동하기 ///////////////////////
+                // 2. 이벤트 설정: click
+                mvl.onclick = () => {
+                    // 2-1. 호출 확인
+                    // console.log("맨 뒤로 가세요~");
+
+                    // 2-2. 이동할 대상 선정: 대상 ul 하위의 첫 번째 li
+                    let fele = ctg.querySelectorAll("li")[0];
+                    // fele -> first element(첫 번째 요소)
+
+                    // 2-3. 맨 뒤로 이동: appendChild(요소);
+                    // -> 기존 요소 선택 시 맨 뒤로 이동됨
+                    ctg.appendChild(fele);
+
+                }; // click 함수 //
+
+                /// 맨 뒤 요소 맨 앞으로 이동하기 ////////////////
                 // 이벤트 종류: click
                 // 이벤트 대상: .mvf
-                // 변경대상1: #div02 ul li(마지막요소 선택-매번 갱신)
+                // 변경대상1: #div02 ul li(마지막 요소 선택-매번 갱신)
                 // 변경대상2: #div02 ul -> ctg 변수에 할당!
-                //          (리스트의 부모에서 이동명령!)
-                // 사용 메서드: insertBefore(넣을놈,넣을놈전놈)
+                //          (리스트의 부모에서 이동 명령!)
+                // 사용 메서드: insertBefore(넣을 놈,넣을 놈의 전 놈)
                 // 넣을놈 - 마지막 li요소
-                // 넣을놈전놈 - 맨처음 li요소
+                // 넣을놈전놈 - 맨 처음 li요소
                 //////////////////////////////////////////////////
+
+                // 1. 대상 선정: .mvf
+                const mvf = document.querySelector(".mvf");
+                // console.log(mvf);
+
+                // 2. 이벤트 설정: click
+                mvf.onclick = () => {
+                    // 2-1. 호출 확인
+                    // console.log("맨 앞으로 가세요~");
+                    
+                    // 2-2. 이동할 대상 선정: 변수 ctg 아래 li 요소들
+                    let eles = ctg.querySelectorAll("li");
+
+                    // 2-3. 맨 앞으로 이동하기
+                    // -> insertBefere(넣을 놈, 넣을 놈의 전 놈);
+                    // insertBefore(맨 뒤 li, 맨 앞 li);
+                    ctg.insertBefore(eles[eles.length-1],eles[0]);
+                    // 맨 뒤 li = eles[마지막 번호]
+                    // -> 마지막 번호 = 개수-1
+                    // 맨 앞 li = eles[0]
+
+                    // ※ 배열과 컬렉션의 마지막 순번은 항상 [개수-1]
+
+                }; // click 함수 //
+
+                // 이벤트 메모리에 별도로 등록됨 (중복 등록 가능)
+                // mvf.addEventListener("click",()=>{});
 
                 /************************************************* 
                     ※ appendChild() 와 insertBefore()는 대상을
