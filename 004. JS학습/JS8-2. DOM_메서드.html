@@ -147,7 +147,11 @@
                     // 3. 페이지 이동하기
                         // 새창 열기: window.open();
                         // 페이지 이동: location.href = 이동주소
-                        window.open().location.href = url;
+                        // window.open().location.href = url;
+
+                        window.open(url);
+                        // url 값만 사용하면 새탭, 새창열기 됨
+
                     }; // click 함수 //
                 }); // for Each문 //
 
@@ -182,12 +186,57 @@
                 //// DOM 요소 제어 및 조작하기 //////////////
                 ////////////////////////////////////////////
 
+                // 1. 변경 대상: #div02 ul
+                const ctg = document.querySelector("#div02 ul");
+                // console.log(ctg);
+
                 /////////////////////////////////////////////
                 // 새리스트 생성 버튼 클릭시 리스트 만들기 ////
                 // 이벤트 종류: click
                 // 이벤트 대상: .nbt
                 // 변경 대상: #div02 ul -> ctg 변수에 할당!
                 /////////////////////////////////////////////
+                // 1. 대상 선정
+                const nbt = document.querySelector(".nbt");
+                // console.log(nbt);
+
+                // 새로운 이미지 번호 변수
+                let inum = 1;
+                
+                // 순번에 따른 이름 배열 변수
+                const cname = ["아이언맨","딱딱이","토르","닥스","스타로드"];
+
+                // 2. 이벤트 설정: click
+                nbt.onclick = () => {
+                    // 2-1. 호출 확인
+                    console.log("새 리스트 생성");
+
+                    // 2-2. 새로운 li 생성하여 변수에 할당
+                    let ne = document.createElement("li");
+                    // createElement()는 메모리상에 생성
+
+                    // 2-3. 메모리상에 생성된 li에 이미지 넣기
+                    ne.innerHTML =
+                    `<img src="images/ab${inum}.jpg" alt="${cname[inum-1]}">`;
+
+                    // 2-4. 새로운 li요소에 title속성 넣기
+                    ne.querySelector("img").title = `${cname[inum-1]+(inum===1?"을":"를")} 클릭하시면 삭제됩니다.`;
+                    // -> inum이 1이면 "아이언맨" = 조사가 "을", 나머지는 "를"
+
+                    // 2-5. 새로운 li 클릭 시 지우기 셋팅
+                    ne.style.cursor = "pointer";
+                    ne.onclick = () => ne.remove(); // click 함수
+                    // remove() -> 선택 요소 삭제
+
+                    // 2-6. 변경 대상(ctg변수)에 새로은 li를 맨 뒤에 추가하기
+                    // appendChild(요소) -> 맨 뒤에 요소 추가
+                    ctg.appendChild(ne);
+
+                    // 2-7. 다음 번호 업데이트 하기
+                    inum++;
+                    if(inum===6) inum=1; // 한계수 체크
+
+                }; // click 함수 //
 
                 ///////////////////////////////////////////////
                 ///// 최초 리스트의 li를 클릭하면 지우기 셋팅! //
