@@ -1,4 +1,4 @@
-// JS실험실: 03.배너스타일 JS -  ban2.js
+// JS실험실: 03.배너스타일 JS -  ban.js
 
 // HTML태그 로딩후 loadFn함수 호출! ///
 window.addEventListener("DOMContentLoaded", loadFn);
@@ -49,9 +49,9 @@ window.addEventListener("DOMContentLoaded", loadFn);
     기능: 로딩 후 버튼 이벤트 및 기능구현
 ******************************************/
 function loadFn() {
-    console.log("complete");
+    console.log("로딩완료!");
 
-    // 1. 대상선정
+    // 1. 대상선정 //////////////////////////
     // 1-1. 이벤트 대상: .abtn
     const abtn = document.querySelectorAll(".abtn");
 
@@ -65,34 +65,30 @@ function loadFn() {
     // 1-4. 슬라이드 li리스트
     let slist = document.querySelectorAll("#slide>li");
 
-    // [ 초기화1 - 순번 붙이기 ] //
-        // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한
-        // 고유순번을 사용자정의 속성(data-)으로 만들어준다!
-        slist.forEach((ele, idx) => {
-            // data-seq 라는 사용자정의 속성 넣기
-            ele.setAttribute("data-seq", idx);
-        }); ////// forEach /////////////////
+    // [ 초기화1 - 순번붙이기 ] ///////////////////
+    // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한
+    // 고유순번을 사용자정의 속성(data-)으로 만들어준다!
+    slist.forEach((ele, idx) => {
+        // data-seq 라는 사용자정의 속성 넣기
+        ele.setAttribute("data-seq", idx);
+    }); ////// forEach /////////////////
+
+    // [ 초기화2 - 맨뒤요소 맨앞으로 이동 2번하기! ]
+    // 맨뒤 맨앞이동 함수만들기
+    const chgSeq = () => {
+        // 현재 슬라이드 li 새로읽기(2번반복시 li의 순서가 달라지기때문)
+        slist = document.querySelectorAll("#slide>li");
+        // 맨뒤 맨앞이동하기 -> 변경대상: #slide -> slide변수
+        slide.insertBefore(slist[slist.length-1],slist[0]);
+        // slide.insertBefore(넣을놈,넣을놈전놈)
+        // slide.insertBefore(마지막요소,첫요소)
+        // slide.insertBefore(slist[개수-1],slist[0]);        
+    }; ////////// chgSeq함수 ///////////
+
+    // 2번 맨뒤 맨앞이동 함수 호출하기!!!
+    for(let i=0;i<2;i++) chgSeq();
+
     
-    // [ 초기화2 - 맨 뒤 요소 맨 앞으로 이동 2번하기 ] //
-        // 맨 뒤, 맨 앞 이동 함수
-        const chgSeq = () => {
-            // 현재 슬라이드 li 새로 읽기
-            // -> 2번 반복 시 li의 순서가 달라지기 때문
-            slist = document.querySelectorAll("#slide>li");
-
-            // 맨 뒤 -> 맨 앞으로 이동
-            // 변경 대상: #slide -> slide변수
-            slide.insertBefore(slist[slist.length-1], slist[0]);
-            // slide.insertBefore(넣을 놈, 넣을 놈의 전 놈);
-            // slide.insertBefore(마지막 요소, 첫 요소);
-            // -> slide.insertBefore(slist[개수-1], slist[0]);
-
-        }; // chgSeq 함수 //
-
-        // 2번 맨뒤->맨앞 이동 함수 호출
-        for(let i=0;i<2;i++) chgSeq();
-
-
 
     // 광클금지변수 : 0 - 허용, 1 - 불허용
     let prot = 0;
@@ -120,7 +116,7 @@ function loadFn() {
         // 1. 방향에 따른 분기
         // 1-1. 오른쪽버튼 클릭시 ////////////////
         if (seq) {
-            //  console.log("오른!");
+             console.log("오른!");
 
             // 1. 슬라이드 이동전 먼저 잘라낸다!
             // 이유: 슬라이드 순서를 왼쪽이동과 동일하게 함!
@@ -145,7 +141,9 @@ function loadFn() {
             setTimeout(() => {
                 slide.style.left = "-220%";
                 slide.style.transition = "left .4s ease-in-out";                
-            }, 0); //// 타임아웃 //////
+            }, 1); //// 타임아웃 //////
+            // 시간에 0을쓰면 인터발호출시 트랜지션이 안먹히는 에러가 있음
+            // 1만써도 괜찮음~
 
             // -> 타이밍함수는 기존 함수인 스택(Stack)메모리 공간이 아닌
             // 대기실행 공간인 큐(Queue)메모리공간에서 실행하므로
@@ -157,7 +155,7 @@ function loadFn() {
 
         // 1-2. 왼쪽버튼 클릭시 //////////////
         else {
-            //  console.log("왼쪽!");
+             console.log("왼쪽!");
 
             // (1) 왼쪽버튼 클릭시 이전 슬라이드가
             // 나타나도록 하기위해 우선 맨뒤 li를
@@ -187,11 +185,12 @@ function loadFn() {
         // 대상: .indic li -> indic변수
         // 2-1. 현재 배너리스트 업데이트하기
         clist = slide.querySelectorAll("li");
-        // 오른쪽이든 왼쪽이든 먼저 잘라내기 때문에 
-        // 순번은 3번째로 일치함!
+        // !!!!! 오른쪽이든 왼쪽이든 먼저 잘라내기 때문에 
+        // 순번은 3번째로 일치함!!!!!!
+        // console.log("다시수집:",clist);
 
         // 2-2.방향별 읽어올 슬라이드 순번으로 "data-seq"값 읽어오기
-        // 세 번째 슬라이드가 주인공이니까 0, 1, 2 즉, 2번을 쓰면 됨
+        // 세번째 슬라이드가 주인공이니까 0,1,2 즉 2번을 쓰면됨!!!
         let cseq = clist[2].getAttribute("data-seq");
         //  console.log("현재순번:", cseq);
 
@@ -205,6 +204,8 @@ function loadFn() {
     // 3. 이동버튼대상에 이벤트 설정하기
     abtn.forEach((ele, idx) => {
         ele.onclick = () => {
+            // 0. 기본이동막기
+            event.preventDefault();
             // 1. 인터발지우기함수 호출!
             clearAuto();
             // 2. 슬라이드 함수 호출!
