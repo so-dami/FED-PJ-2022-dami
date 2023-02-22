@@ -49,17 +49,7 @@ window.addEventListener("DOMContentLoaded", loadFn);
     기능: 로딩 후 버튼 이벤트 및 기능구현
 ******************************************/
 function loadFn() {
-    console.log("로딩완료!");
-
-    // 슬라이드 li리스트
-    let slist = document.querySelectorAll("#slide>li");
-
-    // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한
-    // 고유순번을 사용자정의 속성(data-)으로 만들어준다!
-    slist.forEach((ele, idx) => {
-        // data-seq 라는 사용자정의 속성 넣기
-        ele.setAttribute("data-seq", idx);
-    }); ////// forEach /////////////////
+    console.log("complete");
 
     // 1. 대상선정
     // 1-1. 이벤트 대상: .abtn
@@ -71,6 +61,38 @@ function loadFn() {
     // 1-3. 블릿 대상: .indic li
     const indic = document.querySelectorAll(".indic li");
     console.log(indic);
+
+    // 1-4. 슬라이드 li리스트
+    let slist = document.querySelectorAll("#slide>li");
+
+    // [ 초기화1 - 순번 붙이기 ] //
+        // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한
+        // 고유순번을 사용자정의 속성(data-)으로 만들어준다!
+        slist.forEach((ele, idx) => {
+            // data-seq 라는 사용자정의 속성 넣기
+            ele.setAttribute("data-seq", idx);
+        }); ////// forEach /////////////////
+    
+    // [ 초기화2 - 맨 뒤 요소 맨 앞으로 이동 2번하기 ] //
+        // 맨 뒤, 맨 앞 이동 함수
+        const chgSeq = () => {
+            // 현재 슬라이드 li 새로 읽기
+            // -> 2번 반복 시 li의 순서가 달라지기 때문
+            slist = document.querySelectorAll("#slide>li");
+
+            // 맨 뒤 -> 맨 앞으로 이동
+            // 변경 대상: #slide -> slide변수
+            slide.insertBefore(slist[slist.length-1], slist[0]);
+            // slide.insertBefore(넣을 놈, 넣을 놈의 전 놈);
+            // slide.insertBefore(마지막 요소, 첫 요소);
+            // -> slide.insertBefore(slist[개수-1], slist[0]);
+
+        }; // chgSeq 함수 //
+
+        // 2번 맨뒤->맨앞 이동 함수 호출
+        for(let i=0;i<2;i++) chgSeq();
+
+
 
     // 광클금지변수 : 0 - 허용, 1 - 불허용
     let prot = 0;
