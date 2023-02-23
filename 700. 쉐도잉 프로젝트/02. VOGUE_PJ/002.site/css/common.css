@@ -189,7 +189,7 @@ https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor */
 }
 
 /* 1-1. 상단 영역 최소 높이 해제 */
-#top.on{
+#top.on .top{
     min-height: 50px;
 }
 
@@ -217,6 +217,10 @@ https://www.w3schools.com/cssref/tryit.php?filename=trycss_cursor */
 #top.on .gnb a{
     color: #333;
     font-size: 14px;
+}
+/* 오버시 우선적용문제로 빨간색 글자 재적용하기 */
+#top.on .gnb a:hover{
+    color: red;
 }
 
 /* 1-6. GNB박스 */
