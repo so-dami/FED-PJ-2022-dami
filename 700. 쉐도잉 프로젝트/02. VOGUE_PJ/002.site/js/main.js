@@ -41,6 +41,13 @@ window.addEventListener("DOMContentLoaded",()=>{
     // 1. 대상: .scAct
     const scAct = q(".scAct");
 
+    // 상단메뉴 대상: #top
+    const topA = q("#top");
+    
+    // 상단이동버튼 대상: .tbtn
+    const tbtn = q(".tbtn");
+    // cg(tbtn);
+
     // 2. 화면높이값의 2/3구하기
     const hv = window.innerHeight/3*2;
     // console.log("2/3높이:",hv);
@@ -65,8 +72,23 @@ window.addEventListener("DOMContentLoaded",()=>{
 
     }; // showIt
 
+    // 현재 스크롤 위치 변수
+    let scTop;
+
     // 4. 스크롤 이벤트 셋팅
     window.addEventListener("scroll",()=>{
+
+        // 2-0. 현재 스크롤 위치
+        scTop = window.scrollY;
+        // cg(scTop);
+
+        // 상단영역 슬림메뉴 적용하기
+        if(scTop >= 100) topA.classList.add("on");
+        else topA.classList.remove("on");
+        
+        // 위로이동버튼 보이기, 숨기기
+        if(tbtn >= 300) topA.classList.add("on");
+        else tbtn.classList.remove("on");
 
         // 2-1. 값 확인
         // cg("등장 박스1: "+retVal(scAct[0]));
