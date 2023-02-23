@@ -141,7 +141,7 @@ body * {
 .scAct{
     transform: translateY(20%);
     opacity: 0;
-    transition: 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    transition: 1s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
 
 /* 등장 클래스 + .on */
