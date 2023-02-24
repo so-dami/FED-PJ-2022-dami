@@ -265,25 +265,21 @@
 
       // 2. 이벤트 셋팅
       
-      // 요소 순번 변수
-      let idx = 0;
-
       // forEach((요소,순번)=>{코드})
       gnb.forEach((x,idx)=>{ // x = li요소, idx = 요소 순번
         x.onclick = () => {
-
           // 초기화 함수 호출
             // idx(순번)을 보내는 이유?
             // -> 자신의 순번을 빼고 초기화하기 위해서
-          initMenu(idx);
+          initMenu();
 
           // 2-0. 하위 .smenu
-          let tg = x.querySelector(".smenu")
+          let tg = x.querySelector(".smenu");
 
           // 2-1. 하위 .smenu ol의 높이값 구하기
           let hv = tg.querySelector("ol").clientHeight;
             // clientHeight: 패딩값을 포함한 요소의 높이값
-            console.log(".smenu ol 높이:",hv);
+            console.log("ol 높이:",hv);
 
           // 2-2. hv값 전환하기
           console.log("tg 높이:",tg.clientHeight);
@@ -294,7 +290,7 @@
             // 클릭 시 내부의 ol 높이값과 같은 크기로 tg의 높이값을 주어 보이게 함
             // 만약 높이값이 들어간 경우라면 높이값이 0이 아님
             // 그러므로 0이 아니면 0으로 만들어줌
-            // 그래서 토글 기능(두 가지 기능을 반복
+            // 그래서 토글 기능(두 가지 기능을 번갈아 적용)이 됨
 
           // 2-4. 대상에 적용하기: tg
           tg.style.height = hv + "px";
@@ -323,7 +319,9 @@
       /*******************************************  
         [ 메뉴 초기화 함수 ] 처음 상태로 돌리기
       *******************************************/
-      function initMenu (seq){ // seq - 호출한 순번 
+     // 참고: function initMenu (seq=1000){};
+     // -> 파라미터 변수에 어떤 값을 할당해 놓으면 함수 호출 시 아무 값도 입력하지 않을 때 이 값을 넣고 함수 내부로 들어감
+      function initMenu (seq=1000){ // seq - 호출한 순번 
         // 호출 확인
         console.log("초기화!",seq);
 
@@ -333,12 +331,18 @@
             // 호출한 순번과 같으면 넘어가기
             if(idx===seq) return;
             console.log("smenu 순번:",idx);
+
+            // .smenu 높이값 0 만들기
             ele.style.height = 0;
           }); // forEach //
 
         // 2. 서브메뉴가 있는 li의 클래스 "on" 지우기
           // 2-1. 대상: .gnb>ul>li:has(.smenu) -> gnb 변수
           gnb.forEach((ele)=>{
+            // 2-1-1. 호출한 순번과 같으면 넘어가기
+            if(idx===seq) return;
+
+            // 2-1-2. 클래스 on 빼기
             ele.classList.remove("on");
           }); // forEach //
 
@@ -350,6 +354,18 @@
         *************************************************************/
 
       }; // initMenu 함수 //
+
+      // gnb 요소
+      const gnbBx = document.querySelector(".gnb");
+
+      // gnb 마우스 아웃시 자동 초기화
+      // gnbBx.addEventListener("mouseout",()=>{
+      //   setTimeout(() => {
+      //     console.log("마우스아웃");
+      //     initMenu();
+      //     // 보내는 값 없이 호출 시 모두 초기화함
+      //   }, 3000);
+      // }); // mouseout //
 
     }); // 로드 구역
   </script>
