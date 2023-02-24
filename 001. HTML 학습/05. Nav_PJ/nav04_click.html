@@ -248,15 +248,39 @@
         메뉴 li클릭 시 하위 메뉴(.smenu) 열기/닫기
       *******************************************/
       // 1. 이벤트 대상: .gnb>ul>li
-      const gnb = document.querySelectorAll(".gnb>ul>li");
+      const gnb = document.querySelectorAll(".gnb>ul>li:has(.smenu)");
+
+        /***************************************************
+          [ css 선택자 중 하위 요소를 포함하는 요소 선택하기]
+          구문
+          - 선택자: has(하위/형제선택자)
+          ex) ul>li:has(.my) -> class="my"가 자손으로 있는 li
+              ul>li:has(>.my) -> class="my"가 직계 자식으로 있는 li
+              h1:has(+div) -> h1요소 바로 뒤에 div가 있는 h1
+        ***************************************************/
+
       console.log(gnb);
 
       // 2. 이벤트 셋팅
       for(let x of gnb){ // x = li요소
         x.onclick = () => {
-          // 하위 .smenu ol의 높이값
-          let hv = x.querySelector(".smenu ol").clientHeight;
+          // 2-0. 하위 .smenu
+          let tg = x.querySelector(".smenu")
+
+          // 2-1. 하위 .smenu ol의 높이값 구하기
+          let hv = tg.querySelector("ol").clientHeight;
+          // clientHeight: 패딩값을 포함한 요소의 높이값
           console.log(".smenu ol 높이:",hv);
+
+          // 2-2. hv값 전환하기
+          console.log("tg 높이:",tg.clientHeight);
+
+          // 2-3. 타겟의 높이값이 0이 아니면 0으로 hv값 변경하기
+          if(tg.clientHeight!=0) hv = 0;
+
+          // 2-4. 대상에 적용하기: tg
+          tg.style.height = hv + "px";
+
         }; // click
       } // for of
 
