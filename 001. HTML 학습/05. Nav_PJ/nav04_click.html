@@ -268,14 +268,14 @@
       // 요소 순번 변수
       let idx = 0;
 
-      for(let x of gnb){ // x = li요소
+      // forEach((요소,순번)=>{코드})
+      gnb.forEach((x,idx)=>{ // x = li요소, idx = 요소 순번
         x.onclick = () => {
 
           // 초기화 함수 호출
             // idx(순번)을 보내는 이유?
             // -> 자신의 순번을 빼고 초기화하기 위해서
           initMenu(idx);
-          idx++; // 순번 1씩 증가
 
           // 2-0. 하위 .smenu
           let tg = x.querySelector(".smenu")
@@ -303,7 +303,7 @@
           x.classList.toggle("on");
 
         }; // click //
-      } // for of //
+      }); // forEach //
 
       // .smenu 클릭시 상위 li로 이벤트 버블링 막기
       const smenu = document.querySelectorAll(".smenu");
@@ -321,16 +321,18 @@
       } // for of //
 
       /*******************************************  
-        [ 메뉴 초기화 함수 ]
-        처음 상태로 돌리기
+        [ 메뉴 초기화 함수 ] 처음 상태로 돌리기
       *******************************************/
-      function initMenu (idx){ // idx - 호출한 순번 
+      function initMenu (seq){ // seq - 호출한 순번 
         // 호출 확인
-        console.log("초기화ㅇ_ㅇ!",idx);
+        console.log("초기화!",seq);
 
         // 1. 모든 서브메뉴(.smenu) 높이값 0 만들기
           // 1-1. 대상: .smenu -> smenu 변수
-          smenu.forEach((ele)=>{
+          smenu.forEach((ele,idx)=>{
+            // 호출한 순번과 같으면 넘어가기
+            if(idx===seq) return;
+            console.log("smenu 순번:",idx);
             ele.style.height = 0;
           }); // forEach //
 
@@ -339,6 +341,13 @@
           gnb.forEach((ele)=>{
             ele.classList.remove("on");
           }); // forEach //
+
+        /*************************************************************  
+          [ forEach 메서드에서 중간 뛰어넘기 ]
+          for문과 같은 제어문이 아니므로 continue 키워드는 사용할 수 없음
+          그러나 함수 구역이므로 return 키워드를 사용하면 해당 순번을
+          빠져나가서 제외되고 나머지 순번 순회는 계속됨
+        *************************************************************/
 
       }; // initMenu 함수 //
 
