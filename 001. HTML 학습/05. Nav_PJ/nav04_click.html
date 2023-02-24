@@ -106,8 +106,9 @@
       transition: .3s;
     }
 
-    /* 부모li에 마우스 오버시 상위메뉴 a요소 변경 */
-    .gnb>ul>li:hover>a {
+    /* 부모li에 마우스 오버시 상위메뉴 a요소 변경 + 클래스 .on 일때 */
+    .gnb>ul>li:hover>a,
+    .gnb>ul>li.on>a {
       color: lightskyblue;
       background-color: darkblue;
     }
@@ -134,8 +135,9 @@
       transition: width .2s ease-out;
     }
 
-    /* 상위메뉴 오버시 가상요소 밑줄애니 */
-    .gnb>ul>li:hover>a>span::after {
+    /* 상위메뉴 오버시 가상요소 밑줄애니 + 클래스 .on 일때 */
+    .gnb>ul>li:hover>a>span::after,
+    .gnb>ul>li.on>a>span::after {
       width: 100%;
       /* 오버시에 기다리는 시간 0.4초 */
       transition-delay: .4s;
@@ -262,27 +264,83 @@
       console.log(gnb);
 
       // 2. 이벤트 셋팅
+      
+      // 요소 순번 변수
+      let idx = 0;
+
       for(let x of gnb){ // x = li요소
         x.onclick = () => {
+
+          // 초기화 함수 호출
+            // idx(순번)을 보내는 이유?
+            // -> 자신의 순번을 빼고 초기화하기 위해서
+          initMenu(idx);
+          idx++; // 순번 1씩 증가
+
           // 2-0. 하위 .smenu
           let tg = x.querySelector(".smenu")
 
           // 2-1. 하위 .smenu ol의 높이값 구하기
           let hv = tg.querySelector("ol").clientHeight;
-          // clientHeight: 패딩값을 포함한 요소의 높이값
-          console.log(".smenu ol 높이:",hv);
+            // clientHeight: 패딩값을 포함한 요소의 높이값
+            console.log(".smenu ol 높이:",hv);
 
           // 2-2. hv값 전환하기
           console.log("tg 높이:",tg.clientHeight);
 
           // 2-3. 타겟의 높이값이 0이 아니면 0으로 hv값 변경하기
           if(tg.clientHeight!=0) hv = 0;
+            // tg의 처음 높이는 0
+            // 클릭 시 내부의 ol 높이값과 같은 크기로 tg의 높이값을 주어 보이게 함
+            // 만약 높이값이 들어간 경우라면 높이값이 0이 아님
+            // 그러므로 0이 아니면 0으로 만들어줌
+            // 그래서 토글 기능(두 가지 기능을 반복
 
           // 2-4. 대상에 적용하기: tg
           tg.style.height = hv + "px";
 
-        }; // click
-      } // for of
+          // 2-5. 상위 메뉴에 오버시와 같은 디자인 적용: .on 넣기/빼기
+          x.classList.toggle("on");
+
+        }; // click //
+      } // for of //
+
+      // .smenu 클릭시 상위 li로 이벤트 버블링 막기
+      const smenu = document.querySelectorAll(".smenu");
+      for(let x of smenu) {
+        x.addEventListener("click",e=>e.stopPropagation());
+        // -> stopPropagation(); 이벤트 버블링을 막는 event 객체의 메서드
+      } // for of //
+
+      // a요소 클릭시 기본 기능 막기
+      const atag = document.querySelectorAll("a");
+      for(let x of atag) {
+        x.addEventListener("click",e=>e.preventDefault());
+        // -> preventDefault(); 요소의 기본 기능을 막는 event 객체의 메서드
+        // a요소의 링크 이동 기능을 막아줌
+      } // for of //
+
+      /*******************************************  
+        [ 메뉴 초기화 함수 ]
+        처음 상태로 돌리기
+      *******************************************/
+      function initMenu (idx){ // idx - 호출한 순번 
+        // 호출 확인
+        console.log("초기화ㅇ_ㅇ!",idx);
+
+        // 1. 모든 서브메뉴(.smenu) 높이값 0 만들기
+          // 1-1. 대상: .smenu -> smenu 변수
+          smenu.forEach((ele)=>{
+            ele.style.height = 0;
+          }); // forEach //
+
+        // 2. 서브메뉴가 있는 li의 클래스 "on" 지우기
+          // 2-1. 대상: .gnb>ul>li:has(.smenu) -> gnb 변수
+          gnb.forEach((ele)=>{
+            ele.classList.remove("on");
+          }); // forEach //
+
+      }; // initMenu 함수 //
 
     }); // 로드 구역
   </script>
@@ -327,6 +385,23 @@
                   </li>
                   <li>
                     <a href="#">방명록</a>
+                  </li>
+                </ol>
+              </div>
+          </li>
+          <li>
+            <a href="#"><span>웹튜닝</span></a>
+            <!-- 서브메뉴 -->
+            <div class="smenu">
+                <ol>
+                  <li>
+                    <a href="#">서버튜닝</a>
+                  </li>
+                  <li>
+                    <a href="#">DB튜닝</a>
+                  </li>
+                  <li>
+                    <a href="#">개발환경튜닝</a>
                   </li>
                 </ol>
               </div>
