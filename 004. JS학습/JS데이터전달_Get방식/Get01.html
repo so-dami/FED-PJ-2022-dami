@@ -89,9 +89,8 @@
 
             // 클릭이벤트 설정
             for(let x of gnb){
-                // x는 #gnb의 각 a요소
+                // x는 각 a요소
                 x.onclick = () => {
-
                     // 1. 클릭된 a요소 텍스트
                     let atxt = x.innerText;
                     console.log(atxt);
@@ -99,9 +98,12 @@
                     // 2. 전달할 페이지에 Get방식 데이터 전송하기
                     // url?키=값
                     location.href = "Get02.html?shop="+atxt;
-                    
-                }; // click //
-            } // for of - 공식 제어문 //
+                }; /////// click /////
+
+
+            } /////////// for of ////////
+
+            
 
             /* 
                 [ url로 보낼때 한글깨짐 방지하기! ]
