@@ -15,6 +15,64 @@
             overflow-x: hidden;
             background-image: linear-gradient(to bottom, lightyellow,);
         }
+
+        /* gnb 박스 */
+        .gnb{
+            position: fixed;
+            top: 5vh;
+            left: 50%;
+
+            /* 가로중앙이동 */
+            transform: translateX(-50%);
+
+            background: #fff;
+            border-radius: 20px;
+        }
+
+        /* 가상요소로 움직이는 배경박스 만들기 */
+        .gnb::before{
+            content: '';
+            position: absolute;
+
+            /* 변경 내용: left, width
+                -> li의 수치를 기준함 */
+            left: 0;
+            width: 206px;
+            
+            height: 78px;
+            background-color: #ffc75f;
+            border-radius: 35px;
+        }
+
+        .gnb ul{
+            /* 가상요소보다 위로 */
+            position: relative;
+
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .gnb a{
+            text-decoration: none;
+            color: #000;
+            font-size: 24px;
+            display: block;
+            padding: 23px 35px;
+
+            /* 트랜지션: 속시이지 */
+            transition: color .4s;
+        }
+
+        /* 마우스 오버 시 글자색 변경 */
+        .gnb a:hover{
+            color: #fff;
+
+            /* 오버 시 지연시간 설정 */
+            transition-delay: .4s;
+        }
+
         
         .pg{
             height: 100vh;
@@ -49,8 +107,9 @@
                 가로 크기는 타겟 박스가 이동하는 크기인 3000px에 맞도록 100vw에 더하여 잡아준다.
 
                 ※ 이유는?
-                    JS의 getBoundingClientRect().top값의 수치와 정확히 일치시키기 위함
+                JS의 getBoundingClientRect().top값의 수치와 정확히 일치시키기 위함
             */
+
             height: 100%;
             margin: 0;
             padding: 0;
