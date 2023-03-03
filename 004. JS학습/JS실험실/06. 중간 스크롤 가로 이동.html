@@ -66,6 +66,9 @@
             display: block;
             padding: 23px 35px;
 
+            /* 글자 줄바꿈 방지 */
+            white-space: nowrap;
+
             /* 트랜지션: 속시이지 */
             transition: color .2s;
         }
@@ -136,6 +139,8 @@
     </style>
 
     <script>
+    // 샘플 페이지: https://thinkdance.ca/
+
         window.addEventListener("DOMContentLoaded",()=>{
             console.log("로딩 완료");
 
@@ -143,26 +148,83 @@
                 // (1) 타겟 박스: .tpg
                 const tpg = document.querySelector(".tpg");
                 
-                // (2) 가로 이동 페이지 박스: .slidePg
-                const spg = document.querySelector(".slidePg")                
+                // (2) sticky박스: .slidePg
+                const spg = document.querySelector(".slidePg");
+
+                // 리스트 넣기 함수 호출
+                makeList();
                 
-                // console.log(tpg,spg);
+                // (3) 가로 이동 페이지 박스: .slidePg ul
+                const mvbx = spg.querySelector("ul");
+                
+                // console.log(tpg,spg,mvbx);
+            
 
-            // html 코드 변수
-            let hcode = "<ul>";
+            /****************************
+                대상: mvbx
+                이벤트: scroll
+            ****************************/
+            // 스크롤 이벤트 설정
+            window.addEventListener("scroll",movePage);
+            
+            /******************************************
+                함수명: retVal
+                기능: getBoundingClientRect()값 리턴
+            ******************************************/
+            const retVal = x => x.getBoundingClientRect().top;
+            
+            /****************************
+                함수명: movePage
+                기능: 가로방향 이동하기
+            ****************************/
+            function movePage(){
 
-            // 2. 가로 이동 페이지 박스에 디자인 요소 넣기
-            for(let x = 1; x < 8; x++){
-                hcode += `
-                    <li>
-                        <img src="images/dance/${x}.jpg" alt="댄스">
-                    </li>
-                `;
-            } // for //
-            hcode += "</ul>";
+                // 스크롤 위치값 확인
+                // console.log(window.scrollY+"px");
 
-            // 가로 이동 박스에 코드 넣기
-            spg.innerHTML = hcode;
+                // 1. 타겟 박스의 바운딩 위치값 찍기
+                // -> 타겟 박스: 스티키 박스의 부모 박스(=멈추는 구간)
+                let tgpos = retVal(tpg);
+                console.log("바운딩값:",tgpos);
+
+                // 2. 가로 이동 박스(mvbx)의 left값 변경하기
+                // -> 타겟 박스의 바운딩값을 left값으로 넣어줌
+                // 이유: 바운딩 수치 === left값 이동수치 === 3000px
+                // -> 최대 이동갑싱 마이너스로 한계값이 일치함
+
+                    // (1) 대상: mvbx
+                    // 적용구간 설정: 0 이하 -3000px 이상 
+                    if(tgpos <= 0 && tgpos >= -3000)
+                        mvbx.style.left = tgpos + "px";
+                    // 위쪽(0 초과)일 때 처음위치 재설정
+                    else if(tgpos > 0)
+                        mvbx.style.left = "0";
+
+            }; // movePage 함수 //
+
+            /************************ 
+                함수명: makeList
+                기능: 리스트 넣기
+            ************************/
+            function makeList(){
+
+                // html 코드 변수
+                let hcode = "<ul>";
+
+                // 가로 이동 페이지 박스에 디자인 요소 넣기
+                for(let x = 1; x < 8; x++){
+                    hcode += `
+                        <li>
+                            <img src="images/dance/${x}.jpg" alt="댄스">
+                        </li>
+                    `;
+                } // for //
+                hcode += "</ul>";
+
+                // 3. 가로 이동 박스에 코드 넣기
+                spg.innerHTML = hcode;
+
+            }; // makeList 함수 //
 
             /************************************ 
                 gnb 메뉴 오버 시 움직이는 배경
@@ -199,16 +261,15 @@
 
                 }; // mouseenter //
 
-            // 3. 이벤트 설정: mouseleave
-            ele.onmouseleave = e => {
-                // (1) 변경 대상: .mbg -> mbg 변수
-                // (2) 변경 내용: opacity -> 0
-                mbg.style.opacity = 0;
-            }; // mouseleave
+                // 3. 이벤트 설정: mouseleave
+                ele.onmouseleave = e => {
 
+                    // (1) 변경 대상: .mbg -> mbg 변수
+                    // (2) 변경 내용: opacity -> 0
+                    mbg.style.opacity = 0;
 
+                }; // mouseleave
             }) // forEach //
-            
         }); // load //
     </script>
 </head>
