@@ -82,21 +82,29 @@ body *{
     background: rgb(202, 202, 202);
 }
 
-/*토끼*/
+/* 토끼 */
 #r1 {
     top: 400px;
     left: 0;
     /*JS에서 사용할 기준속성*/
 }
 
-/*거북*/
+/* 거북 */
 #t1 {
     top: 600px;
     left: 0;
 }
+
+/* 토끼, 거북 공통 클래스 */
 .racer{
+    width: 200px;
     transform-origin: right;
 }
+
+.racer img{
+    width: 100%;
+}
+
 .racer::after{
     content: '';
     display: block;
