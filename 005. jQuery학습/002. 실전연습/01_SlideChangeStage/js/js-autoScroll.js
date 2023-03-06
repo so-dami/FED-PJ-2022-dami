@@ -106,6 +106,13 @@ function loadFn(){
                 if(pgnum<0) pgnum = 0;
             } // else //
 
+            console.log("페이지 번호:",pgnum);
+
+        // (4) 페이지 이동하기
+        // scrollTo(가로,세로);
+        window.scrollTo(0,window.innerHeight * pgnum);
+        // 세로 이동위치: 윈도우 높이값 * 페이지 번호
+
     }; // wheelFn //
     
 }; // loadFn //
