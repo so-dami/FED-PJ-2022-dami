@@ -155,16 +155,14 @@ function loadFn(){
         
         // console.log("페이지번호:",pgnum);
 
-        // (4) 페이지 이동하기
-        // scrollTo(가로,세로)
-        window.scrollTo(0,window.innerHeight*pgnum);
-        // 세로 이동위치: 윈도우높이값*페이지번호
+        // (4) 페이지 이동하기 + 메뉴 변경 -> updatePg 함수 호출
+        updatePg(gnb);
 
     } ////////////// wheelFn 함수 //////////
 
     /********************************************
         함수명: movePg
-        기능: 메뉴 크릭 시 해당 위치로 이동하기
+        기능: 메뉴 클릭 시 해당 위치로 이동하기
     ********************************************/
     function movePg(seq,obj){ // seq - 순번, obj - 요소 전체 객체
 
@@ -178,15 +176,31 @@ function loadFn(){
         pgnum = seq;
         console.log("메뉴 클릭 페이지번호:",pgnum);
 
-        // 4. 페이지 이동하기
-        window.scrollTo(0, window.innerHeight * pgnum)
-
-        // 5. 메뉴 초기화하기(class="on" 빼기)
-        for(let x of obj) x.parentElement.classList.remove("on");
-
-        // 6. 해당 메뉴에 클래스 넣기
-        gnb[seq].parentElement.classList.add("on");
+        // 4. 업데이트 페이지 호출 -> 페이지 이동, 메뉴 변경
+        updatePg(obj);
 
     }; // movePg 함수 //
+
+    /*********************************************
+        함수명: updatePg
+        기능: 페이지 이동 시 설정값 업데이트 하기
+    *********************************************/
+    function updatePg(obj){ // obj - 변경할 메뉴 전체 객체
+
+        // 1. 함수 호출 확인
+        console.log("업데이트");
+
+        // 2. 페이지 이동하기
+        // scrollTo(가로,세로)
+        window.scrollTo(0,window.innerHeight * pgnum);
+        // 세로 이동위치: 윈도우높이값*페이지번호
+
+        // 3. 메뉴 초기화하기(class="on" 빼기)
+        for(let x of obj) x.parentElement.classList.remove("on");
+
+        // 4. 해당 메뉴에 클래스 넣기
+        obj[pgnum].parentElement.classList.add("on");
+
+    }; // updatePg 함수 //
 
 } ////////////// loadFn 함수 ///////////////////
