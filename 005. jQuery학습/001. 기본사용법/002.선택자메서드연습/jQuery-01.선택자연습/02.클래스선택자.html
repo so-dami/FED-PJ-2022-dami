@@ -3,55 +3,57 @@
 <head>
 <meta charset="utf-8">
 <title> 클래스 선택자  </title>
-<script src="jquery-1.7.2.min.js"></script>
+<script src="../jquery-3.6.1.min.js"></script>
 	<script>
-		$(document).ready(function(){
+		$(()=>{
+
 			// 미션: 클래스가 group인 요소를 선택하여
-			// 클릭할 경우 배경색을 lime
-			// 글자크기는 52px로 변경하시오.
-			// 단, transition 을 "all .6s"로 설정하여 애니메이션 되게 하시오.
-			
-			
-			
-			
-			
+			$(".group li").click(
+				// function(){
+				(e)=>{
+				// 화살표 함수에서 this는 event.currentTarget 사용
+				// e는 이벤트 전달 변수
+					console.log(e.currentTarget);
+				
+				// $(this).css({ // 클릭된 li 자신 -> this
+				$(e.currentTarget).css({ // 클릭된 li 자신 -> this
+					
+					// li를 클릭할 경우 배경색을 lime
+					background: "lime",
+
+					// 글자크기는 52px로 변경하시오.
+					fontSize: "52px",
+
+					// 단, transition 을 "all .6s"로 설정하여 애니메이션 되게 하시오.
+					transition: "all .6s"
+
+				}); //css //
+
+			}); // click //
+
 		});////////////  jQB /////////////////////////
-	
-	
-	
-	
-	
-	
 	</script>
-	
-	
-	
-	
-	
 </head>
   
 <body>
+	<div id="container">
 
-<div id="container">
+	<header>
+	<h2> Welcome my Site </h2>
+	</header>
 
- <header>
-   <h2> Welcome mySite </h2>
- </header>
+	<nav>
+	<ul class="group">
+		<li id="first">One</li>
+		<li id="second">Two</li>
+		<li id="third">Three</li>
+	</ul>
+	</nav>
 
- <nav>
-   <ul class="group">
-       <li id="first">One</li>
-       <li id="second">Two</li>
-       <li id="third">Three</li>
-  </ul>
- </nav>
-
-</div>
+	</div>
 
 <!---------- jQuery code Start ---------->
-<script>
-
-</script>
+<script></script>
 
 </body>
 </html>
