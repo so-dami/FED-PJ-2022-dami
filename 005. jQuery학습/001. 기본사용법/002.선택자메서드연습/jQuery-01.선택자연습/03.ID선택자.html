@@ -5,55 +5,109 @@
 <title> ID 선택자  </title>
 
 <!-- jQuery library -->
-<script src="jquery-1.7.2.min.js"></script>
+<script src="../jquery-3.6.1.min.js"></script>
+
+<!-- 이징과 색상 애니메이션을 위해 제이쿼리 UI 가져오기 -->
+<script src="../jquery-ui.min.js"></script>
 
 <script>
+
+// 텍스트 변경하는 jQuery 메서드
+// $(선택자).text(글자)
+
+/*
+
+  [ 제이쿼리 애니메이션 메서드: animate() ]
+  -> animate({css설정},시간,이징,함수)
+
+  (1) css 설정: css 요소 변경
+  (2) 시간: 1/1000초(단위 안씀)
+    -> 예) 800: 0.8초, 1000: 1초
+    -> 시간 생략 시 기본값 400
+  (3) 이징: https://easings.net/ko
+    -> 이징은 반드시 제이쿼리 UI가 있어야 함
+  (4) 함수: 콜백 함수
+    -> 애니메이션 후 실행할 함수
+
+*/
+
 $(document).ready(function(e){
   // 미션: h2요소를 클릭하면
   $("h2").click(()=>{
 
     // ※ ver1. text와 css 따로 사용
-      // 1. 아이디가 sub인 요소의 글자를 "이승기" 라고 쓰고
-      $("#sub").text("이승기");
+      // 1. 아이디가 sub인 요소의 글자를 "이승기" 라고 쓰고 배경색은 노란색, 글자색은 파란색, 테두리는 1px 녹색 , 글자크기 42px로 변경하시오. 위의 세가지 아이디를 1초간격으로 애니메이션 설정하시오(transition) - 기본은 "all .8s 지연시간"
+      $("#sub").text("이승기")
+      // animate를 위한 보더 초기값 셋팅 필요
+      .css({border:"1ps dotted #000"})
+      .animate({
+        backgroundColor: "yellow",
+        color: "blue",
+        borderWidth: "5px",
+        borderStyle: "dotted",
+        borderColor: "green",
+        // border: "5px dotted green",
+        fontSize: "42px"
+      },800); // css //
 
-      // 배경색은 노란색, 글자색은 파란색, 테두리는 1px 녹색 , 글자크기 42px로 변경하시오.
-      $("#sub").css({
+      /* $("#sub").css({
         background: "yellow",
         color: "blue",
         border: "3px dotted green",
         fontSize: "42px",
         transition: ".8s"
-      }); // css //
+      }); // css // */
 
     // ※ ver2. text와 css 같이 사용
-      // 2. 아이디가 main인 요소의 글자를 "공유"라고 쓰고 배경색은 파란색, 글자색은 흰색, 테두리는 3px 노란색, 글자크기는 52px로 변경하시오.
-      $("#main").text("공유").css({
+      // 2. 아이디가 main인 요소의 글자를 "공유"라고 쓰고 배경색은 파란색, 글자색은 흰색, 테두리는 3px 노란색, 글자크기는 52px로 변경하시오. 위의 세가지 아이디를 1초간격으로 애니메이션 설정하시오(transition) - 기본은 "all .8s 지연시간"
+      $("#main").text("공유")
+      // animate를 위한 보더 초기값 셋팅 필요
+      .css({border:"1ps dotted #000"})
+      .delay(1000) // 지연시간은 애니메이션 앞에
+      .animate({
+        backgroundColor: "blue",
+        color: "#fff",
+        borderWidth: "3px",
+        borderStyle: "solid",
+        borderColor: "yellow",
+        // border: "3px solid yellow",
+        fontSize: "52px",
+      },800); // css //
+      
+      /* $("#main").text("공유").css({
         background: "blue",
         color: "#fff",
         border: "3px solid yellow",
         fontSize: "52px",
         transition: ".8s 1s"
-      }); // css //
+      }); // css // */
 
-      // 3. 아이디가 total인 요소의 글자를 "싸랑해요~!"라고 쓰고 배경색은 검은색, 글자색은 빨간색, 테두리는 2px 보라색, 글자크기는 152px로 변경하시오.
-      $("#total").text("아이 라부 유..").css({
+      // 3. 아이디가 total인 요소의 글자를 "싸랑해요~!"라고 쓰고 배경색은 검은색, 글자색은 빨간색, 테두리는 2px 보라색, 글자크기는 152px로 변경하시오. 위의 세가지 아이디를 1초간격으로 애니메이션 설정하시오(transition) - 기본은 "all .8s 지연시간"
+      $("#total").text("아이 라부 유..")
+      // animate를 위한 보더 초기값 셋팅 필요
+      .css({border:"1ps dotted #000"})
+      .delay(2000)
+      .animate({
+        backgroundColor: "#000",
+        color: "red",
+        borderWidth: "2px",
+        borderStyle: "dashed",
+        borderColor: "purple",
+        // border: "2px dahsed purple",
+        fontSize: "152px",
+      },800); // css //
+
+      /* $("#total").text("아이 라부 유..").css({
         background: "#000",
         color: "red",
         border: "2px solid purple",
         fontSize: "152px",
         transition: ".8s 2s"
       }); // css //
-    
-    // 위의 세가지 아이디를 1초간격으로 애니메이션 설정하시오(transition) - 기본은 "all .8s 지연시간"
-    
+     */
 
   }); // click
   
-  
-  // 텍스트 변경하는 jQuery 메서드
-  // $(선택자).text(글자)
-	
-	
 }); //jQuery실행구역
 
 </script>
