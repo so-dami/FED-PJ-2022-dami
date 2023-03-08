@@ -1,20 +1,19 @@
 @charset "utf-8";
 
-/* JS실험실 : 03.배너스타일 CSS - ban2.css */
+/* JS실험실 : 03.배너스타일 CSS - ban.css */
 html,body,h1{
     margin: 0;
     padding: 0;
 }
-
 /* 페이지 클래스 */
 .page{
     position: relative;
     /* 부모자격 */
     width: 100%;
-    /* width: 100vw;로 셋팅하면???
-    DT(데스크탑)에서 가로 스크롤바가 스크롤바 트랙만큼 생긴다.
-    이것은 vw가 보이는 화면을 기준하기 때문이다.
-    이 때는 auto상태로 두거나 100%단위로 셋팅해야 한다. */
+    /* width: 100vw로 셋팅하면
+    DT에서 가로스크롤바가 스크롤바 트랙만큼
+    생기는데 이것은 vw가 보이는 화면을 기준하기 때문이다
+    이때는 auto상태로 두거나 100%단위로 셋팅해야 한다! */
     height: 100vh;
     overflow: hidden;
 }
@@ -102,8 +101,18 @@ ol {
     /* height 값은 flex박스 자식요소에서
     등분할시 자동 100%임! */
     outline: 2px dashed red;
-}
 
+    /* 필터로 밝기조절(어둡게) */
+    filter: brightness(70%);
+    
+    /* 트랜지션 */
+    transition: .4s;
+}
+/* 3번째가 주인공이므로 원래밝기로 조금 크게변경! */
+#slide li:nth-child(3){
+    filter: brightness(100%);
+    transform: scale(1.2);
+}
 #slide li img {
     /*이미지는 박스에 맞춤!*/
     width: 100%;
