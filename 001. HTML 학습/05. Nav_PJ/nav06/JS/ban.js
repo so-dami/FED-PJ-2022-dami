@@ -1,6 +1,14 @@
-// nav06. 배너 셋팅 JS - ban.js
+// 네비유형 6 : 배너셋팅 JS - ban.js //////
+window.addEventListener("DOMContentLoaded",()=>{
 
-window.addEventListener("DOMContentLoaded",setBan);
+    // 1. 최상위 배너박스 대상 선정: .banbx
+    const banbx = document.querySelectorAll(".banbx");
+
+    // 2. 배너박스 일괄 셋팅하기
+    banbx.forEach((ele,idx)=>setBan(ele,idx)); // forEach //
+    // setBan(각요소,요소별순번)    
+    
+}); // 로드 구역
 
 /***************************************************** 
     [ 슬라이드 이동 기능정의 ]
@@ -32,7 +40,7 @@ window.addEventListener("DOMContentLoaded",setBan);
         (2) 왼쪽버튼 클릭시 이전 슬라이드가
             나타나도록 하기위해 우선 맨뒤 li를
             맨앞으로 이동하고 동시에 left값을
-            -330%로 변경한다.
+            -360%로 변경한다.
             그 후 left값을 -240%으로 애니메이션하여
             슬라이드가 왼쪽에서 들어온다.
 
@@ -43,68 +51,96 @@ window.addEventListener("DOMContentLoaded",setBan);
 
 *****************************************************/
 
-// 배너 셋팅 함수 //
-function setBan(){
-    // 1. 호출 확인
-    console.log("배너");
+/*****************************************************
+    [ 배너함수 다중배너 셋팅함수로 모듈화하기 ]
+    -> 전달값을 사용하여 개별적인 배너요소 하위의 기능으로 작동하도록 최상위 배열 요소를 함수로 전달하여 내부 기능셋팅 시 document로 선택했던 요소를 모두 개별 최상위 배너요소 하위요소 선택으로 변경하면 기존 변수셋팅을 그대로 사용하여 개별 배너 모듈화를 손쉽게 할 수 있다.
 
-    // 2. 대상 선정: .bancont
-    const bancont = document.querySelector(".bancont");
-    // console.log(bancont);
+    [ 모듈화 원칙 ]
+    1. 상대적인 선택자 사용
+    2. for문에 의한 개별요소 별 일괄셋팅
+    3. 구체적인 차이점은 전달변수를 통하여 해결
+    4. 
     
+*****************************************************/
+
+// 배너셋팅함수 //////////////
+function setBan(obj,seq){ // obj - 최상위요소 객체, seq - 순번
+    // 1. 호출확인
+    // console.log("배너야~!");
+
+    // 2. 대상선정 : .bancont
+    const bancont = obj.querySelector(".bancont");
+    // console.log(bancont);
+
     // 3. 태그 구성하기
-        // 태그 변수
-        let hcode = `<ul class=slide>`;
-        
-        for(let i = 1; i <= 16; i++){
-            hcode += `
-            <li>
-                <img src="./nav06/img/ban${i}.png" alt="배너이미지">
-            </li>
+    // 태그변수
+    let hcode = `<ul class="slide">`;
+
+    // 배너 종류별 배너 셋팅 구분하기
+    if(seq===0){
+        for(let i = 1 ; i<= 16; i++){
+            hcode +=   `
+                <li>
+                    <img src="./nav06/img/ban${i}.png" alt="배너이미지">
+                </li>
             `;
-        } // for of //
-        
-        hcode += `</ul>`;
-        // console.log(hcode);
+        } // for문 //
+    } // if - 1번 배너 //
+
+    else if(seq===1){
+        for(let i = 1 ; i<= 5; i++){
+            hcode +=   `
+                <li>
+                    <img src="./nav06/img/sban${i}.jpg" alt="배너이미지">
+                </li>
+            `;
+        } // for문 //
+    } // else if - 2번 배너 //
+
+    hcode += `</ul>`; 
+
+    // console.log(hcode);
 
     // 4. .bancont에 출력하기
     bancont.innerHTML = hcode;
 
-// 슬라이드 기본 기능 구현 //
+    //______________________________________________
 
-    // 1. 대상선정
-        // 1-1. 이벤트 대상: .abtn
-        const abtn = document.querySelectorAll(".abtn");
+    // [ 슬라이드 기본기능 구현 ] //////////////////
 
-        // 1-2. 변경 대상: .slide
-        const slide = document.querySelector(".slide");
+    // 1. 대상선정 //////////////////////////
+    // 1-1. 이벤트 대상: .abtn
+    const abtn = obj.querySelectorAll(".abtn");
 
-        // 1-3. 블릿 대상: .indic li
-        // const indic = document.querySelectorAll(".indic li");
-        // console.log(indic);
+    // 1-2. 변경 대상: .slide
+    const slide = obj.querySelector(".slide");
 
-        // 1-4. 슬라이드 li리스트
-        let slist = document.querySelectorAll(".slide>li");
+    // 1-3. 블릿 대상: .indic li
+    // const indic = obj.querySelectorAll(".indic li");
+    // console.log(indic);
 
-    // [ 초기화1 - 순번 붙이기 ]
+    // 1-4. 슬라이드 li리스트
+    let slist = obj.querySelectorAll(".slide>li");
+
+    // [ 초기화1 - 순번붙이기 ] ///////////////////
     // 잘라내기로 li순번이 뒤섞이므로 블릿변경 매칭을 위한
     // 고유순번을 사용자정의 속성(data-)으로 만들어준다!
     slist.forEach((ele, idx) => {
         // data-seq 라는 사용자정의 속성 넣기
         ele.setAttribute("data-seq", idx);
-    }); // forEach //
+    }); ////// forEach /////////////////
 
     // [ 초기화2 - 맨뒤요소 맨앞으로 이동 2번하기! ]
     // 맨뒤 맨앞이동 함수만들기
     const chgSeq = () => {
         // 현재 슬라이드 li 새로읽기(2번반복시 li의 순서가 달라지기때문)
-        slist = document.querySelectorAll(".slide>li");
+        slist = obj.querySelectorAll(".slide>li");
         // 맨뒤 맨앞이동하기 -> 변경대상: .slide -> slide변수
         slide.insertBefore(slist[slist.length - 1], slist[0]);
         // slide.insertBefore(넣을놈,넣을놈전놈)
         // slide.insertBefore(마지막요소,첫요소)
         // slide.insertBefore(slist[개수-1],slist[0]);
-    }; // chgSeq함수 //
+    }; ////////// chgSeq함수 ///////////
 
     // 2번 맨뒤 맨앞이동 함수 호출하기!!!
     for (let i = 0; i < 2; i++) chgSeq();
@@ -133,7 +169,7 @@ function setBan(){
         // clist -> current list 현재 리스트
 
         // 1. 방향에 따른 분기
-        // 1-1. 오른쪽버튼 클릭시 //
+        // 1-1. 오른쪽버튼 클릭시 ////////////////
         if (seq) {
             console.log("오른!");
 
@@ -153,7 +189,7 @@ function setBan(){
             //     나타나도록 슬라이드 박스의 left값을
             //     -240%로 변경시킨다.
 
-            // 코드 분리하기 //
+            // [코드분리하기!] //////////////////////////
             // -> 같은속성변경을 같은 메모리공간에서 수행하면
             // 변경효과가 없음!!!
             setTimeout(() => {
@@ -167,9 +203,9 @@ function setBan(){
             // 대기실행 공간인 큐(Queue)메모리공간에서 실행하므로
             // 코드가 동시에 바뀌는 것을 막아주고 의도한 대로
             // 시차실행을 가능하게 해준다!
-        } // if : 오른쪽 클릭 시 //
+        } //////////// if : 오른쪽클릭시 //////
 
-        // 1-2. 왼쪽버튼 클릭 시 //
+        // 1-2. 왼쪽버튼 클릭시 //////////////
         else {
             console.log("왼쪽!");
 
@@ -181,7 +217,7 @@ function setBan(){
             slide.insertBefore(clist[clist.length - 1], clist[0]);
 
             // (2) 동시에 left값을 -360%로 변경한다.
-            slide.style.left = "-330%";
+            slide.style.left = "-360%";
             // 이때 트랜지션을 없앤다(한번실행후 부터 생기므로!)
             slide.style.transition = "none";
 
@@ -193,8 +229,8 @@ function setBan(){
             setTimeout(() => {
                 slide.style.left = "-240%";
                 slide.style.transition = "left .4s ease-in-out";
-            }, 0); // 타임아웃 //
-        } // else : 왼쪽클릭시 //
+            }, 0); ////// 타임아웃 /////////
+        } //////////// else : 왼쪽클릭시 //////
 
         // 2. 현재 슬라이드 순번과 같은 블릿표시하기
         // 대상: .indic li -> indic변수
@@ -214,23 +250,20 @@ function setBan(){
 
         // 2-4. 읽어온 슬라이드 순번의 블릿에 클래스 "on"넣기
         // indic[cseq].classList.add("on");
-    }; // goSlide함수 //
+    }; ////////// goSlide함수 ///////////
 
     // 3. 이동버튼대상에 이벤트 설정하기
     abtn.forEach((ele, idx) => {
         ele.onclick = () => {
-
             // 0. 기본이동막기
             event.preventDefault();
-
             // 1. 인터발지우기함수 호출!
             // clearAuto();
 
             // 2. 슬라이드 함수 호출!
             goSlide(idx);
-
-        }; // click함수 //
-    }); // forEach //
+        }; ///// click함수 //////
+    }); /////// forEach //////////
 
     ////////////////////////////
     // 자동넘김 설정하기 ////////
@@ -262,7 +295,7 @@ function setBan(){
         console.log("인터발시작!");
         // 인터발함수로 슬라이드함수 호출하기
         autoI = setInterval(() => goSlide(1), 3000);
-    } // autoSlide함수 //
+    } ////////////// autoSlide함수 //////////
 
     // 자동넘김 최초호출!
     // autoSlide();
@@ -284,5 +317,6 @@ function setBan(){
         // 인터발함수를 호출한다!
         // 5초후(인터발은 3초후, 토탈 8초후 작동시작)
         autoT = setTimeout(autoSlide, 5000);
-    } // clearAuto 함수 //
-} // setBan 함수 //
+    } ///////// clearAuto 함수 /////////////
+} //////////////// loadFn 함수 ///////////////
+/////////////////////////////////////////////
