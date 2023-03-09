@@ -56,7 +56,17 @@
       3) 제이쿼리 사용코드 작성: 제이쿼리 로딩구역
 
       ※ 주의
+
+    7. 제이쿼리 문법과 JS 문법은 같은 명령문에서 혼용할 수 없다.
+      사용X 예)
+        - $(".my").classList.add("on") -> 제이쿼리 + JS 사용X
+        - document.querySelctor(".my").click() -> JS + 제이쿼리 사용x
       
+      사용O 예)
+        - document.querySelctor(".my").classList.add("on")
+        - 
+               
+
   */
 	
   // 미션: header태그를 클릭하면 큰 제목 배경색을 노란색으로 변경하시오.

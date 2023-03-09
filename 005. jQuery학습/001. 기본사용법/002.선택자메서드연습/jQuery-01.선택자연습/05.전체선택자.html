@@ -8,12 +8,21 @@
 <script>
 $(document).ready(function(e) {
     // 미션: body를 클릭하면 모든 요소를 선택하여(*) 
-	// 인터넷으로 검색한 이미지 주소를 배경이미지로 설정하여 width: 200px, height: 200px 로 설정하시오.
+	  // 인터넷으로 검색한 이미지 주소를 배경이미지로 설정하여 width: 200px, height: 200px 로 설정하시오.
+
+    $("body").click(()=>{
+      $("body *").css({
+        background: "url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMDlfNzEg%2FMDAxNjc1OTQ5MTU4Mzc3.me1p9GqeM_vlSJ-njMWcfMODPQXCz8Xh5gUeojQjadog.XyVLOo8ucfQ6GszZPEgFRuzmWa_RgJ0aHe50hrUaWMUg.JPEG.didu22%2FScreenshot%25A3%25DF20230205%25A3%25DF010205%25A3%25DFYouTube.jpg&type=sc960_832) no-repeat center/cover",
+        width: "200px",
+        height: "200px"
+      }) // css //
+    }); // click //
+
 	
 	
-	
-});//jQuery실행구역
+}); //jQuery실행구역
 </script>
+<style></style>
 </head>
   
 <body>
