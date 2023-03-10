@@ -27,7 +27,12 @@
 		// 첫 번째 p요소 -> p:first
 		
 		$("#btngo").click(function(){
-			$(this)
+			// 첫 번째 요소
+			let fele = $("#container>p:first");
+
+			// 첫 번째 요소를 맨 뒤로 이동
+			$("#container").append(fele);
+			
 		}); // click //
 	
 	});//// jQB ///////////////////////////////////
