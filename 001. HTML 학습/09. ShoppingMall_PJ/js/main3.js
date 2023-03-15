@@ -22,8 +22,89 @@ window.addEventListener("DOMContentLoaded", loadFn);
 
 ********************************************/
 
-/****************************************** 
+/******************************************** 
     함수명: loadFn
     기능: 로딩후 이벤트설정 및 슬라이드 기능
-******************************************/
- /////////////// loadFn 함수 //////////////
+********************************************/
+function loadFn() {
+    console.log("로딩완료!");
+
+    // 슬라이드번호 변수
+    let snum = 0;
+
+    // 광클금지변수 : 0 - 허용, 1 - 불허용
+    let prot = 0;
+
+    // 1. 대상선정
+        // 1-1. 이벤트 대상: .abtn
+        const abtn = document.querySelectorAll(".abtn");
+        // console.log(abtn);
+
+        // 1-2. 변경 대상: #slide li
+        const slide = document.querySelectorAll("#slide>li");
+
+        // 슬라이드 개수
+        let scnt = slide.length;
+        console.log("슬개수:",scnt);
+
+        // 1-3. 블릿 대상: .indic li
+        const indic = document.querySelectorAll(".indic li");
+
+    // 2. 슬라이드 변경함수 만들기
+    const goSlide = (seq) => {
+        console.log("슬고우!",seq);
+
+        // 2-0. 광클금지 설정하기 //////
+        if (prot) return;
+        prot = 1; // 잠금!
+        setTimeout(() => {
+            prot = 0; // 해제!
+        }, 500); /// 0.4초후 해제! ///
+
+        // 2-1. 방향에 따른 분기
+            // 2-1-1. 오른쪽버튼 클릭시: seq===1일때
+            if(seq){
+                // 슬라이드번호 증가!
+                snum++;
+                console.log("오른!",snum);
+
+            }
+            // 2-1-2. 왼쪽버튼 클릭시: seq===0일때
+            else{
+                // 슬라이드번호 감소!
+                snum--;
+                console.log("왼쪽!",snum);
+            }
+
+        // 2-3. 한계값 체크
+        // 처음 이전->끝 번호
+        if(snum===-1) snum = scnt-1;
+        //끝 다음->처음 번호
+        else if(snum === scnt) snum = 0;
+
+        // 2-4. 이동하기: 해당 순번 슬라이드 li에 클래스 on 넣기
+        // 변경 대상: slide변수(#slide li)
+            // 2-4-1. 전체 초기화
+            slide.forEach(ele=>ele.classList.remove("on"));
+            
+            // 2-4-2. 해당 순번 li에 클래스 넣기
+            slide[snum].classList.add("on");
+
+        // 2-5. 블릿 변경: 해당 순번 블릿 li에 클래스 on 넣기
+        // 변경 대상: indic변수(.indic li)
+            // 2-4-1. 전체 초기화
+            indic.forEach(ele=>ele.classList.remove("on"));
+            
+            // 2-4-2. 해당 순번 li에 클래스 넣기
+            indic[snum].classList.add("on");
+        
+    }; // goSlide함수 //
+
+    // 3. 대상에 이벤트 설정하기
+    abtn.forEach((ele, idx) => {
+        ele.onclick = () => {
+            goSlide(idx);
+        }; // click함수 //
+
+    }); // forEach //
+} // loadFn 함수 //
