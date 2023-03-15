@@ -93,10 +93,10 @@ function loadFn() {
         // 2-5. 블릿 변경: 해당 순번 블릿 li에 클래스 on 넣기
         // 변경 대상: indic변수(.indic li)
             // 2-4-1. 전체 초기화
-            indic.forEach(ele=>ele.classList.remove("on"));
-            
+            chgSlide(slide);
+
             // 2-4-2. 해당 순번 li에 클래스 넣기
-            indic[snum].classList.add("on");
+            chgSlide(indic);
         
     }; // goSlide함수 //
 
@@ -149,6 +149,45 @@ function loadFn() {
         // 5초후(인터발은 3초후, 토탈 8초후 작동 시작)
         autoT = setTimeout(autoSlide,5000);
 
-   } ///////// clearAuto 함수 /////////////
-   
+    } ///////// clearAuto 함수 /////////////
+
+    /*************************************** 
+        블릿 클릭 시 슬라이드 이동하기
+    ***************************************/
+    // 이벤트 대상: .indic li -> indic 변수
+    // 이벤트 종류: click
+    indic.forEach((ele,idx)=>{
+        ele.onlick = () => {
+
+            // 1. 전역변수 snum 업데이트 하기
+                // 왜? 블릿 순번 === 슬라이드 순번이므로 
+            snum = idx;
+
+            // 2. 블릿 변경
+            chgSlide(indic);
+            
+            // 3. 슬라이드 변경
+            chgSlide(slide);
+
+            // 4. 자동 넘김 멈추기
+            clearAuto();
+            
+        }; // click //
+    }); // forEach //
+
+    /************************************** 
+        [ 슬라이드, 블릿 변경 기능 공통 함수 ]
+        함수명: chgSlide
+    **************************************/
+    function chgSlide(obj){
+    // obj - 변경대상 노드리스트
+
+        // 1. 전체리스트 초기화
+        obj.forEach((ele)=>ele.classList.remove("on"));
+
+        // 2. 해당 순번 li에 클래스 넣기
+        obj[snum].classList.add("on");
+        
+    } // chgSlide 함수 //
+    
 } // loadFn 함수 //
