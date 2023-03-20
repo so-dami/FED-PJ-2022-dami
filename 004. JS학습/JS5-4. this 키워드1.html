@@ -169,8 +169,10 @@
                             qs("#exp").innerText =
                             this.getAttribute("data-nm")
                             // -> this가 이벤트를 설정한 상위 요소이므로 위의 요소의 값이 찍힘
+                            // 따라서, 화살표함수는 무조건 window가 아님
+                            // 이벤트 함수로 설정할 때는 싸고 있는 상위이벤트 요소가 익명함수로 설정된 경우 상위요소를 가리킴 
 
-                        }; // .kk의 click //    
+                        }; // .kk의 click //
                     
                 }; // .pic의 mouseover //
 
