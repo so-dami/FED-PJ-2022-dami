@@ -4,31 +4,59 @@
 <meta charset="utf-8">
 <title> Traversal- next </title>
 <!-- jQuery library -->
-<script src="jquery-1.7.2.min.js"></script>
+<script src="../jquery-3.6.3.min.js"></script>
+<script src="../jquery-ui.min.js"></script>
 <script>
 $(document).ready(function(e) {
+
+  /* 
+      5. next(선택요소)
+      - 선택요소의 다음 형제요소 선택
+
+      6. nextAll(선택요소)
+      - 선택요소 다음 형제요소 모두 선택
+  */
 	
-	// 미션: #part1 을 클릭하면 다음형제요소의 크기를 width: 200px, height: 200px로 애니메이션 하시오.
-	// animate({CSS설정},시간,이징,함수)
 	
-	
+      // 미션: #part1 을 클릭하면 다음 형제요소의 크기를 width: 200px, height: 200px로 애니메이션 하고
+      // 내부의 글자를 "안녕하세요~!"라고 변경하시오.
+      // animate({CSS설정},시간,이징,함수)
+      // 글자 변경: text(내용)
+
+      $("#part1").click(function(){
+
+        $(this).next()
+        .animate({width: "200px", height: "200px", backgroundColor: "red"},700)
+        .text("안녕하세요.");
+
+      }); // click //
+
+      // 추가 미션: #sub를 클릭하면 다음의 형제 요소 모두를 빨간색으로 배경색을 변경 애니메이션 하시오!
+
+      $("#sub").click(function(){
+
+        $(this).nextAll()
+        .animate({backgroundColor: "yellow"},600);
+
+      }); // click //
 	
 });//jQuery실행구역
 </script>
 
 <style>
  div, p {float:left;margin:10px; background-color:#FFF;}
-  div#sub { width:80px; height:80px; border:#000 thin solid;}
-  p { width:50px; height:50px; border:#000 thin solid;}
+  div#sub { width:80px; height:80px; border:#000 thin solid; cursor: pointer;}
+  p { width:50px; height:50px; border:#000 thin solid; text-align: center;}
+  p:first-of-type { cursor: pointer;;}
 </style>
 </head>
 <body>
 <div id="container">
 
     <div id = "sub">
-      <p>div p</p>
+      <p>div p: click!</p>
     </div>
-    <p id="part1">p:날클릭!</p>
+    <p id="part1">p: click!</p>
     <p>p</p>
     <p>p</p>
 
