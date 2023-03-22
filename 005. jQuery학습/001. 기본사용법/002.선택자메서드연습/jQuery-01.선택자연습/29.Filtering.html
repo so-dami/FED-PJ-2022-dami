@@ -4,9 +4,16 @@
 <meta charset="utf-8">
 <title> Filtering </title>
 <!-- jQuery library -->
-<script src="jquery-1.7.2.min.js"></script>
+<script src="../jquery-3.6.3.min.js"></script>
+<script src="../jquery-ui.min.js"></script>
 <script>
 $(document).ready(function(e) {
+
+	/* 
+      11. filtering()
+	  - 
+  	*/
+
 	// first() 메서드 : 선택요소가 집합일때 그 중 첫번째 요소
 	// last() 메서드 : 선택요소가 집합일때 그 중 마지막째 요소
 	// eq(n) 메서드 :  선택요소가 집합일때 그 중 n번째 요소(0부터 시작)
@@ -16,19 +23,40 @@ $(document).ready(function(e) {
 	// 미션: #main을 클릭할때 각 미션을 수행하라!
 	$("#main").click(function(){
 		// 1. p태그를 찾아 그 중 첫번째 요소의 배경색 red
+		$("p").first().css({backgroundColor: "red"});
 		
 		// 2. p태그를 찾아 그 중 마지막 요소의 배경색을 yellow
+		$("p").last().css({backgroundColor: "yellow"});
 		
 		// 3. p태그 중 2번째 요소를 선택하여 margin-top값을 100px로 transition 0.4초로 설정하시오.
+		$("P").eq(1).css({marginTop: "100px", transition: ".4s"});
 		
 		// 4. div 중 클래스가 middle인 요소를 찾아 margin-top값을 200px, height값을 200px,
 		// 배경색을 lime 색으로 transition 주시오.
+		$("div").filter(".middle").css({transition: ".8s ease-out", marginTop: "200px", height: "200px", backgroundColor: "lime"})
 				
 		// 5. div 중에서 p태그를 포함하는 요소를 선택하여 border를 10px ridge blue로 설정하시오.
-		
-		
+		$("div").has("p").css({border: "10px ridge blue"});
 		
 	});//////// click /////////////////
+
+		// 6. is() 메서드
+		// -> 선택요소의 클래스/아이디/요소 여부를 판단함
+		// 예) $("p").click(function(){$(this).is(".my")})
+		// -> 선택된 p요소의 클래스가 "my"인가?
+		// 맞으면 true, 아니면 false
+
+		// 추가 미션: p태그를 클릭했을 때 클래스가 "my"인 경우 텍스트를 my로 출력, 아닌 경우 no로 출력
+		$("p").click(function(){
+
+			// 클릭된 p요소가 .my인지 판별하기
+			let isP = $(this).is(".my");
+			console.log("is 판별:",isP);
+
+			if(isP) $(this).text("my");
+			else $(this).text("not my");
+
+		}); // click //
 	
     
 	
@@ -38,7 +66,7 @@ $(document).ready(function(e) {
 </script>
 
 <style>
-  div, p {float:left;margin:10px; background-color:#FFF;}
+  div, p {float:left;margin:10px; background-color:#FFF; text-align: center; cursor: pointer;}
   div#sub { width:80px; height:80px; border:#000 thin solid;}
   div.middle { width:80px; height:80px; border:#000 thin solid;}
   p { width:50px; height:50px; border:#000 thin solid;}
@@ -49,7 +77,7 @@ $(document).ready(function(e) {
     <div class="middle">div</div>
     <p>p</p>
     <p>p</p>
-    <p>p</p>
+    <p class="my">p</p>
     <p>p</p>
     <div id = "sub">
       <p>div p</p>
