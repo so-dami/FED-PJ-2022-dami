@@ -3,24 +3,61 @@
 <head>
 <meta charset="utf-8">
 <title> empty  </title>
-<script src="jquery-1.7.2.min.js"></script>
-<script src="jquery-ui-1.8.23.custom.min.js"></script>
+<script src="../jquery-3.6.3.min.js"></script>
+<script src="../jquery-ui.min.js"></script>
 	<script>
-		$(function(){/// jQB ///
+
+		$(function(){ // jQB //
 			
+			// empty() 메서드
+			// - 선택요소의 text를 지우는 메서드
 			
 			// 미션: .container의 p태그를 클릭하면
 			// 클릭된 p태그의 문자를 지우고
 			// 각각 순서대로 아래와 같은 글로 변경한다.
 			
-			// "자바스크립트는"
-			// "무지 많이 복잡하게 쓰고"
-			// "적게 일한다."
+			// 순번에 맞는 텍스트 배열
+			const txt =
+			["자바스크립트는", "무지 많이 복잡하게 쓰고", "적게 일한다."];
+
+			// 순번에 맞는 글자색 배열
+			const color = ["red","blue","green"];
 			
-			
+			$(".container p")
+			.css({
+				fontSize: "54px",
+				height: "60px"
+			}) // css //
+			. click(function(){
+
+				// 클릭된 p태그의 순번 알아오기
+				// index()
+				let idx = $(this).index();
+				console.log("순번:",idx)
+				console.log("txt[]:",txt[idx])
+				console.log("color[]:",color[idx])
+
+				// 글자 변경하기
+					// 1. 내용 비우기
+					$(this).empty()
+					// 2. 투명하게 하기
+					.css({opacity: "0"})
+					// 3. 해당 순번의 내용 넣기
+					.text(txt[idx])
+					// 4. 지연시간 설정하기
+					.delay(500)
+					// 5. 애니메이션 설정하기
+					.animate({
+						// 5-1. 투명도 복원
+						opacity: "1",
+						// 5-2. 해당 순번의 글자색 변경
+						color: color[idx]
+					},800); // animate //
+
+				
+			}) // click //
 			
 		});//// jQB ////////////////////////////
-	
 	
 	</script>
 	
