@@ -1,6 +1,9 @@
 @charset "utf-8";
 
+/* 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+/* css 변수 설정 */
 :root {
     --bg-color: #faf8f8;/*배경색*/
     --line-color: #aaaaaa;/*상단과 하단구분선 색*/
@@ -16,6 +19,7 @@ body {
     padding: 0;
     margin: 0;
 }
+
 /* 버튼디자인 */
 .mbtn {
     font-family: var(--font);
@@ -46,15 +50,20 @@ body {
     display: flex;
     width: var(--cwidth);
     font-size: 28px;
-    justify-content: space-around;/*아이템들을 일정한 간격으로 벌려 배치합니다.*/
+
+    /* 아이템들을 일정한 간격으로 배치 */
+    justify-content: space-around;
+
     align-items: center;
     padding-bottom: 12px;
     margin: 12px 24px 12px 24px;
-    border-bottom: 2px solid var(--line-color);/*header쪽과 달력을 구분하기 위해 밑에만 선을 넣어줍시다.*/
+
+    /* header쪽과 달력을 구분하기 위해 밑에만 선 추가 */
+    border-bottom: 2px solid var(--line-color);
 }
 
 .title {
-      /*년, 월이 세로로 정렬되게 하기 위함입니다.*/
+      /* 년, 월이 세로로 정렬되게 하기 위함 */
     display: flex;
     flex-direction: column;
     align-items: center;

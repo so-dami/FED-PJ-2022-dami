@@ -1,16 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>달력 테스트</title>
+    <title>Test | 달력</title>
     <script>
         const cg = x=>console.log(x);
+        
+        // 달력객체 생성 - 인스턴스 생성(new)
+            // 최종 변경 날짜 객체
+            let myd = new Date();
 
-        let myd = new Date();
-        let newd = new Date();
+            // 변경할 날짜 객체
+            let newd = new Date();
 
+        cg("1. 기본 출력: " + myd);
+
+        // 세계 공통 포맷 출력: toISOString()
+        cg("2. 출력 포맷 변경: " + myd.toISOString());
+
+        // 해당 월의 끝나는 날짜
+            // myd = new Date(년,월,옵션);
+            // 옵션: 0 - 끝날짜, 1 - 첫날짜
+        myd = new Date(2023,2,0);
+        cg("3. 2월 끝날짜: " + myd);
+
+        // 전월의 끝나는 날짜
+            // 옵션 0일 경우 전월 정보를 넣을 때 getMonth() 정보를 조회하면 현재 월의 숫자보다 -1된 수가 나옴
+            // 예) 3월이면 2월로
+            // 현재 월은 getMonth()+1 사용 예정
+        myd = new Date(newd.getFullYear(),newd.getMonth(),0);
+        cg("4. 전월 끝날짜: " + myd);
+
+        // 전월의 끝나는 날짜 요일
+            // day - 요일, date - 날짜
+        myd = myd.getDay();
+        cg("5. 전월 끝요일: " + myd);
+        
+        // 현월 첫날짜
+            // 옵션 1일 경우 날짜정보 숫자는 전달로 해야 다음달 첫 날짜가 나옴
+            // 옵션 1일 경우 현재 월은 getMonth() 사용
+        myd = new Date(newd.getFullYear(),newd.getMonth(),1);
+        cg("6. 현월 첫날짜: " + myd);
+
+        // 현월 끝날짜
+            // 옵션 0일 경우 현재 월은 getMonth()+1 사용
+        myd = new Date(newd.getFullYear(),newd.getMonth()+1,0);
+        cg("7. 현월 끝날짜: " + myd);
+
+        // getDate - 날짜만
+        // Date - 모든 정보
+        
     </script>
 </head>
 <body>
