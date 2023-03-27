@@ -41,19 +41,19 @@ function MakeDallyeok(){
             // (1-1) 전월 마지막 날짜(옵션: 0)
             // -> 달력 전월 끝쪽 날짜 표시
             const prevLast = new Date(curr_date.getFullYear(),curr_date.getMonth(),0);
-            cg(prevLast);
+            // cg(prevLast);
 
             // (1-2) 현월 처음 날짜(옵션: 1)
             // -> 달력 현월 처음 날짜 표시
             // -> 달력 전달 셋팅을 위한 요일을 구하기 위해
             const thisFirst = new Date(curr_date.getFullYear(),curr_date.getMonth(),1);
-            cg(thisFirst);
+            // cg(thisFirst);
 
             // (1-3) 현월 마지막 날짜(옵션: 0)
             // -> 달력 현월 처음 날짜 표시
             // -> 달력 현월 셋팅을 위한 요일을 구하기 위해
             const thisLast = new Date(curr_date.getFullYear(),curr_date.getMonth()+1,0);
-            cg(thisLast);
+            // cg(thisLast);
 
             // (1-4) 년 표시
             yearTit.innerHTML = curr_date.getFullYear();
@@ -77,10 +77,11 @@ function MakeDallyeok(){
                 for(let i = 0; i < thisFirst.getDay(); i++){
                     // cg(i);
 
+                    // 전월 클래스: ".bm"
                     // 반복횟수만큼 배열 앞쪽에 추가함
                     // 전월 마지막 날짜부터 -> prevLast.getDate()
                     dset.unshift(`
-                    <span style="color:#ccc" class="bdt">
+                    <span style="color:#ccc" class="bm">
                         ${prevLast.getDate()-i}
                     </span>
                     `);
@@ -104,10 +105,11 @@ function MakeDallyeok(){
         // cg(dset);
 
         // (3) 익월 남는 칸 삽입
+        // 익월 클래스: ".am"
         // 반복문 구성: 익월 1부터 2주 분량
         for(let i = 1; i < 14; i++){
             dset.push(`
-                <span style="color:#ccc" class="bdt">
+                <span style="color:#ccc" class="am">
                     ${i}
                 </span>
             `);
@@ -163,10 +165,64 @@ function MakeDallyeok(){
                 // 일
                 let cdate = ele.innerText;
 
+                // 전월, 익월은 span 태그가 있으므로 구분할 것
+                let isSpan = ele.querySelector("span");
+                cg(isSpan);
+                // 없을 경우 null값이 나옴 -> if문에서 false처리됨
+
+                if(isSpan){ // null이 아닐 때만 true 처리되어 들어감
+                    
+                    let cls = isSpan.classList.contains("bm");
+                    cg(cls);
+
+                    if(cls){
+
+                        // 월 -1
+                        // Number(문자형숫자) -> 숫자형으로 변환
+                        // -, *, / 연산은 브라우저가 자동으로 변환해줌
+                        // 그러나 +연산은 문자도 더하는 게 가능하므로
+                        // 이것을 강제로 형 변환시켜야 안전함
+                        cmonth = Number(cmonth)-1;
+                        cg("전월: "+cmonth);
+
+                        // 만약 1월이면 전월이 0이 아니므로 12로 처리해야 함
+                        if(cmonth===0){
+
+                            // 월 설정
+                            cmonth = 12;
+
+                            // 전년도 설정(-1)
+                            cyear = Number(cyear)-1;
+                            
+                        }; // if //
+                        
+                    } // 전월 if //
+                    
+                    else{
+
+                        // 월 +1
+                        cmonth = Number(cmonth)+1;
+                        cg("익월: "+cmonth);
+
+                        // 만약 12월이면 익월이 13이 아니므로 1로 처리해야 함
+                        if(cmonth===13){
+
+                            // 월 설정
+                            cmonth = 1;
+
+                            // 다음년도 설정(+1)
+                            cyear = Number(cyear)+1;
+                            
+                        }; // if //
+                        
+                    } // 익월 else - 제 3의 경우가 있을 경우는 else X //
+                    
+                } // if //
+
                 // 최종 날짜 데이터
                 let comp = cyear + "-" + addZero(cmonth) + "-" + addZero(cdate);
 
-                cg(comp);
+                // cg(comp);
 
             }) // click//
 
