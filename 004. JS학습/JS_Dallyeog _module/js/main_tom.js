@@ -31,10 +31,51 @@ $(".myipt").click(function(){
     $(this).next().find(".calender").show();
 }); /////// click /////////////
 
-$(".calender").click(function(){
-    let val = $(this).find(".dinfo").val();
-    // val() 메서드 - input의 value값을 읽어옴
-    $(this).parent().prev().val(val);
-    // val(값) -> input에 내용넣기
-    // $(this).hide();
+// on("이벤트명",함수) -> 이멘트명을 띄어쓰기로 여러 개 셋팅 가능함
+// -> addEventListener에서는 원래 하나씩만 셋팅해야 하는데 제이쿼리가 해줌
+$(".calender").click("mouseenter click",function(){
+    console.log("이벤트");
+    // 하위 날짜 박스인 .date를 click 설정한다.
+    $(this).find(".date").click(function(){
+    // 일반 익명함수일 때 this -> .date
+    // 이벤트를 싸고 있는 이벤트 대상을 this로 만들고 싶을 때
+    // -> 화살표함수 ()=>{} 사용
+    // -> 사고 있는 .calender가 this임
+    console.log(this);
+    // this -> .calender
+
+        let val = $(this).find(".dinfo").val();
+        // val() 메서드 - input의 value값을 읽어옴
+        $(this).parent().prev().val(val);
+        // val(값) -> input에 내용넣기
+        $(this).hide();
+
+    // 두 번째 캘린더에서 날짜를 선택하면 첫 번째와 두 번째 선택 날짜의 차이를 계산하여 .res에 표시한다.
+
+    // 두 번째 캘린더인지 구분하기: 캘린더 부모박스가 .calbx2
+    // $(선택자).is(요소): 클래스 등 어떤 요소인지 구분해줌(true/false)
+    console.log("두 번째 캘린더인가?",$(this).parent().is(".calbx2"))
+
+    // 조건: 첫 번째 입력창이 비어있는가? (비어있지 않아야 함)
+    console.log("첫 번째 입력창이 비어있는가?",$().val()==="");
+
+    // 두 번째 캘린더이고 첫 번째 입력창이 비어있지 않으면 실행
+    if($(this).parent().is(".calbx2") && $("#myinput").val()!==""){
+        
+        // 날짜 차이 계산하기 함수 호출
+        // 대상: #myinput, #myinput2
+        let val1 = $("#myinput").val()
+        let val2 = $("#myinput2").val()
+        // 함수: 생성자 함수 안에 있음
+        // new 키워드로 인스턴스를 생성한 변수 하위로 접근 가능
+        // 이 함수는 결과를 리턴하므로 변수에 담는다.
+        let res = calbx2.getDateDiff(va11,val2);
+        
+        // 원하는 곳에 출력하기: .res
+        $(".res").text(res);
+
+    } // if //
+    
+
+    }); // click //
 });

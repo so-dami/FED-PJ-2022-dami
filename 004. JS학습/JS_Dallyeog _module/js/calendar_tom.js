@@ -239,14 +239,21 @@ function MakeDallyeok(sel) { // sel - 달력넣을 요소 선택자
 
     } //////////// insertHcode 함수 ///////////
 
+    // (5) 날짜 기간 계산하기 함수
+    this.getDateDiff = (dt1, dt2) => {
+        const date1 = new Date(dt1);
+        const date2 = new Date(dt2);
+        
+        const diffDate = date1.getTime() - date2.getTime();
+        return Math.abs(diffDate / (1000 * 60 * 60 * 24)); 
+        // 밀리세컨 * 초 * 분 * 시 = 일
+    } // getDateDiff //
 
-
-
-    // 버튼에 클릭설정하기 ///
+    // 버튼에 클릭 설정하기 ///
     qs(sel+" .btnL").onclick = this.prevCal;
     qs(sel+" .btnR").onclick = this.nextCal;
 } //////////// MakeDallyeok //////////////
 
 // 달력 생성자함수 내보내기 //////
 export default MakeDallyeok;
-// default 는 이름변경없는 단 하나의 모듈을 내보낼때 사용함
+// default 는 이름변경없는 단 하나의 모듈을 내보낼 때 사용함
