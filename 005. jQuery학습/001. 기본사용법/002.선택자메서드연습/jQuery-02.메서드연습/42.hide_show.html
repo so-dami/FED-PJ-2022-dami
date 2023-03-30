@@ -33,33 +33,74 @@
             3. 함수: 콜백함수로 애니메이션 실행 후 실행할 코드를 설정해주는 함수다.
         */
 
-		//미션: #hide 버튼을 클릭하면 이미지가 1초동안 사라지고 사라진 후 이미지를 변경한다.
-		//#show버튼을 누르면 이미지가 1초동안  나타난다.
+		// 미션: #hide 버튼을 클릭하면 이미지가 1초동안 사라지고 사라진 후 이미지를 변경한다.
+		// #show버튼을 누르면 이미지가 1초동안 나타난다.
+
+		// 이미지 번호 변수 설정
+		let inum = 1;
+
+		// 이미지 변경 함수 설정
+		function chgImg(){
+
+			inum++; // 1씩 증가
+			if(inum===4) inum=1; // 한계값 설정
+
+			// 속성 변경: 이미지 변경
+			$(".myimg").attr("src",`sample${inum}.jpg`);
+		} // chgImg //
 		
-		
-		
-		
+		// #hide 버튼 클릭
+		$("#hide").on("click",function(){
+
+			// 이미지가 1초 동안 사라지고
+			$(".myimg").hide(1000,chgImg);
+			// -> 콜백 함수로 외부 함수를 호출함: chgImg
+			
+		}); // #hide click //
+
+		// #show 버튼 클릭
+		$("#show").on("click",function(){
+
+			// 이미지가 1초 동안 나타남
+			$(".myimg").show(1000);
+			
+		}); // #show click //
+
+		// #toggle 버튼 클릭
+		$("#toggle").on("click",function(){
+
+			// 이미지가 1초 동안 나타남
+			$(".myimg").toggle(1000,function(){
+
+				// 이미지의 display 상태값 확인
+				// -> css("속성명"): 해당 속성값을 가져옴
+				let isD = $(this).css("display");
+				console.log(isD);
+
+				// display: none 상태이면 이미지 변경하기
+				if(isD==="none") chgImg();
+
+			}); // toggle //
+			
+		}); // #toggle click //
+			
 	}); // jQB //
 </script>
 	
 	
 <style>
-
 </style>
 </head>
+
 <body>
 
-
-<img src="sample1.jpg" alt="" width="300" height="307"/><br/>
-<button id ="hide">hide()</button>
-<button id ="show">show()</button>
-<button id ="toggle">toggle()</button>
+	<img class="myimg" src="sample1.jpg" alt="" width="300" height="307"><br>
+	<button id ="hide">hide🧡</button>
+	<button id ="show">show💙</button>
+	<button id ="toggle">toggle💛</button>
 
 <!---------- jQuery code Start ---------->
 <script>
-
-
-
 </script>
 
 </body>
