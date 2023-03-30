@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>유형4. Click 이벤트 JS2 - 세로네비 서브별 드롭다운 세로형</title>
-
+  <title>유형4. 세로네비 서브별 드롭다운 세로형 - 클릭이벤트JS2</title>
   <style>
     /* 초기화 */
     html,
@@ -106,7 +105,8 @@
       transition: .3s;
     }
 
-    /* 부모li에 마우스 오버시 상위메뉴 a요소 변경 + 클래스 .on 일때 */
+    /* 부모li에 마우스 오버시 상위메뉴 a요소 변경 
+    + 클래스 on일때 */
     .gnb>ul>li:hover>a,
     .gnb>ul>li.on>a {
       color: lightskyblue;
@@ -135,7 +135,8 @@
       transition: width .2s ease-out;
     }
 
-    /* 상위메뉴 오버시 가상요소 밑줄애니 + 클래스 .on 일때 */
+    /* 상위메뉴 오버시 가상요소 밑줄애니
+    + 클래스 on일때 */
     .gnb>ul>li:hover>a>span::after,
     .gnb>ul>li.on>a>span::after {
       width: 100%;
@@ -239,190 +240,203 @@
       */
     }
   </style>
-  
+  <script src=""></script>
   <script>
-    // 로드 구역
+    //// 로드구역 ///////////////
     window.addEventListener("DOMContentLoaded",()=>{
-      console.log("complete");
+      console.log("로딩완료!");
 
-      /*******************************************  
-        [ 구현 내용 ]
-        메뉴 li클릭 시 하위 메뉴(.smenu) 열기/닫기
-      *******************************************/
-      // 1. 이벤트 대상: .gnb>ul>li>a
-      const gnb = document.querySelectorAll(".gnb>ul>li>:has(.smenu)>a");
-      // ★[>a]
-      
-      /*
-        ★★★★★ 미션 ★★★★★
+      // 구현내용: 메뉴 li클릭시 하위메뉴(.smenu) 열기/닫기
+      // 1. 클릭이벤트 대상선정: .gnb>ul>li>a
 
-        -> 대상을 li 하위 직계 상단 메뉴인 a요소로 선정한 경우
-        코드 변경하기(기존 기능과 같게 하기)
+      // ★ 미션 :★★★★★★★★★★★★★★★★
+      // -> 대상을 li하위 직계 상단메뉴인 a요소로 선정한경우
+      // 코드 변경하기(기존기능과 같게한다!) 
+      // -> ★[...] 설명한곳이 변경된곳!!!
 
-        [ 구현내용 중 부모로 올라가는 방법! ]
-        -> 선택요소.parentElement
-        [ 구현내용 중 다음 형제요소 선택 방법! ]
-        -> 선택요소.nextElementSibling
-        [ 구현내용 중 이전 형제요소 선택 방법! ]
-        -> 선택요소.previousElementSibling
+      // [구현내용중 부모로 올라가는 방법!]
+      // -> 선택요소.parentElement
+      // [구현내용중 다음형제요소 선택 방법!]
+      // -> 선택요소.nextElementSibling
+      // [구현내용중 이전형제요소 선택 방법!]
+      // -> 선택요소.previousElementSibling
 
-        ★[설명]: 변경된 곳
 
-      */
-
-        /***************************************************
-         구문
-          [ css 선택자 중 하위 요소를 포함하는 요소 선택하기]
-          - 선택자: has(하위/형제선택자)
-          ex) ul>li:has(.my) -> class="my"가 자손으로 있는 li
-              ul>li:has(>.my) -> class="my"가 직계 자식으로 있는 li
-              h1:has(+div) -> h1요소 바로 뒤에 div가 있는 h1
-        ***************************************************/
-
+      const gnb = document.querySelectorAll(".gnb>ul>li:has(.smenu)>a");
+      /******************************************** 
+        [css 선택자 중 하위요소를 포함하는 요소 선택하기]
+        ((구문:))
+        선택자:has(하위/형제선택자)
+        예)
+          ul>li:has(.my) 
+            -> 클래스my가 자손으로 있는 li
+          ul>li:has(>.my) 
+            -> 클래스my가 직계자식으로 있는 li
+          h1:has(+div) 
+            -> h1요소 바로 뒤에 div가 있는 h1
+      ********************************************/
       console.log(gnb);
 
-      // 2. 이벤트 셋팅
+      // 2. 이벤트 셋팅하기 //////////////////
+
       
       // forEach((요소,순번)=>{코드})
-      gnb.forEach((x,idx)=>{ // x = li요소, idx = 요소 순번
+      gnb.forEach((x,idx)=>{ // x는 li요소 / idx는 요소순번
         x.onclick = () => {
-          // 초기화 함수 호출
-            // idx(순번)을 보내는 이유?
-            // -> 자신의 순번을 빼고 초기화하기 위해서
+          console.log(x);
+          // (00) 초기화함수 호출
+          // idx(순번)을 보내는 이유는?
+          // 자신의 순번을 빼고 초기화하기 위하여~!!!
           initMenu(idx);
 
-          // 2-0. ★ [ 다음 요소인 .smenu ]
+          // (0) ★[다음요소인 .smenu]
           let tg = x.nextElementSibling;
 
-          // 2-1. 하위 .smenu ol의 높이값 구하기
+          // (1) 하위 .smenu ol의 높이값
           let hv = tg.querySelector("ol").clientHeight;
-            // clientHeight: 패딩값을 포함한 요소의 높이값
-            console.log("ol 높이:",hv);
+          // clientHeight -> 패딩을 포함한 요소의 높이값
+          console.log("ol높이값:",hv);
 
-          // 2-2. hv값 전환하기
-          console.log("tg 높이:",tg.clientHeight);
+          // hv값 전환하기
+          console.log("타겟높이값:",tg.clientHeight);
 
-          // 2-3. 타겟의 높이값이 0이 아니면 0으로 hv값 변경하기
+          // (2)타겟의 높이값이 0이 아니면 0으로 hv값 변경
           if(tg.clientHeight!=0) hv = 0;
-            // tg의 처음 높이는 0
-            // 클릭 시 내부의 ol 높이값과 같은 크기로 tg의 높이값을 주어 보이게 함
-            // 만약 높이값이 들어간 경우라면 높이값이 0이 아님
-            // 그러므로 0이 아니면 0으로 만들어줌
-            // 그래서 토글 기능(두 가지 기능을 번갈아 적용)이 됨
+          // 타겟의 처음 높이는 0이다
+          // 클릭시 내부의 ol높이값과 같은 크기로
+          // 타겟의 높이값을 주어 보이게한다!
+          // 만약 높이값이 들어간 경우라면 
+          // 높이값이 0이 아니다!
+          // 그러므로 0이 아니면 0으로 만들어준다!
+          // 그래서 토글기능(2가지를 번갈아적용)이 된다!
 
-          // 2-4. 대상에 적용하기: tg
+          // (3) 대상에 적용하기 : tg
           tg.style.height = hv + "px";
 
-          // 2-5. 상위 메뉴에 오버시와 같은 디자인 적용: .on 넣기/빼기
-          // ★ [ x는 a요소이므로 부모인 li를 선택함 ]
+          // (4) 상위메뉴에 오버시와 
+          // 같은 디자인적용: 클래스 on넣기/빼기
+          // ★[x는 a요소 이므로 부모인 li를 선택함!]
           x.parentElement.classList.toggle("on");
 
-        }; // click //
-      }); // forEach //
+        }; //////// click ///////
 
-      // .smenu 클릭시 상위 li로 이벤트 버블링 막기
+      }); /////////// forEach ////////////
+
+      // .smenu 클릭시 상위 li로 이벤트 버블링 막기!
       const smenu = document.querySelectorAll(".smenu");
       for(let x of smenu) {
         x.addEventListener("click",e=>e.stopPropagation());
-        // -> stopPropagation(); 이벤트 버블링을 막는 event 객체의 메서드
-      } // for of //
+        // stopPropagation() 
+        // -> 이벤트 버블링을 막는 event객체의 메서드
+      } ////////// for of /////////////
 
-      // a요소 클릭시 기본 기능 막기
+      // a요소 클릭시 기본기능 막기!
       const atag = document.querySelectorAll("a");
       for(let x of atag) {
         x.addEventListener("click",e=>e.preventDefault());
-        // -> preventDefault(); 요소의 기본 기능을 막는 event 객체의 메서드
-        // a요소의 링크 이동 기능을 막아줌
-      } // for of //
+        // preventDefault() 
+        // -> 요소의 기본 기능을 막는다!
+        // a요소는 링크 이동기능을 막아준다
+      } ////////// for of /////////////
 
-      /*******************************************  
-        [ 메뉴 초기화 함수 ] 처음 상태로 돌리기
-      *******************************************/
-     // 참고: function initMenu (seq=1000){};
-     // -> 파라미터 변수에 어떤 값을 할당해 놓으면 함수 호출 시 아무 값도 입력하지 않을 때 이 값을 넣고 함수 내부로 들어감
-      function initMenu (seq=1000){ // seq - 호출한 순번 
-        // 호출 확인
-        console.log("초기화!",seq);
 
-        // 1. 모든 서브메뉴(.smenu) 높이값 0 만들기
-          // 1-1. 대상: .smenu -> smenu 변수
-          smenu.forEach((ele,idx)=>{
-            // 호출한 순번과 같으면 넘어가기
-            if(idx===seq) return;
-            console.log("smenu 순번:",idx);
+      /********************************** 
+        메뉴 초기화 함수 : 처음상태로 돌림
+      **********************************/
+     // 참고: function initMenu (seq=1000){}
+     // 파라미터 변수에 어떤값을 할당해 놓으면
+     // 함수호출시 아무값도 입력하지 않을때 이값을
+     // 넣고 함수 내부로 들어간다!
+     function initMenu (seq=1000){ // seq - 호출한 순번
+        // 호출확인!
+        console.log("왕빛나!",seq);
 
-            // .smenu 높이값 0 만들기
-            ele.style.height = 0;
-          }); // forEach //
+        // 1. 모든 서브메뉴 높이값 0만들기
+        // 대상: .smenu -> smenu변수
+        smenu.forEach((ele,idx)=>{
+          // 호출한 순번과 같으면 넘어가!
+          if(idx===seq) return;
+          console.log("smenu순번:",idx);
 
-        // 2. 서브메뉴가 있는 li의 클래스 "on" 지우기
-          // 2-1. 대상: .gnb>ul>li:has(.smenu) -> gnb 변수
-          // ★ [ -> gnb변수의 부모요소: ele.parentElement ]
-          gnb.forEach((ele,idx)=>{
-            // 2-1-1. 호출한 순번과 같으면 넘어가기
-            if(idx===seq) return;
-            console.log("li 순번:",idx);
+          // 높이값 0만들기
+          ele.style.height = 0;
+        }); //////// forEach ////////
 
-            // 2-1-2. 클래스 on 빼기
-            // ★ [ -> gnb변수의 부모요소: ele.parentElement ]
-            ele.parentElement.classList.remove("on");
-          }); // forEach //
+        // 2. 서브메뉴있는 li의 클래스 "on"지우기
+        // 대상: .gnb>ul>li:has(.smenu) 
+        // ★[-> gnb변수의 부모요소 : ele.parentElement]
+        gnb.forEach((ele,idx)=>{
+          // 호출한 순번과 같으면 넘어가!
+          if(idx===seq) return;
+          console.log("li순번:",idx);
 
-        /*************************************************************  
-          [ forEach 메서드에서 중간 뛰어넘기 ]
-          for문과 같은 제어문이 아니므로 continue 키워드는 사용할 수 없음
-          그러나 함수 구역이므로 return 키워드를 사용하면 해당 순번을
-          빠져나가서 제외되고 나머지 순번 순회는 계속됨
-        *************************************************************/
+          // 클래스 on 빼기 : 
+          // ★[gnb변수의 부모요소 : ele.parentElement]
+          ele.parentElement.classList.remove("on");
+        }); /////// forEach //////////
 
-      }; // initMenu 함수 //
+        /************************************ 
+          [ forEach메서드에서 중간뛰어넘기 ]
+          for문과 같은 제어문이 아니므로
+          continue 키워드는 사용할 수 없다!
+          그런데 함수구역이므로 return키워드를
+          사용하면 해당 순번을 빠져나가서
+          제외되고 나머지 순번순회는 계속된다!
+        ************************************/
 
-      // gnb 요소
+     } ///////////// initMenu함수 /////////
+
+     // gnb 요소
      const gnbBx = document.querySelector(".gnb");
 
-      // timeout 변수
-      let autoTgnb;
+     // 타임아웃변수
+     let autoTgnb;
 
-      // gnb 마우스 아웃시 자동초기화
-      gnbBx.addEventListener("mouseleave",()=>{
-        console.log("아웃!");
-          autoTgnb = setTimeout(() => {
-            initMenu();
-            // 보내는값 없이 호출시 모두 초기화한다!
-          }, 500);
-      }); ////////// mouseout ///////////////
+     //// gnb 마우스 아웃시 자동초기화 /////
+     gnbBx.addEventListener("mouseleave",()=>{
+       console.log("아웃~!!");
+        autoTgnb = setTimeout(() => {
+          initMenu();
+          // 보내는값 없이 호출시 모두 초기화한다!
+        }, 500);
+     }); ////////// mouseout ///////////////
 
-      // gnb 마우스 오버시 타임아웃 지우기 -> 실행 쓰나미 방지
-      gnbBx.addEventListener("mouseenter",()=>{
-        console.log("오버!");
-          // 타임아웃 지우기
-          clearTimeout(autoTgnb);
-      }); ////////// mouseout ///////////////
+     //// gnb 마우스 오버시 타임아웃 지우기!(실행쓰나미 방지!) /////
+     gnbBx.addEventListener("mouseenter",()=>{
+       console.log("오버~!!");
+        // 타임아웃 지우기
+        clearTimeout(autoTgnb);
+     }); ////////// mouseout ///////////////
 
-      /****************************************************************
-      
-        {mouseover / mouseout}
-        -> mousever, mouseout은 하위 요소에 발생한 같은 이벤트가 버블링됨
-                  VS
+     /************************************** 
+        {mouseover / mouseout} 
+                  VS 
         {mouseenter / mouseleave}
-        -> mouseenter, mouseleave는 하위 요소에 발생한 같은 이벤트가 버블링X
 
-        왜???
-        이벤트가 요소의 경계선을 기준한 것이므로 하위 요소의 경계선과 불일치하므로
-        이벤트 버블링이 겹치지지 않는 것
+        -> mouseover, mouseout은 하위 요소에
+        발생한 같은 이벤트가 버블링된다!
+        반면
+        -> mouseenter, mouseleave는 하위 요소에
+        발생한 같은 이벤트가 버블링되지 않는다!
 
-        주의사항
-        이벤트 버블링이 필요한 경우는 반드시 mouseover, mouseout을 사용할 것
-      
-      ****************************************************************/
+        왜?
+        이벤트가 요소의 경계선을 기준한 것이므로
+        하위 요소의 경계선과 불일치 하므로
+        이벤트 버블링이 겹쳐지지 않는것이다!
+
+        -> 주의사항: 이벤트 버블링이 필요한경우는
+        반드시 mouseover/mouseout을 사용하자!
+
+     **************************************/
 
 
-    }); // 로드 구역
+
+    }); /////////// 로드구역 /////////////////
   </script>
 </head>
 
 <body>
-  <h1>유형4. Click 이벤트 JS2 - 세로네비 서브별 드롭다운 세로형</h1>
+  <h1>유형4. 세로네비 서브별 드롭다운 세로형 - 클릭이벤트JS 2</h1>
   <div class="wrap">
       <!-- GNB 네비게이션 -->
       <nav class="gnb">

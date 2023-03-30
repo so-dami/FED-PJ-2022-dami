@@ -23,9 +23,8 @@
     /* 부모자격 - .smenu */
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #222;
-    z-index: 1;
+    z-index: 999;
 }
-
 /* .top{
     min-height: 350px;
 } */
@@ -55,6 +54,7 @@
 }
 .gnb>ul{
     display: flex;
+    justify-content: center;
     /* gap: 0 40px; */
 }
 /* 상위메뉴 a요소 */
@@ -68,7 +68,7 @@
 }
 /* 상위메뉴 a요소 오버시 */
 .gnb>ul>li:hover>a{
-    background-image: linear-gradient(to right, hotpink, yellow);
+    background-image: linear-gradient(to right, red, yellow);
     /* 그라데이션 배경색을 글자영역에만 보이게 하기
     -webkit-접두어를 사용한다!
     이는 아직 공식속성에 포함되지 않음! */
