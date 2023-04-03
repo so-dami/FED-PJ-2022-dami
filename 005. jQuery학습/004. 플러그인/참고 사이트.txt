@@ -1,0 +1,2 @@
+플러그인 설명 사이트
+https://github.com/jquery-backstretch/jquery-backstretch
