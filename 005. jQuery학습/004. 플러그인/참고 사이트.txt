@@ -1,2 +1,13 @@
 플러그인 설명 사이트
+https://www.jquery-backstretch.com/
 https://github.com/jquery-backstretch/jquery-backstretch
+
+스키터
+https://skitter-slider.net/
+
+스와이퍼
+https://swiperjs.com/
+
+https://jaukia.github.io/zoomooz/
+https://lokeshdhakar.com/projects/lightbox2/
+
