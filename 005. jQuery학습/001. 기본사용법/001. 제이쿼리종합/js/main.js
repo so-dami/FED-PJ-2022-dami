@@ -95,7 +95,7 @@ $(() => { // jQB //
         // (2) 메시지 없애기: .msg -> msg 변수
         msg.fadeOut(500);
 
-        // (3) 미니언즈 이동하기
+        // (3) 미니언즈 이동할 위치값 구하기
         // 위치: li 8번방 -> bd 변수에 있는 모든 li 중 8번
         let room = bd.eq(8);
         // console.log(room);
@@ -109,10 +109,33 @@ $(() => { // jQB //
         // -> 하위 속성: top, left, right, ...
         // ※ 참고: 500.필기모음 - 017, 018
 
-        // left 위치값
-        pos[1] = room.offset().left;
+        // left 위치값: 8번 방의 중앙으로 이동
+        // -> left 위치값 + li 가로 크기의 1/2 - 미니언즈 가로 크기의 1/2
 
+        pos[1] = room.offset().left + room.width()/2 - mi.width()/2;
         console.log(room,pos)
+
+        // jQuery 가로, 세로 크기 정보 메서드
+        // -> width(), height()
+
+        // (4) 미니언즈 이동하기
+        // 대상: .mi -> mi 변수
+        mi.animate({
+            top: pos[0]+"px",
+            left: pos[1]+"px"
+        },800,"easeOutElastic",()=>{ // 콜백함수
+        // 화살표 함수 ()=>{} 쓰고 this 하면 원래 대상을 싸고 있는 그 위에 있는 대상이 선택됨
+        // ex. function(){}의 this는 mi, 화살표함수를 사용하면 this는 btns.first()
+
+            // (5) 메세지 넣기
+            msg.html("아늑하당ㅋ<br>이제 옆방으로 보내줘").fadeIn(500)
+
+            // (6) 다음 버튼 보이기
+            // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
+            console.log(this);
+            $(this).next().delay(800).slideDown(500);
+
+        }); // animate //
         
     }); // click //
 
