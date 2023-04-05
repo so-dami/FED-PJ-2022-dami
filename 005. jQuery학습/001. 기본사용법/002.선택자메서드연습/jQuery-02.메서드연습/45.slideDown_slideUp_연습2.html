@@ -110,11 +110,11 @@
                 // 제이쿼리 메서드: hover(함수1, 함수2)
                 $(".gnb>ul>li").hover(
                     function(){ // over
-                        $(this).find(".smenu").slideDown(500)
+                        $(this).find(".smenu").stop().slideDown(500)
                         // = $(".smenu",this)
                     },
                     function(){ // out
-                        $(this).find(".smenu").slideUp(500)
+                        $(this).find(".smenu").stop().slideUp(500)
                         // = $(".smenu",this)
                     }
                 )
