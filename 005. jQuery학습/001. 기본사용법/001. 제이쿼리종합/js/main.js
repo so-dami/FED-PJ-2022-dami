@@ -84,20 +84,22 @@ $(() => { // jQB //
     btns.hide().first().show();
 
     // 3. 공통 함수: actMini()
-    const actMini = () => {};
-
-    // 4. '들어가기' 버튼 클릭 시
-    btns.first().click(function(){
+        // (1) 전달변수 3개
+            // (1-1) ele - 클릭된 버튼 요소
+            // (1-2) seq - 이동할 li 방 순번
+            // (1-3) fn - 이동 후 실행할 콜백함수
+    
+    const actMini = (ele,seq,fn) => {
 
         // (1) 클릭된 버튼 사라지기
-        $(this).slideUp(500);
+        $(ele).slideUp(500);
 
         // (2) 메시지 없애기: .msg -> msg 변수
         msg.fadeOut(500);
 
         // (3) 미니언즈 이동할 위치값 구하기
-        // 위치: li 8번방 -> bd 변수에 있는 모든 li 중 8번
-        let room = bd.eq(8);
+        // 위치: li seq번방 -> bd 변수에 있는 모든 li 중 seq번
+        let room = bd.eq(seq);
         // console.log(room);
 
         // 위치값 배열변수
@@ -123,20 +125,62 @@ $(() => { // jQB //
         mi.animate({
             top: pos[0]+"px",
             left: pos[1]+"px"
-        },800,"easeOutElastic",()=>{ // 콜백함수
-        // 화살표 함수 ()=>{} 쓰고 this 하면 원래 대상을 싸고 있는 그 위에 있는 대상이 선택됨
-        // ex. function(){}의 this는 mi, 화살표함수를 사용하면 this는 btns.first()
+        },800,"easeOutElastic",
+        fn // -> 전달된 콜백함수
+        ); // animate //
 
+    }; // actMini 함수 //
+
+    // 4. '들어가기' 버튼 클릭 시
+    btns.first().click(function(){
+
+        // 이동 후 콜백함수
+        let fn = ()=>{ // 콜백함수
+            // 화살표 함수 ()=>{} 쓰고 this 하면 원래 대상을 싸고 있는 그 위에 있는 대상이 선택됨
+            // ex. function(){}의 this는 mi, 화살표함수를 사용하면 this는 btns.first()
+    
             // (5) 메세지 넣기
             msg.html("아늑하당ㅋ<br>이제 옆방으로 보내줘").fadeIn(500)
 
             // (6) 다음 버튼 보이기
             // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
-            console.log(this);
+            // console.log(this);
             $(this).next().delay(800).slideDown(500);
 
-        }); // animate //
+        }; // fn 함수 //
+
+        // 공통함수 호출: this는 클릭된 버튼
+        actMini(this,8,fn);
+
+    }) // '들어가기' 버튼 끝 //
+
+    // 5. '옆방으로' 버튼 클릭 시 9번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // (1) 좀비 나타나기 (1초 후)
+            bd.eq(9).find(".mz")
+            .delay(1000)
+            .fadeIn(500,()=>{ // 콜백함수
+
+                // (5) 메세지 넣기
+                msg.html("좀비다<br>피하자")
+                .css({left: "-100%"})
+                .fadeIn(500)
+
+                // (6) 다음 버튼 보이기
+                // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
+                // console.log(this);
+                $(this).next().delay(800).slideDown(500);
+
+            }); // fadeIn //
+            
+        }; // fn 함수 //
         
-    }); // click //
+        // 공통함수 호출: this는 클릭된 버튼
+        actMini(this,9,fn);
+
+    }) // '옆방으로' 버튼 끝 //
 
 }); // jQB //
