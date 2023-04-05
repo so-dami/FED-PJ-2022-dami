@@ -1,9 +1,9 @@
 // 미니언즈 좀비 탈출 애니 구현 JS - main.js
-$(() => {
-    /////////// jQB ///////////////////
 
-    // 로딩확인
-    console.log("로딩완료!");
+$(() => { // jQB //
+
+    // 로딩 확인
+    console.log("로딩 완료");
 
     /*********************************** 
         [ 요구사항정리 ]
@@ -26,5 +26,94 @@ $(() => {
 
     ***********************************/
 
-    
-}); /////////////// jQB ////////////////////
+    // 0. 변수에 할당
+        // (1) 미니언즈
+        const mi = $(".mi");
+
+        // (2) 건물
+        const bd = $(".building li");
+
+        // (3) 버튼들
+        const btns = $(".btns button");
+        
+        // (4) 메시지 박스
+        const msg = $(".msg");
+        
+        // (5) 좀비, 주사기 요소 변수 처리
+        let mz1 = `<img src="./images/mz1.png" alt="좀비1" class="mz">`;
+        let mz2 = `<img src="./images/mz2.png" alt="좀비2" class="mz">`;
+        let zom = `<img src="./images/zom.png" alt="좀비들" class="mz">`;
+        let inj = `<img src="./images/inj.png" alt="주사기" class="inj">`;
+
+        // console.log(mi,bd,btns,msg);
+        
+    // 1. 건물 각 방에 번호 넣기 + 좀비, 주사기 넣기
+    // 대상: .building li -> bd 변수
+
+        // (1) 제이쿼리 메서드
+            // (1-1) each((순서,요소)=>{})
+            // -> 요소의 개수만큼 순서대로 돌아줌
+            // (1-2) append(요소)
+            // -> 요소 내부에 자식요소 추가(이동)
+
+            bd.each((idx,ele)=>{
+                // console.log(idx,ele);
+
+                // 각 방에 숫자로 순번 넣기
+                $(ele).text(idx);
+                
+                // 좀비(mz1,mz2,zom), 주사기(inj) 넣기
+                switch(idx){
+                    case 9:
+                        $(ele).append(mz1); break;
+                    case 7:
+                        $(ele).append(mz2); break;
+                    case 1:
+                        $(ele).append(zom); break;
+                    case 2:
+                        $(ele).append(inj); break;
+                } // switch case //
+            }); // each //
+
+        // (2) 좀비는 모두 숨기기
+        $(".mz").hide();
+        // -> hide();에 시간 설정을 안 하면 display: none 처리함
+
+    // 2. 버튼 셋팅
+    // 대상: .btns button -> btns 변수
+    btns.hide().first().show();
+
+    // 3. 공통 함수: actMini()
+    const actMini = () => {};
+
+    // 4. '들어가기' 버튼 클릭 시
+    btns.first().click(function(){
+
+        // (1) 클릭된 버튼 사라지기
+        $(this).slideUp(500);
+
+        // (2) 메시지 없애기: .msg -> msg 변수
+        msg.fadeOut(500);
+
+        // (3) 미니언즈 이동하기
+        // 위치: li 8번방 -> bd 변수에 있는 모든 li 중 8번
+        let room = bd.eq(8);
+        // console.log(room);
+
+        // 위치값 배열변수
+        let pos = [];
+
+        // top 위치값
+        pos[0] = room.offset().top;
+        // jQuery 위치값 정보 메서드: offset()
+        // -> 하위 속성: top, left, right, ...
+        // ※ 참고: 500.필기모음 - 017, 018
+
+        // left 위치값
+        pos[1] = room.offset().left;
+
+        console.log(room,pos)
+        
+    }); // click //
+
+}); // jQB //
