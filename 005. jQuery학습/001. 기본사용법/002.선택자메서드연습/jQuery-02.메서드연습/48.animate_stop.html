@@ -4,97 +4,113 @@
 <meta charset="utf-8">
 <title>animate_stop() </title>
 
-<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../jquery-3.6.3.min.js"></script>
 	<script>
+
 		$(function(){/// jQB /////////////////////////
 			/// a 태그 위로 뛰기 막기
 			$("a").click(function(e){
-				e.preventDefault();//기본막기
+				e.preventDefault(); //기본 막기
 			});	//// click ///////////
 			
-		
 		/*
-		애니메이션 멈추기
-		stop() 메서드
-		
-		- 큐에 등록된 애니메이션을 실행 중간에 멈출때 사용하는 메서드
-		- 옵션: 
-			stop(큐비울래?, 끝으로 갈래?)
-			stop(true/false, true/false)
-	
-	*/
-			// 첫번째 버튼 클릭시 //////////////////
+			애니메이션 멈추기
+			stop() 메서드
+			
+			- 큐에 등록된 애니메이션을 실행 중간에 멈출때 사용하는 메서드
+			- 옵션: 
+				stop(큐비울래?, 끝으로 갈래?)
+				stop(true/false, true/false)
+		*/
+
+			// 첫 번째 버튼 클릭시 //////////////////
 			$("#startbtn1").click(function(){
+
 				$("#box1")
 				.animate({opacity: "0.1", left: "500px"}, 1000)
 				.animate({opacity: "0.4", top: "0", left: "0", height: "100px", width: "100px"}, 1000)
 				.slideUp(1000)
 				.slideDown(1000)
-				.animate({left: "0"}, 1000);			
-			});/// click ////////////////////////////
-			/// 첫번째 박스 멈춤
+				.animate({left: "0"}, 1000);	
+
+			}); /// click ////////////////////////////
+
+			/// 첫 번째 박스 멈춤
 			$("#stopbtn1").click(function(){
-				$("#box1").stop();
-				// 큐비울래? 응(true), 끝으로갈래? 응(true)
+
+				$("#box1").stop(true,true);
+				// 큐 비울래? 응(true), 끝으로 갈래? 응(true)
 				
-			});////////// click /////////////////////
+			}); ////////// click /////////////////////
 			
 			
 			
-			// 두번째 버튼 클릭시 //////////////////
+			// 두 번째 버튼 클릭시 //////////////////
 			$("#startbtn2").click(function(){
+
 				$("#box2")
 				.animate({opacity: "0.1", left: "500px"}, 1000)
 				.animate({opacity: "0.4", top: "0", left: "0", height: "100px", width: "100px"}, 1000)
 				.slideUp(1000)
 				.slideDown(1000)
-				.animate({left: "0"}, 1000);			
-			});/// click ////////////////////////////
-			/// 두번째 박스 멈춤
+				.animate({left: "0"}, 1000);	
+
+			}); /// click ////////////////////////////
+
+			/// 두 번째 박스 멈춤
 			$("#stopbtn2").click(function(){
-				$("#box2").stop();
-				// 큐비울래? 응(true), 
-				// 끝으로갈래? 아니(false)
+
+				$("#box2").stop(true,false);
+				// 큐 비울래? 응(true), 
+				// 끝으로 갈래? 아니(false)
 				
-			});////////// click /////////////////////
+			}); ////////// click /////////////////////
 			
-			// 세번째 버튼 클릭시 //////////////////
+			// 세 번째 버튼 클릭시 //////////////////
 			$("#startbtn3").click(function(){
+
 				$("#box3")
 				.animate({opacity: "0.1", left: "500px"}, 1000)
 				.animate({opacity: "0.4", top: "0", left: "0", height: "100px", width: "100px"}, 1000)
 				.slideUp(1000)
 				.slideDown(1000)
-				.animate({left: "0"}, 1000);			
-			});/// click ////////////////////////////
-			/// 세번째 박스 멈춤
+				.animate({left: "0"}, 1000);	
+
+			}); /// click ////////////////////////////
+
+			/// 세 번째 박스 멈춤
 			$("#stopbtn3").click(function(){
-				$("#box3").stop();
-				// 큐비울래? 아니(fasle), 
-				// 끝으로갈래? 응(true)
+
+				$("#box3").stop(false,true);
+				// 큐 비울래? 아니(fasle), 
+				// 끝으로 갈래? 응(true)
 				
-			});////////// click /////////////////////
+			}); ////////// click /////////////////////
 			
 	
-			// 네번째 버튼 클릭시 //////////////////
+			// 네 번째 버튼 클릭시 //////////////////
 			$("#startbtn4").click(function(){
+
 				$("#box4")
 				.animate({opacity: "0.1", left: "500px"}, 1000)
 				.animate({opacity: "0.4", top: "0", left: "0", height: "100px", width: "100px"}, 1000)
 				.slideUp(1000)
 				.slideDown(1000)
-				.animate({left: "0"}, 1000);			
-			});/// click ////////////////////////////
-			/// 네번째 박스 멈춤
+				.animate({left: "0"}, 1000);	
+
+			}); /// click ////////////////////////////
+
+			/// 네 번째 박스 멈춤
 			$("#stopbtn4").click(function(){
-				$("#box4").stop();
-				// 큐비울래? 아니(fasle), 
-				// 끝으로갈래? 아니(false)
+
+				$("#box4").stop(false,false);
+				// 큐 비울래? 아니(fasle), 
+				// 끝으로 갈래? 아니(false)
 				
 				// stop() -> 옵션을 안쓰면 
 				// stop(false,false)가 기본임!
 				
-			});////////// click /////////////////////
+			}); ////////// click /////////////////////
 			
 	
 	
@@ -102,7 +118,7 @@
 			
 			
 			
-		});/// jQB ////////////////////////////////////
+		}); /// jQB ////////////////////////////////////
 		/////////////////////////////////////////////////
 		
 	
