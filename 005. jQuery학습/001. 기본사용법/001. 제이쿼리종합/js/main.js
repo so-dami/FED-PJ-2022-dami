@@ -66,7 +66,7 @@ $(() => { // jQB //
                 switch(idx){
                     case 9:
                         $(ele).append(mz1); break;
-                    case 7:
+                    case 647:
                         $(ele).append(mz2); break;
                     case 1:
                         $(ele).append(zom); break;
@@ -142,7 +142,7 @@ $(() => { // jQB //
             // (5) 메세지 넣기
             msg.html("아늑하당ㅋ<br>이제 옆방으로 보내줘").fadeIn(500)
 
-            // (6) 다음 버튼 보이기
+            // (4 다음 버튼 보이기
             // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
             // console.log(this);
             $(this).next().delay(800).slideDown(500);
@@ -182,5 +182,213 @@ $(() => { // jQB //
         actMini(this,9,fn);
 
     }) // '옆방으로' 버튼 끝 //
+
+    // 6. '위층으로 도망가' 버튼 클릭 시 7번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // 메시지 보이기
+            msg.html(`여긴 없겠지?`)
+            .fadeIn(400);
+
+            // 좀비 보이기
+            bd.eq(7).find(".mz")
+            .delay(1000).fadeIn(400,()=>{ // 좀비 등장 후 메시지와 버튼 생기기
+
+                // 메시지 변경하기
+                msg.html(`아 미친`);
+
+                // 다음 버튼 보이기
+                $(this).next().delay(800).slideDown(500);
+
+            }); // fadeIn //
+
+        }; // fn 함수 //
+        
+        // 공통함수 호출: 7번 방으로
+        actMini(this,7,fn);
+
+    }) // '위층으로 도망가' 버튼 끝 //
+
+    // 7. '다시 옆방으로' 버튼 클릭 시 6번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // 메시지 보이기
+            msg.html(`여긴 없겠지?`)
+            .fadeIn(200)
+            .delay(1000) // 1초 지연(애니 앞에만 적용)
+            .fadeIn(200,()=>{
+
+                // 두 번째 메시지
+                msg.html(`그래도 무서워<br>위로 갈래`);
+
+                // 다음 버튼 보이기
+                $(this).next().delay(800).slideDown(500);
+                
+            }); // fadeIn //
+
+        }; // fn 함수 //
+        
+        // 공통함수 호출: 6번 방으로
+        actMini(this,6,fn);
+
+    }) // '다시 옆방으로' 버튼 끝 //
+
+    // 8. '무서우니 위층으로' 버튼 클릭 시 4번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // 무서워 메시지
+            msg.html(`무`)
+            .fadeIn(200)
+            .delay(500)
+            .fadeIn(200,()=>msg.html(`무.`))
+            .delay(500)
+            .fadeIn(200,()=>msg.html(`무.서`))
+            .delay(500)
+            .fadeIn(200,()=>msg.html(`무.서.`))
+            .delay(500)
+            .fadeIn(200,()=>msg.html(`무.서.워`))
+            .delay(500)
+            .fadeIn(200,()=>msg.html(`무.서.워.`))
+            .delay(500)
+            .fadeIn(200,()=>msg.html(`무.서.워..`))
+            .delay(500)
+            .fadeIn(200,()=>msg.html(`무.서.워...`))
+            .delay(500)
+            .fadeIn(200,()=>{
+                // 7번 방 좀비가
+                bd.eq(7).find(".mz")
+                .animate({
+                    // 위층으로 li 높이만큼 올라와서
+                    bottom: bd.eq(7).height()+"px"
+                },500,"easeOutElastic")
+                .delay(500)
+                .animate({
+                    // 달려들기
+                    // 왼쪽으로 li 넓이 * 1.2 만큼 이동
+                    right: bd.eq(7).width()*1.2+"px"
+                },1000,"easeOutBounce",()=>{
+                    // 좀비한테 물린 후 대사
+                    msg
+                    .css({left: "-100%"})
+                    .html(`아파<br>치료 주사방으로`)
+
+                    // 미니언즈 -> 좀비로 변경 (1초 후)
+                    setTimeout(() => {
+                        mi.find("img")
+                        .attr("src","images/mz1.png")
+                        // 이미지 흑백처리
+                        .css({filter: "grayscale(100%)"})
+                        
+                        // 다음 버튼 보이기
+                        $(this).next().delay(800).slideDown(500);
+                    }, 1000);
+                })
+            })
+        }; // fn 함수 //
+        
+        // 공통함수 호출: 4번 방으로
+        actMini(this,4,fn);
+
+    }) // '무서우니 위층으로' 버튼 끝 //
+
+    // 9. '치료 주사방으로' 버튼 클릭 시 2번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // 주사기 돌리기
+            // -> animate는 transform 적용 안됨
+            $(".inj").css({
+                // 반시계 방향
+                transform: "rotate(-150deg)",
+                // 트랜지션: 속시이지
+                // 0.5초 후 0.5초간 애니
+                transition: ".5s .5s",
+                // 미니언즈 보다 위
+                zIndex: "9999"
+            }); // css //
+
+            // 1초 후 미니언즈 부활
+            setTimeout(() => {
+                // 이미지 변경
+                mi.find("img")
+                .attr("src","images/m2.png")
+                // 흑백에서 컬러로 변경
+                .css({filter: "grayscale(0)"})
+
+                // 대사
+                msg.html(`이제 조금만 더<br>가면 탈출이야`)
+                .fadeIn(200);
+
+                // 주사기 없대기
+                $(".inj").hide();
+                
+                // 다음 버튼 보이기
+                $(this).next().delay(800).slideDown(500);
+
+            }, 1000);
+        }; // fn 함수 //
+        
+        // 공통함수 호출: 2번 방으로
+        actMini(this,2,fn);
+
+    }) // '치료 주사방으로' 버튼 끝 //
+
+    // 10. '3번 방으로' 버튼 클릭 시 3번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // (6) 다음 버튼 보이기
+                // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
+                // console.log(this);
+                $(this).next().delay(800).slideDown(500);
+            
+        }; // fn 함수 //
+        
+        // 공통함수 호출: 3번 방으로
+        actMini(this,3,fn);
+
+    }) // '3번 방으로' 버튼 끝 //
+
+    // 11. '1번 방으로' 버튼 클릭 시 1번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // (6) 다음 버튼 보이기
+                // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
+                // console.log(this);
+                $(this).next().delay(800).slideDown(500);
+            
+        }; // fn 함수 //
+        
+        // 공통함수 호출: 1번 방으로
+        actMini(this,1,fn);
+
+    }) // '1번 방으로' 버튼 끝 //
+
+    // 12. '헬기 호출' 버튼 클릭 시 0번 방으로 이동하기
+    .next()
+    .click(function(){
+        let fn = () => { // 콜백함수
+
+            // (6) 다음 버튼 보이기
+                // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
+                // console.log(this);
+                $(this).next().delay(800).slideDown(500);
+            
+        }; // fn 함수 //
+        
+        // 공통함수 호출
+        actMini(this,0,fn);
+
+    }) // '헬기 호출' 버튼 끝 //
 
 }); // jQB //
