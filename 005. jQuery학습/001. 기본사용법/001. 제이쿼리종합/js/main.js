@@ -82,6 +82,7 @@ $(() => { // jQB //
     // 2. 버튼 셋팅
     // 대상: .btns button -> btns 변수
     btns.hide().first().show();
+    // btns.hide().eq(5).show();
 
     // 3. 공통 함수: actMini()
         // (1) 전달변수 3개
@@ -326,13 +327,14 @@ $(() => { // jQB //
                 msg.html(`이제 조금만 더<br>가면 탈출이야`)
                 .fadeIn(200);
 
-                // 주사기 없대기
+                // 주사기 없애기
                 $(".inj").hide();
                 
                 // 다음 버튼 보이기
                 $(this).next().delay(800).slideDown(500);
 
             }, 1000);
+
         }; // fn 함수 //
         
         // 공통함수 호출: 2번 방으로
@@ -345,10 +347,11 @@ $(() => { // jQB //
     .click(function(){
         let fn = () => { // 콜백함수
 
-            // (6) 다음 버튼 보이기
-                // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
-                // console.log(this);
-                $(this).next().delay(800).slideDown(500);
+            // 대사
+            msg.html(`위층으로...`).fadeIn(300);
+
+            // 다음 버튼 보이기
+            $(this).next().delay(800).slideDown(500);
             
         }; // fn 함수 //
         
@@ -362,10 +365,11 @@ $(() => { // jQB //
     .click(function(){
         let fn = () => { // 콜백함수
 
-            // (6) 다음 버튼 보이기
-                // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
-                // console.log(this);
-                $(this).next().delay(800).slideDown(500);
+            // 대사
+            msg.html(`이제 곧 탈출이다...`).fadeIn(300);
+
+            // 다음 버튼 보이기
+            $(this).next().delay(800).slideDown(500);
             
         }; // fn 함수 //
         
@@ -379,16 +383,89 @@ $(() => { // jQB //
     .click(function(){
         let fn = () => { // 콜백함수
 
-            // (6) 다음 버튼 보이기
-                // this 키워드 -> 화살표함수를 사용하여 싸고있는 요소인 클릭된 버튼을 가리킴
-                // console.log(this);
-                $(this).next().delay(800).slideDown(500);
+            // 대사
+            msg.html(`도와줘`).fadeIn(300);
+
+            // 1번 방에 있는 단체 좀비들이 달려들음
+            bd.eq(1).find(".mz").fadeIn(300)
+            .animate({
+                right: bd.eq(1).width()+"px",
+            },3000,"easeInExpo")
+
+            // 헬기 등장
+            $(".heli")
+            .animate({
+                left: "20%" // 헬기가 미니언즈 위치까지 이동함
+            },4000,"easeOutBack",function(){ // 콜백함수
+                // 헬기 이동 완료 후 헬기 이미지 변경
+                // (this = .heli)
+                $(this).attr("src","images/heli12.png")
+
+                // 원본 미니언즈 없애기
+                mi.hide();
+            })
+            // 0.5초 쉬기
+            .delay(500)
+            .animate({
+                left: "70%"
+            },4000,"easeInOutCirc",function(){ // 애니 후 실행함수
+                // 끝에서 조정사 좀비로
+                $(this).attr("src","images/heli3.png")
+            })
+            .delay(300)
+            // 헬기 바깥으로(오른쪽) 천천히 밀기
+            .animate({
+                left: "100%"
+            },10000,"lienar",()=>{ // 헬기 나간 후
+
+                // 간판 떨어트리기
+
+                    // 1단계: 중간까지 떨어짐
+                    // -> 간판에 class "on" 주기
+                    let tit = $(".tit");
+                    tit.addClass("on");
+
+                    // 2단계: 맨 아래까지 떨어짐
+                    // -> 3초 후 간판에 class "on2" 추가
+                    setTimeout(() => {
+                        tit.addClass("on2")
+                    }, 3000);
+
+                // 건물 무너뜨리기
+                // -> 간판 떨어진 후 실행(6초 후)
+                setTimeout(() => {
+                    // parent() 부모요소인 .building
+                    bd.parent().addClass("on");
+                }, 6000);
+
+            }); // animate //
             
         }; // fn 함수 //
         
         // 공통함수 호출
         actMini(this,0,fn);
 
-    }) // '헬기 호출' 버튼 끝 //
+    }) // '헬기 호출' 버튼 끝 - 모든 버튼 마무리 //
+
+    // 간판에 마우스 오버/아웃 시 색상 변경
+    // hover(함수1, 함수2)
+    $(".tit").hover(
+
+        // 오버
+        function(){
+            $(this).css({
+                backgroundColor: "lightblue",
+                border: "5px solid blue"
+            }); // 오버 css //
+        },
+
+        // 아웃
+        function(){
+            $(this).css({
+                backgroundColor: "pink",
+                border: "5px solid red"
+            }); // 아웃 css //
+
+        }); // hover //
 
 }); // jQB //
