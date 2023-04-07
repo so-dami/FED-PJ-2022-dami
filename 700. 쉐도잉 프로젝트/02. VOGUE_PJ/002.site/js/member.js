@@ -37,7 +37,10 @@ $(()=>{
         let cv = $(this).val().trim();
         // cv는 current value 즉, 현재 값
         // val() 메서드 - input 요소의 값(value) 읽기
-        // trim() 메서드 - 앞뒤 공백 제거(공백만 있으면 공백 제거)
+        // trim() 메서드 - 앞뒤 공백제거(공백만 있으면 공백 제거)
+
+        // 서비스 차원으로 공백 제거된 데이터를 원래 입력창에 다시 넣어줌
+        $(this).val(cv); // val(값)
         
         console.log("blur",cid,cv);
         
