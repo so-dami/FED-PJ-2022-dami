@@ -151,12 +151,158 @@ $(()=>{
 
     }); // blur //
 
+    // 이메일 관련 대상 선정 //
+    // 이메일 앞주소
+    const eml1 = $("#email1");
+
+    // 이메일 뒷주소
+    const eml2 = $("#email2");
+    
+    // 이메일 선택박스
+    const seleml = $("seleml")
+
+    /* 
+        [ 선택박스 변경 시 이메일 검사하기 ]
+
+        검사 시점: 선택박스 변경할 때
+        이벤트: change -> 제이쿼리 change() 메서드
+
+        이벤트 대상: #seleml -> seleml 변수
+    */
+
+    seleml.change(function(){
+
+        // 1. 선택박스 변경된 값 읽어오기
+        let cv = $(this).val()
+        console.log("선택값:",cv);
+
+        // 2. 선택 옵션별 분기문
+        if(cv === "init"){
+            // "도메인 선택"
+            // 2-1. 메시지 출력
+            eml1.siblings(".msg")
+            .text("도메인 선택 필수")
+
+            // 2-2. 직접입력창 숨기기
+            eml2.fadeOut(300);
+
+        } // if - 도메인 선택 //
+        
+        else if(cv === "free"){
+            // "직접 입력"
+            // 2-3. 직접입력창 보이기
+            // val(값) -> 입력창에 값 넣기(빈 문자값은 기존값을 지워준다.)
+            eml2.fadeIn(300).val("")
+            // focus() -> 입력창에 포커스(커서 깜빡임)
+            .focus();
+
+            // 2-4. 기존 메시지 지우기
+            eml1.siblings(".msg").empty();
+
+        } // else if - 직접 입력 //
+
+        else{
+            // "이메일 주소"
+            // 2-5. 직접입력창 숨기기
+            eml2.fadeOut(300);
+
+            // 2-6. 이메일 전체 주소 조합하기
+            let comp = eml1.val() + "@" + cv;
+            // cv = select의 option의 value값
+
+            // 2-7. 이메일 유효성 검사 함수 호출
+            resEml(comp);
+            
+        } // else - 기타 이메일 주소 //
+        
+    }); // change //
+
+    /* 
+        [ 키보드 입력 시 이메일 체크하기 ]
+
+        키보드 관련 이벤트
+        - keypress, keyup, keydown
+        
+        1. keypress: 키가 눌렸을 때
+        2. keyup: 키가 눌렸다가 올라올 때
+        3. keydown: 키가 눌렺서 내려가 있을 때
+
+        -> 과연 글자가 입력되는 순간 어떤 키보드 이벤트를 적용해야 할까? keyup !!!
+
+        이벤트 대상: #email1, #email2
+        
+        ※ 모든 이벤트를 함수와 연결하는 jQuery 메서드는?
+        -> on(이벤트명,함수)
+    */
+    $("#email1,#email2").on("keypress",function(){
+
+        // 1. 현재 이벤트 대상 아이디 읽어오기
+        let cid = $(this).attr("id");
+
+        // 2. 현재 입력된 값 읽어오기
+        let cv = $(this).val();
+
+        console.log("입력아이디:",cid,"\n입력값:",cv);
+        // console.log에서 \n는 줄 바꾸기
+
+        // 3. 이메일 뒷주소 셋팅하기
+        let backeml = cid === "eamil1" ? seleml.val() : eml2.val();
+        // 현재 아이디가 "email1"인가? 맞으면 선택박스 : 아니면 두 번째 이메일뒷주소를 입력하는 중이므로 그것을 선택
+
+        // 변수 = 조건연산자
+        // 변수 = 조건식 ? 값1 : 값2
+
+        // 4. 만약 선택박스 값이 "free"(직접입력)이면 이메일 뒷주소로 변경함
+        if(seleml.val() === "free") backeml = eml2.val();
+
+        // 5. 이메일 전체주소 조합하기
+        let comp = eml1.val() + "@" + backeml;
+
+        // 6. 임일 유효성 검사함수 호출
+        resEml(comp);
+        
+    }); // keyup //
+
+    /* 
+        함수명: resEml (result Email)
+        기능: 이메일 검사결과 처리
+    */
+    const resEml = (comp) => {
+
+        // comp = 완성된 이메일 주소
+        console.log("이메일주소:",comp);
+        console.log("검사결과:",vReg(comp,"eml"));
+
+        // 이메일 정규식 검사에 따른 메시지
+        if(vReg(comp,"eml")){
+            eml1.siblings(".msg")
+            // 메시지 출력
+            .text("적합한 이메일 형식입니다.")
+            // 메시지 글자 녹색으로
+            .addClass("on");
+        } // if - 통과 //
+
+        else{
+            eml1.siblings(".msg")
+            // 메시지 출력
+            .text("부적합한 이메일 형식입니다.")
+            // 메시지 글자 빨간색으로
+            .removeClass("on");
+        } // else - 불통과 //
+
+    }; // resEml 함수 //
+    
 }); // jQB //
 
 /*////////////////////////////////////////////////////////
+
     함수명: vReg (validation with Regular Expression)
     기능: 값에 맞는 형식을 검사하여 리턴함
     (주의: 정규식을 따옴표로 싸지말아라!-싸면문자가됨!)
+
+    ※ w3c 참조
+    https://www.w3schools.com/jsref/jsref_obj_regexp.asp
+
 */ ////////////////////////////////////////////////////////
 function vReg(val, cid) {
     // val - 검사할값, cid - 처리구분아이디
