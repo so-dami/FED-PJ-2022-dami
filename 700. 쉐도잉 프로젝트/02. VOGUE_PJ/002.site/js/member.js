@@ -62,6 +62,10 @@ $(()=>{
         if(cv===""){
             $(this).siblings(".msg").text("필수 입력")
             .removeClass("on");
+
+            // 불통과
+            pass = false;
+
         } // if - 메시지 출력 //
 
         //////////////////////////////////////////////////
@@ -76,6 +80,9 @@ $(()=>{
 
                 // 통과X 일 때 메시지 - 빨간색 글자
                 $(this).siblings(".msg").text("영문자로 시작하는 6~20글자 영문자/숫자").removeClass("on");
+
+                // 불통과
+                pass = false;
                 
             } // if //
 
@@ -105,6 +112,9 @@ $(()=>{
 
                 // 통과X 일 때 메시지 - 빨간색 글자
                 $(this).siblings(".msg").text("특수문자,문자,숫자포함 형태의 5~15자리").removeClass("on");
+
+                // 불통과
+                pass = false;
                 
             } // if //
 
@@ -129,6 +139,9 @@ $(()=>{
 
                 // 통과X 일 때 메시지
                 $(this).siblings(".msg").text("비밀번호가 일치하지 않습니다.");
+
+                // 불통과
+                pass = false;
                 
             } // if //
 
@@ -140,7 +153,30 @@ $(()=>{
                 
             } // else //
             
-        } // else if - 아이디 검사 //
+        } // else if - 비밀번호 검사 //
+
+        // ※ 모두 통과일 경우 메시지 지우기
+        // empty() 내용 지우기 메서드
+        else{
+            // $(this).siblings(".msg").text("");
+            $(this).siblings(".msg").empty();
+        } // else - 통과 //
+
+        //////////////////////////////////////////////////
+        // 7. 이메일 유효성 검사
+        // 검사 기준: 이메일 형식에 맞는지
+        //////////////////////////////////////////////////
+        else if(cid === "email1"){
+            // 1. console.log("비밀번호(확인) 검사:",vReg(cv,cid));
+
+            // 이메일 주소 만들기: 앞주소@뒷주소
+            let comp = eml1.val() + "@" + (seleml.val() === "free" ? eml2.val() : seleml.val());
+            // (비? 집: 놀이동산)
+
+            // 2. 이메일 검사함수 호출하기
+            resEml(comp);
+            
+        } // else if - 이메일 검사 //
 
         // ※ 모두 통과일 경우 메시지 지우기
         // empty() 내용 지우기 메서드
@@ -288,10 +324,77 @@ $(()=>{
             .text("부적합한 이메일 형식입니다.")
             // 메시지 글자 빨간색으로
             .removeClass("on");
+
+            // 불통과
+            pass = false;
+
         } // else - 불통과 //
 
     }; // resEml 함수 //
+
+    /* 
+        [ 가입하기(submit) 버튼 클릭 시 처리 ]
+
+        전체 검사의 원리:
+        전역변수 pass를 설정하여 true를 할당하고
+        검사 중간에 불통과 사유 발생 시 false로 변경하며 유효성 검사 통과여부를 판단함
+
+        검사방법:
+        기존 이벤트 blur 이벤트를 강제로 발생시킴
+
+        사용 메서드: trigger(이벤트명);
+        이벤트를 강제로 발생시킴
+    */
     
+    // 검사용 변수
+    let pass = true;
+
+    // 이벤트 대상: #btnj
+    // 원래 submit 버튼은 클릭 시 싸고 있는 for 태그의 action 설정 페이지로 모든 입력창의 값을 전송하도록 설계되어 있음
+    // 기본 submit 이동을 막고 우리가 검사하여 전송함
+    $("#btnj").click(e=>{
+
+        // 호출 확인
+        console.log("가입");
+
+        // 1. 기본 이동막기
+        e.preventDefault();
+        
+        // 2. pass 통과 여부 변수에 true 할당
+        // 처음에 true로 시작하여 검사 중간에 한 번이라도 false로 할당되면 결과는 false
+        pass = true;
+
+        // 3. 입력창 blur 이벤트 강제 발생
+        // 대상: 블러 이벤트 발생했더던 요소들
+        $(`input[type=text][id!=email2][class!=search],input[type=password]`)
+        .trigger("blur");
+
+        // 4. 최종 통과 여부
+        console.log("통과여부:",pass);
+
+        // 5. 검사 결과에 따라 메시지 보이기
+        if(pass){
+
+            // 원래는 post 방식으로 DB에 회원가입 정보를 전송하여 입력 후 DB처리 완료 시 성공 메시지나 로그인 페이지로 넘겨줌
+            alert("회원가입을 축하합니다.");
+
+            // 로그인 페이지로 리디렉션
+            // location.href = "login.html";
+
+            // 브라우저 캐싱 히스토리를 지우려면
+            // location.replace(url)을 사용
+            location.replace("login.html");
+            
+        } // if - 통과 //
+
+        else{
+
+            alert("입력내용을 확인하세요.");
+            
+        } // else - 불통과 //
+
+        
+    }); // click //    
 }); // jQB //
 
 /*////////////////////////////////////////////////////////
