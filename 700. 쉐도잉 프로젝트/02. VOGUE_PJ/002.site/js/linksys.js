@@ -1,53 +1,96 @@
-// 보그 PJ 링크시스템 페이지 js - linksys.js
+// 보그 PJ 링크시스템 JS - linksys.js
 
-// 로딩 구역 //
+// 제이쿼리 로드구역 /////////
+$(()=>{
+
+    /****************************************** 
+        로그인, 회원가입, 갤러리 아이콘 넣기
+    ******************************************/
+   // 대상: .sns a:last (마지막 카카오스토리 a요소)
+   // 대상추가 : .mosns a:last (모바일 카카오스토리 a요소)
+   // 변경내용: 대상요소 앞에 형제요소로 a요소 삽입
+   // 제이쿼리 메서드 : 
+   // before(요소) -> 선택요소 앞에 형제요소 추가!
+   // after(요소) -> 선택요소 뒤에 형제요소 추가!
+   $(".sns a:last").before(`
+        <a href="#" class="fi fi-laptop">
+            <span class="ir"> 로그인 </span>
+        </a>
+        <a href="#" class="fi fi-user-secret">
+            <span class="ir"> 회원가입 </span>
+        </a>
+        <a href="#" class="fi fi-camera">
+            <span class="ir"> 갤러리 </span>
+        </a>
+   `); ///////////// before //////////
+
+   /// sns 파트 a 요소들에 툴팁넣기 /////
+   // each((idx,ele)=>{코드})
+   $(".sns a").each((idx,ele)=>{
+        // attr(속성명,값)
+        // -> 값으로 자식요소인 .ir의 텍스트를 읽어감!
+        let irTxt = $(ele).find(".ir").text().trim();
+        // 툴팁넣기
+        $(ele).attr("title",irTxt);
+
+   }); /////// each ////////////////////
+   
+
+
+}); ////////////// jQB /////////////////////////
+
+
+
+
+
+
+//////// 로딩구역 ///////////////////
 window.addEventListener("DOMContentLoaded",linkFn);
 
-// 로드 함수 //
+//// 링크시스템 로드함수 ////////////////////////
 function linkFn(){
-    console.log("linksys");
 
-    // 1. 링크 대상 선정
-        // 1-1. GNB: .gnb a
-        const gnb = document.querySelectorAll(".gnb a");
-        // console.log("gnb:",gnb);
+    console.log("링크 로딩완료!");
 
-        // 1-2. 로고: .logo a
-        const logo = document.querySelector(".logo a");
-        // console.log("logo:",logo);
+    // 1. 링크 대상 선정 : 
+    // (1) GNB : .gnb a
+    const gnb = document.querySelectorAll(".gnb a,.mognb a");
+    // console.log(gnb);
+    // (2) 로고 : .logo a
+    const logo = document.querySelector(".logo a");
 
-    // 2. click 이벤트 설정
-        // 2-1. GNB 클릭
-        for(let x of gnb){
-            x.onclick = (e) => {
-
-                // 2-1-1. 클릭 이동 기능 막기
-                e.preventDefault();
-
-                // 2-1-2. 클릭된 a 요소 텍스트 읽기
-                let atxt = x.innerText.toLowerCase().trim();
-                // toLowerCase() -> 소문자 변환
-                // toUpperCase() -> 대문자 변환
-                // trim() -> 앞뒤 공백 제거
-                console.log(atxt);
-
-                // 2-1-3. 서브페이지 이동하기
-                if(atxt !== "search") // 클릭 시 검색 버튼(search)이 아니면 서브페이지로 이동
-                location.href = "category.html?cat="+encodeURIComponent(atxt);
-
-            
-            }; // click 함수 //
-        }// for of //
-        
-        // 2-2. 로고 클릭
-        logo.onclick = (e) => {
-
-            // 2-2-1. 클릭 이동 기능 막기
+    // 2. 클릭이벤트 설정하기
+    // (1) GNB 클릭설정 //////////
+    for(let x of gnb){
+        x.onclick = (e) => {
+            // 클릭이동기능막기
             e.preventDefault();
 
-            // 2-2-2. 홈으로 이동하기
-            location.href = "index.html"
+            // (1) 클릭된 a요소 텍스트 읽기
+            let atxt = x.innerText.toLowerCase().trim();
+            // toLowerCase() -> 소문자변환
+            // 참고) toUpperCase() -> 대문자변환
+            // trim() -> 앞뒤공백제거
 
-        }; // click 함수 //
+            console.log(atxt);
 
-} // linkFn 함수 //
+            // (2) 서브 페이지 이동하기
+            if(atxt !== "search") // 검색이 아니면 서브이동!
+            location.href = "category.html?cat="
+            +encodeURIComponent(atxt);
+
+        }; ///////// click ///////
+
+    } /////////// for  of ///////////////
+
+    // (2) 로고 클릭설정 //////////////
+    logo.onclick = (e) => {
+        e.preventDefault();
+
+        // 홈으로 이동하기
+        location.href = "index.html";
+
+    }; ////////// click ///////////
+
+
+} ////////// linkFn함수 //////////////
