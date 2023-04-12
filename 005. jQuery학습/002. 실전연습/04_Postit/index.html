@@ -90,6 +90,62 @@
                     opacity: 0.7,
                     
                 });
+
+                // [ 커스터마이징 요구사항 반영하기 ]
+                // 3. 드래그 시 포스트잇 이미지 변경하기
+                    // 3-1. 드래그 시작 이벤트 발생 시 이미지 변경 위해
+                    // 클래스 .invert 넣기
+                    // 드래그 시작 이벤트: dragstart
+                    // 제이쿼리 메서드: on(이벤트명,함수)
+                    dg.on("dragstart",function(){
+
+                        // 드래그되는 나 자신 -> this
+                        $(this).addClass("invert");
+                        
+                    }); // dragstart //
+
+                    // 3-2. 드래그 끝날 때 이벤트 발생 시 이미지 변경 위해
+                    // 클래스 .invert 빼기
+                    // 드래그 종료 이벤트: dragstop
+                    // 제이쿼리 메서드: on(이벤트명,함수)
+                    dg.on("dragstop",function(){
+
+                        // 드래그되는 나 자신 -> this
+                        $(this).removeClass("invert");
+
+                    }); // dragstop //
+
+                // 4. 드롭대상박스에 드롭될 때 동영상 보여주기
+                // droppable() 메서드: 드롭되는 요소 처리
+                // 이벤트 대상: .dropshow
+                $(".dropshow").droppable({
+                    drop:function(evt,ele){
+                    //evt - 이벤트 전달변수, ele - 드롭관련객체
+                    console.log("나 잘 빠졌다.")
+                    
+                        // 4-1. 드롭영역의 배경이미지 변경하기
+                        // 드롭된 요소 -> ele.draggable
+                        let isrc = ele.draggable.find("img").attr("src");
+                        console.log(isrc);
+
+                        // 4-2 this - 드롭박스
+                        $(this).css({
+                            backgroundImage:`url(${isrc})`
+                        })
+                    }
+
+                })
+                
+                // 드롭된 요소 사라지기
+                // ele.draggable -> 드롭된 요소
+                ele.draggable.hide();
+
+                // 드롭된 요소의 자식 p태그의 글자 읽어오기
+                let dtxt = ele.draggable.find("p").text();
+                console.log(dtxt);
+
+                // 드롭영역에 글자 넣기
+                $(this).text(dtxt+"당첨");
                 
             }); // jQB //
             
