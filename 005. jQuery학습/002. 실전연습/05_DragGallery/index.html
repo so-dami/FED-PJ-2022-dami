@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <!--뷰포트필수-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>drag and drop 응용</title>
+    <title>drag & drop 응용</title>
     <style>
         html,
         body {
@@ -83,11 +83,65 @@
         https://tombap8.github.io/FED211/004.jQuery학습/jQuery-02.실전연습/04.jQuery_utility/05_DragGallery/ready.html
      -->
      <script>
-        /// jQB //////////////////////////
+        // jQB //
         $(() => {
 
+            // 1. 드래그 대상: #move
+            const move = $("#move")
+
+            // 2. 아이스크림 박스 드래그 설정
+            move.draggable({
+                // axis: 드래그 방향 축 고정시키기
+                // x - 가로, y - 세로
+                axis: "x"
+            })
+            .css({
+                // 드래그 할 때 부드럽게 넘기는 애니메이션 설정
+                // 주의: ease-in 설정 금지(답답하게 느껴짐)
+                transition: ".8s ease-out"
+            }); // css //
+
+            // 3. 드래그 한계값 설정
+            // 끝 부분 튕기는 효과
+
+                // 3-1. 처음 한계값 설정:
+                // 화면 크기의 1/3
+                let fpt = $(window).width()/3;
+                console.log("처음 한계값:",fpt);
+
+                // 3-2. 마지막 한계값 설정:
+                // 드래그박스 가로크기 - 화면크기의 2/3
+                let lpt = move.width() - (fpt*2);
+                console.log("마지막 한계값:",lpt);
+
+                // 3-3. 마우스 이벤트로 left값을 체크하여 제한걸기
+                $("html,body")
+                // on(이벤트명,함수): 이벤트명을 띄어쓰기로 구분하여 다중적용 가능
+                .on("mousedown mouseup mousemove",()=>{
+
+                    // (1) 움직이는 요소 left값 알아내기
+                    let mpos = move.offset().left;
+                    console.log("left값:",mpos);
+
+                    // (2) 처음 한계값 체크하여 제한하기
+                    // 처음 한계값에 고정
+                    if(mpos > fpt){
+                        move.css({
+                            left: fpt + "px"
+                        }); // css //
+                    } // if //
+                    
+                    // (3) 마지막 한계값 체크하여 제한하기
+                    else if(mpos < -lpt){
+                        // 마지막 한계값에 고정
+                        move.css({
+                            left: -lpt + "px"
+                        }); // css //
+                    } // else if //
+
+                }); // 마우스이벤트 함수 //
          
-        }); //////// jQB /////////////////////
+        }); // jQB //
     </script>
     
 </head>
