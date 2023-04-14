@@ -5,36 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue JS 기초</title>
     <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script>
+
         window.addEventListener("DOMContentLoaded",
         ()=>{
 
-            console.log("로딩완료!");
+            console.log("로딩완료");
 
-            // 1. 텍스트 바인딩 ////////////////////////////////
-           
+            // new Vue(); 하는 순간 Vue 객체가 인스턴스로 메모리에 생성됨
+            // -> 선택 대상의 요소가 가상 DOM으로 메모리상 변경 가능함
+            // 1. 텍스트 바인딩 //
+            new Vue({
 
-            // 2. 반복 렌더링 //////////////////////////////
+                // 1-1. el은 적용할 요소(element)를 담는 속성
+                el: "#app1",
+
+                // 1-2. data는 사용할 데이터를 셋업하는 속성
+                data: {
+                    message: "나는 VueJS를 잘 쓰는 프론트엔드 개발자이다.",
+                    yo: "yo"
+                }
+                
+            }); // Vue //
+
+            // 2. 반복 렌더링 //
             
-            // 3. 이벤트 사용하기 ////////////////////////
+            // 3. 이벤트 사용하기 //
             
+            // 4. 입력 양식과 동기화하기 //
 
-
-            // 4. 입력 양식과 동기화하기 /////////////////
-            
-
-        }); ////////////// 로드구역 ////////////////////
+        }); // 로드구역 //
 
     </script>
 </head>
+
 <body>
+
     <h1>Vue JS 기초연습</h1>
 
     <hr>
 
-    <h2>1. 텍스트 바인딩(binding->데이터넣기!)</h2>
+    <h2>1. 텍스트 바인딩(binding -> 데이터 넣기)</h2>
     <div id="app1">
-        
+        <p> {{message}} </p>
+        <!-- 
+            {{}} 중복 중괄호는 콧수염 표시자(Mustasch)
+            이 부분이 VueJS 데이터를 넣는 자리임
+         -->
     </div>
 
     <hr>
@@ -64,8 +82,6 @@
     <div id="app5">
         
     </div>
-
-
     
 </body>
 </html>
