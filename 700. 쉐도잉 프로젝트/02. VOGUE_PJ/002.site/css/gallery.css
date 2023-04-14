@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+/* 보그 PJ 갤러리페이지 CSS - gallery.css */
+
+/* 외부CSS파일 합치기 */
+@import url(./reset.css);
+@import url(./core.css);
+@import url(./common.css);
+
+/* 컨텐츠 영역 속박스 */
+.cont {
+    min-height: 600px;
+    padding: 15px;
+}
+
+/* 서브타이틀 */
+.stit {
+    font-family: pist;
+    font-weight: normal;
+    font-size: 50px;
+    text-align: center;
+    padding: 40px 0 20px;
+}
+
+.scont {
+    min-height: 600px;
+
+    /* 드래그 선택 금지 */
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* swiper 적용 */
+.swiper {
+    max-width: 1300px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+/* swiper 개별 슬라이드 */
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* 플렉스 설정 */
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+/* 이미지 요소 직접 넣기 - 배경처럼 사용 */
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
