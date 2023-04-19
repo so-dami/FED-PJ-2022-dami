@@ -34,11 +34,30 @@
                     contxt: `
                         <h2>오늘도 공유는 멋있습니다.</h2>
                         <img src="https://jmagazine.joins.com/_data/photo/2017/02/3717694133_QR14Ma50_1.jpg" alt="공유">
-                    `
+                    `,
+
+                    // (3) 상품정보
+                    sh_data:[
+                        {
+                            idx: 1,
+                            name: "vans 애너하임 Authentic",
+                            img: "vans_1.jpg"
+                        },
+                        {
+                            idx: 2,
+                            name: "vans 코어클래식 Authentic",
+                            img: "vans_2.jpg"
+                        },
+                    ]
                 },
 
                 // 1-3. 메서드 설정
                 methods: {
+                    makeImg(val){
+                        return`
+                            <img src="${val}" alt="신발">
+                        `;
+                    }
                     // myFn: function(){}, -> 일반 속성형
                     // myFn: ()=>{}, -> 화살표함수형
                     // myF(){} -> 메서드형(화살표함수형의 축약ver)
@@ -113,10 +132,13 @@
         
         <!-- 2. 내용 -->
         <p v-html="contxt"></p>
+
         <!-- 3. 상품리스트 -->
         <div class="gwrap">
-            <ol>
-                <li></li>
+            <ol class="glist" v-for="(item,idx) in sh_data">
+                <!-- {{item+" / "+idx}} -->
+                <li v-for="(a,b) in item" v-if="b==='img'" v-html="makeImg(a)">
+                </li>
             </ol>
         </div>
     </div>
