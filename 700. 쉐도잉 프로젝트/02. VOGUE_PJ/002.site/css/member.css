@@ -7,11 +7,6 @@
 @import url(./core.css);
 @import url(./common.css);
 
-/* 가로스크롤 설정 변경 - 부드러운 스크롤 시 문제 발생해서... */
-html,body{
-    overflow-x: visible;
-}
-
 /* 컨텐츠 영역 속박스 */
 .cont {
     min-height: 700px;
