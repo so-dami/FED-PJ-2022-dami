@@ -195,7 +195,7 @@ select:focus {
     border: 1px solid #737373;
     border-radius: 5px;
     color: #fff;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
     background-image: linear-gradient(to bottom, #ddd, #555);
     margin: 0 20px;
