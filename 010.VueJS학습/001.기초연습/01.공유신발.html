@@ -91,8 +91,9 @@
                     // myF(){} -> 메서드형(화살표함수형의 축약ver)
 
                     // 정규식함수(숫자 세자리마다 콤마해주는 기능)
-                    numberWithCommas(x){
-                        return x.toString().replace(/\b(?=(\d{3})+(?!\d))/g, ",");
+                    numberWithCommas(x) {
+                            return x.toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
                 },
 
@@ -118,7 +119,7 @@
                 created:function(){
 
                     // 정해진 랜덤 상품명 배열
-                    const goods = ["Slip-on","Authentic","Old skool","Era"];
+                    const goods = ["Slip-On","Authentic","Old Skool","Era"];
 
                     // 상품정보객체 생성자함수 호출
                     for(let i = 1; i<22; i++){
