@@ -99,7 +99,7 @@ $(window).resize(()=>{
 
         // (1) 슬라이드 left 위치값
         let sleft = $(this).offset().left;
-        console.log("drag stop", sleft);
+        console.log("dragstop", sleft);
 
         // (2) 왼쪽으로 이동: -110% 미만일 때
         if(sleft < -winW*1.1){
@@ -146,3 +146,39 @@ $(window).resize(()=>{
         } // else - 제자리 이동 //
         
     }) // slide //
+
+/* 
+    [ 터치 배너 이동 시 블릿 변경하기 ]
+    
+    - 방법: 잘라서 이동되는 li의 고유 순번을 사용자정의 속성으로 처음에 설정 후 슬라이드 이동하면 그 속성값을 읽어서 블릿 순번에 반영
+
+*/
+
+// 1. 사용자정의 순번 속성 대상: .slide li
+// 제이쿼리: for문 순회 메서드 - each(순번,요소)
+
+// 배너 li
+const blist = slide.find("li");
+// 배너 객수
+const bcnt = blist.length;
+
+blist.each((idx,ele)=>{
+    console.log(idx,bcnt);
+
+    // 처음 것을 마지막 순번으로 넣기
+    if(idx===0)
+        $(ele).attr("data-seq",bcnt-1);
+    
+    // 두 번째부터 끝까지 0부터(1작음)
+    else
+        $(ele).attr("data-seq",idx-1);
+    
+}); // each //
+
+/* 
+    [ 블릿 on 넣기 함수 ]
+*/
+
+function addOn(){
+    
+}; // addOn //
