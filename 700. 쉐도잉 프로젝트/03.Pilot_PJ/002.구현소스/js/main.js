@@ -113,8 +113,16 @@ $(window).resize(()=>{
 
                 // 커버 제거
                 cover.hide();
+
+                // 배너타이틀 함수
+                showTit();
                 
             }); // animate //
+
+            // 블릿 변경하기 호출
+            addOn(2);
+            // -> 왼쪽 이동이므로 0번째 슬라이드
+            
         } // if - 왼쪽 이동 //
 
         // (3) 오른쪽으로 이동: -90% 초과일 때
@@ -129,8 +137,16 @@ $(window).resize(()=>{
 
                 // 커버 제거
                 cover.hide();
-                
+
+                // 배너타이틀 함수
+                showTit();
+
             }); // animate //
+                
+                // 블릿 변경하기 호출
+                addOn(0);
+                // -> 오른쪽 이동이므로 0번째 슬라이드
+
         } // else if - 오른쪽 이동 //
 
         // (4) 제자리로 이동: -110% ~ -90%
@@ -177,8 +193,150 @@ blist.each((idx,ele)=>{
 
 /* 
     [ 블릿 on 넣기 함수 ]
+
+    1. 오른쪽으로 이동할 경우
+    -> 0번째 슬라이드의 data-seq값
+
+    2. 왼쪽으로 이동할 경우
+    -> 2번째 슬라이드의 data-seq값
+
+    3. 위의 선택값으로 블릿의 li 순번에 on 넣고 나머지는 뺌
 */
 
-function addOn(){
+// 대상 선정: .bindic li
+const bindic = $(".bindic li");
+
+function addOn(seq){
+// seq - 읽을 슬라이드 순번
+
+    // 방향은 어떻게 알지?
+    // 0 - 오른쪽, 2 - 왼쪽
+
+    // 1. 해당 슬라이드 data-seq 읽어오기
+    let dseq = slide.find("li").eq(seq).attr("data-seq");
+    console.log("슬라이드 data-seq:",dseq);
+
+    // 2. 해당 슬라이드와 동일한 순번 블릿에 on 넣기
+    bindic.eq(dseq).addClass("on")
+    .siblings().removeClass("on");
     
 }; // addOn //
+
+// 각 배너 등장 타이틀 셋팅 //
+let bantxt = {
+    "ban1": "Men's Season<br>Collection",
+    "ban2": "2023 Special<br>Collection",
+    "ban3": "GongYoo<br>Collection",
+    "ban4": "T-Shirt<br>Collection",
+    "ban5": "Shoes<br>Collection",
+    "ban6": "Wind Jacket<br>Collection"
+}; // bantxt객체 //
+
+/* 
+    함수명: showTit
+    기능: 각 배너 타이틀 보이기
+    호출: 배너 이동 후 콜백함수에서 호출함
+*/
+function showTit(){
+
+    // 배너 이동 후 호출하여 해당 배너의 순번에 맞는
+    // 타이틀을 동적으로 생성하여 애니메이션 함
+
+    // 주인공 배너
+    const mainban = slide.find("li").eq(1);
+    
+    // 1. 도착 후엔 항상 두 번째 슬라이드가 주인공
+    // -> 슬라이드 순번은 1
+    // 슬라이드 클래스명 읽어오기(타이틀 클래스명과 연관됨)
+    let clsnm = mainban.attr("class");
+
+    // 2. 클래스명에 해당하는 객체값 읽어오기
+    let bantit = bantxt[clsnm];
+    
+    // 호출확인
+    console.log("배너타이틀",clsnm,bantit);
+
+    // 모든 추가 타이틀 지우기
+    $(".btit").remove();
+    
+    // 3. 타이틀을 넣을 요소를 배너에 추가하기
+    mainban.append(`<h2 class="btit"></h2>`);
+
+    // 배너 타이틀 left 위치 변수 처리
+    // ban2, ban3만 오른쪽에 위치하게
+    let lval = "35%";
+    if(clsnm==="ban2"||"bane") lval="70%";
+    
+    // 4. 해당 배너 h2 태그에 배너 타이틀 넣기
+    mainban.find(".btit").html(bantit)
+    .css({
+        position: "absolute",
+        top: "55%", // 약간 아래로
+        left: lval,
+        transform: "translate(-50%,-50%)",
+        font: "bold 4.5vmax Verdana",
+        color: "#fff",
+        textShadow: "1px 1px 3px #777",
+        whiteSpace: "nowrap",
+        opacity: 0 // 처음에 투명
+    }) // css //
+    
+    // 3. 배너 등장 애니메이션 넣기
+    .animate({
+        top: "50%",
+        opacity: 1
+    },1000,"easeInOutQuart"); // animate //
+    
+}; // showTit //
+
+// 첫 번째 배너를 위한 타이틀 함수 최초 호출
+setTimeout(showTit,1000);
+
+// 타임아웃변수
+let banAgain;
+
+// 자동 넘김 지우기 함수
+const clearAuto = () => {
+
+    clearInterval(banAuto);
+    clearTimeout(banAgain);
+    banAgain = setTimeout(banAutoSlide,5000);
+    
+}; // clearAuto //
+
+// 배너 이동 시 자동 넘김 지우기 셋팅
+slide.on("mousemove dragstart dragstop",clearAuto);
+
+// 자동 넘김 인터발 셋팅
+// 변수에 담아 정지하기
+let banAuto;
+
+const banAutoSlide = () => {
+
+    banAuto= setInterval(()=>{
+        slide.animate({
+            left: -winW*2+"px"
+        },600,"easeOutQuint",()=>{
+    
+            // 이동 후 맨 앞 li 맨 뒤로 이동
+            slide.append(slide.find("li").first())
+            .css({left:"-100%"});
+    
+            // 커버 제거
+            cover.hide();
+    
+            // 배너타이틀 함수
+            showTit();
+            
+        }); // animate //
+    
+        // 블릿 변경하기 호출
+        addOn(2);
+        // -> 왼쪽 이동이므로 0번째 슬라이드
+        
+    },3000);
+    
+}; // banAutoSlide //
+
+// 자동 넘김 최초 호출
+banAutoSlide();
