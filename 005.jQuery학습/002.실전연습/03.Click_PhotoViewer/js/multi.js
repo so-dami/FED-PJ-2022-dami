@@ -5,6 +5,19 @@ import mySlider from "./mySlider.js";
 
 // 함수호출!
 // 현재슬라이드 3군데 모두 적용하기
+
+// 1. jQuery ver
 $(".slider").each((idx,ele)=>{
     mySlider(ele);
 }); ////////// each ////////////
+
+// 2. ... ver
+// mySlider($(".slider").eq(0));
+// mySlider($(".slider").eq(1));
+// mySlider($(".slider").eq(2));
+
+// 3. JS ver.
+// document.querySelectorAll(".slider")
+// .forEach((ele)=>{
+//     mySlider(ele);
+// }); // forEach //
