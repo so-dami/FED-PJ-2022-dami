@@ -176,11 +176,19 @@ new Vue({
                 // 오른쪽 버튼
                 if(isB){
                     nowNum++;
+
+                    // 한계값 설정
+                    if(nowNum===51) nowNum=1;
+                    
                 } // if //
                 
                 // 왼쪽 버튼
                 else{
                     nowNum--;
+
+                    // 한계값 설정
+                    if(nowNum===0) nowNum=50;
+                    
                 } // else //
 
                 console.log("변경된 nowNum:",nowNum);
