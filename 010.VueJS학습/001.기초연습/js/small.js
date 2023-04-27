@@ -104,7 +104,7 @@ new Vue({
 
             // 1-1. 클릭된 이미지 경로 읽어오기
             let isrc = $(this).find("img").attr("src");
-            console.log("click img src:",isrc);
+            console.log("이미지 src:",isrc);
 
             // 1-2. 클릭된 이미지 경로를 큰 이미지에 src로 넣기
             $(".gimg img").attr("src",isrc);
@@ -114,7 +114,11 @@ new Vue({
             
             // 1-4. 이전/다음 이미지 변경을 위한 data-num 속성 읽기
             nowNum = $(this).attr("data-num");
-            console.log("click img num:",nowNum);
+            console.log("이미지 num:",nowNum);
+
+            // 1-5. 상품명 읽어오기
+            $(`.grid>div[data-num=${nowNum}]`)
+            console.log(tg.find("h2").text())
             
         }); // click //
         
