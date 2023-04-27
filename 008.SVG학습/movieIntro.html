@@ -145,8 +145,9 @@
             /* 오디오버튼 */
             .audPlay{
                 position: fixed;
-                top: 20px;
+                top: 100px;
                 right: 20px;
+                /* 마우스 커서 */
                 cursor: pointer;
             }
         </style>
@@ -242,10 +243,40 @@
 
                     // (2) 버튼 클릭 시 버튼 변경 및 오디오 재생/멈춤 전환
                     .click(function(){
+                        
+                        // 오디오 요소
+                        const myaud = $(".myaud").get(0);
+                        // get(순번) -> 선택법은 제이쿼리용
+                        // JS는 오디오/비디오 선택 후 바로 play()
 
-                        // 버튼 변경
-                        $("img",this)
-                        .attr("src","vbt1-1.png")
+                        // 오디오/비디오 재생여부 속성 -> paused
+                        // true - 멈춤
+                        // false - 재생
+                        console.log("오디오 재생여부:",myaud.paused);
+
+                        // 분기하기
+                        // 멈춤이면 재생
+                        if(myaud.pause===true){
+
+                            // 버튼 변경
+                            $("img",this)
+                            .attr("src","./images/vbt1-1.png");
+                            
+                            // 오디오 재생: play
+                            myaud.play();
+                        } // if //
+                        
+                        // 재생이면 멈춤
+                        else{
+
+                            // 버튼 변경
+                            $("img",this)
+                            .attr("src","./images/vbt2-1.png");
+                            
+                            // 오디오 정지: pause
+                            myaud.pause();
+                            
+                        } // else //
                         
                     }); // click //
 
