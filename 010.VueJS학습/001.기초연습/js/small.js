@@ -1,15 +1,14 @@
 // 쇼핑몰 갤러리 JS - small.js
 
+// template html코드 데이터 가져오기
+import hcode from "./hcode.js";
+
 // 뷰 JS 인스턴스 생성용 함수
 const makeVue = (x) => new Vue({ el: x });
 
 // 1. 제목에 넣을 전역 컴포넌트 만들기
 Vue.component("tit-comp", {
-    template: `
-        <strong>
-            <span>Vue JS 💘 Shopping mall</span>
-        </strong>
-    `,
+    template: hcode.tit,
 }); // 전역 컴포넌트1 //
 
 // tit 뷰 인스턴스 생성하기: 반드시 컴포넌트 아래에서 함
@@ -26,16 +25,7 @@ let num = 0;
 Vue.component("list-comp", {
 
     // v-on:click="goPapa"로 부모이벤트 접근시작
-    template: `
-        <div>
-            <img v-bind:src="gsrc" v-on:click="goPapa" v-on:mouseover="ovNow" alt="dress">
-            <aside>
-                <h2>{{gname}}</h2>
-                <!-- <h2 v-text="gname"></h2> -->
-                <h3>{{gprice}}</h3>
-            </aside>
-        </div>
-    `,
+    template: hcode.list,
 
     // 부모에서 v-bind:속성명=값 으로 전달한 속성 변수를
     // props:[]/{}로 받음
@@ -94,31 +84,7 @@ new Vue({
 
 // 큰 이미지 보기 배경박스 컴포넌트 //
 Vue.component("win-comp",{
-    template:`
-        <!-- 큰이미지 배경박스 -->
-        <div id="bgbx">
-            <!-- 오른쪽버튼 -->
-            <a href="#" class="abtn rb">
-                <span class="ir">오른쪽버튼</span>
-            </a>
-            <!-- 왼쪽버튼 -->
-            <a href="#" class="abtn lb">
-                <span class="ir">왼쪽버튼</span>
-            </a>
-            <!-- 닫기버튼 -->
-            <a href="#" class="cbtn">
-                <span class="ir">닫기버튼</span>
-            </a>
-            
-            <!-- 큰이미지 박스 -->
-            <div id="imbx">
-                <!-- 큰 이미지 -->
-                <img src="img_gallery/50.jpg" alt="큰 이미지">
-                <!-- 이미지 설명 -->
-                <h4></h4>
-            </div>
-        </div>
-    `
+    template: hcode.big
 }); // win-comp 컴포넌트 //
 
 // win-comp 뷰JS 인스턴스 생성 //
@@ -141,7 +107,7 @@ new Vue({
             console.log("click img src:",isrc);
 
             // 1-2. 클릭된 이미지 경로를 큰 이미지에 src로 넣기
-            $("#imbx img").attr("src",isrc);
+            $(".gimg img").attr("src",isrc);
             
             // 1-3. 큰 이미지 박스 보이기
             $("#bgbx").show();
@@ -194,7 +160,7 @@ new Vue({
                 console.log("변경된 nowNum:",nowNum);
 
             // 3-3. 큰 이미지 변경하기
-            $("#imbx img").attr("src",`
+            $(".gimg img").attr("src",`
                 img_gallery/${nowNum}.jpg
             `);
             
