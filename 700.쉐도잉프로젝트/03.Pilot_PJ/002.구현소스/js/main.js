@@ -11,6 +11,8 @@ import banFn from "./mainjs/ban.js";
 
 // 자동스크롤 호출
 autoScroll();
+menuFn();
+banFn();
 
 // 파일럿 PJ 메인 페이지 JS - main.js
 
