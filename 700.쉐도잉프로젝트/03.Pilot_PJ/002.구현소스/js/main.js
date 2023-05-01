@@ -347,27 +347,14 @@ let banAuto;
 
 const banAutoSlide = () => {
     banAuto = setInterval(() => {
-        slide.animate(
-            {
-                left: -winW * 2 + "px",
-            },
-            600,
-            "easeOutQuint",
-            () => {
-                // 이동후 맨앞li 맨뒤이동
-                slide.append(slide.find("li").first()).css({ left: "-100%" });
-
-                // 커버제거하기
-                cover.hide();
-
-                // 배너타이틀함수
-                showTit();
-            }
-        ); ////////// animate ///////////
+        
+        // 배너이동함수 호출
+        goSlide(0);
 
         // 블릿변경함수호출!
         addOn(2);
         // 왼쪽이동이므로 2번째 슬라이드
+
     }, 3000);
 }; // banAutoSlide 함수 //
 
@@ -431,5 +418,22 @@ $(".btntit").click(function(){
     // 2. 버튼 구분하기
     let isB = $(this).parent().is(".ar1");
     console.log("왼쪽버튼?",isB);
+
+    // 3. 분기하기
+    // 왼쪽으로 이동
+    if(isB){
+
+        // 배너이동함수 호출
+        goSlide(0);
+        
+    } // if //
+
+    // 오른쪽으로 이동
+    else{
+
+        // 배너이동함수 호출
+        goSlide(1);
+        
+    } // else //
     
 }); // click //
