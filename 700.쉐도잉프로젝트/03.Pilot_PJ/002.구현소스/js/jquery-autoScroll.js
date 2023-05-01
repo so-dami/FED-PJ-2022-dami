@@ -6,6 +6,48 @@
 // 이유: export 하기위해!
 
 function autoScroll() {
+
+    // 현재 페이지 가로크기기준 800px 이하일 때 모바일로 변경
+    // 모바일 상태변수
+    let mob = 0; // 1 - 모바일, 0 - 데스크탑
+
+    const updateW = () => {
+
+        if($(window).width() <= 800) mob = 1;
+        else mob = 0;
+        
+        console.log("mobile?:",mob)
+        
+    }; // updateW 함수 //
+
+    // 로딩 시 실행
+    updateW();
+
+    // 배너초기화 적용함수
+    const callInit = () => {
+
+        if(!mob){
+
+            // 모바일 아니면 초기화
+            initSet();
+
+            // 중간 페이지일 경우 초기화 제외(지우기)
+            $(".page").eq(pno)
+            .find(".imgc, .txtc a").attr("style","");
+            
+        } // if //
+
+        // 모바일이면 초기화 셋팅 지우기
+        else $(".imgc, .txtc a").attr("style",""); // else //
+        
+    }; // callInit //
+
+    // window 리사이즈 이벤트 등록
+    $(window).resize(()=>{
+        updateW(); // mob코드 업데이트 함수
+        callInit(); // 배너 초기화 적용 함수
+    });
+    
     /****************************************** 
         대상 변수할당하기
     ******************************************/
@@ -46,6 +88,10 @@ function autoScroll() {
         -> 한페이지씩 자동스크롤 기능
     ****************************************/
     function wheelFn() {
+
+        // 모바일일 때 작동 정지
+        if(mob) return;
+        
         // 광휠금지
         if (prot[0]) return;
         chkCrazy(0);
@@ -168,8 +214,8 @@ function autoScroll() {
         }); /////////// css ///////////
     } ////////////// initSet 함수 //////////////
 
-    // 초기화함수 호출
-    initSet();
+    // 초기화함수 호출 -> 모바일이 아닐 때만 호출
+    if(!mob) initSet();
 
     /**************************************** 
         함수명: actPage
