@@ -24,6 +24,21 @@ autoScroll();
     + 양쪽 이동버튼 플러그인 적용하기
 
 *************************************************/
+const tgli = $(".slide li");
+// 배너 이미지로 초기화!
+tgli.each((idx, ele) => {
+    $(ele).html(`
+    <img src="./images/ban0${$(ele).attr("class").substr(3)}New.jpg" 
+    alt="ban image">`);
+});
+
+$(".slide li").eq(1).find("img").css({ 
+    position: "fixed",
+    top:"0",
+    left:"0",
+    zIndex:-1
+})
+//.parent().siblings().find("img").css({opacity:0});
 
 // 햄버거 버튼 클릭시 전체 메뉴 보이기
 $(".ham").click(function () {
@@ -305,7 +320,7 @@ const clearAuto = () => {
 }; /////////// clearAuto 함수 //////////
 
 // 배너이동시 자동넘김 지우기 셋팅 /////
-slide.on("drag dragstart dragstop", clearAuto);
+// slide.on("drag dragstart dragstop",clearAuto);
 
 // 자동넘김 인터발 셋팅하기 /////////
 // 변수에 담아 정지하기 ////
@@ -335,52 +350,7 @@ const banAutoSlide = () => {
         addOn(2);
         // 왼쪽이동이므로 2번째 슬라이드
     }, 3000);
-}; // banAutoSlide 함수 //
+}; /////////// banAutoSlide 함수 ///////
 
-// 자동넘김 최초 호출
-banAutoSlide();
-
-// 마우스 팔로워 플러그인 적용하기
-// 움직일 대상: .btna
-// 설정범위는 움직일 대상이 포함된 부모요소
-
-$(".btna").mousefollower();
-
-// ※ 주의사항
-// mousefollower() 메서드를 적용하는 것은
-// 마우스 따라다닐 범위 요소를 선택하는 것이다.
-// 그 안에 .badge 라는 것이 실제로 따라다닌다.
-// 클래스명 badge를 이 플러그인의 설정에 따라
-// 반드시 사용해야 한다.
-
-$(".btna").hover(
-
-    // over
-    function () {
-
-        // 흰원 나타나기
-        $(".inside", this).css({
-            transform: "scale(1)",
-        }); //// css ////////////
-
-        // 글자 나타나기
-        $(".btntit", this).css({
-            transform: "translate(-50%, -50%) scale(1)",
-        });
-    },
-
-    // out
-    function () {
-
-        // 흰원 사라지기
-        $(".inside", this).css({
-            transform: "scale(0)",
-        }); //// css ////////////
-
-        // 글자 사라지기
-        $(".btntit", this).css({
-            transform: "translate(-50%, -50%) scale(0)",
-        });
-    }
-
-); // hover //
+// 자동넘김 최초호출!
+// banAutoSlide();
