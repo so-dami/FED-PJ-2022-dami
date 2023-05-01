@@ -96,7 +96,9 @@ let winW = reWin();
 // 광드래그 방지위해 커버셋팅(show()/hide())
 const cover = $(".cover");
 
-// 드래그끝난후 이벤트 함수 만들기
+/****************************************** 
+    [ 드래그 끝난 후 이벤트 함수 만들기 ]
+******************************************/
 slide.on("dragstop", function () {
     // 광드래그 방지위해 커버 보이기
     cover.show();
@@ -107,51 +109,26 @@ slide.on("dragstop", function () {
 
     // 1. 왼쪽으로 이동 : -110% 미만일때
     if (sleft < -winW * 1.1) {
-        slide.animate(
-            {
-                left: -winW * 2 + "px",
-            },
-            600,
-            "easeOutQuint",
-            () => {
-                // 이동후 맨앞li 맨뒤이동
-                slide.append(slide.find("li").first()).css({ left: "-100%" });
-
-                // 커버제거하기
-                cover.hide();
-
-                // 배너타이틀함수
-                showTit();
-            }
-        ); ////////// animate ///////////
+        
+        // 배너이동함수 호출
+        goSlide(0);
 
         // 블릿변경함수호출!
         addOn(2);
         // 왼쪽이동이므로 2번째 슬라이드
+
     } ///// if : 왼쪽이동 /////////
 
     // 2. 오른쪽으로 이동 : -90% 초과일때
     else if (sleft > -winW * 0.9) {
-        slide.animate(
-            {
-                left: "0px",
-            },
-            600,
-            "easeOutQuint",
-            () => {
-                // 이동후 맨뒤li 맨앞으로 이동하기
-                slide.prepend(slide.find("li").last()).css({ left: "-100%" });
-                // 커버제거하기
-                cover.hide();
 
-                // 배너타이틀함수
-                showTit();
-            }
-        ); ////////// animate ///////////
+        // 배너 이동함수 호출
+        goSlide(1);
 
         // 블릿변경함수호출!
         addOn(0);
         // 오른쪽이동이므로 0번째 슬라이드
+        
     } ///// else if : 오른쪽이동 /////////
 
     // 3. 제자리로 이동 : -110% ~ -90%
@@ -169,6 +146,63 @@ slide.on("dragstop", function () {
         );
     } ///// else if : 오른쪽이동 /////////
 }); //////////// slide ///////////
+
+/********************************************************* 
+    함수명: goSlide
+    기능: 왼쪽, 오른쪽 배너 이동하기
+    구분: 0 - 왼쪽, 1 - 오른쪽(dir 파라미터 변수에 처리)
+*********************************************************/
+function goSlide(dir){
+// dir - 전달변수
+    console.log("방향",dir);
+
+    // 분기하기
+    // 오른쪽 이동
+    if(dir){
+
+        slide.animate(
+            {
+                left: "0px",
+            },
+            600,
+            "easeOutQuint",
+            () => {
+                // 이동후 맨뒤li 맨앞으로 이동하기
+                slide.prepend(slide.find("li").last()).css({ left: "-100%" });
+                // 커버제거하기
+                cover.hide();
+
+                // 배너타이틀함수
+                showTit();
+            }
+        ); ////////// animate ///////////
+
+    } // if //
+
+    // 왼쪽 이동
+    else{
+
+        slide.animate(
+            {
+                left: -winW * 2 + "px",
+            },
+            600,
+            "easeOutQuint",
+            () => {
+                // 이동후 맨앞li 맨뒤이동
+                slide.append(slide.find("li").first()).css({ left: "-100%" });
+
+                // 커버제거하기
+                cover.hide();
+
+                // 배너타이틀함수
+                showTit();
+            }
+        ); ////////// animate ///////////
+        
+    } // else //
+    
+}; // goSlide 함수 //
 
 /*************************************************** 
     [ 터치배너 이동시 블릿변경하기 ]
@@ -384,3 +418,18 @@ $(".btna").hover(
     }
 
 ); // hover //
+
+/******************************************* 
+    [ 배너 이동버튼 클릭 시 배너 이동하기 ]
+*******************************************/
+// 대상: .btntit
+$(".btntit").click(function(){
+
+    // 1. 자동넘김 지우기 함수 호출
+    clearAuto();
+
+    // 2. 버튼 구분하기
+    let isB = $(this).parent().is(".ar1");
+    console.log("왼쪽버튼?",isB);
+    
+}); // click //
