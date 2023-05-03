@@ -6,7 +6,8 @@ import menuFn from "./mainjs/menu.js";
 import comData from "./tempData/data-common.js";
 // 신상 정보 가져오기
 import sinsang from "./gdsData/sinsang.js";
-
+// 스와이퍼 변수
+let swiper;
 
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
@@ -37,6 +38,9 @@ new Vue({
 
         // 부드러운 스크롤 실행
         startSS();
+
+		// 신상품 기능함수 호출
+		sinsangFn();
     },    
     // created 실행구역 : DOM연결전
     created:function(){
@@ -54,27 +58,216 @@ new Vue({
 // 스와이퍼 생성함수
 function makeSwiper(){
 
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 0,
-    loop: true,
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-        // 인터렉션 비활성화 false 
-        // -> 인터렉션 활성화! (가만히두면 다시자동넘김)
-      },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true, // 블릿클릭이동여부
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
+	swiper = new Swiper(".mySwiper", {
+		slidesPerView: 1,
+		spaceBetween: 0,
+		loop: true,
+		autoplay: {
+			delay: 3000,
+			disableOnInteraction: false,
+			// 인터렉션 비활성화 false 
+			// -> 인터렉션 활성화! (가만히두면 다시자동넘김)
+		},
+		pagination: {
+		el: ".swiper-pagination",
+		clickable: true, // 블릿클릭이동여부
+		},
+		navigation: {
+		nextEl: ".swiper-button-next",
+		prevEl: ".swiper-button-prev",
+		},
+  	}
+);
 } /////////// makeSwiper 함수 ///////////
 
-/**********************************************
+// 신상품 기능구현 함수
+function sinsangFn(){
 
-**********************************************/
+	/****************************************************************
+		함수명: moveList
+		기능: 신상품 리스트 박스를 연속하여 왼쪽 방향으로 흘러가게 함
+	****************************************************************/
+	// 대상: .flist = $(".flist")
+	const flist = $(".flist");
+
+	// 위치값 변수
+	let lpos = 0;
+
+	// 재귀호출 상태값 변수
+	// 1 - 호출가능, 0 - 호출불가
+	let call_sts = 0;
+	
+	// 스크롤시 상태값 변수
+	// 1 - 호출가능, 0 - 호출불가
+	let sc_sts = 0;
+
+	// 재귀호출 타임아웃 변수
+	let callT;
+
+	function moveList(){
+		
+		// 1. 이동 위치값(left값) 감소하기
+		lpos--;
+		// console.log("위치값",lpos);
+
+		// 2. 한계값 초기화 + 첫 번째 요소 맨 뒤로 이동
+		if(lpos < -300){
+
+			// 위치값 초기화
+			lpos = 0;
+
+			// 첫 번째 li 맨 뒤로 이동
+			flist.append(flist.find("li").first())
+
+		} // if //
+
+		// 3. 이동하기
+		flist.css({
+			left: lpos + "px"
+		})
+		
+		// 타임아웃 비우기
+		clearTimeout(callT);
+
+		// 재귀호출하기(비동기 호출: setTimeout)
+		// 조건: call_sts 상태값이 1일 때만 호출
+		if(call_sts) callT = setTimeout(moveList, 40);
+		
+	}; // moveList 함수 //
+
+	// 신상품 이동함수 최초 호출
+	moveList();
+
+	// 신상품 리스트에 마우스 오버 시 멈춤
+	// 신상품 리스트에 마우스 아웃 시 이동
+	// hover(함수1, 함수2)
+	flist.hover(
+		
+		// over
+		function(){
+
+			// 콜백 중단
+			call_sts = 0;
+		},
+
+		// out
+		function(){
+
+			// 콜백 허용
+			call_sts = 1;
+
+			// 함수 재호출
+			moveList();
+		}
+
+	); // hover //
+
+	/*************************************************************** 
+		신상품 리스트 li에 마우스 오버 시 정보 보이기
+
+		1. 대상: .flist li
+		2. 정보 구분법: li의 클래스명으로 신상품 정보와 매칭하여
+		상품정보박스를 동적으로 생성하고, 애니메이션을 주어 보이게 함
+	***************************************************************/
+	flist.find("li").hover(
+
+		// over
+		function(){
+
+			// 1. 클래스 정보 알아내기
+			let clsnm = $(this).attr("class");
+			
+			// 2. 클래스 이름으로 셋팅된 신상정보 객체데이터 가져오기
+			let gd_info = sinsang[clsnm];
+			// console.log(clsnm,gd_info);
+
+			// 3. 상품정보박스 만들고 보이게 하기
+			// 마우스 오버된 li 자신 (this)에 넣어줌
+			$(this).append(`<div class="ibox"></div>`);
+
+			// 4. .ibox에 상품정보 넣기
+			// ^는 특수문자이므로 정규식에 넣을 때 역슬래쉬와 함께 씀
+			// -> /\^/
+			$(".ibox").html(gd_info.replace(/\^/g,"<br>"))
+			.animate({
+				top: "105%",
+				opacity: 1
+			},300,"easeOutCirc"); // animate //
+		},
+
+		// out
+		function(){
+
+			// 1. .ibox 지우기
+			$(".ibox").remove();
+		}
+		
+	); // hover //
+
+	/************************************************* 
+		스크롤 위치가 신상품 박스가 보일 때만 움직이기 
+	*************************************************/
+	// JS의 getBoundingClientRect()의 값과 같은 것은?
+	// 적용박스 offset().top 위치값 - scrollbar 위치값
+
+	// 1. 대상요소 위치값
+	let tgpos = flist.offset().top;
+
+	// 2. 스크롤 위치 변수
+	let scTop = 0;
+
+	// 3. 화면높이값
+	let winH = $(window).height();
+	console.log("화면높이값:",winH);
+	
+	// 4. 스크롤 이벤트 함수
+	$(window).scroll(function(){
+
+		// 스크롤 위치값
+		scTop = $(this).scrollTop();
+
+		// gBCR(getBoundingClienetRect)값 구하기
+		let gBCR = tgpos-scTop;
+
+		console.log(scTop,tgpos);
+		console.log("gBCR=",gBCR);
+
+		// 5. 신상품 리스트 이동/멈춤 분기하기
+			// 5-1. 이동기준: gBCR값이 화면 높이보다 작고, 0보다 클 때
+			if(gBCR < winH && gBCR > -300 && sc_sts === 0){
+				sc_sts = 1; // (한 번만 실행)
+				
+				// 콜백 허용
+				call_sts = 1;
+
+				// 함수 재호출
+				moveList();
+
+			} // if //
+
+			// 5-2. 기타 경우: 멈춤
+			// 조건: 윈도우 높이보다 크거나 0보다 작고 call_sts===1 일 때
+			else if((gBCR > winH || gBCR < -300) && sc_sts===1){
+				sc_sts = 0; // (한 번만 실행)
+
+				// 콜백 중단
+				call_sts = 0;
+
+			} // else if //
+
+		// 서브 배너 스와이퍼 API를 이용한 작동 멈춤 셋팅하기
+		// 화면높이값 보다 스크롤위치가 크면 멈춤
+		// -> 스와이퍼API : swiper.autoplay.stop()
+		// 작으면 자동넘김
+		// -> 스와이퍼API : swiper.autoplay.start()
+		if(scTop > winH){
+			swiper.autoplay.stop();
+		} // if //
+		
+		else{
+			swiper.autoplay.start();
+		} // else //
+			
+	}); // scroll //
+	
+}; // sinsangFn 함수 //

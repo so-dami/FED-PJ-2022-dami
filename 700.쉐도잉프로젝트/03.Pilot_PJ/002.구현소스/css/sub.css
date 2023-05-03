@@ -48,6 +48,9 @@ html,body{
 
     /* 넘치는 자식요소 숨기기, 자식 마진 포함 */
     overflow: hidden;
+
+    /* 비율설정 */
+    aspect-ratio: 5/2.2;
 }
 
 /* 신상 타이틀 */
@@ -130,7 +133,7 @@ html,body{
 
     width: 0;
     height: 0;
-    
+
     /* 삼각형설정 */
     /* 삼각형 */
     border-left: 20px solid transparent;
