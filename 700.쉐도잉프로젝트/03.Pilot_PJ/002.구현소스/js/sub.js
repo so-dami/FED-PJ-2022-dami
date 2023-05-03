@@ -4,6 +4,8 @@
 import menuFn from "./mainjs/menu.js";
 // 공통 데이터 가져오기
 import comData from "./tempData/data-common.js";
+// 신상 정보 가져오기
+import sinsang from "./gdsData/sinsang.js";
 
 
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
@@ -48,9 +50,6 @@ new Vue({
     el:"#info",
 }) //////// 하단영역 뷰 인스턴스 ////////  
 
-
-
-
 // 스와이퍼 플러그인 인스턴스 생성하기 ///
 // 스와이퍼 생성함수
 function makeSwiper(){
@@ -75,3 +74,7 @@ var swiper = new Swiper(".mySwiper", {
     },
   });
 } /////////// makeSwiper 함수 ///////////
+
+/**********************************************
+
+**********************************************/
