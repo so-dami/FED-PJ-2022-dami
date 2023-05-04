@@ -5,9 +5,9 @@
 등장하는 플러그인
 _______________________________________________
 
-(((((((( 코딩법 ))))))))))
+(((((((( 코딩법 ))))))))
 
-1. JS파트
+1. JS 파트
 
 제이쿼리 라이브러리 아래서 
 제이쿼리 코드블록 안에
@@ -22,37 +22,36 @@ $.fn.scrollReveal();  로 호출함
 등장액션을 주고자하는 요소에 클래스를 셋팅함
  class="js-reveal"
 
-
-(((( 실제코딩예 ))))))))
+(((( 실제코딩예 ))))
 
 _____________ JS ______________________________
 
 <script src="js/jquery-3.4.1.min.js"></script>
 script src="js/jquery.scroll-reveal.js"></script>
+
 <script>
-    $(function(){ /// jQB //////////////////        
+
+    /// jQB //////////////////
+    $(function(){        
         
         $.fn.scrollReveal();  
         
-    });////////// jQB //////////////////////
+    }); ////////// jQB //////////////////////
 
 </script>
 __________ CSS ______________________________
 
-
 <style>
-    
-.js-reveal {
-  opacity: 1;
-  transition: opacity .7s ease-in, margin-top .7s ease-out;
-}
+    .js-reveal {
+        opacity: 1;
+        transition: opacity .7s ease-in, margin-top .7s ease-out;
+    }
 
-.js-reveal--hidden {
-  opacity: 0;
-  margin-top: 3em;
-}
-    
-    </style>
+    .js-reveal--hidden {
+        opacity: 0;
+        margin-top: 3em;
+    }
+</style>
 
 _______________ html ________________________
 <ul class="pgc">

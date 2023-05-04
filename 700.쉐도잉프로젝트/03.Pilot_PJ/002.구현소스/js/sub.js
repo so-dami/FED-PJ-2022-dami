@@ -25,9 +25,11 @@ Vue.component("foot-comp",{
 new Vue({
     el:"#top",
     data:{},
-    // mounted 실행구역: DOM연결후
+
+    // mounted 실행구역: DOM 연결 후
     mounted:function(){
-        // 제이쿼리코드함수 호출!
+
+        // 제이쿼리코드함수 호출
         console.log("mounted구역");
 
         // 메뉴기능 호출
@@ -41,12 +43,25 @@ new Vue({
 
 		// 신상품 기능함수 호출
 		sinsangFn();
-    },    
-    // created 실행구역 : DOM연결전
+
+		// 패럴렉스 적용함수 호출
+		// setParallax(적용요소,속도);
+		// 속도는 0.1 ~ 0.9
+		setParallax(".c2",0.6);
+
+		// 스크롤리빌 플러그인 적용 호출
+		$.fn.scrollReveal();
+
+    }, // mounted// 
+
+    // created 실행구역 : DOM 연결 전
     created:function(){
+
         // DOM연결전 데이터 가공작업
         console.log("created구역");
-    },    
+
+    }, // created //
+
 }); //////// 상단영역 뷰 인스턴스 ////////  
 
 //###### 하단영역 뷰 인스턴스 생성하기 ##########
@@ -68,10 +83,12 @@ function makeSwiper(){
 			// 인터렉션 비활성화 false 
 			// -> 인터렉션 활성화! (가만히두면 다시자동넘김)
 		},
+
 		pagination: {
 		el: ".swiper-pagination",
 		clickable: true, // 블릿클릭이동여부
 		},
+
 		navigation: {
 		nextEl: ".swiper-button-next",
 		prevEl: ".swiper-button-prev",
@@ -271,3 +288,12 @@ function sinsangFn(){
 	}); // scroll //
 	
 }; // sinsangFn 함수 //
+
+// 패럴렉스 플러그인 적용하기
+function setParallax(ele,speed){
+
+	// 대상: .c2
+	// parallax("배경위치",속도)
+	$(ele).parallax("50%",speed);
+
+}; // setParallax //
