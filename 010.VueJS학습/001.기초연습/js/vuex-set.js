@@ -76,7 +76,7 @@ Vue.component("info-area", {
 });
 
 // [2] 뷰 인스턴스 생성하기 //////
-// 대상요소:  #app
+// 대상요소: #app
 new Vue({
     el: "#app",
     store, // 중요!!! 뷰엑스 스토어 등록!
@@ -86,22 +86,38 @@ new Vue({
     methods: {
         // 메서드(){}
     },
+
     // 데이터 셋팅은 언제하면 좋을까?
     // created ? / mounted ?
     // DOM에 직접관여하는 데이터가 아니고
     // 순수 데이터일때는 처음 뷰인스턴스가
     // 생성된 후인 created 메서드 구역에 셋팅하자!
     created() {
+
         // 스토어에 있는 initSet 메서드는 어떻게 호출하지?
         // 스토어 호출 메서드가 따로 있음!
         // store.commit("메서드명",파라미터값)
         // 1. 메서드명은 반드시 문자형으로 입력한다!
         // 2. 파라미터는 단일값 또는 객체형식을 보낼 수 있음
         // 인스턴스 내부구역 코딩시 store에 $없음!
+        
         store.commit("initSet", {
             url: "https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg",
             txt: "도시 소개에 오신 것을 환영합니다.",
         });
         // store.commit('initSet',"https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg");
-    },
+
+    }, // created //
+
+    // 제이쿼리는 DOM에 직접 작용하므로 mounted에 구현함
+    mounted(){
+
+        // 링크 클릭 시 a에 클래스 on 주기
+        $(".gnb a").click(function(){
+            $(this).addClass("on")
+            .parent().siblings().find("a").removeClass("on")
+        }); // click //
+        
+    } // mounted //
+    
 }); //////// Vue 인스턴스 /////////
