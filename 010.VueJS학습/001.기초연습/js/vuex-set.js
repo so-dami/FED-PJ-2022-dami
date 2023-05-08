@@ -105,7 +105,7 @@ new Vue({
 
             url: "https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg",
             txt: "도시 소개에 오신 것을 환영합니다.",
-            
+
         });
         // store.commit('initSet',"https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg");
 
@@ -132,10 +132,10 @@ new Vue({
         function showBx(){
 
             // 이미지
-            $("main img").css({opacity:0}).delay(500).fadeTo(1,500);
+            $("main img").css({opacity:0}).delay(500).fadeTo(500,1);
 
             // 설명박스
-            $("main p").css({opacity:0}).delay(1000).fadeTo(1,500);
+            $("main p").css({opacity:0}).delay(1000).fadeTo(500,1);
 
         }; // showBx //
         

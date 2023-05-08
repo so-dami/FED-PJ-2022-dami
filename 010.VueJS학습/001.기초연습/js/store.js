@@ -126,7 +126,7 @@ export default new Vuex.Store({
             헐.imgsrc = param.url;
 
             // 설명데이터 셋업
-            state.desc = param.txt;
+            헐.desc = param.txt;
             
         }, ////// initSet 메서드 /////
     },
