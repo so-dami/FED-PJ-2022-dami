@@ -102,11 +102,16 @@ new Vue({
         // 인스턴스 내부구역 코딩시 store에 $없음!
         
         store.commit("initSet", {
+
             url: "https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg",
             txt: "도시 소개에 오신 것을 환영합니다.",
+            
         });
         // store.commit('initSet',"https://img.freepik.com/premium-vector/city-illustration_23-2147514701.jpg");
 
+        // actioins 메서드 호출하기: dispatch("메서드명",전달값)
+        store.dispatch("myAct","it's me")
+        
     }, // created //
 
     // 제이쿼리는 DOM에 직접 작용하므로 mounted에 구현함
