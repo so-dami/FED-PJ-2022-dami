@@ -246,8 +246,8 @@ function sinsangFn(){
 		// gBCR(getBoundingClienetRect)값 구하기
 		let gBCR = tgpos-scTop;
 
-		console.log(scTop,tgpos);
-		console.log("gBCR=",gBCR);
+		// console.log(scTop,tgpos);
+		// console.log("gBCR=",gBCR);
 
 		// 5. 신상품 리스트 이동/멈춤 분기하기
 			// 5-1. 이동기준: gBCR값이 화면 높이보다 작고, 0보다 클 때
