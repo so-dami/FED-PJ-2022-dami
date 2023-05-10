@@ -4,10 +4,30 @@
 import menuFn from "./mainjs/menu.js";
 // 공통 데이터 가져오기
 import comData from "./tempData/data-common.js";
+// 서브 데이터 가져오기
+import subData from "./tempData/data-sub.js";
 // 신상 정보 가져오기
 import sinsang from "./gdsData/sinsang.js";
+// 뷰엑스 스토어 JS 가져오기
+// ※ 중요 ※ 반드시 메인 JS파일 한 군데에서 불러와야 상태관리됨
+// -> 이 JS 파일에 Vue 인스턴스 생성코드가 같이 있어야 함
+import store from "./store.js";
 // 스와이퍼 변수
 let swiper;
+
+//###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
+// Vue.component(내가지은요소명,{옵션})
+Vue.component("ban-comp",{
+    template:subData.banner,
+}); ////////// 서브영역 Vue component //////////
+
+//###### 서브영역 뷰 인스턴스 셋팅하기 #######
+// new Vue({옵션})
+new Vue({
+    el: "#cont",
+	// 뷰엑스 스토어 등록 필수
+	store,
+}); ////////// 서브영역 뷰 인스턴스 //////////
 
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
@@ -24,6 +44,8 @@ Vue.component("foot-comp",{
 // new Vue({옵션})
 new Vue({
     el:"#top",
+	// 뷰엑스 스토어 사용하려면 등록 필수
+	store,
     data:{},
 
     // mounted 실행구역: DOM 연결 후
@@ -51,6 +73,14 @@ new Vue({
 
 		// 스크롤리빌 플러그인 적용 호출
 		$.fn.scrollReveal();
+
+		// 전체 메뉴 클릭 시 전체 메뉴창 닫기
+		$(".mlist a").click(()=>$(".ham").trigger("click"));
+		// $("선택 요소").trigger("이벤트명")
+		// -> 선택 요소에 이벤트 강제 발생
+
+		// 참고) JS 클릭 이벤트 강제 발생
+		// document.querySelector(요소).click();
 
     }, // mounted// 
 
