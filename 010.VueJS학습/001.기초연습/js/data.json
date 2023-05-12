@@ -1,0 +1,37 @@
+[
+    {
+
+    "idx": 1,
+    "gname": "나는 옷1",
+    "category": "men",
+    "gprice": "230000"
+
+    },
+
+    {
+
+    "idx": 2,
+    "gname": "나는 옷2",
+    "category": "men",
+    "gprice": "230000"
+
+    },
+
+    {
+
+    "idx": 3,
+    "gname": "나는 옷3",
+    "category": "men",
+    "gprice": "230000"
+
+    },
+
+    {
+
+    "idx": 4,
+    "gname": "나는 옷4",
+    "category": "men",
+    "gprice": "230000"
+
+    }
+]
