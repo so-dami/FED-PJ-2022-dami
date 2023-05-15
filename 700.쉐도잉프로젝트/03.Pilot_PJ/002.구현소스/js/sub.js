@@ -12,8 +12,42 @@ import sinsang from "./gdsData/sinsang.js";
 // ※ 중요 ※ 반드시 메인 JS파일 한 군데에서 불러와야 상태관리됨
 // -> 이 JS 파일에 Vue 인스턴스 생성코드가 같이 있어야 함
 import store from "./store.js";
+
 // 스와이퍼 변수
 let swiper;
+
+// 바로 실행 함수 구역 //
+
+	// 바로 실행 함수 구역을 쓰는 이유?
+	// -> 변수나 명령어를 다른 영역과 구분하여 코딩할 때 주로 사용
+
+	// GET방식 데이터를 store에서 초기값으로 셋팅하는 것을 인스턴스 생성 전에 해야
+	// 아래쪽에 빈값으로 셋팅된 값이 들어가서 에러나는 것을 막을 수 있음
+
+(()=>{
+
+	// 파라미터 변수 생성
+	let pm;
+
+	// GET 방식으로 넘어온 데이터를 처리하여, 분류별로 서브 페이지 구성하기
+	// location.href: 상단 url 읽어옴
+	// .indexOf("?")!==-1: 물음표가 있으면
+	if(location.href.indexOf("?")!==-1)
+		// 물음표(?)로 잘라서 뒤에 거, 이퀄(=)로 잘라서 뒤에 거
+		// 파라미터값만 추출
+		pm = location.href.split("?")[1].split("=")[1];
+
+	// 만약, pm에 할당이 되었다면 undefined가 아니므로 true
+	if(pm)
+		// decodeURI(): 변경할 문자열만 있어야 변환
+		// decodeURIComponent(): url 전체에 섞여있어도 모두 변환
+		store.commit("chgData",decodeURI(pm));
+
+	// 메뉴를 선택해서 파라미터로 들어오지 않으면 "남성" 메뉴로 셋팅
+	else
+		store.commit("chgData","남성");
+
+})(); // 바로 실행 함수 구역 //
 
 //###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
 // 1. 배너파트 컴포넌트
@@ -141,6 +175,11 @@ new Vue({
 			sc_pos = newpos;
 
 		}); // click //
+
+		// 로고 클릭 시 첫 페이지로 이동하기
+		$("#logo").click(()=>
+			location.href="index.html"
+		); // click //
 
     }, // mounted// 
 
