@@ -16,29 +16,47 @@ import store from "./store.js";
 let swiper;
 
 //###### 서브영역 메뉴 뷰 템플릿 셋팅하기 #######
-// Vue.component(내가지은요소명,{옵션})
-Vue.component("ban-comp",{
-    template:subData.banner,
-}); ////////// 서브영역 Vue component //////////
+// 1. 배너파트 컴포넌트
+Vue.component("ban-comp", {
+    template: subData.banner,
+}); // 상단영역 Vue component //
+
+// 2. 컨텐츠1 영역 컴포넌트
+Vue.component("cont1-comp", {
+    template: subData.cont1,
+}); // 상단영역 - 컨텐츠1 Vue component //
+
+// 3. 컨텐츠2 영역 컴포넌트
+Vue.component("cont2-comp", {
+    template: subData.cont2,
+}); // 상단영역 - 컨텐츠2 Vue component //
+
+// 4. 컨텐츠3 영역 컴포넌트
+Vue.component("cont3-comp", {
+    template: subData.cont3,
+}); // 상단영역 - 컨텐츠3 Vue component //
+
+// 5. 컨텐츠4 영역 컴포넌트
+Vue.component("cont4-comp", {
+    template: subData.cont4,
+}); // 상단영역 - 컨텐츠4 Vue component //
 
 //###### 서브영역 뷰 인스턴스 셋팅하기 #######
-// new Vue({옵션})
 new Vue({
-    el: "#cont",
-	// 뷰엑스 스토어 등록 필수
-	store,
-}); ////////// 서브영역 뷰 인스턴스 //////////
+    el:"#cont",
+    store, // 뷰엑스 스토어 등록필수!!!
+}); // 상단영역 Vue component //
 
 //###### 상단영역 메뉴 뷰 템플릿 셋팅하기 #######
 // Vue.component(내가지은요소명,{옵션})
 Vue.component("top-comp",{
     template:comData.tareaSub,
-}); ////////// 상단영역 Vue component //////////
+}); // 상단영역 Vue component //
 
 //###### 하단영역 메뉴 뷰 템플릿 셋팅하기 #######
 Vue.component("foot-comp",{
     template:comData.barea,
-}); ////////// 하단영역 Vue component //////////
+}); // 하단영역 Vue component //
 
 //###### 상단영역 뷰 인스턴스 생성하기 ##########
 // new Vue({옵션})
@@ -75,12 +93,54 @@ new Vue({
 		$.fn.scrollReveal();
 
 		// 전체 메뉴 클릭 시 전체 메뉴창 닫기
-		$(".mlist a").click(()=>$(".ham").trigger("click"));
+		$(".mlist a").click(()=>{
+
+			// 1. 전체 메뉴창 닫기
+			$(".ham").trigger("click");
+
+			// 2. 부드러운 스크롤 위치값 업데이트 (스크롤 튀는 현상 X)
+			sc_pos = 0;
+
+			// 3. 스와이퍼 첫 번째 슬라이드로 이동
+			swiper.slideTo(0);
+			// -> 첫 슬라이드 번: 스와이퍼 API 이용
+
+			// 4. 등장액션 스크롤리빌 재호출
+			$.fn.scrollReveal();
+
+		});
 		// $("선택 요소").trigger("이벤트명")
 		// -> 선택 요소에 이벤트 강제 발생
 
 		// 참고) JS 클릭 이벤트 강제 발생
 		// document.querySelector(요소).click();
+
+		// gnb 메뉴 클릭 시 해당위치로 스크롤이동 애니메이션
+		// 각 .gnb a에는 href="#c2" 이런식으로 아이디 요소가 있음
+		// a요소의 #아이디명 으로 기본 위치 이동은 되지만 스크롤 애니메이션은 되지 ㅇ낳음
+		// 이것을 제이쿼리로 구현
+		$(".gnb a").click(function(e){
+			
+			// 1. 기본 이동 막기
+			e.preventDefault();
+
+			// 2. 클릭된 a 요소의 href값 읽어오기
+			let aid = $(this).attr("href");
+			
+			// 3. 아이디 요소 박스 위치 구하기
+			let newpos = $().offset().top;
+
+			console.log("이동아이디:",aid, "/위치:",newpos);
+
+			// 4. 애니메이션 이동
+			$("html,body").animate({
+				scrollTop: newpos + "px"
+			}, 600, "easeOutQuint"); // animate //
+
+			// 5. 부드러운 스크롤 변수에 현재 위치값 업데이트
+			sc_pos = newpos;
+
+		}); // click //
 
     }, // mounted// 
 
@@ -225,8 +285,12 @@ function sinsangFn(){
 			let clsnm = $(this).attr("class");
 			
 			// 2. 클래스 이름으로 셋팅된 신상정보 객체데이터 가져오기
-			let gd_info = sinsang[clsnm];
+			// 중간 객체속성명 상위 부모박스 #c1의 data-cat 속성값 읽어와서
+			// sinsang[여기][] -> [여기]에 넣기
+			let cat = $(this).parents("#c1").attr("data-cat");
+			let gd_info = sinsang[cat][clsnm];
 			// console.log(clsnm,gd_info);
+			console.log("data-cat:",cat);
 
 			// 3. 상품정보박스 만들고 보이게 하기
 			// 마우스 오버된 li 자신 (this)에 넣어줌

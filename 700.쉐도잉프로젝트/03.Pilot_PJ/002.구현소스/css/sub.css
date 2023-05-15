@@ -153,6 +153,19 @@ body{
     text-align: center;
 }
 
+/* 신상품 배경이미지 카테고리 클래스추가 */
+.c2.men{
+    background-image: url(../images/sub/men/02.special.png);
+}
+
+.c2.women{
+    background-image: url(../images/sub/women/02.special.png);
+}
+
+.c2.style{
+    background-image: url(../images/sub/style/02.special.png);
+}
+
 /* 타이틀 */
 .c2tit{
     font: bold 5rem/50vh UB;
@@ -182,11 +195,11 @@ body{
 }
 
 /* 컨텐츠 영역4 이미지 */
-.c4 img{
+/* .c4 img{
     object-fit: fill;
-    /* width: auto; */
-    /* right: -26%; */
-}
+    width: auto;
+    right: -26%;
+} */
 
 /* 컨텐츠 영역4 글자 */
 /* 오른쪽 글자 */
