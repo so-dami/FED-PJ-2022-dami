@@ -28,14 +28,22 @@ const store = new Vuex.Store({
                 cat: "style",
             },
         },
-        // 공통처리 메뉴 변수
+        // 공통 처리 메뉴 변수
         menu: [],
-        // 공통처리 배너개수 변수
+        // 공통 처리 배너개수 변수
         cnt: 0,
-        // 공통처리 카테고리명 변수
+        // 공통 처리 카테고리명 변수
         cat: "",
-        // 공통처리 분류명
+        // 공통 처리 분류명
         name: "",
+        // 상품 속성코드(클래스명)
+        cls: "m1",
+        // 상품 이름
+        gname: "",
+        // 상품코드
+        gcode: "",
+        // 상품 가격
+        gprice: "",
     },
     // state 데이터 변경 메서드구역!
     mutations: {
@@ -49,6 +57,8 @@ const store = new Vuex.Store({
             dt.cat = dt.subData[pm].cat;
             // 3. 해당 카테고리 메뉴 업데이트
             dt.menu = dt.subData[pm].menu;
+            // 4. 해당 qnsfbaud 업데이트
+            dt.name = pm;
         }, ///////// chgData메서드 ///////
     },
 });
