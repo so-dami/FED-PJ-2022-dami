@@ -92,7 +92,6 @@
     display: flex;
     /* 플렉스박스 */
 }
-
 /* li요소 */
 .pgc>li{
     position: relative;
@@ -105,7 +104,6 @@
     overflow: hidden;
     /* 넘치는 이미지 숨기기 */
 }
-
 /* 이미지 */
 .pgc img{
     position: absolute;
@@ -124,7 +122,6 @@
     font: bold 4.6rem UB;
     letter-spacing: 3px;/* 자간 */
 }
-
 .txtc a{
     color: #222;
 }
@@ -134,14 +131,49 @@
     opacity: 1;
     transform: translateY(0px);
     transition: opacity .7s ease-in, transform .7s ease-out;
-}
-
-.js-reveal--hidden {
+  }
+  
+  .js-reveal--hidden {
     opacity: 0;
     transform: translateY(200px);
-}
-
-/* a요소는 transform이 적용되도록 display: inline-block으로 변경 */
-a.js-reveal{
+  }
+  /* a요소는 트랜스폼이 적용되도록 display:inline-block으로 변경 */
+  a.js-reveal{
     display: inline-block;
-}
+  }
+
+  .jr1.js-reveal {
+    opacity: 1;
+    transform: none;
+    overflow: hidden;
+    height: 100vh;
+    transition: .7s ease-out 1s;
+  }
+  
+  .jr1.js-reveal--hidden {
+    height: 0;
+  }
+
+
+  .jr2.js-reveal {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    overflow: hidden;
+    
+  }
+  .jr2.js-reveal::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    background-color: darkblue;
+
+    
+    transition: .7s ease-out 1.2s;
+  }
+  
+  .jr2.js-reveal--hidden::after {
+    height: 100%;
+  }
