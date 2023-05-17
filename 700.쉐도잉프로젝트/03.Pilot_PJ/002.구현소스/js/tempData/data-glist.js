@@ -20,7 +20,7 @@ const comData = {
                         <router-link to="/glist">
                             Filter List
                         </router-link>
-                    </li>
+                    </li> 
                     <li>
                         <router-link to="/paging">
                             Paging List
