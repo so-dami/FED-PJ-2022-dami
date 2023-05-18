@@ -81,11 +81,12 @@ const store = new Vuex.Store({
         updateMore(dt,pm){
         // pm - 업데이트 할 전달 수
 
-            // mnum - 전체 리스트 범위 수
-            dt.mnum = pm;
+            // mnum - 모어 범위 수: +=로 여러 번 모어 진행
+            dt.mnum += pm;
 
-            // 업데이트 후 MORE 버튼 없애기
-            $("#more").hide();
+            // 업데이트 후 MORE 버튼 없애기(한계수를 넘으면)
+            if(dt.mnum>=25)
+                dt.mbtn = false;
             
         }, // updateMore //
         
