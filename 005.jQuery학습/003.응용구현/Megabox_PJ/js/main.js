@@ -262,7 +262,8 @@ $(function () {
 
     // 2. 동영상 컨트롤 기능 구현
         // 2-1. 재생/멈춤 기능
-            // 2-1-1. 마우스 오버/아웃 시 이미지 변경
+
+            // 2-1-1. 마우스 오버/아웃 시 일시정지 버튼 이미지 변경
             // 대상: .btnpp img
             // 제이쿼리 메서드: hover(함수1, 함수2)
             $(".btnpp img").hover(
@@ -272,12 +273,12 @@ $(function () {
 
                     // 이미지 경로 읽어오기
                     let csrc = $(this).attr("src");
-                    console.log("over 현재경로:",csrc);
+                    // console.log("over 현재경로:",csrc);
 
                     // 이미지 경로 변경: .png -> -1.png
                     // JS 메서드: replace(바꿀값,바뀔값)
                     csrc = csrc.replace(".png","-1.png")
-                    console.log("바뀐 over 현재경로:",csrc);
+                    // console.log("바뀐 over 현재경로:",csrc);
 
                     // 실제 이미지 변경
                     $(this).attr("src",csrc);
@@ -289,12 +290,12 @@ $(function () {
 
                     // 이미지 경로 읽어오기
                     let csrc = $(this).attr("src");
-                    console.log("out 현재경로:",csrc);
+                    // console.log("out 현재경로:",csrc);
 
                     // 이미지 경로 변경: -1.png -> .png
                     // JS 메서드: replace(바꿀값,바뀔값)
                     csrc = csrc.replace("-1.png",".png")
-                    console.log("바뀐 out 현재경로:",csrc);
+                    // console.log("바뀐 out 현재경로:",csrc);
 
                     // 실제 이미지 변경
                     $(this).attr("src",csrc);
@@ -303,7 +304,43 @@ $(function () {
 
             ); // hover //
 
+        // 2-2. 재생/멈춤 기능 구현
+        // 대상: .btnpp img
+        // 원리: 재생 상태이면 멈춤 img 멈춘 상태이면 재생 img
+        // 핵심: 동영상의 멈춤 상태를 알아내야 함
+        $(".btnpp img").click(function(){
 
+            // 2-2-1. 동영상 멈춤 상태 알아내기
+            // paused 속성으로 알아냄
+            // 결과: true - 멈춤, false - 재생
+            let paused_sts = mv.get(0).paused;
+            console.log("비디오 멈춤?:",paused_sts);
+
+            // 2-2-2. 재생 중이면(false) 동영상 멈추기
+            // false일 때 들어오려면 not(!) 연산자 사용
+            // !true = false, !false = ture
+            if(!paused_sts){
+
+                // 비디오 멈추기: pause() 메서드 사용
+                mv.get(0).pause();
+
+                // 비디오 멈춤 상태일 경우 진한 재생 버튼으로 변경
+                $(this).attr("src","images/vbt2-1.png");
+                
+            } // if //
+
+            // 2-2-3. 정지 중이면(true) 동영상 재생
+            else{
+
+                // 비디오 재생: play() 메서드 사용
+                mv.get(0).play();
+
+                // 비디오 재생 상태일 경우 진한 멈춤 버튼으로 변경
+                $(this).attr("src","images/vbt1-1.png");
+                
+            } // else //
+            
+        }); // click //
 
     // 3. 영화페이지 : 스와이퍼 적용하기 //
 
