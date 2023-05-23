@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01. 리액트 시작하기</title>
-    <script>
-
-        /***************************************** 
-        
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>01.리액트 시작하기</title>
+        <script>
+            /***************************************** 
             [ 리액트란? ]
 
             -> 프론트엔드 JS 라이브러리다!
@@ -36,40 +34,39 @@
             Node.js 등을 사용하여 한 페이지로만 구현하는
             웹을 만들 수 있다!
             -> NodeJS, 리액트SPA 프로젝트 설치 및 생성 필요!
+            
+
 
         *****************************************/
-        
-    </script>
+        </script>
 
-    <!-- 1. 리액트 기본 라이브러리 -->
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+        <!-- 1.리액트 기본 라이브러리 -->
+        <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
 
-    <!-- 2. 리액트 가상돔 라이브러리 -->
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+        <!-- 2.리액트 가상돔 라이브러리 -->
+        <script
+            src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+            crossorigin></script>
+            
+        <!-- 3.리액트 바벨 라이브러리 -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <!-- 3. 리액트 바벨 라이브러리 -->
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-
-    <!-- 4. 내가 리액트로 구현한 JS -->
-    <script src="./js/01.시작하기.jsx" type="text/babel"></script>
-    <!--
-        ※ CDN 주의 ※
-
-        type을 반드시 "text/babel"로 셋팅함
-        또한, 상단에 위치해도 내부적으로 defer 처리되어 html 태그 로딩 후 실행됨
-    -->
-    
-</head>
-<body>
-
-    <!-- 리액트 대상 요소 -->
-    <div id="mydiv">
-
-        <!--
-            보통 리액트 대상 요소의 이름으로 #root로 만들 것을 권고함
+        <!-- 4. 내가 리액트로 구현한 JS -->
+        <script src="./js/01.시작하기.jsx" type="text/babel"></script>
+        <!-- 
+            type을 반드시 "text/babel"로
+            셋팅한다!
+            그리고 상단에 위치해도 내부적으로
+            defer처리되어 html태그 로딩후 실행됨
          -->
-        
-    </div>
-    
-</body>
+    </head>
+    <body>
+        <!-- 리액트 대상요소 -->
+        <div id="mydiv"></div>
+        <!-- 
+        보통 리액트 대상요소의 이름으로 #root로 만들것을
+        권고하지만 꼭 그럴필요는 없다!^^
+
+     -->
+    </body>
 </html>
