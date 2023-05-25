@@ -216,6 +216,7 @@ const store = new Vuex.Store({
         }, //////////////// delRec 메서드 ///////////////
 
         /////////// 리스트 바인딩 메서드 ////////////////
+        // pm - 카트박스 right값 전달
         bindData(dt,pm){
             // (1) 로컬스 데이터 읽어와서 객체화하기
             let org = localStorage.getItem("cart");
