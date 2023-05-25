@@ -1,8 +1,5 @@
 // 05.Props JSX
 
-const { func } = require("prop-types");
-const { unstable_clear } = require("scheduler/tracing");
-
 /********************************************************** 
     [ 리액트 Props ]
     1. 리액트 구성요소에 전달되는 인수다!(전달변수)
@@ -74,21 +71,21 @@ function Brand2(props){
         {
             color: "라잇블루",
             model: "2023년형",
-            opt: {filter: 'hue-ratate(0deg)'},
+            opt: {filter: 'hue-rotate(0deg)'},
         },
 
         {
             color: "올리브",
             model: "2024년형",
-            opt: {filter: 'hue-ratate(207deg)'},
-            transform: "rotateY(180deg)",
+            opt: {filter: 'hue-rotate(207deg)',
+            transform: "rotateY(180deg)"}
         },
     ]
 
     return(
         <React.Fragment>
             <h1>더 자세히 말씀해 주세요.</h1>
-            <Car brand={carInfo[props.num]} />
+            <Car2 brand={carInfo[props.num]} />
         </React.Fragment>
     )
     
