@@ -162,7 +162,8 @@ const store = new Vuex.Store({
                 } ////////// if ///////////////
 
                 // 2. 로컬스 데이터로 테이블 레코드 태그 구성하기
-                store.commit('bindData');
+                // 카트가 보이지 않는 상태(right: "-60vw")
+                store.commit('bindData', "-60vw");
                 
 
             }); /////////// 카트버튼 click /////////////////
@@ -192,10 +193,11 @@ const store = new Vuex.Store({
             console.log("삭제후 로칼쓰:", localStorage.getItem("cart"));
     
             // 5. 리스트 갱신하기
-            store.commit('bindData');
+            // 카트가 보이는 상태(right: "0")
+            store.commit('bindData', "0");
 
             // 6. 카트 버튼 툴팁 문구 업데이트하기
-            
+
                 // 데이터 없으면 지우기
                 if(org.length==0){
 
@@ -308,7 +310,7 @@ const store = new Vuex.Store({
             .css({
                 position: "fixed",
                 top:"0",
-                right: "-60vw",
+                right: pm, // "-60vw",
                 width:"60vw",
                 height:"100vh",
                 backgroundColor:"rgba(255,255,255,.8)",
