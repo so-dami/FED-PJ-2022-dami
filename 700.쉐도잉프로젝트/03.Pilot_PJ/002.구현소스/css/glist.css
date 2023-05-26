@@ -1,5 +1,5 @@
 @charset "utf-8";
-/* 파일럿 PJ 카테고리 서브페이지 CSS - sub.css */
+/* 파일럿 PJ 전체 리스트페이지 CSS - glist.css */
 
 /* 외부CSS 합치기 */
 @import url(reset.css);
@@ -8,25 +8,20 @@
 
 /* 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Ubuntu&display=swap');
-
 html,body{
     overflow: visible;
 }
-
 body{
     font-family: 'Nanum Gothic','Ubuntu', sans-serif;
     background-color: rgb(235, 235, 235);
 }
-
 #info{
     height: 50vh;
 }
-
 #logo{
     position: relative;
     z-index: 10;
 }
-
 .gnb{
     position: absolute;
     left: 0;
@@ -35,14 +30,12 @@ body{
     font-size: 5vh;
     text-align: center;
 }
-
 .gnb ul{
     position: absolute;
     width: 100%;
     line-height: 10px;
     justify-content: center;
 }
-
 .gnb li a{
     background-color: darkcyan;
     padding: 5px;
@@ -55,11 +48,9 @@ body{
     /* 글자 최소크기 지정 */
     font-size: max(3vw, 25px);
 }
-
 .wrap{
     overflow: hidden;
 }
-
 /* 옵션박스 */
 #optbx{
     position: relative;
@@ -70,9 +61,9 @@ body{
     box-sizing: border-box;
     padding: 10px;
     text-align: center;
+    font-size: 20px;
     background-color: #fff;
 }
-
 /* 페이징박스 */
 #paging{
     position: relative;
@@ -85,7 +76,6 @@ body{
     font-size: 20px;
     background-color: #fff;
 }
-
 /* 더보기박스 */
 #more{
     position: relative;
@@ -97,7 +87,6 @@ body{
     text-align: center;
     background-color: #fff;
 }
-
 #more button{
     border: none;
     background-color: transparent;
@@ -146,12 +135,12 @@ body{
     /* 트랜지션: 속시이지 */
     transition: 0.3s;
 }
-
 /* 오버시 이미지확대 */
 .grid > div:hover img {
     /* transform: scale(1.1); */
     animation: magAni 10s linear infinite alternate;
 }
+
 
 /* 계속 확대/축소 애니 키프레임 */
 @keyframes magAni {
@@ -169,7 +158,6 @@ body{
     color: #fff;
     background-color: rgba(0, 0, 0, 0.422);
 }
-
 /* 상품명 글자박스(h2) */
 .grid aside h2 {
     font-size: min(1.8vw, 16px);
@@ -177,7 +165,6 @@ body{
     margin: min(1.2vw, 14px) 0 0;
     /* 마진: 위 양쪽 아래 */
 }
-
 /* 상품가격 글자박스(h3) */
 .grid aside h3 {
     font-size: min(1.4vw, 12px);
@@ -235,19 +222,18 @@ body{
     /* 비율설정 */
     aspect-ratio: 5/2.2;
 }
-
 /* 신상품 배경이미지 카테고리 클래스추가 */
 .c1.men{
     background-image: url(../images/sub/men/01.new-arrival.png);
 }
-
 .c1.women{
     background-image: url(../images/sub/women/01.new-arrival.png);
 }
-
 .c1.style{
     background-image: url(../images/sub/style/01.new-arrival.png);
 }
+
+
 
 /* 신상품 타이틀 */
 .c1tit{
@@ -261,20 +247,17 @@ body{
 /* .flowbx{
     margin-bottom: 300px;
 } */
-
 /* 움직일 리스트박스 */
 .flist{
     position: relative;
     left: 0;/* 움직일 기준값 */
     display: flex;
 }
-
 /* 리스트 하위 li */
 .flist li{
     position: relative;
     /* 부모자격 - 설명박스 */
 }
-
 /* 리스트 상품 이미지 */
 .flist li img{
     width: 300px;
@@ -328,6 +311,7 @@ body{
     border-bottom: 20px solid #101629;
     /* 삼각형 */
     /* border-top: 20px solid #101629;역삼각형 */
+  
   }
 
   /* 컨텐츠영역2 - 스페셜영역 */
@@ -336,20 +320,16 @@ body{
     background: url(../images/sub/men/02.special.png) no-repeat fixed center top/cover;
     text-align: center;
   }
-
   /* 신상품 배경이미지 카테고리 클래스추가 */
   .c2.men{
       background-image: url(../images/sub/men/02.special.png);
   }
-
   .c2.women{
       background-image: url(../images/sub/women/02.special.png);
   }
-
   .c2.style{
       background-image: url(../images/sub/style/02.special.png);
   }
-
   /* 타이틀 */
   .c2tit{
     font: bold 5rem/50vh UB;
@@ -405,6 +385,8 @@ body{
     /* display: none; */
 }
 
+
+
 /* 닫기버튼 */
 .cbtn {
     position: absolute;
@@ -428,14 +410,12 @@ body{
 #imbx h1{
     font-size: 20px;
 }
-
 /* 속박스 : 플렉스박스 */
 .inx{
     display: flex;
     height: 100%;
     border: 4px double gray;
 }
-
 /* 하위 2개 section박스 등분할 */
 .inx>section{
     flex: 1;
@@ -445,7 +425,6 @@ body{
 .gimg{
     text-align: center;
 }
-
 /* 큰 이미지 */
 .gimg img {
     width: 60%;
@@ -463,7 +442,6 @@ body{
     text-decoration: line-through;
     color: orange;
 }
-
 /* 세일상품 표시 가상요소 */
 .sale::after{
     content: '';
@@ -481,37 +459,33 @@ body{
     box-sizing: border-box;
     overflow: auto;
 }
-
 .gdesc ol{
     margin: 0;
     padding: 0;
     list-style: none;
-   width: 80%;
-   margin-left: 20px;
+	width: 80%;
+	margin-left: 20px;
 }
-
 .gdesc ol>li{
-   width: 100%;
-   font-family: 'Nanum Gothic';
-   font-size:12px;
-   line-height: 3.5vh;
+	width: 100%;
+	font-family: 'Nanum Gothic';
+	font-size:12px;
+	line-height: 3.5vh;
 }
-
 .gdesc ol>li>span:first-child{/*각항목 타이틀*/
-   display: inline-block;
-   width: 70px;
+	display: inline-block;
+	width: 70px;
     font-size: 14px;
 }
-
 .gdesc ol>li:nth-child(3){
-   border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 
 /*이미지 정렬 공통*/
 .gdesc ol>li img{
-   vertical-align: middle;/*인라인 태그 정렬 세로중앙*/
-   margin: 0 4px;
+	vertical-align: middle;/*인라인 태그 정렬 세로중앙*/
+	margin: 0 4px;
 }
 
 
@@ -519,72 +493,65 @@ body{
 
 /*상품명*/
 .gdesc #gtit{
-   font-size: 24px;
+	font-size: 24px;
 }
-
 /*상품가격*/
 .gdesc #gprice{
-   font-size: 24px;
-   color: #ff4e08;
+	font-size: 24px;
+	color: #ff4e08;
 }
 
 /****버튼 구역*****/
 .btn{
-   width: 30%;
+	width: 30%;
     aspect-ratio: 3/1.2;
-   font: 1vw 'Ubuntu';
-   color: #fff;
-   background-color: #666;
+	font: 1vw 'Ubuntu';
+	color: #fff;
+	background-color: #666;
     vertical-align: top;
     cursor: pointer;
     border-radius: 15px;
 }
-
 .btn1{/*구매버튼*/
-   background-color: #ff4e08;
+	background-color: #ff4e08;
 }
 
 /*상세이미지 박스*/
 .dimgs{
-   position: relative;
-   width: 1440px;
-   padding: 50px 0;
-   margin: 0 auto;
+	position: relative;
+	width: 1440px;
+	padding: 50px 0;
+	margin: 0 auto;
 }
-
 .dimgs>img{/*이미지 공통*/
-   width: 49%;
-   height: 49%;
-   margin: 0.5%;
-   outline: 1px solid #ccc;
+	width: 49%;
+	height: 49%;
+	margin: 0.5%;
+	outline: 1px solid #ccc;
 }
 
 /*상품 수량에 따른 계산 박스*/
 #sum{
-   width: 25px;
+	width: 25px;
 }
-
 .chg_num{
-   display: inline-block;
-   width: 18px;
-   height: 20px;
-   margin: 0;
-   padding: 0;
-   line-height: 0;
-   vertical-align: -4px;
+	display: inline-block;
+	width: 18px;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+	line-height: 0;
+	vertical-align: -4px;
 }
-
 .chg_num img{
-   cursor: pointer;
+	cursor: pointer;
 }
-
 .tot{
-   font-size: 24px !important;
+	font-size: 24px !important;
 }
-
 #total{
-   color: #FC0206;   
-   font-weight: bold;
+	color: #FC0206;	
+	font-weight: bold;
 }
 
 /* 스크롤바 디자인 클래스 */
@@ -592,15 +559,16 @@ body{
     /* 전체 스크롤바 크기변경 */
     width: 7px;
 }
-
 .scbar::-webkit-scrollbar-thumb{
     /* 스크롤바 */
     background-color: #555;
     border-radius: 5px;
 }
-
 .scbar::-webkit-scrollbar-track{
     /* 스크롤바 트랙 */
     background-color: #ddd;
     border-radius: 5px;
 }
+
+
+

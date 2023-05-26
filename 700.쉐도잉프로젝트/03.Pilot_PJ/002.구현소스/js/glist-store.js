@@ -162,8 +162,8 @@ const store = new Vuex.Store({
                 } ////////// if ///////////////
 
                 // 2. 로컬스 데이터로 테이블 레코드 태그 구성하기
-                // 카트가 보이지 않는 상태(right: "-60vw")
-                store.commit('bindData', "-60vw");
+                // 카트가 보이지 않는 상태임!(right:"-60vw")
+                store.commit('bindData',"-60vw");
                 
 
             }); /////////// 카트버튼 click /////////////////
@@ -192,32 +192,25 @@ const store = new Vuex.Store({
             localStorage.setItem("cart", JSON.stringify(org));
             console.log("삭제후 로칼쓰:", localStorage.getItem("cart"));
     
-            // 5. 리스트 갱신하기
-            // 카트가 보이는 상태(right: "0")
-            store.commit('bindData', "0");
+            // 5. 리스트 갱신하기 : 카트가 보이는 상태임!(right:"0")
+            store.commit('bindData',"0");
 
-            // 6. 카트 버튼 툴팁 문구 업데이트하기
-
-                // 데이터 없으면 지우기
-                if(org.length==0){
-
-                    $("mycart").remove();
-                    $("#cartlist").remove();
-                    
-                } // if //
-
-                // 데이터 개수 업데이트
-                else{
-
-                    $("mycart").attr("title", org.length + "개의 상품이 카트에 있습니다.");
-                    
-                } // else //
+            // 6. 카트버튼 툴팁 문구 업데이트하기
+            if(org.length==0){ // 데이터가 없으면 지우기
+                $("#mycart").remove();
+                $("#cartlist").remove();
+            } ////////// if //////////
+            else{ // 데이터 개수 업데이트하기
+                $("#mycart")
+                .attr("title",
+                org.length+"개의 상품이 카트에 있습니다!");
+            } /////////// else ////////
+        
 
         }, //////////////// delRec 메서드 ///////////////
 
         /////////// 리스트 바인딩 메서드 ////////////////
-        // pm - 카트박스 right값 전달
-        bindData(dt,pm){
+        bindData(dt,pm){ // pm - 카트박스 right값 전달!
             // (1) 로컬스 데이터 읽어와서 객체화하기
             let org = localStorage.getItem("cart");
             org = JSON.parse(org);
@@ -285,7 +278,6 @@ const store = new Vuex.Store({
 
             // 3. 생성된 카트리스트에 테이블 넣기
             $("#cartlist")
-
             // (1) html 테이블 태그 넣기
             .html(`
                 <a href="#" class="cbtn cbtn2">×</a>
@@ -306,23 +298,20 @@ const store = new Vuex.Store({
                     ${rec}
                 </table>
             `) ///// html ////////
-
             // (2)카트박스 CSS넣기
             .css({
                 position: "fixed",
                 top:"0",
-                right: pm, // "-60vw",
+                right: pm,//"-60vw",
                 width:"60vw",
                 height:"100vh",
                 backgroundColor:"rgba(255,255,255,.8)",
                 zIndex:"99999999",
             })
-
             // (3) 등장애니메이션
             .animate({
                 right:"0"
             },600,"easeOutQuint")
-
             // (4) table css 넣기
             .find("table")
             .css({
@@ -333,7 +322,6 @@ const store = new Vuex.Store({
                 borderBottom:"2px solid #222",
                 borderCollapse:"collapse",
             })
-
             // (5) td css 넣기
             .find("td")
             .css({
@@ -341,7 +329,6 @@ const store = new Vuex.Store({
                 borderTop:"1px solid #555",
                 textAlign:"center",
             })
-
             // (6) th css 넣기
             .parents("table")
             .find("th")
@@ -350,7 +337,6 @@ const store = new Vuex.Store({
                 backgroundColor:"#e5e5e5",
                 fontSize:"16px",
             })
-
             // (7) caption css 넣기
             
             .parents("table")
@@ -372,13 +358,12 @@ const store = new Vuex.Store({
 
             // (9) 삭제버튼 처리연결하기
             $(".cfn").click(function(){
-
                 // 아이템 삭제 메서드 호출
                 store.commit('delRec',
                 $(this).attr("data-idx"));
                 // 삭제할 idx정보를 넘겨준다!
-
             }); ///////// click ///////
+
 
         }, /////////////// bindData 메서드 ///////////////
 
