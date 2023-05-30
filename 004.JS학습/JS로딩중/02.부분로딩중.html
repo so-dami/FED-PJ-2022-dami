@@ -121,11 +121,11 @@
             // 이미지 컨텐츠를 로딩하는 함수를 promise 하기
             // async, await 사용
             // async function 안에 promise의 세계를 만들어줌
-            // fn - 실행코드함수
-            async function setIt(fn){
+            // fn - 실행코드함수, seq - 적용 대상 순번
+            async function setIt(fn,weq){
 
                 // 재사용성을 위해 실행할 함수를 받음
-                let doit = new Promise(function(seq){
+                let doit = new Promise(function(success){
 
                     // 시간이 걸리는 코드
                     fn();
