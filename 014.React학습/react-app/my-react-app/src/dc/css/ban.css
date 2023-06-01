@@ -20,6 +20,11 @@
     left: 0%;
 }
 
+.slider li{
+    /* 부모 자격 */
+    position: relative;
+}
+
 /* 배너 컨텐츠 버튼 */
 .banner button{
     border-radius: 20px;
@@ -32,7 +37,7 @@
 
 .banner button:hover{
     background-color: hotpink;
-    border: 1px solid hotpink;
+    border-color: hotpink;
 }
 
 /* 배너 이미지 크기 설정 */

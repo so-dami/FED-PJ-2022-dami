@@ -1,38 +1,42 @@
 // 배너 컴포넌트 - Ban.js
 
+// 배너 CSS
 import "./css/ban.css";
 
-function Ban(){
+// 배너 데이터
+import ban_data from "./data/banner";
 
-    const ban_data = [
-        {
-            "src": "./images/dcm21.jpg",
-            "tit1": "GOTHAM GAZETTE",
-            "tit2": "WORLDS TRAVELER",
-            "cont": `Barry who? The Flash isn't the only DC hero this summer who's been traveling through the multiverse.`,
-            "btn": "New Places, Familiar Faces",
-        },
-        {
-            "src": "./images/dcm25.jpg",
-            "tit1": "GET TO KNOW",
-            "tit2": "KATANA",
-            "cont": `Wielder of the fearsome Soultaker Sword, Tatsu Yamashiro escaped a tragic past to fight alongside the Outsiders and the Suicide Squad.`,
-            "btn": "MEET TATSU",
-        },
-    ];
+// 반복 리스트 코드 생성용 컴포넌트
+// rec - 개별 레코드값(객체 형식)
+function MakeList(props){
+
+    return(
+        <li>
+            <img className="banimg" src={props.rec["src"]} alt="배너" />
+            <section className="bantit">
+                <h3>{props.rec["tit1"]}</h3>
+                <h2>{props.rec["tit2"]}</h2>
+                <p>{props.rec["cont"]}</p>
+                <button>{props.rec["btn"]}</button>
+            </section>
+        </li>
+    );
     
-    return (
+} // MakeList component //
+
+// 배너 출력용 컴포넌트
+function Ban(props){
+
+    // props.cat - 배너 데이터 구분 속성명
+    // sel_data에 담긴 값은 ./data/banner.js의 객체의 배열값
+    const sel_data = ban_data[props.cat];
+
+    return(
         <div className="banner">
             <ul className="slider">
-                <li>
-                    <img className="banimg" src={ban_data[1]["src"]} alt="배너" />
-                    <section className="bantit">
-                        <h3>{ban_data[1]["tit1"]}</h3>
-                        <h2>{ban_data[1]["tit2"]}</h2>
-                        <p>{ban_data[1]["cont"]}</p>
-                        <button>{ban_data[1]["btn"]}</button>
-                    </section>
-                </li>
+                {
+                    sel_data.map(x=> <MakeList rec={x} />)
+                }
             </ul>
         </div>
     );
