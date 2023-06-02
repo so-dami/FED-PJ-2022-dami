@@ -3,6 +3,9 @@
 
 .banner{
     position: relative;
+
+    /* 넘치는 배너 숨기기 */
+    overflow: hidden;
 }
 
 .bantit{
@@ -18,11 +21,17 @@
 .slider{
     position: relative;
     left: 0%;
+    display: flex;
 }
 
 .slider li{
     /* 부모 자격 */
     position: relative;
+
+    /* 강제 축소 옵션 해제 */
+    flex-shrink: 0;
+
+    width: 100%;
 }
 
 /* 배너 컨텐츠 버튼 */
@@ -36,11 +45,60 @@
 }
 
 .banner button:hover{
-    background-color: hotpink;
-    border-color: hotpink;
+    background-color: #0074e8;
+    border-color: #0074e8;
 }
 
 /* 배너 이미지 크기 설정 */
 .banimg{
     width: 100%;
+}
+
+/* 이동버튼 */
+.banner .abtn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 30px;
+    padding: 0;
+    box-sizing: content-box;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+/* 왼쪽 */
+.lb{
+    left: 5vw;
+}
+
+/* 오른쪽 */
+.rb{
+    right: 5vw;
+}
+
+/* 블릿 */
+.indic{
+    position: absolute;
+    left: 50%;
+    bottom: 3vh;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.indic li{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 0 5px;
+    cursor: pointer;
+    text-shadow: 0 0 2px #000;
+}
+
+.indic li.on{
+    background-color: rgba(255, 255, 255, 0.9);
 }
