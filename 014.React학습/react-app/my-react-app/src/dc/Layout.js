@@ -38,7 +38,7 @@ const Layout = () => {
 
                         {/* gnb 메뉴 */}
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/">HOME</Link>
                         </li>
                         <li>
                             <Link to="/ct">CHARACTERS</Link>

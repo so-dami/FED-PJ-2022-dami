@@ -3,6 +3,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Characters from "./dc/Characters";
+import Main from "./dc/Main";
+import Layout from "./dc/Layout";
+import "./index.css";
+import Comics from "./dc/Comics";
+import Movies from "./dc/Movies";
+import Games from "./dc/Games";
+import News from "./dc/News";
+import Video from "./dc/Video";
 
 /***********************************************************************
 	[ React Router ]
@@ -37,6 +46,14 @@ export default function App(){
 				<Route path="/" element={<Layout />}>
 
 					{/* 하위 라우트 셋팅 */}
+					{/* path 대신 index만 쓰면? 첫 페이지임 */}
+					<Route index element={<Main />} />
+					<Route path="ct" element={<Characters />} />
+					<Route path="co" element={<Comics />} />
+					<Route path="mv" element={<Movies />} />
+					<Route path="gm" element={<Games />} />
+					<Route path="nw" element={<News />} />
+					<Route path="vd" element={<Video />} />
 					
 				</Route>
 				
