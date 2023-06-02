@@ -34,8 +34,10 @@ export default function App(){
 			<Routes>
 				
 				{/* 중요: 레이아웃 컴포넌트를 루트로 잡아줌 */}
-				<Route path="/" element={}>
+				<Route path="/" element={<Layout />}>
 
+					{/* 하위 라우트 셋팅 */}
+					
 				</Route>
 				
 			</Routes>
