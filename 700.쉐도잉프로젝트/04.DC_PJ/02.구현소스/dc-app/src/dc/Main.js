@@ -2,6 +2,7 @@
 
 import React from "react";
 import Ban from "./Ban";
+import MenuBtn from "./MenuBtn";
 
 const Main = () => {
 
@@ -9,6 +10,7 @@ const Main = () => {
 
         <>
             <Ban cat="main" />
+            <MenuBtn />
         </>
         
     ); // return //
