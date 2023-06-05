@@ -3,6 +3,7 @@
 import $ from "jquery";
 import "./css/menubtn.css";
 import menubtn_data from "./data/menubtn";
+import { Link, Outlet } from 'react-router-dom';
 
 // jQB 로드구역
 function jqFn(){
@@ -36,7 +37,6 @@ function MenuBtn(){
 
             <section className="menubtn">
 
-
             {
                 menubtnData.map((x,i) => 
                     <div key={i}>
@@ -53,20 +53,21 @@ function MenuBtn(){
 
                             {/* 작은 타이틀 */}
                             <h3>
-                                {tit1[i]}
+                                {tit1[i].toUpperCase()}
                             </h3>
 
                             {/* 큰 타이틀 */}
                             <h2>
-                                {tit2[i]}
+                                {tit2[i].toUpperCase()}
                             </h2>
                             
                         </div>
 
                         {/* 버튼 박스 */}
                         <div className="btnbx">
+                            {/* 라우터를 이용한 이동은 반드시 Link를 사용할 것 */}
                             <button>
-                                {menubtnData[i]['btn']}
+                                {menubtnData[i]['btn'].toUpperCase()}
                             </button>
                         </div>
                         
@@ -74,8 +75,6 @@ function MenuBtn(){
                 )
             }
 
-                
-        
             </section>
 
             {/* 빈 루트를 만들고 JS 로드 함수 포함 */}

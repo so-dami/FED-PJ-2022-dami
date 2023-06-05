@@ -22,7 +22,7 @@
 }
 
 .imbx img{
-    clip-path: polygon(0% 0%,100% 0%, 100% 90%,0% 100%);
+    clip-path: polygon(0% 0%,100% 0%, 100% 85%,0% 100%);
 }
 
 .titbx h3{
@@ -35,7 +35,7 @@
 }
 
 .titbx h2{
-    font-size: 22px;
+    font-size: 20px;
     height: 4.5rem;
     margin-bottom: 20px;
 }
