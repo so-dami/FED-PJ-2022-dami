@@ -47,6 +47,7 @@ export default function App(){
 
 					{/* 하위 라우트 셋팅 */}
 					{/* path 대신 index만 쓰면? 첫 페이지임 */}
+					{/* -> Layout의 Link to="/"에 해당하는 셋팅 필수*/}
 					<Route index element={<Main />} />
 					<Route path="ct" element={<Characters />} />
 					<Route path="co" element={<Comics />} />
