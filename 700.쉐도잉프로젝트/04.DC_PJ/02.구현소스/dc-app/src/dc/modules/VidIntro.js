@@ -11,6 +11,10 @@ function jqFn(){
     
 } // jqFn //
 
+// const 변수명 = 할당할 데이터;
+// props.pg - 해당페이지 데이터 속성명
+const vidintroData = vidintro_data[props.pg];
+
 function VidIntro(){
 
     return(
@@ -19,22 +23,21 @@ function VidIntro(){
         <>
 
             {/* 모듈 코드 구역 */}
-            <section>
+            <section className="vidbox">
 
                 {/* 비디오 */}
-                <div className="">
-                    <iframe src="{}" title="{}"></iframe>
-                    <div></div>
+                <div className="vb1">
+                    <iframe src="{vidintroData.vsrc}" title="{vidintroData.btit}"></iframe>
                 </div>
 
                 {/* 타이틀 */}
-                <div className="">
+                <div className="vb2">
 
                     {/* 작은 타이틀 */}
-                    <h3></h3>
+                    <h3>{vidintroData.stit}</h3>
 
                     {/* 큰 타이틀 */}
-                    <h2></h2>
+                    <h2>{vidintroData.btit}</h2>
 
                     {/* 요약 소개 */}
                     <p></p>

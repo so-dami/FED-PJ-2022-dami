@@ -16,7 +16,7 @@ function jqFn(){
     
 } // jqFn //
 
-// const 변수명 = 할당할데이터; 
+// const 변수명 = 할당할 데이터; 
 const menubtnData = menubtn_data;
 
 // 앞, 뒤 변수
@@ -67,6 +67,7 @@ function MenuBtn(){
                         <div className="btnbx">
                             {/* 라우터를 이용한 이동은 반드시 Link를 사용할 것 */}
                             <button>
+                                {/* toUpperCase: 화면에 대문자로 출력 */}
                                 {menubtnData[i]['btn'].toUpperCase()}
                             </button>
                         </div>
