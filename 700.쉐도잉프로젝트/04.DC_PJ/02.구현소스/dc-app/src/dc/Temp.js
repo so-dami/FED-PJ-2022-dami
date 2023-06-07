@@ -1,6 +1,6 @@
 // 어떤 모듈 - 어떤.js
 
-import $ from "jQuery";
+import $ from "jquery";
 import "./css/어떤.css";
 
 // jQB 로드구역
