@@ -9,9 +9,9 @@
     display: flex;
     margin: 0 auto;
     margin-top: 5vh;
+    margin-bottom: 5vh;
     /* gap: 2%; */
     font-family: 'Roboto Condensed', sans-serif;
-    padding-bottom: 30px;
 }
 
 .menubtn>div{

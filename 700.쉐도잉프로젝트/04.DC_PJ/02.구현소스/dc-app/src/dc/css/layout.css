@@ -16,7 +16,7 @@
 }
 
 .gnb li{
-    margin: 0 10px;
+    margin: 10px;
 }
 
 .gnb a{
@@ -43,6 +43,7 @@ h1{
 }
 
 .cont img{
+    display: block;
     max-width: 100%;
 }
 
