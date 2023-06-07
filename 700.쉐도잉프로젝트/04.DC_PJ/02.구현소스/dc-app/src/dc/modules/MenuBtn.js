@@ -1,8 +1,8 @@
 // 메뉴 버튼 모듈 - MenuBtn.js
 
 import $ from "jquery";
-import "./css/menubtn.css";
-import menubtn_data from "./data/menubtn";
+import "../css/menubtn.css";
+import menubtn_data from "../data/menubtn";
 import { Link, Outlet } from 'react-router-dom';
 
 // jQB 로드구역

@@ -1,7 +1,7 @@
 // 배너 컴포넌트 - Ban.js
 
 // 배너 CSS
-import "./css/ban.css";
+import "../css/ban.css";
 
 // 배너 데이터
 import ban_data from "../data/banner";
