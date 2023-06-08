@@ -1,7 +1,7 @@
 // 어떤 모듈 - 어떤.js
 
 import $ from "jquery";
-import "./css/어떤.css";
+import "../css/어떤.css";
 
 // jQB 로드구역
 function jqFn(){
@@ -26,7 +26,7 @@ function Temp(){
         
     ); // return //
     
-} // MenuBtn //
+} // Temp //
 
 // 내보내기
 export default Temp;

@@ -4,6 +4,7 @@ import Ban from "./modules/Ban";
 import MenuBtn from "./modules/MenuBtn";
 import VidIntro from "./modules/VidIntro";
 import SwiperVid from "./plugin/SwiperVid";
+import VidSwipe from "./modules/VidSwipe";
 
 const Main = () => {
     return (
@@ -18,7 +19,7 @@ const Main = () => {
             <VidIntro pg="main" mm="" />
 
             {/* 4. 비디오 스와이프 모듈 */}
-            <SwiperVid />
+            <VidSwipe pg="main" />
         </>
     );
 }; /////////// Main //////////////

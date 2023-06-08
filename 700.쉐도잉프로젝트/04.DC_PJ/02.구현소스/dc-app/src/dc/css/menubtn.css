@@ -21,21 +21,27 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: #fdfdfd;
 }
+
 .imbx img{
     max-width: 100%;
-    clip-path: polygon(0% 0%,100% 0%, 100% 80%,0% 100%);
+    clip-path: polygon(0% 0%,100% 0%, 100% 90%,0% 100%);
 }
+
 .titbx h3{
     padding: 6px 0;
     margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 13px;
     color: #888;
     letter-spacing: 2px;
+    text-align: center;
 }
+
 .titbx h2{
-    margin-bottom: 8px;
     padding: 0 20px;
+    text-align: center;
+    font-size: 22px;
 }
+
 .btnbx{
     position: absolute;
     left: 50%;
@@ -44,8 +50,8 @@
     white-space: nowrap;
 }
 .btnbx button{
-    padding: 15px 30px;
-    font-size: 15px;
+    padding: 12px 30px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 25px;
     border: 1px solid #000;

@@ -26,3 +26,10 @@
     height: 100%;
     object-fit: cover;
 }
+
+
+/* 기본 디자인 변경 */
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next{
+    background: red;
+}
