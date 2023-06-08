@@ -27,9 +27,63 @@
     object-fit: cover;
 }
 
-
-/* 기본 디자인 변경 */
-
-.swiper-button-prev, .swiper-rtl .swiper-button-next{
-    background: red;
+/* 타이틀 박스 */
+.tit{    
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 35px;
+    margin: 35px;
 }
+
+/* 컨텐츠 박스 */
+.swinbx{
+    width: 100%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    user-select: none;
+    /* outline: 1px solid red; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 비디오 이미지 박스 */
+.vidimg{
+    vertical-align: top;
+}
+
+.vidimg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 타이틀박스 */
+.vidtit{ 
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 15px;
+}
+
+/* 카테고리 */
+.vidtit h4{
+font-size: 13px;
+letter-spacing: 2.5px;
+color: #777;
+}
+
+/* 동영상 타이틀 */
+.vidtit h3{
+font-size: 20px;
+margin-top: 15px;
+}
+  
+
+/* 기존 스와이퍼 디자인 변경 */
+.swiper-button-prev, .swiper-button-next{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    transform: scale(.8);
+}
+  
+/* .swiper-button-next{
+transform: scale(.8) translateX(90%);
+} */

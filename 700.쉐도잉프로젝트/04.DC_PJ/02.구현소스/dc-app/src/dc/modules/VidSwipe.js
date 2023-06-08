@@ -3,7 +3,6 @@
 import $ from "jquery";
 import "../css/vidswipe.css";
 import SwiperVid from "../plugin/SwiperVid";
-import swipervid_data from "../data/swipervid";
 
 // jQB 로드구역
 function jqFn(){
@@ -15,8 +14,6 @@ function jqFn(){
 function VidSwipe(props){
     // props.pg - 페이지별 데이터 구분
     // props.tit - 모듈 타이틀
-
-    const sdt = swipervid_data;
 
     return(
 
