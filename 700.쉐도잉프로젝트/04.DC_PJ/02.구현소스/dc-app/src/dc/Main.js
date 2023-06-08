@@ -19,7 +19,7 @@ const Main = () => {
             <VidIntro pg="main" mm="" />
 
             {/* 4. 비디오 스와이프 모듈 */}
-            <VidSwipe pg="main" />
+            <VidSwipe pg="main" tit="LATEST TRAILERS, CLIPS & MORE" />
         </>
     );
 }; /////////// Main //////////////
