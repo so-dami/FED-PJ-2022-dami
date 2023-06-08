@@ -8,11 +8,7 @@ import { Link, Outlet } from 'react-router-dom';
 // jQB 로드구역
 function jqFn(){
 
-    $(()=>{
-
-        $(".btnbx button").click(()=>{}); // click //
-        
-    }); // jQB //
+    $(()=>{}); // jQB //
     
 } // jqFn //
 

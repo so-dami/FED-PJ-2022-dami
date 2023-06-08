@@ -2,17 +2,15 @@
 
 import React from "react";
 import Ban from "./modules/Ban";
+import VidIntro from "./modules/VidIntro";
 
 const Games = () => {
-
     return(
-
         <>
             <Ban cat="GAMES" />
+            <VidIntro pg="GAMES" mm="on" />
         </>
-        
-    ); // return //
-    
-}; // Games //
+    );
+}; /////////// Games //////////////
 
 export default Games;

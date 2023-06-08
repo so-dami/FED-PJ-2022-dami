@@ -2,18 +2,16 @@
 
 import React from "react";
 import isrc from "./ImgSrc";
+import VidIntro from "./modules/VidIntro";
 
 const Video = () => {
-
     return(
-
         <>
-            <h2>Video Page</h2>
-            <iframe src={isrc.video} />
+            <h2>Video 페이지</h2>            
+            <VidIntro pg="VIDEO" mm="on" />
+
         </>
-        
-    ); // return //
-    
-}; // Video //
+    );
+}; /////////// Video //////////////
 
 export default Video;

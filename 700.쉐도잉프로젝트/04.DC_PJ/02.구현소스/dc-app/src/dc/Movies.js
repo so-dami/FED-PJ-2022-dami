@@ -2,17 +2,15 @@
 
 import React from "react";
 import Ban from "./modules/Ban";
+import VidIntro from "./modules/VidIntro";
 
 const Movies = () => {
-
     return(
-
         <>
             <Ban cat="MOVIES" />
+            <VidIntro pg="MOVIES" mm="on" />
         </>
-        
-    ); // return //
-    
-}; // Movies //
+    );
+}; /////////// Movies //////////////
 
 export default Movies;
