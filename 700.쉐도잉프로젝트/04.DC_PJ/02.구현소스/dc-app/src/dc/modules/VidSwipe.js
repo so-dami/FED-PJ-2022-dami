@@ -33,13 +33,21 @@ function VidSwipe(props){
                 <SwiperVid name="나는" />
 
                 {/* 3. 비디오 재생창 */}
-                <section className="playvid">
+                <section className="vidbx">
 
-                    {/* 동영상 */}
-                    <iframe src={sdt.vsrc}></iframe>
-                    
-                    {/* 닫기 버튼 */}
-                    <button className="cbtn">×</button>
+                    {/* 비디오 중앙 박스 */}
+                    <div className="playvid">
+
+                        {/* 비디오 타이틀 */}
+                        <h2 className="ifrtit"></h2>
+
+                        {/* 비디오 */}
+                        <iframe src="" allow="autoplay"></iframe>
+                        
+                        {/* 닫기 버튼 */}
+                        <button className="cbtn">×</button>
+
+                    </div>
 
                 </section>
 

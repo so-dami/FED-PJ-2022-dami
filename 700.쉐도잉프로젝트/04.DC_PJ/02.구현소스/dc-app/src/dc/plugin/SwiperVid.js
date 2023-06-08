@@ -2,9 +2,11 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
+/* 제이쿼리 넣기 */
+import $ from 'jquery';
+
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // CSS 가져오기
@@ -20,6 +22,44 @@ export default function SwiperVid(props){
 
     // 데이터 셋팅
     const sdt = swipervid_data;
+
+    // 비디오 보이기 함수
+    // src - 비디오 경로, tit - 비디오 제목
+    const showVid = (src,tit) => {
+
+        console.log(src,tit);
+        
+        // 변수 설정
+        let ifr = $(".playvid iframe");
+        
+        // 1. 비디오(아이프레임) src 넣기
+
+        // JS 문법
+        // document.querySelector(".playvid iframe")
+        // // ?autoplay=1 - 자동 재생
+        // .setAttribute("src",src+"?autoplay=1");
+
+        // jQuery 문법
+        ifr
+        // ?autoplay=1 - 자동 재생
+        .attr("src",src+"?autoplay=1");
+
+        // 2. 비디오 타이틀 넣기
+        $(".ifrtit").text(tit);
+
+        // 변수 설정
+        let vbx = $(".vidbx")
+        
+        // 3. 비디오 전체 박스 보이기
+        vbx.fadeIn(300);
+
+        // 4. 닫기 버튼 설정
+        $(".cbtn").click(()=>{
+            vbx.fadeOut(300);
+            ifr.attr("src","");
+        });
+        
+    }; // showVid //
     
     return (
         <>
@@ -35,16 +75,22 @@ export default function SwiperVid(props){
                     
                     <SwiperSlide key={i}>
 
-                        {/* 이미지 */}
-                        <div className="vidimg">
-                            <img src="" alt=""></img>
-                        </div>
+                        <section className="swinbx"
+                        onClick={()=>showVid(v.vsrc,v.tit)}>
 
-                        {/* 제목 */}
-                        <div className="vidtit">
-                            <h4></h4>
-                            <h3></h3>
-                        </div>
+                            {/* 동영상 이미지 영역 */}
+                            <div className="vidimg">
+                                <img src={v.isrc} alt={v.tit}></img>
+                            </div>
+
+                            {/* 동영상 타이틀 영역 */}
+                            <div className="vidtit">
+                                <h4>{v.cat}</h4>
+                                <h3>{v.tit}</h3>
+                            </div>
+
+                        </section>
+
                     </SwiperSlide>
 
                 ))}
