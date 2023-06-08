@@ -17,6 +17,7 @@ function VidIntro(props){
 
     // 데이터 선택하기
     const sdt = vidintro_data[props.pg];
+    console.log(sdt.sum);
 
     // 링크코드 생성 함수 : desc 데이터 / sum 데이터에서 처리
     const lcode = (data) => { // data는 desc/sum 둘중에 전달됨
@@ -39,13 +40,13 @@ function VidIntro(props){
             {/* 모듈 코드 구역 */}
             <section className={'vidbox'+' '+props.mm}>
 
-                {/* 비디오 */}
-                <div className='vb1'>
-                    <iframe src={sdt.vsrc} title={sdt.btit}></iframe>
-                </div>
+            {/* 비디오 */}
+            <div className='vb1'>
+                <iframe src={sdt.vsrc} title={sdt.btit}></iframe>
+            </div>
 
-                {/* 타이틀 */}
-                <div className='vb2'>
+            {/* 타이틀 */}
+            <div className='vb2'>
                 <h3>{sdt.stit}</h3>
                 <h2>{sdt.btit}</h2>
                 <p>

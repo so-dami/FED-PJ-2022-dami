@@ -2,7 +2,7 @@
 
 
 const vidintro_data = {
-    main: [
+    main: 
         {
             vsrc: "https://www.youtube.com/embed/jprhe-cWKGs",
             stit: "FEATURED VIDEO",
@@ -13,9 +13,9 @@ const vidintro_data = {
             /* 실제링크 정보 : 배열[링크글자,링크주소] */
             link: ["Visit our official Flash","https://www.dc.com/theflash"],
         },
-    ],
+    
 
-    CHARACTERS: [
+    CHARACTERS: 
         {
             vsrc: "유튜브동영상경로",
             stit: "작은타이틀",
@@ -24,9 +24,9 @@ const vidintro_data = {
             desc: "설명",
             link: "관련링크",
         },
-    ],
+    
 
-    COMICS: [
+    COMICS:
         {
             vsrc: "https://www.youtube.com/embed/uGGjQH4YLPU",
             stit: "FEATURED VIDEO",
@@ -35,9 +35,9 @@ const vidintro_data = {
             desc: "",
             link: "",
         },
-    ],
+    
 
-    MOVIES: [
+    MOVIES: 
         {
             vsrc: "https://www.youtube.com/embed/r51cYVZWKdY",
             stit: "FEATURED VIDEO",
@@ -46,9 +46,9 @@ const vidintro_data = {
             desc: "Warner Bros. Pictures presents The Flash, directed by Andy Muschietti (the IT films, Mama). Ezra Miller reprises their role as Barry Allen in the DC Super Hero’s first-ever standalone feature film.",
             link: "",
         },
-    ],
+    
 
-    GAMES: [
+    GAMES: 
         {
             vsrc: "https://www.youtube.com/embed/bFmeHsaYn8Y",
             stit: "FEATURED VIDEO",
@@ -57,9 +57,9 @@ const vidintro_data = {
             desc: "Suicide Squad: Kill the Justice League is available May 26, 2023 on PS5, Xbox Series X|S, and PC. Learn more: *",
             link: ["https://www.suicidesquadgame.com/en-us","https://www.suicidesquadgame.com/en-us"],
         },
-    ],
+    
 
-    NEWS: [
+    NEWS: 
         {
             vsrc: "유튜브동영상경로",
             stit: "작은타이틀",
@@ -68,9 +68,9 @@ const vidintro_data = {
             desc: "설명",
             link: "관련링크",
         },
-    ],
+   
 
-    VIDEO: [
+    VIDEO: 
         {
             vsrc: "https://www.youtube.com/embed/uJ1IEYeHCgE",
             stit: "FEATURED VIDEO",
@@ -79,7 +79,7 @@ const vidintro_data = {
             desc: "Visit our Flash Hub for all things The Flash and to find tickets and showtimes near you",
             link: ["Vivid Sydney","https://www.vividsydney.com/"],
         },
-    ],
+    
 }
 
 // 데이터 내보내기

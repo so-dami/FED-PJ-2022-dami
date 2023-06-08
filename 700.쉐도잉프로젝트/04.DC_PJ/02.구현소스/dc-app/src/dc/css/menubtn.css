@@ -48,6 +48,7 @@
     font-size: 15px;
     font-weight: bold;
     border-radius: 25px;
+    border: 1px solid #000;
     font-family: 'Roboto Condensed', sans-serif;
     background-color: transparent;
     transition: .4s;
@@ -55,6 +56,7 @@
 }
 .btnbx button:hover{
     background-color: #0074eb;
+    border-color: #0074eb;
     color: #fff;
 }
 

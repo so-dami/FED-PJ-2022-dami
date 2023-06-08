@@ -51,6 +51,7 @@
 
 /* 배너 이미지 크기 설정 */
 .banimg{
+    display: block;
     width: 100%;
 }
 
