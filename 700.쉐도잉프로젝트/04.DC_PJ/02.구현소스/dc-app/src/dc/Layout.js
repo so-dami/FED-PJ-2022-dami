@@ -9,7 +9,7 @@ import "./css/layout.css";
 import { Link, Outlet } from "react-router-dom";
 
 // 폰트어썸
-import { faCamera, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 /********************************************************
@@ -39,39 +39,39 @@ const Layout = () => {
         },
         {
             txt: "COMICS",
-            link: "/co",
+            link: "/co1",
             sub: [
                 {
                     txt: "LATEST COMICS",
-                    link: "/lc"
+                    link: "/co1",
                 },
                 {
                     txt: "DC UNIVERSE INFINITE",
-                    link: "/dui"
+                    link: "/co2",
                 },
                 {
                     txt: "ALL COMICS SERIES",
-                    link: "/acs"
+                    link: "/co3",
                 },
-            ]
+            ],
         },
         {
             txt: "MOVIES & TV",
             link: "/mv",
             sub: [
                 {
-                    txt: "DC MOVIE",
-                    link: "/dm"
+                    txt: "DC MOVIES",
+                    link: "/mv",
                 },
                 {
                     txt: "DC SERIES",
-                    link: "/ds"
+                    link: "/mv",
                 },
                 {
                     txt: "DC ON HBO MAX",
-                    link: "/hbo"
+                    link: "/mv",
                 },
-            ]
+            ],
         },
         {
             txt: "GAMES",
@@ -87,6 +87,7 @@ const Layout = () => {
         },
     ];
 
+    // 하단 링크 데이터 셋업
     const bmenu = [
         {
             txt: "PRIVACY POLICY",
@@ -104,6 +105,10 @@ const Layout = () => {
             txt: "ACCESSIBLITY",
             link: "https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.3.0.html#accessibility",
         },
+        {
+            txt: "COOKIE SETTINGS",
+            link: "https://www.dc.com/#compliance-link",
+        },
     ];
 
     return(
@@ -120,7 +125,7 @@ const Layout = () => {
                         {/* 로고 */}
                         <li>
                             <Link to="/">
-                                <Logo />
+                                <Logo gb="top" />
                             </Link>
                         </li>
 
@@ -193,25 +198,25 @@ const Layout = () => {
 
                 <ul>
                     <li>
-                        <Logo />
+                        <Logo gb="bottom" />
                     </li>
                     <li>
-                        <ol>
-                            {bmenu.map((x,i)=>
+                        <ol className="bmenu">
+
+                            {bmenu.map((v,i)=>
                                 <li key={i}>
-                                    <a href={x.link} target="_blank">
-                                        {x.txt}
+                                    <a href={v.link} target="_blank">
+                                        {v.txt.toUpperCase()}
                                     </a>
                                 </li>
                             )}
+
                         </ol>
                     </li>
+
+                    <li>© & ™ DC. ALL RIGHTS RESERVED</li>
+                    
                 </ul>
-
-                All Site Content © &amp; TM DC, unless otherwise noted here.
-                <br /> 
-                All rights reserved.
-
             </footer>
     
         </>

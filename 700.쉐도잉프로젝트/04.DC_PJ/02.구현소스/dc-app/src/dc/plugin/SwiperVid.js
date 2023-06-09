@@ -9,6 +9,10 @@ import $ from 'jquery';
 import "swiper/css";
 import "swiper/css/navigation";
 
+/* 폰트어썸 임포트 */
+import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 // CSS 가져오기
 import "./swipervid.css";
 
@@ -82,6 +86,15 @@ export default function SwiperVid(props){
                             {/* 동영상 이미지 영역 */}
                             <div className="vidimg">
                                 <img src={v.isrc} alt={v.tit}></img>
+                                <FontAwesomeIcon icon={faPlayCircle} 
+                                style={{
+                                    position:"absolute",
+                                    bottom:"55%",
+                                    left:"10%",
+                                    color:"#fff",
+                                    fontSize:"50px"
+                                }} />
+
                             </div>
 
                             {/* 동영상 타이틀 영역 */}

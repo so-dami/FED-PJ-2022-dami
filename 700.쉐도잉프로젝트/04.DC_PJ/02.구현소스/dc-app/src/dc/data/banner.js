@@ -11,6 +11,16 @@ const ban_data = {
         },
     ],
 
+    "main2":[
+        {
+            "src":"./images/dcmb2.jpg",
+            "tit1":"",
+            "tit2":"WATCH THE NEW TRAILER",
+            "cont":`Mysteries abound in DC's latest animated blockbuster. Coming to a screen near you this July!`,
+            "btn":"A World at Stake",
+        },
+    ],
+
     "CHARACTERS": [
         {
             "src":"./images/dcm23.jpg",
