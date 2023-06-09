@@ -7,9 +7,9 @@ const Logo = () => {
 
     // 객체형 스타일 적용: 속성명이 틀리면 아예 출력되지 않음
     const mystyle={
-        width: "81px",
-        height: "81px",
-        backgroundImage: "linear-gradient(45deg, #88f62f, #fa8104)",
+        width: "40px",
+        height: "40px",
+        marginRight: "80px",
         borderRadius: "50%"
         // outline: "3px solid lime"
     };
@@ -17,7 +17,7 @@ const Logo = () => {
     return(
 
         <h1 style={mystyle}>
-            <img src={isrc.logo} style={{width: "81px"}} />
+            <img src={isrc.logo} style={{width: "40px"}} />
         </h1>
         
     ); // return //

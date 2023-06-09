@@ -8,6 +8,10 @@ import "./css/layout.css";
 
 import { Link, Outlet } from "react-router-dom";
 
+// 폰트어썸
+import { faCamera, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 /********************************************************
     [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
     
@@ -25,10 +29,10 @@ const Layout = () => {
 
     // gnb 메뉴 데이터 구성 - 배열 데이터
     const gnb_data = [
-        {
-            txt: "HOME",
-            link: "/",
-        },
+        // {
+        //     txt: "HOME",
+        //     link: "/",
+        // },
         {
             txt: "CHARACTERS",
             link: "/ct",
@@ -83,6 +87,25 @@ const Layout = () => {
         },
     ];
 
+    const bmenu = [
+        {
+            txt: "PRIVACY POLICY",
+            link: "https://www.warnermediaprivacy.com/policycenter/b2c/WM/",
+        },
+        {
+            txt: "TERMS",
+            link: "https://www.dcuniverseinfinite.com/terms?_gl=1*1cd3pj1*_gcl_au*MTE5NTcxODk4Ny4xNjg0NDc3NTQ4",
+        },
+        {
+            txt: "AD CHOICES",
+            link: "https://www.warnermediaprivacy.com/policycenter/b2c/wm/",
+        },
+        {
+            txt: "ACCESSIBLITY",
+            link: "https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.3.0.html#accessibility",
+        },
+    ];
+
     return(
 
         <>
@@ -96,7 +119,9 @@ const Layout = () => {
 
                         {/* 로고 */}
                         <li>
-                            <Logo />
+                            <Link to="/">
+                                <Logo />
+                            </Link>
                         </li>
 
                         {/* gnb 메뉴 */}
@@ -105,7 +130,7 @@ const Layout = () => {
                                 <li key={i}>
                                     <Link to={v.link}>{v.txt}</Link>
                                     {/* {console.log(v.sub)} */}
-                                    
+
                                     {/* v.sub가 없으면 undefined */}
                                     {
                                         // 조건식 && 출력코드
@@ -132,11 +157,27 @@ const Layout = () => {
                             )
                         }
 
+                        {/* 검색 아이콘 */}
+                        <li style={{marginLeft: "auto"}}>
+                            <FontAwesomeIcon icon={faSearch} />
+                        </li>
                         
+                        {/* 회원가입 */}
+                        <li>
+                            <Link to="/signup">
+                                SIGN UP
+                            </Link>
+                        </li>
 
+                        {/* 로그인 */}
+                        <li>
+                            <Link to="/login">
+                                LOG IN
+                            </Link>
+                        </li>
+                        
                     </ul>
                 </nav>
-                
             </header>
 
             {/* 2. 메인 영역 */}
@@ -149,9 +190,28 @@ const Layout = () => {
 
             {/* 3. 하단 영역 */}
             <footer className="info">
+
+                <ul>
+                    <li>
+                        <Logo />
+                    </li>
+                    <li>
+                        <ol>
+                            {bmenu.map((x,i)=>
+                                <li key={i}>
+                                    <a href={x.link} target="_blank">
+                                        {x.txt}
+                                    </a>
+                                </li>
+                            )}
+                        </ol>
+                    </li>
+                </ul>
+
                 All Site Content © &amp; TM DC, unless otherwise noted here.
                 <br /> 
-                All rights reserved. 
+                All rights reserved.
+
             </footer>
     
         </>

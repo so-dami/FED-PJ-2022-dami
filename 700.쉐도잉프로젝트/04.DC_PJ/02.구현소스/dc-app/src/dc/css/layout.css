@@ -1,12 +1,18 @@
 @charset "utf-8";
 
 .top{
-    background-image: linear-gradient(to bottom,#CCC,#111);
-    border: 4px double #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    z-index: 99999;
+    background-color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .gnb{
-    width: 800px;
+    max-width: 1320;
     margin: 0 auto;
 }
 
@@ -15,22 +21,68 @@
     align-items: center;
     list-style: none;
     padding: 10px 0;
+    gap: 0 35px;
 }
 
-.gnb li{
-    margin: 0 10px;
+.gnb > ul > li{
+    /* 상위 메뉴(.smenu) 부모 자격 */
+    position: relative;
+    line-height: 58px;
 }
 
 .gnb a{
-    color: #fff;
+    color: #222;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .gnb a:hover{
     color: hotpink;
     text-decoration: underline;
     text-decoration-style: wavy;
-    text-shadow: 2px 2px 2px #555;
+    text-shadow: 1px 1px 1px #777;
+}
+
+
+/* 서브메뉴 */
+.smenu{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    /* border: 1px solid #222; */
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    
+    /* 글자 줄바꿈 x */
+    white-space: nowrap;
+    
+    /* 글자 위아래 간격 띄우기 */
+    line-height: 2.5;
+
+    /* 처음에 숨기기 */
+    display: none;
+}
+
+/* li에 마우스 오버 시 .smenu 보이기 */
+.gnb > ul > li:hover .smenu{
+    display: block;
+}
+
+.smenu::before{
+    content: '';
+    position: absolute;
+    top: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #fff;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 h1{
