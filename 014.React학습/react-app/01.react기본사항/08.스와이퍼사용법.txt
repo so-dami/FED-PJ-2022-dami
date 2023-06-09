@@ -22,5 +22,4 @@ https://swiperjs.com/
 
 (4) styles.css 도 같은 폴더안에 swipervid.css 이름으로 만들고
    붙여 넣기를 하고 수정한다
-   (html,body 는 모두 지우고 
-   .swiper{height:400px} 만 우선 수정함!
+   (html,body 는 모두 지우고 .swiper{height:400px} 만 우선 수정함!)

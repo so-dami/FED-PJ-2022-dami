@@ -18,6 +18,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .swiper-slide img {
@@ -41,7 +43,6 @@
     cursor: pointer;
     user-select: none;
     /* outline: 1px solid red; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* 비디오 이미지 박스 */
