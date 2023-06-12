@@ -68,7 +68,7 @@ export default function SwiperVid(props){
         $(".cbtn").click(()=>{
             vbx.fadeOut(300);
             ifr.attr("src","");
-        });
+        }); // click //
         
     }; // showVid //
 
@@ -110,6 +110,21 @@ export default function SwiperVid(props){
                 spaceBetween={20}
                 navigation={true}
                 modules={[Navigation]}
+                // 스와이퍼 사이즈별 슬라이드 수 변경
+                breakpoints={{
+                    200: {
+                        slidesPerView: 2,
+                    },
+                    700: {
+                        slidesPerView: 2,
+                    },
+                    1000: {
+                        slidesPerView: 3,
+                    },
+                    1200: {
+                        slidesPerView: 4,
+                    },
+                }}
                 className="mySwiper"
             >
 
@@ -131,13 +146,12 @@ export default function SwiperVid(props){
                                     color:"#fff",
                                     fontSize:"50px"
                                 }} />
-
                             </div>
 
                             {/* 동영상 타이틀 영역 */}
                             <div className="vidtit">
-                                <h4>{v.cat.toUpperCase()}</h4>
-                                <h3>{v.tit.toUpperCase()}</h3>
+                                <h4>{v.cat}</h4>
+                                <h3>{v.tit}</h3>
                             </div>
 
                         </section>
@@ -148,8 +162,8 @@ export default function SwiperVid(props){
 
             </Swiper>
 
-            {/* 스와이퍼 모듀렝 이벤트 입히기 */}
-            {evtFn()}
+            {/* 스와이퍼 모듈에 이벤트 입히기 */}
+            {/* {evtFn()} */}
         </>
     );
 }

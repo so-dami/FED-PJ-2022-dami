@@ -12,6 +12,8 @@ import Movies from "./dc/Movies";
 import Games from "./dc/Games";
 import News from "./dc/News";
 import Video from "./dc/Video";
+import Member from "./dc/Member";
+import ScrollTop from "./dc/common/ScrollTop";
 
 /***********************************************************************
 	[ React Router ]
@@ -40,6 +42,9 @@ export default function App(){
 	return(
 
 		<BrowserRouter>
+
+			<ScrollTop />
+		
 			<Routes>
 				
 				{/* 중요: 레이아웃 컴포넌트를 루트로 잡아줌 */}
@@ -57,6 +62,7 @@ export default function App(){
                     <Route path="gm" element={<Games />} />
                     <Route path="nw" element={<News />} />
                     <Route path="vd" element={<Video />} />
+					<Route path="mem" element={<Member />} />
 					
 				</Route>
 				

@@ -4,7 +4,7 @@
 import "../css/ban.css";
 
 // 배너 데이터
-import ban_data from "../data/banner";
+import ban_data from "../data/ban";
 
 // 제이쿼리
 import $ from "jquery";

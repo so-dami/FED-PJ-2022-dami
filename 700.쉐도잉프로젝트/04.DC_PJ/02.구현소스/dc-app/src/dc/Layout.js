@@ -169,8 +169,8 @@ const Layout = () => {
                         
                         {/* 회원가입 */}
                         <li>
-                            <Link to="/signup">
-                                SIGN UP
+                            <Link to="/mem">
+                                JOIN US
                             </Link>
                         </li>
 
