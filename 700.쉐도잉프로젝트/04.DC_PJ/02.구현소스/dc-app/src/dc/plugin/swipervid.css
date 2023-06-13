@@ -6,7 +6,9 @@
 
 .swiper {
     width: 100%;
-    height: 400px;
+    padding: 10px;
+    margin: 20px 0;
+    box-sizing: border-box;
 }
 
 .swiper-slide {
@@ -18,8 +20,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .swiper-slide img {
@@ -39,10 +39,11 @@
 /* 컨텐츠 박스 */
 .swinbx{
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1.1;
     cursor: pointer;
     user-select: none;
     /* outline: 1px solid red; */
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.553);
 }
 
 /* 비디오 이미지 박스 */
@@ -84,7 +85,24 @@ margin-top: 15px;
     background-color: transparent;
     transform: scale(.8);
 }
+
+.swiper-button-next{
+    transform: scale(.8) translateX(15px);
+}
+
+.swiper-button-prev{
+    transform: scale(.8) translateX(-15px);
+}
   
 /* .swiper-button-next{
 transform: scale(.8) translateX(90%);
 } */
+
+@media screen and (max-width:1200px) {
+    
+    /* 동영상타이틀 */
+    .vidtit h3{
+      font-size: 14px;
+      margin-top: 10px;
+    }
+}

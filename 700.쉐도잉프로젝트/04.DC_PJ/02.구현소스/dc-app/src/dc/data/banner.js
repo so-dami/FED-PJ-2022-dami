@@ -1,7 +1,7 @@
 // 배너 컴포넌트 사용 데이터 - banner.js
 
 const ban_data = {
-    "main": [
+    "main1": [
         {
             "src": "./images/dcm21.jpg",
             "tit1": "GOTHAM GAZETTE",

@@ -1,5 +1,6 @@
 // index.js는 public/index.html 페이지에 적용되는 컴포넌트
-
+// "homepage": "http://so-dami.github.io/dc-app",
+// 이거는 빌드할때만 페키지제이슨에 붙이기. 프라이빗 아래에
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
@@ -40,8 +41,11 @@ import ScrollTop from "./dc/common/ScrollTop";
 export default function App(){
 	
 	return(
-
-		<BrowserRouter>
+		// 이건 빌드할때 키기 아래꺼 주석하고
+		// <BrowserRouter basename={process.env.PUBLIC_URL}>
+       <BrowserRouter>
+	   
+        {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
 
 			<ScrollTop />
 		
@@ -54,6 +58,7 @@ export default function App(){
 					{/* path 대신 index만 쓰면? 첫 페이지임 */}
 					{/* -> Layout의 Link to="/"에 해당하는 셋팅 필수*/}
 					<Route index element={<Main />} />
+                    <Route path="main" element={<Main />} />
                     <Route path="ct" element={<Characters />} />
                     <Route path="co1" element={<Comics sub="0" />} />
                     <Route path="co2" element={<Comics sub="1" />} />
