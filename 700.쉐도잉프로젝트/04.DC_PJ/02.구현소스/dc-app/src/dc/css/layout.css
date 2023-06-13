@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+/* 최소 높이 상단, 하단 제외 채우기 */
+/* -> 하단 영역에 여백이 생기는 일이 없어짐 */
+main.cont{
+    min-height: calc(100vh - 58px - 210px);
+}
+
 .top{
     position: fixed;
     top: 0;

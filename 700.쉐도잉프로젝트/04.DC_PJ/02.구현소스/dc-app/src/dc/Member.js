@@ -128,8 +128,30 @@ function Member(){
         }; // chagePwd //
 
         // 3) 패스워드 확인
+        const changeChkPwd = e => {
 
-        // 4) 사용자 이름 변수
+            // (1) 위에 입력한 비밀번호와의 일치 여부
+            if(pwd === e.target.value) setChkPwdError(false); // 에러 아님 상태
+
+            else setChkPwdError(true); // 에러 상태
+
+            // (2) 실제 입력값 반영하기
+            setChkPwd(e.target.value);
+            
+        }; // changeChkPwd // 
+
+        // 4) 사용자 이름 유효성 검사
+        const changeUserName = e => {
+
+            // 빈값 체크
+            if(e.target.value !== "") setUserNameError(false); // 에러 아님 상태
+
+            else setUserNameError(true); // 에러 상태
+
+            // (2) 실제 입력값 반영하기
+            setUserName(e.target.value);
+            
+        }; // changeUserName // 
 
         // 5) 이메일 변수
 
@@ -144,50 +166,104 @@ function Member(){
                 <h2>Member</h2>
 
                 <form>
-                
-                    {/* 1. 아이디 */}
-                    <label>아이디: </label>
-                    <input type="text" maxLength="20" placeholder="아이디를 입력하세요." value={userId} onChange={changeUserId} />
-                
-                    {
-                        // 에러일 경우 메시지 보여주기
-                        // 조건문 && 요소
-                        // 조건이 true - 요소 출력
-                        userIdError &&
-                        <div className="msg">
-                            <small style={{color: "red", fontSize: "10px"}}>
-                                아이디는 5글자 이상의 문자 또는 숫자가 포함되어야 합니다.
-                            </small>
-                        </div>
+                    <ul>
 
-                        // value={userId} 값은 setUserId를 통해서만 업데이트되어 실제 화면에 반영됨
+                        {/* 1. 아이디 */}
+                        <li>
 
-                        // onChange = {changeuserId}
-                        // -> change 이벤트 발생 시 changeUserId 함수 호출
-                    }
+                            <label>ID: </label>
+                            <input type="text" maxLength="20" placeholder="Please enter your ID" value={userId} onChange={changeUserId} />
+                        
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소
+                                // 조건이 true - 요소 출력
+                                userIdError &&
+                                <div className="msg">
+                                    <small style={{color: "red", fontSize: "10px"}}>
+                                        The ID must contain at least 5 characters or numbers.
+                                    </small>
+                                </div>
 
-                    {/* 2. 패스워드 */}
-                    <label>패스워드: </label>
-                    <input type="password" maxLength="20" placeholder="패스워드를 입력하세요." value={pwd} onChange={changePwd} />
+                                // value={userId} 값은 setUserId를 통해서만 업데이트되어 실제 화면에 반영됨
 
-                    {
-                        // 에러일 경우 메시지 보여주기
-                        // 조건문 && 요소
-                        // 조건이 true - 요소 출력
-                        pwdError &&
-                        <div className="msg">
-                            <small style={{color: "red", fontSize: "10px"}}>
-                                패스워드는 8글자 이상이어야 하며 문자와 숫자가 각각 1글자 이상 포함되어야 합니다.
-                            </small>
-                        </div>
-                    }
+                                // onChange = {changeuserId}
+                                // -> change 이벤트 발생 시 changeUserId 함수 호출
+                            }
 
-                    {/* 3. 성명 */}
-                    {/* 4. 이메일 */}
-                    {/* 5. 버튼 */}
-                    {/* 6. 로그인 페이지 링크 */}
+                        </li>
+
+                        {/* 2. 패스워드 */}
+                        <li>
+
+                            <label>Password: </label>
+                            <input type="password" maxLength="20" placeholder="Please enter your password" value={chkPwd} onChange={changeChkPwd} />
+
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소
+                                // 조건이 true - 요소 출력
+                                chkpwdError &&
+                                <div className="msg">
+                                    <small style={{color: "red", fontSize: "10px"}}>
+                                        Password must be at least 8 characters long and must contain at least 1 number and 1 character each.
+                                    </small>
+                                </div>
+                            }
+
+                        </li>
+
+                        {/* 3. 패스워드 확인 */}  
+                        <li>
+
+                            <label>Confirm password: </label>
+                            <input type="password" maxLength="20" placeholder="Please confirm your password" value={pwd} onChange={changePwd} />
+
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소
+                                // 조건이 true - 요소 출력
+                                pwdError &&
+                                <div className="msg">
+                                    <small style={{color: "red", fontSize: "10px"}}>
+                                        Password does not match.
+                                    </small>
+                                </div>
+                            }
+
+                        </li>
+
+                        {/* 4. 성명 */}
+                        <li>
+
+                            <label>User name: </label>
+                            <input type="text" maxLength="20" placeholder="Please enter your name" value={userName} onChange={changeUserName} />
+
+                            {
+                                // 에러일 경우 메시지 보여주기
+                                // 조건문 && 요소
+                                // 조건이 true - 요소 출력
+                                userNameError &&
+                                <div className="msg">
+                                    <small style={{color: "red", fontSize: "10px"}}>
+                                        This is required.
+                                    </small>
+                                </div>
+                            }
+
+                        </li>
+
+                        {/* 5. 이메일 */}
+                        <li></li>
+
+                        {/* 6. 버튼 */}
+                        <li></li>
+
+                        {/* 7. 로그인 페이지 링크 */}
+                        <li></li>
+
+                    </ul>
                 </form>
-
             </section>
     
             {/* 빈 루트를 만들고 JS 로드 함수 포함 */}

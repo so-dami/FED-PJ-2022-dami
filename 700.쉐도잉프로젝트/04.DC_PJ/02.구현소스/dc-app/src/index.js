@@ -42,8 +42,8 @@ export default function App(){
 	
 	return(
 		// 이건 빌드할때 키기 아래꺼 주석하고
-		<BrowserRouter basename={process.env.PUBLIC_URL}>
-       {/* <BrowserRouter> */}
+		// <BrowserRouter basename={process.env.PUBLIC_URL}>
+       <BrowserRouter>
 	   
         {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
 
