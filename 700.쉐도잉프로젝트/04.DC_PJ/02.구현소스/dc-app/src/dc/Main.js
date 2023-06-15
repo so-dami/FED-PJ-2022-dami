@@ -9,8 +9,8 @@ import VidSwipe from "./modules/VidSwipe";
 const Main = () => {
     return (
         <>
-            {/* 1.배너 모듈: 랜덤 수로 데이터 선택 변경 */}
-            <Ban cat={"main"+Math.ceil(Math.random()*2)} />
+            {/* 1.배너 모듈 : 랜덤수로 데이터선택변경 */}
+            <Ban cat={"main"+Math.ceil(Math.random()*3)} />
 
             {/* 2. 메뉴 버튼 모듈 */}
             <MenuBtn />

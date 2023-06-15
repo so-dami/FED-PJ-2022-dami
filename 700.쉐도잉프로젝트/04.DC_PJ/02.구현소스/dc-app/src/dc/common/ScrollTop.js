@@ -19,6 +19,9 @@ export default function ScrollTop(){
         // 윈도우 객체 스크롤 최상위 이동 코드
         window.scrollTo(0,0);
 
+        // 로그인 상태 확인: "minfo"
+        console.log("useEffect:",localStorage.getItem("minfo"));
+
     }, [pathname])
     
     // 이 컴포넌트 실행하는 것은 다른 부가적인 코드는 실행시키지 않는다는 의미
