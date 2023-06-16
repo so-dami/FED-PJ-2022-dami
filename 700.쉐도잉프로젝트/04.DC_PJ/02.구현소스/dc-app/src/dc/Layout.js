@@ -7,10 +7,14 @@ import Logo from "./Logo";
 import "./css/layout.css";
 
 import { Link, Outlet } from "react-router-dom";
+import { gnb_data, bmenu } from "./data/common";
 
 // 폰트어썸
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+
+import ScrollTop from "./common/ScrollTop";
 
 /********************************************************
     [ 리액트 라우터와 연결하여 사용되는 라우터 컴포넌트 ]
@@ -27,96 +31,75 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Layout = () => {
 
-    // gnb 메뉴 데이터 구성 - 배열 데이터
-    const gnb_data = [
-        // {
-        //     txt: "HOME",
-        //     link: "/",
-        // },
-        {
-            txt: "CHARACTERS",
-            link: "/ct",
-        },
-        {
-            txt: "COMICS",
-            link: "/co1",
-            sub: [
-                {
-                    txt: "LATEST COMICS",
-                    link: "/co1",
-                },
-                {
-                    txt: "DC UNIVERSE INFINITE",
-                    link: "/co2",
-                },
-                {
-                    txt: "ALL COMICS SERIES",
-                    link: "/co3",
-                },
-            ],
-        },
-        {
-            txt: "MOVIES & TV",
-            link: "/mv",
-            sub: [
-                {
-                    txt: "DC MOVIES",
-                    link: "/mv",
-                },
-                {
-                    txt: "DC SERIES",
-                    link: "/mv",
-                },
-                {
-                    txt: "DC ON HBO MAX",
-                    link: "/mv",
-                },
-            ],
-        },
-        {
-            txt: "GAMES",
-            link: "/gm",
-        },
-        {
-            txt: "NEWS",
-            link: "/nw",
-        },
-        {
-            txt: "VIDEO",
-            link: "/vd",
-        },
-    ];
+    // 자식 컴포넌트 값 전달 테스트
+    const callMe = (x) => {
 
-    // 하단 링크 데이터 셋업
-    const bmenu = [
-        {
-            txt: "PRIVACY POLICY",
-            link: "https://www.warnermediaprivacy.com/policycenter/b2c/WM/",
-        },
-        {
-            txt: "TERMS",
-            link: "https://www.dcuniverseinfinite.com/terms?_gl=1*1cd3pj1*_gcl_au*MTE5NTcxODk4Ny4xNjg0NDc3NTQ4",
-        },
-        {
-            txt: "AD CHOICES",
-            link: "https://www.warnermediaprivacy.com/policycenter/b2c/wm/",
-        },
-        {
-            txt: "ACCESSIBLITY",
-            link: "https://policies.warnerbros.com/terms/en-us/html/terms_en-us_1.3.0.html#accessibility",
-        },
-        {
-            txt: "COOKIE SETTINGS",
-            link: "https://www.dc.com/#compliance-link",
-        },
-    ];
+        console.log("누구?",x);
+        
+    }; // callMe //
+
+    // 로그인 상태 Hook 변수: 로컬스 "minfo" 할당
+    const [logSts, setLogSts] = useState(localStorage.getItem("minfo"));
+
+    // 로그인 환영 메시지 Hook 변수
+    const [logMsg, setLogMsg] = useState("");
+
+    // 로그인 환영 메시지 스타일
+    const logstyle = {
+        position: "absolute",
+        left: "50%",
+        transform: "translateX(-50%)",
+    }; // logstyle //
+
+    // 로그인 셋팅 함수
+    // -> ScrollTop.js의 useEffect 함수 구역에서 호출
+    const setLogin = () => {
+
+        // 1. 로그인 Hook 변수 업데이트
+        setLogSts(localStorage.getItem("minfo"));
+
+        // 2. 로컬스 값이 null이 아니면 메시지 뿌리기
+        if(localStorage.getItem("minfo")){
+
+            // 메시지 셋팅하기: 객체 안의 "unm" 속성이 사용자 이름
+            setLogMsg("Welcome " + 
+            JSON.parse(localStorage.getItem("minfo"))["unm"]);
+            
+        } // if //
+        
+    }; // setLogin //
+
+    // 로그아웃 함수
+    // -> LOGOUT 버튼에서 호출
+    const logout = () => {
+
+        // 1. 로컬스 "minfo" 삭제하기
+        localStorage.removeItem("minfo");
+
+        // 2. 로그인 상태 Hook 변수 업데이트 하기
+        setLogSts(null);
+        console.log("로그아웃",logSts);
+        
+    }; // logout //
 
     return(
 
         <>
+            {/* 라우터 갱신될때 스크롤 상단이동 모듈 작동
+                + 로그인 셋팅 함수 호출 전달하기, 자식에게 setLogin 함수 전달 */}
+			<ScrollTop sfn={setLogin} />
         
             {/* 1. 상단 영역 */}
             <header className="top">
+
+                {/* 로그인 환영 메시지 - 조건: logSts 값이 null이 아니면 */}
+                {
+                    logSts !== null &&
+                    <div className="logmsg" style={logstyle}>
+                        {logMsg}
+                    </div>
+                }
+                
 
                 {/* 네비게이션 */}
                 <nav className="gnb">
@@ -125,7 +108,7 @@ const Layout = () => {
                         {/* 로고 */}
                         <li>
                             <Link to="/main">
-                                <Logo gb="top" />
+                                <Logo gb="top" tt={callMe} />
                             </Link>
                         </li>
 
@@ -166,20 +149,41 @@ const Layout = () => {
                         <li style={{marginLeft: "auto"}}>
                             <FontAwesomeIcon icon={faSearch} />
                         </li>
-                        
-                        {/* 회원가입 */}
-                        <li>
-                            <Link to="/mem">
-                                JOIN US
-                            </Link>
-                        </li>
 
-                        {/* 로그인 */}
-                        <li>
-                            <Link to="/login">
-                                LOG IN
-                            </Link>
-                        </li>
+                        {/* 회원가입, 로그인은 로그이 아닌 상태일 때만 */}
+                        {
+                            logSts === null &&
+
+                            <>
+                                {/* 회원가입 */}
+                                <li>
+                                    <Link to="/mem">
+                                        JOIN US
+                                    </Link>
+                                </li>
+
+                                {/* 로그인 */}
+                                <li>
+                                    <Link to="/login">
+                                        LOG IN
+                                    </Link>
+                                </li>
+                            </>
+                        }
+
+                        {/* 로그아웃은 로그인 상태일 때만 */}
+                        {
+                            logSts !== null &&
+
+                            <>
+                                {/* 로그아웃 */}
+                                <li>
+                                    <a href="#" onClick={logout}>
+                                        LOGOUT
+                                    </a>
+                                </li>
+                            </>
+                        }
                         
                     </ul>
                 </nav>
@@ -198,7 +202,7 @@ const Layout = () => {
 
                 <ul>
                     <li>
-                        <Logo gb="bottom" />
+                        <Logo gb="bottom" tt={callMe} />
                     </li>
                     <li>
                         <ol className="bmenu">

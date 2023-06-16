@@ -27,9 +27,17 @@ const Logo = (props) => {
         bottom: "80px",
     };
 
+    // 자식 컴포넌트 처리용 함수
+    const me = (x) => {
+
+        // 속성 전달을 통한 부모 함수 호출 및 값 전달
+        props.tt(x);
+        
+    }; // me //
+    
     return (
 
-        <h1 style={mystyle[props.gb]}>
+        <h1 style={mystyle[props.gb]} onClick={()=>me("it's me")}>
             <img src={isrc.logo} style={{ width: istyle[props.gb] }} />
         </h1>
         

@@ -17,7 +17,7 @@ function VidIntro(props){
 
     // 데이터 선택하기
     const sdt = vidintro_data[props.pg];
-    console.log(sdt.sum);
+    // console.log(sdt.sum);
 
     // 링크코드 생성 함수 : desc 데이터 / sum 데이터에서 처리
     const lcode = (data) => { // data는 desc/sum 둘중에 전달됨

@@ -3,7 +3,7 @@
 // 이거는 빌드할때만 페키지제이슨에 붙이기. 프라이빗 아래에
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Characters from "./dc/Characters";
 import Main from "./dc/Main";
 import Layout from "./dc/Layout";
@@ -14,7 +14,6 @@ import Games from "./dc/Games";
 import News from "./dc/News";
 import Video from "./dc/Video";
 import Member from "./dc/Member";
-import ScrollTop from "./dc/common/ScrollTop";
 import LogIn from "./dc/LogIn";
 
 /***********************************************************************
@@ -42,14 +41,11 @@ import LogIn from "./dc/LogIn";
 export default function App(){
 	
 	return(
+
 		// 이건 빌드할때 키기 아래꺼 주석하고
 		// <BrowserRouter basename={process.env.PUBLIC_URL}>
-       <BrowserRouter>
+		<HashRouter>
 	   
-        {/* 라우터 갱신될때 스크롤 상단이동 모듈작동함! */}
-
-			<ScrollTop />
-		
 			<Routes>
 				
 				{/* 중요: 레이아웃 컴포넌트를 루트로 잡아줌 */}
@@ -68,13 +64,13 @@ export default function App(){
                     <Route path="gm" element={<Games />} />
                     <Route path="nw" element={<News />} />
                     <Route path="vd" element={<Video />} />
-					<Route path="mem" element={<Member />} />
-					<Route path="login" element={<LogIn />} />
+                    <Route path="mem" element={<Member />} />
+                    <Route path="login" element={<LogIn />} />
 					
 				</Route>
 				
 			</Routes>
-		</BrowserRouter>
+		</HashRouter>
 		
 	); // return //
 	
