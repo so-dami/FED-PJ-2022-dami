@@ -22,12 +22,13 @@ export default function SwiperCat(props){
 
     // 데이터 셋팅
     const sdt = cat_data;
+    console.log(sdt);
     
     return (
         <>
             <Swiper
                 // 한 화면당 개수를 Hook 변수 사용
-                slidesPerView={perSld}
+                // slidesPerView={2}
                 spaceBetween={20}
                 navigation={true}
                 modules={[Navigation]}
@@ -37,10 +38,10 @@ export default function SwiperCat(props){
                         slidesPerView: 3,
                     },
                     700: {
-                        slidesPerView: 5,
+                        slidesPerView: 4,
                     },
                     1000: {
-                        slidesPerView: 6,
+                        slidesPerView: 5,
                     },
                     1200: {
                         slidesPerView: 7,
@@ -53,26 +54,16 @@ export default function SwiperCat(props){
                     
                     <SwiperSlide key={i}>
 
-                        <section className="swinbx"
-                        onClick={()=>showcat(v.vsrc,v.tit)}>
+                        <section className="swinbx">
 
-                            {/* 동영상 이미지 영역 */}
+                            {/* 캐릭터 이미지 영역 */}
                             <div className="catimg">
-                                <img src={v.isrc} alt={v.tit}></img>
-                                <FontAwesomeIcon icon={faPlayCircle} 
-                                style={{
-                                    position:"absolute",
-                                    bottom:"55%",
-                                    left:"10%",
-                                    color:"#fff",
-                                    fontSize:"50px"
-                                }} />
+                                <img src={v.tmsrc} alt={v.cname} />
                             </div>
 
                             {/* 동영상 타이틀 영역 */}
                             <div className="cattit">
-                                <h4>{v.cat}</h4>
-                                <h3>{v.tit}</h3>
+                                <h3>{v.cname}</h3>
                             </div>
 
                         </section>

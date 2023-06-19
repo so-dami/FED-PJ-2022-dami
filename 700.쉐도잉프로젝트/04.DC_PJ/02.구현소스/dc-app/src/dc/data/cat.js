@@ -236,3 +236,6 @@ const cat_data = [
         type: "",
     },
 ];
+
+// 내보내기
+export default cat_data;

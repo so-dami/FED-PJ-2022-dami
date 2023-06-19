@@ -12,7 +12,6 @@ function jqFn(){
 } // jqFn //
 
 function CatSwipe(props){
-    // props.pg - 페이지별 데이터 구분
     // props.tit - 모듈 타이틀
 
     return(
@@ -21,7 +20,7 @@ function CatSwipe(props){
         <>
 
             {/* 모듈 코드 구역 */}
-            <section className="catswbx">
+            <section className="catswbox">
 
                 {/* 1. 모듈 타이틀 */}
                 <h2 className="tit">{props.tit}</h2>
