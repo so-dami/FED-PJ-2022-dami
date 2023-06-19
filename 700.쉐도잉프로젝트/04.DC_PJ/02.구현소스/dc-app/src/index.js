@@ -15,6 +15,7 @@ import News from "./dc/News";
 import Video from "./dc/Video";
 import Member from "./dc/Member";
 import LogIn from "./dc/LogIn";
+import Detail from "./dc/Detail";
 
 /***********************************************************************
 	[ React Router ]
@@ -66,6 +67,7 @@ export default function App(){
                     <Route path="vd" element={<Video />} />
                     <Route path="mem" element={<Member />} />
                     <Route path="login" element={<LogIn />} />
+                    <Route path="det" element={<Detail />} />
 					
 				</Route>
 				
