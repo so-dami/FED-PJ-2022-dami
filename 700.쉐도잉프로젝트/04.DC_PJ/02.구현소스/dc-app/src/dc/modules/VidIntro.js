@@ -27,7 +27,7 @@ function VidIntro(props){
                 <a href={sdt.link[1]} target='_blank'>
                     {sdt.link[0]}
                 </a>
-                {data.split('*')[1]}            
+                {data.split('*')[1]}        
             </>
         )
     }

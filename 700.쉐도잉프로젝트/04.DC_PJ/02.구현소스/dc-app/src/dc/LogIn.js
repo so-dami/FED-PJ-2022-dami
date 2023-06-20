@@ -6,16 +6,9 @@ import $ from 'jquery';
 import { clearData, initData } from "./fns/fnMem";
 import { useNavigate } from "react-router-dom";
 
-// jQB 로드구역
-function jqFn(){
-
-    $(()=>{}); // jQB //
-    
-} // jqFn //
-
 export default function LogIn() {
     
-    // 라우트 이동
+    // 라우트 이동 메서드
     let goRoute = useNavigate();
     
     // [ 후크 useState 메서드 세팅 ]
@@ -289,9 +282,6 @@ export default function LogIn() {
                     </form>
                 </section>
             </div>
-
-            {/* 빈 루트를 만들고 JS 로드 함수 포함 */}
-            {jqFn()}
         </>
     );
 } // LogIn 컴포넌트 //

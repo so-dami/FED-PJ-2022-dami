@@ -11,6 +11,6 @@ const Movies = () => {
             <VidIntro pg="MOVIES" mm="on" />
         </>
     );
-}; /////////// Movies //////////////
+}; // Movies //
 
 export default Movies;

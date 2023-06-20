@@ -3,7 +3,7 @@
 import $ from "jquery";
 import "../css/menubtn.css";
 import menubtn_data from "../data/menubtn";
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // jQB 로드구역
 function jqFn(){
@@ -11,20 +11,6 @@ function jqFn(){
     $(()=>{}); // jQB //
     
 } // jqFn //
-
-// const 변수명 = 할당할 데이터; 
-const menubtnData = menubtn_data;
-
-// 앞, 뒤 변수
-const tit1 =[];
-const tit2 = [];
-
-//  {객체}, [배열]
-
-menubtnData.forEach((x,i)=>{
-    tit1.push(x.tit.split('^')[0]);
-    tit2.push(x.tit.split('^')[1]);
-})
 
 function MenuBtn(){
 
@@ -34,13 +20,13 @@ function MenuBtn(){
             <section className="menubtn">
 
             {
-                menubtnData.map((x,i) => 
+                menubtn_data.map((v,i) => 
                     <div key={i}>
 
                         {/* 이미지 박스 */}
                         <div className="imbx">
 
-                            <img src={menubtnData[i]['isrc']} alt="메뉴버튼" />
+                            <img src={v.isrc} alt="메뉴버튼" />
 
                         </div>
 
@@ -48,24 +34,23 @@ function MenuBtn(){
                         <div className="titbx">
 
                             {/* 작은 타이틀 */}
-                            <h3>
-                                {tit1[i].toUpperCase()}
-                            </h3>
+                            <h3>{v.tit.split('^')[0]}</h3>
 
                             {/* 큰 타이틀 */}
-                            <h2>
-                                {tit2[i].toUpperCase()}
-                            </h2>
+                            <h2>{v.tit.split('^')[1].toUpperCase()}</h2>
                             
                         </div>
 
                         {/* 버튼 박스 */}
                         <div className="btnbx">
+                            
                             {/* 라우터를 이용한 이동은 반드시 Link를 사용할 것 */}
-                            <button>
-                                {/* toUpperCase: 화면에 대문자로 출력 */}
-                                {menubtnData[i]['btn'].toUpperCase()}
-                            </button>
+                            <Link to={v.link}>
+                                <button>
+                                    {v.btn.toUpperCase()}
+                                </button>
+                            </Link>
+
                         </div>
                         
                     </div>

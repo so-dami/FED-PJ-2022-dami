@@ -1,5 +1,10 @@
 // VidIntro 컴포넌트용 데이터 - vidintro.js
 
+/* 
+    [ 데이터 조건 ]
+    
+    link 속성 값 세팅 시 하나의 링크만 세팅할 것! 링크가 있을 경우 sum 또는 desc 속성값에 단 하나의 *표시만 어디든지 넣는다!
+*/
 
 const vidintro_data = {
     main: 

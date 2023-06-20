@@ -68,12 +68,14 @@ export default function SwiperCat(props){
                             facts 캐릭터 명세
                         */}
                         
-                        <Link to="/det"
-                        state={{
-                            cname:v.cname,
-                            cdesc:v.cdesc,
-                            facts:v.facts
-                        }}>
+                        <Link to="/det" 
+                        state={
+                            {
+                                cname:v.cname,
+                                cdesc:v.cdesc,
+                                facts:v.facts
+                            }
+                        }>
                             <section className="swinbx">
 
                                 {/* 캐릭터 이미지 영역 */}
@@ -81,7 +83,7 @@ export default function SwiperCat(props){
                                     <img src={v.tmsrc} alt={v.cname} />
                                 </div>
                                 
-                                {/* 캐리겉 타이틀 영역 */}
+                                {/* 캐릭터 타이틀 영역 */}
                                 <div className="cattit">
                                     <h3>{v.cname}</h3>
                                 </div>
@@ -94,9 +96,6 @@ export default function SwiperCat(props){
                 ))}
 
             </Swiper>
-
-            {/* 스와이퍼 모듈에 이벤트 입히기 */}
-            {/* {evtFn()} */}
         </>
     );
 }

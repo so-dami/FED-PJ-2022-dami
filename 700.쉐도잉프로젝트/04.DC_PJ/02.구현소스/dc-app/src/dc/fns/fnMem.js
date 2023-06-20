@@ -3,7 +3,7 @@
 // [ 로컬스 클리어 ]
 const clearData = ()=> {
 
-    localStorage.clear()
+    localStorage.clear();
     console.log("로컬스 클리어");
     
 }; // clearData //

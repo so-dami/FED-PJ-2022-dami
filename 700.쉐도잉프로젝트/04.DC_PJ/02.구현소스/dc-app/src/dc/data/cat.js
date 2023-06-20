@@ -68,7 +68,7 @@ const cat_data = [
     {
         idx: "3",
         tmsrc: "./images/cat/cat3.jpg",
-        cname: "WONDERWOMAN",
+        cname: "WONDER WOMAN",
         cdesc: `
             Faster than a speeding bullet, more powerful than a locomotive… The Man of Steel fights a never-ending battle for truth, justice, and the American way.
             ^
@@ -100,7 +100,7 @@ const cat_data = [
     {
         idx: "4",
         tmsrc: "./images/cat/cat4.jpg",
-        cname: "GREENLANTERN",
+        cname: "GREEN LENTURN",
         cdesc: `
             Faster than a speeding bullet, more powerful than a locomotive… The Man of Steel fights a never-ending battle for truth, justice, and the American way.
             ^
@@ -224,16 +224,6 @@ const cat_data = [
         `,
         alignment: "hero",
         type: "indiv",
-    },
-
-    {
-        idx: "",
-        tmsrc: "./images/cat/cat1.jpg",
-        cname: "",
-        cdesc: ``,
-        facts: ``,
-        alignment: "",
-        type: "",
     },
 ];
 

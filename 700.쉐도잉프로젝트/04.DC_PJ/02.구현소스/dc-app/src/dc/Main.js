@@ -1,11 +1,10 @@
 // 메인 페이지 컴포넌트
 
 import Ban from "./modules/Ban";
+import CatSwipe from "./modules/CatSwipe";
 import MenuBtn from "./modules/MenuBtn";
 import VidIntro from "./modules/VidIntro";
-import SwiperVid from "./plugin/SwiperVid";
 import VidSwipe from "./modules/VidSwipe";
-import CatSwipe from "./modules/CatSwipe";
 
 const Main = () => {
     return (

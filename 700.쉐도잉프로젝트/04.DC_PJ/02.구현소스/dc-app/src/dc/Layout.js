@@ -12,8 +12,8 @@ import { gnb_data, bmenu } from "./data/common";
 // 폰트어썸
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 
+import { useState } from "react";
 import ScrollTop from "./common/ScrollTop";
 
 /********************************************************
@@ -39,16 +39,16 @@ const Layout = () => {
     }; // callMe //
 
     // 로그인 상태 Hook 변수: 로컬스 "minfo" 할당
-    const [logSts, setLogSts] = useState(localStorage.getItem("minfo"));
+    const [logSts,setLogSts] = useState(localStorage.getItem("minfo"));
 
     // 로그인 환영 메시지 Hook 변수
-    const [logMsg, setLogMsg] = useState("");
+    const [logMsg,setLogMsg] = useState("");
 
     // 로그인 환영 메시지 스타일
     const logstyle = {
         position: "absolute",
         left: "50%",
-        transform: "translateX(-50%)",
+        transform: "translateX(-50%)"
     }; // logstyle //
 
     // 로그인 셋팅 함수
@@ -113,37 +113,31 @@ const Layout = () => {
                         </li>
 
                         {/* gnb 메뉴 */}
-                        {
-                            gnb_data.map((v,i)=>
-                                <li key={i}>
-                                    <Link to={v.link}>{v.txt}</Link>
-                                    {/* {console.log(v.sub)} */}
-
-                                    {/* v.sub가 없으면 undefined */}
-                                    {
-                                        // 조건식 && 출력코드
-                                        // 조건: sub 데이터가 없지 않으면
-
-                                        // undefined: 정의되지 않은 값
-                                        // null: 빈 값
-                                        // -> 위 두가지는 데이터가 없다는 하나의 값
-
-                                        v.sub != undefined &&
+                        {gnb_data.map((v, i) => (
+                            <li key={i}>
+                                <Link to={v.link}>{v.txt}</Link>
+                                {/* {console.log(v.sub)} */}
+                                {/* v.sub가 없으면 undefined */}
+                                {
+                                    // 조건식 && 출력코드
+                                    // 조건: sub 데이터가 없지 않으면
+                                    // undefined - 정의되지 않은 값
+                                    // null - 빈 값
+                                    // 위의 두 가지는 데이터가 없다는 값임
+                                    v.sub != undefined && (
                                         <div className="smenu">
                                             <ol>
-                                                {
-                                                    v.sub.map((v,i)=>
-                                                        <li key={i}>
-                                                            <Link to={v.link}>{v.txt}</Link>
-                                                        </li>
-                                                    )
-                                                }
+                                                {v.sub.map((v, i) => (
+                                                    <li key={i}>
+                                                        <Link to={v.link}>{v.txt}</Link>
+                                                    </li>
+                                                ))}
                                             </ol>
                                         </div>
-                                    }
-                                </li>
-                            )
-                        }
+                                    )
+                                }
+                            </li>
+                        ))} 
 
                         {/* 검색 아이콘 */}
                         <li style={{marginLeft: "auto"}}>
@@ -151,22 +145,17 @@ const Layout = () => {
                         </li>
 
                         {/* 회원가입, 로그인은 로그이 아닌 상태일 때만 */}
-                        {
-                            logSts === null &&
+                        {logSts === null &&
 
                             <>
                                 {/* 회원가입 */}
                                 <li>
-                                    <Link to="/mem">
-                                        JOIN US
-                                    </Link>
+                                    <Link to="/mem">Join Us</Link>
                                 </li>
 
                                 {/* 로그인 */}
                                 <li>
-                                    <Link to="/login">
-                                        LOG IN
-                                    </Link>
+                                    <Link to="/login">LOGIN</Link>
                                 </li>
                             </>
                         }
@@ -206,14 +195,14 @@ const Layout = () => {
                     </li>
                     <li>
                         <ol className="bmenu">
-
-                            {bmenu.map((v,i)=>
+                            
+                            {bmenu.map((v, i) => (
                                 <li key={i}>
                                     <a href={v.link} target="_blank">
                                         {v.txt.toUpperCase()}
                                     </a>
                                 </li>
-                            )}
+                            ))}
 
                         </ol>
                     </li>
