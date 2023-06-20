@@ -41,11 +41,13 @@
 }
 
 .slider li{
-    position: relative;
     /* 부모자격 */
+    position: relative;
+
     width: 100%;
-    flex-shrink: 0;
+    
     /* 강제축소옵션 해제 */
+    flex-shrink: 0;
 }
 
 /* 슬라이드 이미지 */
