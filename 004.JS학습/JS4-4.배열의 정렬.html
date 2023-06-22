@@ -431,93 +431,165 @@
                     
                 }; // click: .sample //
 
-            // -> 검색 시 배열이 변경되므로 변경 배열을 담는 별도의 변수가 필요함
-            let newList = list2;
+                // -> 검색 시 배열이 변경되므로 변경 배열을 담는 별도의 변수가 필요함
+                let newList = list2;
 
-            // 최초 데이터 구성하여 화면에 넣기: upCode 함수 사용
-            const showFull = () => {
-                newList = list2;
-                upCode(newList,".showList4");
-            }
+                // 최초 데이터 구성하여 화면에 넣기: upCode 함수 사용
+                const showFull = () => {
+                    newList = list2;
+                    upCode(newList,".showList4");
+                }
 
-            // 전체 버튼 클릭 시 전체 리스트 함수 호출
-            document.querySelector(".fbtn").onclick = showFull;
+                // 전체 버튼 클릭 시 전체 리스트 함수 호출
+                document.querySelector(".fbtn").onclick = showFull;
 
-            // 5) 검색 버튼 클릭 시 검색 결과 만들어 화면에 출력하기
-                // 대상: .sbtn
-                document.querySelector(".sbtn").onclick = () => {
+                // 3) 검색 버튼 클릭 시 검색 결과 만들어 화면에 출력하기
+                    // 대상: .sbtn
+                    document.querySelector(".sbtn").onclick = () => {
 
-                    // (1) 검색어 가져오기 : #stxt
-                    let stxt = document.querySelector("#stxt").value;
-                    if(stxt.trim()==""){
-                        alert("검색어를 넣어주세요.");
-                        return; // 나가!
+                        // (1) 검색어 가져오기 : #stxt
+                        let stxt = document.querySelector("#stxt").value;
+                        if(stxt.trim()==""){
+                            alert("검색어를 넣어주세요.");
+                            return; // 나가!
+                        } // if //
+
+                        console.log("검색어:",stxt);
+
+                        // (2) 검색조건 가져오기 : .cta4
+                        let cta = document.querySelector(".cta4").value;
+                        console.log("검색기준:",cta);
+
+                        // (3) 다중값 리턴 LIKE 검색 : 원본 데이터(list2)로 검색!
+                        // filter() + indexOf() 사용
+                        let res = list2.filter(v=>{
+
+                            // indexOf()는 문자열만 가능하므로
+                            // String()으로 문자형 변환해야 함
+                            if(String(v[cta]).indexOf(stxt)!==-1) return true;
+
+                        }); // filter //
+
+                        console.log("검색결과:",res);
+
+                        // (4) 정렬에서도 사용하도록 newList에 업데이트!
+                        newList = res;
+
+                        // (5) 출력하기: upCode
+                        upCode(res,".showList4");
+                        
+                    }; // click: .sbtn //
+                    
+                // 4) 정렬 변경 선택 박스 이벤트 함수 만들기
+                // 대상: .sel4 (오름차순1, 내림차순2)
+                // 기준: .cta4 (idx/tit/cont) - cta(criteria기준)
+                document.querySelector(".sel4").onchange = (e) => {
+
+                    // (1) 선택 값 읽어오기
+                    let opt = e.target.value;
+
+                    // (2) 기준값 읽어오기
+                    let cta = document.querySelector(".cta4").value;
+                    console.log(opt, cta);
+                    console.log(newList);
+
+                    // (3) 선택에 따른 정렬 반영하기
+                    if (opt == 1) {
+
+                        // 오름차순 (x>y?1 바꿔)
+                        // x,y는 배열의 값 즉, 객체가 들어옴
+                        // 비교 시 객체의 속성명을 사용하여 값을 비교
+                        newList.sort((x, y) => {
+                            return x[cta] == y[cta] ? 0 : x[cta] > y[cta] ? 1 : -1;
+                        });
+
                     } // if //
 
-                    console.log("검색어:",stxt);
+                    else if (opt == 2) {
 
-                    // (2) 검색조건 가져오기 : .cta4
-                    let cta = document.querySelector(".cta4").value;
-                    console.log("검색기준:",cta);
+                        // 내림차순(x>y?-1 안 바꿈)
+                        newList.sort((x, y) => {
+                            return x[cta] == y[cta] ? 0 : x[cta] > y[cta] ? -1 : 1;
+                        });
 
-                    // (3) 다중값 리턴 LIKE 검색 : 원본 데이터(list2)로 검색!
-                    // filter() + indexOf() 사용
-                    let res = list2.filter(v=>{
+                    } // else if //
 
-                        // indexOf()는 문자열만 가능하므로
-                        // String()으로 문자형 변환해야 함
-                        if(String(v[cta]).indexOf(stxt)!==-1) return true;
+                    console.log("정렬결과:",newList);
 
-                    }); // filter //
+                    // (4) html 반영하기
+                    upCode(newList,".showList4");
 
-                    console.log("검색결과:",res);
+                }; // change: .sel4 //
 
-                    // (4) 정렬에서도 사용하도록 newList에 업데이트!
-                    newList = res;
+            // 5. 객체 원본 배열로 변환하기
+                // (1) 데이터: 객체 데이터
+                const list3 ={ 
+                    item1:{
+                        idx: 45,
+                        tit: "강남 당근 마켓에 가자",
+                        cont: "다니엘 당근 마켓이 정말로 싸고 좋다고",
+                    },
+                        item2:{
+                        idx: 94,
+                        tit: "나라 점심에 뭐 먹지?",
+                        cont: "강남 오스틴님 생일 서포트 안내",
+                    },
+                    item3:{
+                        idx: 22,
+                        tit: "다니엘 집돌이는 쉬고 싶다.",
+                        cont: "마동석 활동 정지에 대한 파생 글 무통보 삭제 및 경고",
+                    },
+                        item4:{
+                        idx: 111,
+                        tit: "라면 올해는 다른 회사로 이직한다.",
+                        cont: "나라 갈라콘 서포트에 많은 참여 부탁드립니다!",
+                    },
+                }; // list3 //
 
-                    // (5) 출력하기: upCode
-                    upCode(res,".showList4");
-                    
-                }; // click: .sbtn //
-                
-            // 6) 정렬 변경 선택 박스 이벤트 함수 만들기
-            // 대상: .sel4 (오름차순1, 내림차순2)
-            // 기준: .cta4 (idx/tit/cont) - cta(criteria기준)
-            document.querySelector(".sel4").onchange = (e) => {
+                // (2) 키 배열 만들기: Object.keys(객체)
+                let myKey = Object.keys(list3);
+                // console.log(myKey);
+                // console.log(myKey.reverse());
 
-                // (1) 선택 값 읽어오기
-                let opt = e.target.value;
+                // (3) 키 배열을 값 배열로 변환하기
+                let myVal = myKey.map(v=>list3[v]);
+                console.log(myVal);
 
-                // (2) 기준값 읽어오기
-                let cta = document.querySelector(".cta4").value;
-                console.log(opt, cta);
+                // (4) 리스트 화면 출력
+                upCode(myVal,".showList5");
 
-                // (3) 선택에 따른 정렬 반영하기
-                if (opt == 1) {
+                // (5) 정렬기능구현
+                document.querySelector(".sel5").onchange = (e) => {
 
-                    // 오름차순 (x>y?1 바꿔)
-                    // x,y는 배열의 값 즉, 객체가 들어옴
-                    // 비교 시 객체의 속성명을 사용하여 값을 비교
-                    newList.sort((x, y) => {
-                        return x[cta] == y[cta] ? 0 : x[cta] > y[cta] ? 1 : -1;
-                    });
+                    // 선택 값 읽어오기
+                    let opt = e.target.value;
 
-                } // if //
+                    // 기준값 읽어오기
+                    let cta = document.querySelector(".cta5").value;
+                    console.log(opt, cta);
 
-                else if (opt == 2) {
+                    // 선택에 따른 정렬 반영하기
+                    if (opt == 1) {
+                        // 오름차순 (x>y?1바꿔)
+                        // x,y는 배열의값 즉, 객체가 들어옴!
+                        // 비교시 객체의 속성명을 사용하여 값을 비교!
+                        myVal.sort((x, y) => {
+                            return x[cta] == y[cta] ? 0 : x[cta] > y[cta] ? 1 : -1;
+                        });
+                    } // if //
 
-                    // 내림차순(x>y?-1 안 바꿈)
-                    newList.sort((x, y) => {
-                        return x[cta] == y[cta] ? 0 : x[cta] > y[cta] ? -1 : 1;
-                    });
-                } // else if //
+                    else if (opt == 2) { // 내림차순(x>y?-1안바꿈)
+                        myVal.sort((x, y) => {
+                            return x[cta] == y[cta] ? 0 : x[cta] > y[cta] ? -1 : 1;
+                        });
+                    } // else //
 
-                console.log("정렬결과:",newList);
+                    console.log("정렬 결과:",myVal);
 
-                // (4) html 반영하기
-                upCode(newList,".showList4");
+                // (6) html반영하기
+                upCode(myVal,".showList5");
 
-            }; // change: .sel4 //
+            }; // change : .sel3 //
             
         }); // load 구역 //
         

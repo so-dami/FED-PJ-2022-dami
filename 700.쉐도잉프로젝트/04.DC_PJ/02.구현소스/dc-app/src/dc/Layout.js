@@ -141,7 +141,9 @@ const Layout = () => {
 
                         {/* 검색 아이콘 */}
                         <li style={{marginLeft: "auto"}}>
-                            <FontAwesomeIcon icon={faSearch} />
+                            <Link to="/sch">
+                                <FontAwesomeIcon icon={faSearch} />
+                            </Link>
                         </li>
 
                         {/* 회원가입, 로그인은 로그이 아닌 상태일 때만 */}
