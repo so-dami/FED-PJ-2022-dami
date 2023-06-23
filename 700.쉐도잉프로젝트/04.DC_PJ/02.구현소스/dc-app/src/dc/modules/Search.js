@@ -20,7 +20,12 @@ function jqFn(){
 function Search(){
 
     // 데이터 선택하기 : Hook 데이터 구성하기
-    let [sdt,setSdt] = useState(cat_data);
+    // -> 데이터 정렬을 반영하기 위해 정렬상태값을 같이 설정함
+    // 데이터구성: [배열데이터, 정렬상태값]
+    // 정렬상태값: 0 - 오름차순, 1 - 내림차순, 2 - 정렬 전
+    // 설정 이유: 데이터 정렬만 변경될 경우 배열 데이터가 변경되지 않은 것으로 Hook 상태 관리에서 인식함
+    let [sdt,setSdt] = useState([cat_data,2]);
+    // sdt[0] -> 배열 데이터만 가져갈 경우 0번째로 선택함
 
     // 데이터 건수 : Hook 데이터 구성하기
     let [tot,setTot] = useState(cat_data.length);
@@ -47,10 +52,9 @@ function Search(){
         // 3. 데이터 검색하기
         // 배열값 다중검색 메서드 -> filter()
         // 검색 대상: 전체 원본 데이터 (cat_data)
-        let newList = cat_data.filter(v=>{
+        let newList = cat_data.filter((v)=>{
 
-            if(v.cname.toLowerCase().indexOf(keyword) !== -1) 
-            return true;
+            if(v.cname.toLowerCase().indexOf(keyword) !== -1) return true;
 
         }); // filter //
 
@@ -58,7 +62,7 @@ function Search(){
 
         // 4. 검색 결과 리스트 업데이트하기
         // Hook 변수인 데이터 변수와 데이터 건수 변수를 업데이트함
-        setSdt(newList);
+        setSdt([newList,2]);
         setTot(newList.length);
 
     }; // schList 함수 //
@@ -73,37 +77,37 @@ function Search(){
     // 리스트 정렬 변경함수
     const sortList = (e) => {
 
-        // 1. 선택옵션값
+        // 1. 선택옵션값: 0 - 오름차순, 1 - 내림차순
         let opt = e.target.value;
         console.log("선택옵션:", opt);
 
-        // 임시변수
-        let temp = sdt;
-        console.log("정렬전:",temp);
+        // 임시 변수: 배열 데이터만 가져옴
+        let temp = sdt[0];
 
         // 2. 옵션에 따른 정렬반영하기
         temp.sort((x, y) => {
 
-            if (opt) {
+            if(opt==1){
 
                 // 내림차순(1)
                 return x.cname == y.cname ? 0 : x.cname > y.cname ? -1 : 1;
 
             } // if //
 
-            else {
+            else if(opt==0){
 
                 // 오름차순(0)                 
                 return x.cname == y.cname ? 0 : x.cname > y.cname ? 1 : -1;
 
-            } /// else //
-            
-        });
-        
-        console.log("정렬후:",temp);
+            } /// else if //
+
+        }); // sort //
+
+        console.log("정렬 후:", temp, opt);
 
         // 3. 데이터 정렬변경 반영하기
-        setSdt(temp);
+        // setSdt([배열 데이터,정렬상태값])
+        setSdt([temp, Number(opt)]);
 
     }; // sortList 함수 //
 
@@ -118,18 +122,18 @@ function Search(){
                 {/* 1. 옵션 선택 박스 */}
                 <div className="schopt">
 
-                    <div className='searching'>
+                    <div className="searching">
 
                         {/* 검색 버튼 돋보기 아이콘 */}
                         <FontAwesomeIcon 
                         icon={faSearch}
-                        className='schbtn'
-                        title='Open search'
+                        className="schbtn"
+                        title="Open search"
                         onClick={schList} />
 
                         {/* 입력창 */}
-                        <input id='schin' type='text' 
-                        placeholder='Filter by Keyword'
+                        <input id="schin" type="text" 
+                        placeholder="Filter by Keyword"
                         onKeyUp={enterKey} />
 
                     </div>
@@ -145,16 +149,16 @@ function Search(){
                     {/* 정렬 선택 박스 */}
                     <aside className="sortbx">
 
-                    <select className="sel" name="sel" id="sel" onChange={sortList}>
-                        <option value="0">A-Z</option>
-                        <option value="1">Z-A</option>
-                    </select>
+                        <select className="sel" name="sel" id="sel" onChange={sortList}>
+                            <option value="0">A-Z</option>
+                            <option value="1">Z-A</option>
+                        </select>
                         
                     </aside>
 
                     {/* 캐릭터 리스트 컴포넌트 */}
                     {/* 전달 속성 dt - 리스트 데이터 */}
-                    <CatList dt={sdt} />
+                    <CatList dt={sdt[0]} />
 
                 </div>
 
