@@ -4,6 +4,7 @@ import $ from "jquery";
 import "../css/vidswipe.css";
 import SwiperVid from "../plugin/SwiperVid";
 
+
 // jQB 로드구역
 function jqFn(){
 
