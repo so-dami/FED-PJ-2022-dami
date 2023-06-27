@@ -2,8 +2,8 @@
 // 회원가입과 디자인 동일
 import { useState } from "react";
 import "./css/member.css";
+import { clearData, initData } from "./fns/fnMem"; 
 import $ from 'jquery';
-import { clearData, initData } from "./fns/fnMem";
 import { useNavigate } from "react-router-dom";
 
 export default function LogIn() {

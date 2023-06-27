@@ -82,11 +82,40 @@ const Layout = () => {
         
     }; // logout //
 
+     // 검색창 보이기 함수
+     const showSearch = () => {
+        // 1. a 요소 숨기기
+        document.querySelector(".searchingGnb+a")
+        .style.opacity = "0";
+
+        // 2. 검색창 보이기
+        let tg = document.querySelector(".searchingGnb");
+        tg.style.display = "block";
+        tg.querySelector("input").focus();
+
+    }; // showSearch //
+
+    // 입력창에서 엔터키를 누르면 검색 함수 호출
+    const enterKey = (e) => {
+        if (e.key === "Enter") goSearch();
+    }; // enterKey 함수 //
+
+    // 검색 페이지로 검색어와 함께 이동하기
+    const goSearch = () => {
+
+        // 검색어 읽어오기
+        let kw = document.querySelector(".searchingGnb input").value;
+        console.log("검색어:",kw);
+
+        // 라우터 이동하기 : 전달값 가져가기(검색어)
+        goNav('/res',{state:{keyword:kw}})
+
+    }; // goSearch //
+
     return(
 
         <>
-            {/* 라우터 갱신될때 스크롤 상단이동 모듈 작동
-                + 로그인 셋팅 함수 호출 전달하기, 자식에게 setLogin 함수 전달 */}
+            {/* 라우터 갱신될때 스크롤 상단이동 모듈 작동 + 로그인 셋팅 함수 호출 전달하기, 자식에게 setLogin 함수 전달 */}
 			<ScrollTop sfn={setLogin} />
         
             {/* 1. 상단 영역 */}
@@ -139,11 +168,33 @@ const Layout = () => {
                             </li>
                         ))} 
 
-                        {/* 검색 아이콘 */}
-                        <li style={{marginLeft: "auto"}}>
-                            <Link to="/sch">
+                        <li style={{ marginLeft: "auto" }}>
+
+                            {/* 검색입력박스 */}
+                            <div className="searchingGnb">
+
+                                {/* 검색 버튼 돋보기 아이콘 */}
+                                <FontAwesomeIcon
+                                    icon={faSearch}
+                                    className="schbtnGnb"
+                                    title="Open search"
+                                    onClick={goSearch}
+                                />
+
+                                {/* 입력창 */}
+                                <input
+                                    id="schinGnb"
+                                    type="text"
+                                    placeholder="Filter by Keyword"
+                                    onKeyUp={enterKey}
+                                />
+
+                            </div>
+
+                            {/* 검색 기능 링크 - 클릭 시 검색창 보이기! */}
+                            <a href="#" onClick={showSearch}>
                                 <FontAwesomeIcon icon={faSearch} />
-                            </Link>
+                            </a>
                         </li>
 
                         {/* 회원가입, 로그인은 로그이 아닌 상태일 때만 */}

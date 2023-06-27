@@ -51,8 +51,9 @@ export default function SwiperCat(props){
                 className="mySwiper"
             >
 
-                {sdt.map((v,i) => (
-                    
+                {sdt.map((v,i) =>
+                /* 저스티스리그 캐릭터는 idx 1~7 */
+                Number(v.idx) <= 7 && (
                     <SwiperSlide key={i}>
 
                         {/* /det 라우터 컴포넌트 페이지 호출 시 state 속성값으로 객체를 보내어 값을 전달함 */}
@@ -90,7 +91,6 @@ export default function SwiperCat(props){
 
                             </section>
                         </Link>
-
                     </SwiperSlide>
 
                 ))}

@@ -25,8 +25,16 @@ function CatList(props){
                 {
                     sdt.map((v,i)=>
                         <li key={i}>
+                            <Link
+                                to="/det"
+                                state={{
+                                    cname: v.cname,
+                                    cdesc: v.cdesc,
+                                    facts: v.facts,
+                                }}>
                             <img src={v.tmsrc} alt={v.cname} />
                             <h3>{v.cname}</h3>
+                            </Link>
                         </li>
                     )
                 }
