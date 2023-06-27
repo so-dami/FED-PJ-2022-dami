@@ -1,11 +1,9 @@
 @charset "utf-8";
-
-/* 최소 높이 상단, 하단 제외 채우기 */
-/* -> 하단 영역에 여백이 생기는 일이 없어짐 */
 main.cont{
+    /* 최소높이 상단,하단제외 채우기
+    - 하단 여백이 생기는 일이 없어짐! */
     min-height: calc(100vh - 58px - 210px);
 }
-
 .top{
     position: fixed;
     top: 0;
@@ -16,37 +14,34 @@ main.cont{
     background-color: #fff;    
     font-family: 'Roboto Condensed', sans-serif;
 }
-
 .gnb{
     max-width: 1320px;
     margin: 0 auto;
 }
-
 .gnb ul{
     display: flex;
     align-items: center;
     list-style: none;
     gap: 0 20px
 }
-
 .gnb>ul>li{
-    /* 상위 메뉴(.smenu) 부모자격 */
+    /* 상위메뉴 부모자격 */
     position: relative;
     line-height: 58px;
 }
-
 .gnb a{
     color: #111;
     font-weight: bold;
     text-decoration: none;
     transition: .3s;
 }
-
 .gnb a:hover{    
     color: #007aff;
 }
 
-/* 서브 메뉴 */
+
+
+/* 서브메뉴 */
 .smenu{
     position: absolute;
     left: 50%;
@@ -57,16 +52,13 @@ main.cont{
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.503);
     white-space: nowrap;
     line-height: 2.5;
-
-    /* 처음에 안 보임 */
+    /* 처음에 안보임 */
     display: none;
 }
-
-/* li에 마우스 오버 시 .smenu 보임 */
+/* 오버시보임 */
 .gnb>ul>li:hover .smenu{
     display: block;
 }
-
 .smenu::before{
     content: '';
     position: absolute;
@@ -78,8 +70,9 @@ main.cont{
     border-bottom: 16px solid rgba(0, 0, 0, 0.291);
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
-}
 
+
+}
 .smenu::after{
     content: '';
     position: absolute;
@@ -91,11 +84,46 @@ main.cont{
     border-bottom: 15px solid #fff;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
+
+
 }
 
 h1{
     text-align: center;
 }
+
+/* gnb 검색입력창 박스 */
+.searchingGnb{    
+    position: absolute;
+    left: -230px;
+    top: 9px;
+    line-height: 41px;
+
+    width: 250px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #efefef;
+    box-sizing: border-box;
+    padding: 0 5px;
+    display: none;/* 처음에 안보임! */
+}
+.searchingGnb input{
+    font-size: 15px;
+    width: 77%;
+    margin-top: 5px;
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+}
+input:focus{
+    outline: none;
+}
+.schbtnGnb{
+    cursor: pointer;
+    margin-top: 9px;
+    margin-left: 10px;
+}
+
 
 /* 메인영역 */
 
@@ -108,33 +136,27 @@ h1{
     display: flex;
     flex-direction: column;
 }
-
 .info>ul>li:last-child{
     font-weight: bold;
 }
-
 .bmenu{
     font-family: 'Roboto Condensed', sans-serif;
     display: flex;
     justify-content: center;
     margin: 15px 0;
 }
-
 .bmenu li{
     padding: 0 10px;
 }
-
 .bmenu li + li{
     border-left: 2px solid #fff;
 }
-
 .bmenu a{
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     transition: .3s;
 }
-
 .bmenu a:hover{
     color: #007aff;
 }

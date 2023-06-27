@@ -6,7 +6,7 @@ import Logo from "./Logo";
 // 레이아웃 CSS
 import "./css/layout.css";
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { gnb_data, bmenu } from "./data/common";
 
 // 폰트어썸
@@ -30,6 +30,9 @@ import ScrollTop from "./common/ScrollTop";
 // 배열: 데이터 단순 반복
 
 const Layout = () => {
+
+    // 라우터 이동메서드 셋팅!
+    const goNav = useNavigate();
 
     // 자식 컴포넌트 값 전달 테스트
     const callMe = (x) => {

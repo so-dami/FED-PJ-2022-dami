@@ -2,6 +2,7 @@
 
 import $ from "jquery";
 import "../css/catlist.css";
+import { Link } from "react-router-dom";
 
 // jQB 로드구역
 function jqFn(){
@@ -32,8 +33,8 @@ function CatList(props){
                                     cdesc: v.cdesc,
                                     facts: v.facts,
                                 }}>
-                            <img src={v.tmsrc} alt={v.cname} />
-                            <h3>{v.cname}</h3>
+                                <img src={v.tmsrc} alt={v.cname} />
+                                <h3>{v.cname}</h3>
                             </Link>
                         </li>
                     )
