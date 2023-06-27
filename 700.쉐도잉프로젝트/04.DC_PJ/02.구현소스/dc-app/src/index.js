@@ -16,7 +16,7 @@ import Video from "./dc/Video";
 import Member from "./dc/Member";
 import LogIn from "./dc/LogIn";
 import Detail from "./dc/Detail";
-import Search from "./dc/modules/Search";
+import Result from "./dc/Result";
 
 /***********************************************************************
 	[ React Router ]
@@ -39,7 +39,7 @@ import Search from "./dc/modules/Search";
 ***********************************************************************/
 
 // 라우터 구성 컴포넌트: 스스로 내보내기 셋팅 필수
-// 레이아웃 컴포넌트를 라우터에 입혀서 화면에 출력해야 하기 때문
+// 레이아웃 컴포넌트를 라우터에 입혀서 화면에 출력해야 하기 때문에 스스로 내보내기를 셋팅하는 것
 export default function App(){
 	
 	return(
@@ -69,7 +69,7 @@ export default function App(){
                     <Route path="mem" element={<Member />} />
                     <Route path="login" element={<LogIn />} />
                     <Route path="det" element={<Detail />} />
-                    <Route path="sch" element={<Search />} />
+                    <Route path="res" element={<Result />} />
 					
 				</Route>
 				
