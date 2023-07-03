@@ -1,6 +1,6 @@
-// 공통 데이터 - 상단, 하단 영역: common.js
+// 공통 데이터 - 상단,하단영역 : common.js
 
-// gnb 메뉴 데이터 구성 - 배열 데이터
+/* GNB메뉴 데이터구성하기 */
 const gnb_data = [
     //    {
     //        txt:"Home",
@@ -64,7 +64,7 @@ const gnb_data = [
     },
 ];
 
-// 하단 링크 데이터 셋업
+/* 하단링크 데이터 셋업! */
 const bmenu = [
     {
         txt: "Privacy Policy",
@@ -88,5 +88,4 @@ const bmenu = [
     },
 ];
 
-// 내보내기
 export { gnb_data, bmenu };

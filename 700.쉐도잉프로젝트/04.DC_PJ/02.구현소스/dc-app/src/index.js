@@ -1,6 +1,4 @@
-// index.js는 public/index.html 페이지에 적용되는 컴포넌트
-// "homepage": "http://so-dami.github.io/dc-app",
-// 이거는 빌드할때만 페키지제이슨에 붙이기. 프라이빗 아래에
+// index.js는 public/index.html 페이지에 적용되는 컴포넌트다!
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Routes, Route, HashRouter } from "react-router-dom";
@@ -19,45 +17,43 @@ import Detail from "./dc/Detail";
 import Result from "./dc/Result";
 import Board from "./dc/Board";
 
-/***********************************************************************
-	[ React Router ]
-	-> component를 연결할 특정 이벤트의 모듈을 변경해 주는 중계 역할
+/********************************************* 
+    [ 리액트 라우터 ]
+    -> 컴포넌트를 연결하여 특정 이벤트에 모듈을
+    변경해주는 중계역할을 함
+    1. <BrowserRouter> - 라우터 Root
+    2. <Routes> - 개별 라우터를 묶어주는 역할
+    3. <Route> - 개별 라우터
+        (속성)
+            (1) path : 경로를 지정함
+                    (Link의 to속성 경로와 일치함!)
+            (2) element : 연결할 컴포넌트 지정
 
-	1. <BrowserRouter> - router root
-	2. <Routes> - 개별 라우터를 묶어주는 역할
-	3. <Route> - 개별 라우터
-		속성
-		(1) path: 경로 지정(Link의 to 속성 경로와 일치함)
-		(2) element: 연결할 component 지정
-		(3) 하위 라우트 만들기
-			<Route path = "/" element={}>
-				<Route />
-				<Route />
-				<Route />
-			</Route>
-	4. router를 구성하는 component는 자체적으로 내보내기 셋팅을 해야 함
-		(1) export default router component
-***********************************************************************/
+        (하위 라우트 만들기)
+            <Route path="/">
+                <Route />
+                <Route />
+                <Route />
+            </Route>
+    4. 라우터를 구성하는 컴포넌트는 자체적으로
+    내보내기 셋팅을 해야한다!
+    -> export default 라우터 컴포넌트
+*********************************************/
 
-// 라우터 구성 컴포넌트: 스스로 내보내기 셋팅 필수
-// 레이아웃 컴포넌트를 라우터에 입혀서 화면에 출력해야 하기 때문에 스스로 내보내기를 셋팅하는 것
+// 라우터구성 컴포넌트 : 스스로 내보내기셋팅 필수!
+// 레이아웃 컴포넌트를 라우터에 입혀서 화면에
+// 출력해야하기 때문에 스스로 내보내기를 셋팅하는것임!
 export default function App(){
-	
-	return(
-
-		// 이건 빌드할때 키기 아래꺼 주석하고
-		// <BrowserRouter basename={process.env.PUBLIC_URL}>
-		<HashRouter>
-	   
-			<Routes>
-				
-				{/* 중요: 레이아웃 컴포넌트를 루트로 잡아줌 */}
-				<Route path="/" element={<Layout />}>
-
-					{/* 하위 라우트 셋팅 */}
-					{/* path 대신 index만 쓰면? 첫 페이지임 */}
-					{/* -> Layout의 Link to="/"에 해당하는 셋팅 필수*/}
-					<Route index element={<Main />} />
+    return(
+        // <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
+            <Routes>
+               {/* 중요!!!:레이아웃 컴포넌트를 루트로 잡아준다!!! */} 
+               <Route path="/" element={<Layout />}>
+                    {/* 하위라우트 셋팅 */}
+                    {/* path대신 index만 쓰면 첫페이지임!
+                    -> Layout의 Link to="/"에 해당하는 셋팅임! 필수! */}
+                    <Route index element={<Main />} />
                     <Route path="main" element={<Main />} />
                     <Route path="ct" element={<Characters />} />
                     <Route path="co1" element={<Comics sub="0" />} />
@@ -72,15 +68,13 @@ export default function App(){
                     <Route path="det" element={<Detail />} />
                     <Route path="res" element={<Result />} />
                     <Route path="board" element={<Board />} />
-					
-				</Route>
-				
-			</Routes>
-		</HashRouter>
-		
-	); // return //
-	
-} // App component //
+               </Route>
+
+            </Routes>
+        </HashRouter>
+    );
+} //////////////// App 컴포넌트 //////////////////
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
