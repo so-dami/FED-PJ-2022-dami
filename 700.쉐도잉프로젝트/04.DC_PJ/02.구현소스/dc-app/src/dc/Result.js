@@ -4,6 +4,7 @@ import "./css/result.css";
 import Search from './modules/Search';
 import { useLocation } from "react-router-dom"
 
+
 // 제이쿼리 로드구역 함수 /////////
 function jqFn(){
     $(()=>{

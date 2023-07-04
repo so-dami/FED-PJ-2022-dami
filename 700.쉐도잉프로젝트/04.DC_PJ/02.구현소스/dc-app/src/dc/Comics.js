@@ -1,11 +1,10 @@
-// DV Comics 페이지 컴포넌트
-
+// DC Comics 페이지 컴포넌트
 import React from "react";
 import VidIntro from "./modules/VidIntro";
 
 const Comics = (props) => {
-
     {console.log(props.sub)}
+
 
     // 타이틀 데이터 선택하기
     const tit_data = [
@@ -20,8 +19,6 @@ const Comics = (props) => {
             <VidIntro pg="COMICS" mm="on" />
         </>
     );
+}; /////////// Comics //////////////
 
-}; // Comics ///
-
-// 데이터 내보내기
 export default Comics;

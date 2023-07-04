@@ -1,5 +1,4 @@
 @charset "utf-8";
-
 /* MenuBtn 모듈용 CSS - menubtn.css  */
 
 .menubtn{
@@ -14,7 +13,6 @@
     padding-bottom: 30px;
     gap: 2vh 0;
 }
-
 .menubtn>div{
     position: relative;
     flex-basis: 23%;
@@ -22,28 +20,21 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: #fdfdfd;
 }
-
 .imbx img{
     max-width: 100%;
-    clip-path: polygon(0% 0%,100% 0%, 100% 90%,0% 100%);
+    clip-path: polygon(0% 0%,100% 0%, 100% 80%,0% 100%);
 }
-
 .titbx h3{
     padding: 6px 0;
     margin-bottom: 5px;
     font-size: 12px;
     color: #888;
     letter-spacing: 2px;
-    text-align: center;
 }
-
 .titbx h2{
     margin-bottom: 8px;
     padding: 0 20px;
-    text-align: center;
-    font-size: 22px;
 }
-
 .btnbx{
     position: absolute;
     left: 50%;
@@ -51,22 +42,18 @@
     bottom: 30px;
     white-space: nowrap;
 }
-
 .btnbx button{
-    padding: 12px 30px;
-    font-size: 14px;
+    padding: 15px 30px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 25px;
-    border: 1px solid #000;
     font-family: 'Roboto Condensed', sans-serif;
     background-color: transparent;
     transition: .4s;
     cursor: pointer;
 }
-
 .btnbx button:hover{
     background-color: #0074eb;
-    border-color: #0074eb;
     color: #fff;
 }
 
@@ -82,15 +69,12 @@
         aspect-ratio: 1/1.6;
         flex-basis: 49%;
     }
-
     .titbx h3{
         font-size: 1.2vw;
     }
-
     .titbx h2{
         font-size: 2vw;
     }
-
     .btnbx button{
         font-size: 1.5vw;
     }
@@ -101,15 +85,12 @@
         aspect-ratio: 1/1.4;
         flex-basis: 100%;
     }
-
     .titbx h3{
         font-size: 2vw;
     }
-
     .titbx h2{
         font-size: 5vw;
     }
-    
     .btnbx button{
         font-size: 3vw;
     }

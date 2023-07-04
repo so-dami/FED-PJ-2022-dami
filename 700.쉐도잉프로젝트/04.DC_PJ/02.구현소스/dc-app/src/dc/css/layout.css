@@ -1,10 +1,9 @@
 @charset "utf-8";
 main.cont{
     /* 최소높이 상단,하단제외 채우기
-    - 하단 여백이 생기는 일이 없어짐 */
+    - 하단 여백이 생기는 일이 없어짐! */
     min-height: calc(100vh - 58px - 210px);
 }
-
 .top{
     position: fixed;
     top: 0;
@@ -15,37 +14,34 @@ main.cont{
     background-color: #fff;    
     font-family: 'Roboto Condensed', sans-serif;
 }
-
 .gnb{
     max-width: 1320px;
     margin: 0 auto;
 }
-
 .gnb ul{
     display: flex;
     align-items: center;
     list-style: none;
     gap: 0 20px
 }
-
 .gnb>ul>li{
     /* 상위메뉴 부모자격 */
     position: relative;
     line-height: 58px;
 }
-
 .gnb a{
     color: #111;
     font-weight: bold;
     text-decoration: none;
     transition: .3s;
 }
-
 .gnb a:hover{    
     color: #007aff;
 }
 
-/* 서브 메뉴 */
+
+
+/* 서브메뉴 */
 .smenu{
     position: absolute;
     left: 50%;
@@ -59,12 +55,10 @@ main.cont{
     /* 처음에 안보임 */
     display: none;
 }
-
-/* 오버 시 보임 */
+/* 오버시보임 */
 .gnb>ul>li:hover .smenu{
     display: block;
 }
-
 .smenu::before{
     content: '';
     position: absolute;
@@ -76,8 +70,9 @@ main.cont{
     border-bottom: 16px solid rgba(0, 0, 0, 0.291);
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
-}
 
+
+}
 .smenu::after{
     content: '';
     position: absolute;
@@ -89,6 +84,8 @@ main.cont{
     border-bottom: 15px solid #fff;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
+
+
 }
 
 h1{
@@ -110,7 +107,6 @@ h1{
     padding: 0 5px;
     display: none;/* 처음에 안보임! */
 }
-
 .searchingGnb input{
     font-size: 15px;
     width: 77%;
@@ -119,11 +115,9 @@ h1{
     background-color: transparent;
     border: none;
 }
-
 input:focus{
     outline: none;
 }
-
 .schbtnGnb{
     cursor: pointer;
     margin-top: 9px;
@@ -131,9 +125,9 @@ input:focus{
 }
 
 
-/* 메인 영역 */
+/* 메인영역 */
 
-/* 하단 영역 */
+/* 하단영역 */
 .info{
     text-align: center;
     padding: 30px;
@@ -142,50 +136,64 @@ input:focus{
     display: flex;
     flex-direction: column;
 }
-
 .info>ul>li:last-child{
     font-weight: bold;
 }
-
 .bmenu{
     font-family: 'Roboto Condensed', sans-serif;
     display: flex;
     justify-content: center;
     margin: 15px 0;
 }
-
 .bmenu li{
     padding: 0 10px;
 }
-
 .bmenu li + li{
     border-left: 2px solid #fff;
 }
-
 .bmenu a{
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     transition: .3s;
 }
-
 .bmenu a:hover{
     color: #007aff;
 }
 
-/* 미디어쿼리 */
-@media screen and (max-width:1320px){
+/* 햄버거버튼 */
+.hambtn{
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
 
+.hambtn::before{
+    content: '≡';
+}
+.top.on .hambtn::before{
+    content: '×';
+}
+
+/* 1320px이하 미디어쿼리 */
+@media screen and (max-width:1320px) {
     body{
-        /* 첫 번째 컨텐츠 가려짐 방지 패딩 */
         padding-top: 58px;
+        /* 첫번째 컨텐츠 가려짐방지 패딩 */
+        overflow-x: hidden;
     }
-    
     .top{
-        /* 보이는 화면 고정 */
+        /* 보이는 화면고정 */
         position: fixed;
         top: 0;
-        width: 100%;
+        width: 100vw;
         height: 58px;
         padding: 0 20px;
         box-sizing: border-box;
@@ -193,49 +201,23 @@ input:focus{
         overflow: hidden;
         transition: .4s ease-out;
     }
-
     .top.on{
         height: 100vh;
     }
-
 }
 
+
 /* 1024px 이하 미디어쿼리 */
-@media screen and (max-width:1024px){
-
-    /* 햄버거 버튼 */
-    .hambtn{
-        position: absolute;
-        right: 20px;
-        top: 10px;
-        width: 20px;
-        height: 20px;
-        border: none;
-        background-color: transparent;
-        font-size: 30px;
-        cursor: pointer;
-    }
-
-    .hambtn::before{
-        content: '≡';
-    }
-
-    .top.on .hambtn::before{
-        content: '×';
-    }
-
+@media screen and (max-width:1024px) {
     .gnb{
         background-color: #fff;
     }
-
     .gnb>ul>li{
         position: static;
     }
-
     .gnb>ul>li:nth-child(2){
         border-top: 2px solid #ccc;
     }
-
     /* 메뉴 CHARACTERS ~ OPINION */
     .gnb>ul>li:nth-child(1)~li:nth-child(-n+8)
     {
@@ -247,39 +229,31 @@ input:focus{
         box-sizing: border-box;
         text-indent: 50px;
     }
-
     .gnb>ul>li:nth-child(2){
         top: calc(58px * 1);
     }
-
     .gnb>ul>li:nth-child(3){
         top: calc(58px * 2);
     }
-
     .gnb>ul>li:nth-child(4){
         top: calc(58px * 3);
     }
-
     .gnb>ul>li:nth-child(5){
         top: calc(58px * 4);
     }
-
     .gnb>ul>li:nth-child(6){
         top: calc(58px * 5);
     }
-
     .gnb>ul>li:nth-child(7){
         top: calc(58px * 6);
     }
-
     .gnb>ul>li:nth-child(8){
         top: calc(58px * 7);
         border-bottom: 1px solid #000;
     }
-
-    /* Join Us + Login */
-    .gnb>ul>li:nth-child(10) a,
-    .gnb>ul>li:nth-child(11) a    
+    /* Join Us / LOGIN */
+    .gnb>ul>li:nth-child(10) > a,
+    .gnb>ul>li:nth-child(11) > a    
     {
         position: absolute;
         top: calc(58px * 8);
@@ -293,26 +267,22 @@ input:focus{
         margin-top: 20px;
         transition: .3s;
     }
-
-    .gnb>ul>li:nth-child(11) a{        
+    .gnb>ul>li:nth-child(11) > a{        
         left: 55%;
     }
-
-    .gnb>ul>li:nth-child(10) a:hover,
-    .gnb>ul>li:nth-child(11) a:hover  {
+    .gnb>ul>li:nth-child(10) > a:hover,
+    .gnb>ul>li:nth-child(11) > a:hover  {
         color: #fff;
         background-color: #0d6efd;
     }
-
-    .gnb>ul>li:nth-child(3) a::after,
-    .gnb>ul>li:nth-child(4) a::after  {
+    .gnb>ul>li:nth-child(3) > a::after,
+    .gnb>ul>li:nth-child(4) > a::after  {
         content: '▼';
         font-size: 11px;
         vertical-align: 2px;
         margin-left: 5px;
     }
-
-    /* 검색 박스 */
+    /* 검색박스 */
     .searchingGnb{
         left: 80px;
         width: 80%;
@@ -329,5 +299,4 @@ input:focus{
         transform: none;
         z-index: 1;
     }
-
 }

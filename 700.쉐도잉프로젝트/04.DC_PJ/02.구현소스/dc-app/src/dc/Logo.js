@@ -1,13 +1,12 @@
-// DC 로고 컴포넌트
+// DC로고 컴포넌트
 import React from "react";
 import isrc from "./ImgSrc";
 
 const Logo = (props) => {
-    // props.gb : 상단, 하단 구분 코드
+    // props.gb : 상단,하단구분코드
 
-    // 객체형 스타일 적용: 속성명이 틀리면 아예 출력되지 않음
+    //객체형 스타일적용: 속성명이 틀리면 아예 출력되지 않는다!
     const mystyle = {
-        
         top: {
             width: "45px",
             height: "45px",
@@ -15,7 +14,6 @@ const Logo = (props) => {
             borderRadius: "50%",
             // outline:"3px solid lime"
         },
-
         bottom: {
             height: "80px",
         },
@@ -26,23 +24,17 @@ const Logo = (props) => {
         bottom: "80px",
     };
 
-    // 자식 컴포넌트 처리용 함수
-    const me = (x) => {
-
-        // 속성 전달을 통한 부모 함수 호출 및 값 전달
+    // 자식컴포넌트 처리용함수
+    const nayana = (x) => {
+        // 속성전달을 통한 부모함수호출 및 값 전달!!!
         props.tt(x);
-        
-    }; // me //
-    
-    return (
+    }; /////////// nayana ///////////
 
-        <h1 style={mystyle[props.gb]} onClick={()=>me("it's me")}>
+    return (
+        <h1 style={mystyle[props.gb]} onClick={()=>nayana('나야나!')}>
             <img src={isrc.logo} style={{ width: istyle[props.gb] }} />
         </h1>
-        
-    ); // return //
-    
-}; // Logo //
+    );
+}; //////////// Logo ////////////////
 
-// 로고 내보내기
 export default Logo;
